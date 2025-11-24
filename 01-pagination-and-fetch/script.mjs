@@ -6,17 +6,17 @@ const strUrl = "https://jsonplaceholder.typicode.com/posts";
 
 async function getData(url) {
   try {
-    const respose = await fetch(url);
-    console.log(respose);
-    if (!respose.ok) {
+    const response = await fetch(url);
+    console.log(response);
+    if (!response.ok) {
       const errorMessage =
-        respose.status === 404
+          response.status === 404
           ? "Данных нет, сервер временно не доступен"
           : "Что-то пошло не так";
       throw new Error(errorMessage);
     } else {
     }
-    const data = await respose.json();
+    const data = await response.json();
     console.log(data);
     
     return data;
