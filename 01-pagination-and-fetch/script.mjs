@@ -22,7 +22,7 @@ async function getData(url) {
   }
 };
 
-const creatElement = (tagName, className, content) => {
+const creatElement = (tagName, className, content="") => {
     const tag =  document.createElement(tagName);
     tag.classList.add(className);
     if(tag) {
@@ -54,8 +54,8 @@ const main = async () => {
   const displayPagination = (postsData, rowsPosts) => {
     //вычисляем количество страниц
     const pagesCount = Math.ceil(postsData.length / rowsPosts);
-    const listPaginationButtons = document.createElement("ul");
-    listPaginationButtons.classList.add("pagination__list")
+    const listPaginationButtons = creatElement("ul", "pagination__list");
+    // listPaginationButtons.classList.add("pagination__list")
 
     for(let i = 0; i < pagesCount; i++) {
       const numberPage = i + 1;
