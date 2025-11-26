@@ -1,10 +1,13 @@
 const listCardElement = document.querySelector('.list-card');
 const formElement = document.querySelector("[data-js-form]");
 const inputSearchElement = document.querySelector(".header__search");
+const modalElement = document.querySelector('.modal');
+
 
 const API_Key = "b2b7a3d8-7101-4751-9b0f-ef926351f504";
 const URL_String = "https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_MOVIES&page=1";
 const URL_String_Search = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
+const URL_String_DETAILS = "https://kinopoiskapiunofficial.tech/api/v2.1/films/";
 
 async function getMovies(url) {
     try {
@@ -74,8 +77,8 @@ function renderMovies(data) {
                 </div>
             `
         }
-
         listCardElement.appendChild(cardElement);
+        cardElement.addEventListener("click", () => openModalElement(movie.kinopoiskId));
     })
 }
 
@@ -86,12 +89,64 @@ formElement.addEventListener("submit", async (e) => {
     const apiSearchUrl = `${URL_String_Search}${textInputValue}`;
     
     if(textInputValue) {
-         getMovies(apiSearchUrl); 
-         with(listCardElement.firstChild) {
-            listCardElement.firstChild.remove()
-         }
+         getMovies(apiSearchUrl);
     }
     inputSearchElement.value = "";
 });
 
+
+
+async  function openModalElement(id) {
+    modalElement.classList.add("modal-show");
+
+    const apiSearchUrl = URL_String_DETAILS + id;
+    const filmDetailsResponse = await fetch(apiSearchUrl, {
+        headers: {
+            "Content-Type": "application/json",
+            "X-API-Key": API_Key,
+        }
+    });
+
+    const filmDetails = await filmDetailsResponse.json();
+    console.log(filmDetails.data)
+
+
+    modalElement.innerHTML = `
+    <div class="modal__card">
+       <img class="modal__image" src="${filmDetails.data.posterUrl}" alt="">
+        <h2 class="modal">
+            <span class="modal__title">${filmDetails.data.nameRu}</span>
+             <span class="modal__release-year">${filmDetails.data.year}</span>
+        </h2>
+             <ul class="modal__info">
+              <div class="modal__load"></div>
+                 <li class="modal__genre">${filmDetails.data.genres.map(gener => gener.gener)}</li>
+                  <li class="modal__time">${filmDetails.data.filmLength}</li>
+                  <li>Сайт: <a class="modal__link" href=""></a></li>
+                  <li class="modal__description">${filmDetails.data.description}</li>
+                  <li class="modal__description">${filmDetails.data.filmId}</li>
+              </ul>
+        <button onclick="closeModalElement()"  class="modal__btn-close" type="button">Закрыть</button>
+    </div>
+`;
+// const buttonClose = document.createElement(".modal__btn-close");
+//     buttonClose.addEventListener("click", closeModalElement);
+}
+
+function closeModalElement() {
+    modalElement.classList.remove("modal-show")
+}
+
+window.addEventListener("click", (e) => {
+    console.log(e.target)
+    if(e.target === modalElement) {
+        closeModalElement()
+    }
+});
+
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode === 27) {
+        closeModalElement()
+    }
+})
 

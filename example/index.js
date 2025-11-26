@@ -7,10 +7,10 @@
 const user = {
     name: "Jenna",
     age: 23,
-    isLove: true
+    isLove: true,
+    address: {
+        street: "John Doe",
+        city: "Los Angeles",
+    }
 }
 
-for(let nameKey in user) {
-    console.log(`${nameKey}: ${user[nameKey]}`);
-    
-}

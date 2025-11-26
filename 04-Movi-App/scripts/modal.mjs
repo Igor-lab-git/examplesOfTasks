@@ -1,0 +1,1 @@
+const modalWindowElement = document.querySelector('.modal-window');
