@@ -25,8 +25,8 @@ async function getData(url) {
 const creatElement = (tagName, className, content="") => {
     const tag =  document.createElement(tagName);
     tag.classList.add(className);
-    if(tag) {
-        tag.innerHTML = content
+    if(tag && content !== undefined && content !== null) {
+        tag.innerHTML = content;
     }
     return tag;
 }
