@@ -14,4 +14,14 @@ const user = {
     }
 }
 
-console.log(typeof user);
+const user2 = Object.assign({}, user);
+
+
+const friuts = ["Яблоко", "Лимон", "Груша", "Слива"];
+friuts.push("Jenna")
+friuts.forEach(el => console.log(el))
+
+
+
+
+
