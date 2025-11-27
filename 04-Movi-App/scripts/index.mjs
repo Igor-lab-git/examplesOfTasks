@@ -65,6 +65,8 @@ function renderMovies(data) {
     moviesArray.forEach(movie => {
         const cardElement = createNodeElement("article", "card");
 
+        const movieId = movie.kinopoiskId || movie.filmId;
+
         if(movie) {
             cardElement.innerHTML = `
                 <div class="card__cover">
@@ -74,12 +76,12 @@ function renderMovies(data) {
                 <div class="card__info">
                     <h2 class="card__title">${movie.nameRu}</h2>
                     <div class="card__category">${movie.genres.map(genre => `  ${genre.genre}`)}</div>
-                    <div class="card__rating card__rating--${setClassByRating(movie.ratingKinopoisk || movie.rating)}">${movie.ratingKinopoisk || movie.rating}</div>
+                    <div class="card__rating card__rating--${setClassByRating(movie?.ratingKinopoisk || movie?.rating)}">${movie?.ratingKinopoisk || movie?.rating}</div>
                 </div>
             `
         }
         listCardElement.appendChild(cardElement);
-        cardElement.addEventListener("click", () => openModalElement(movie.kinopoiskId));
+        cardElement.addEventListener("click", () => openModalElement(movieId));
     })
 }
 
@@ -125,7 +127,6 @@ async  function openModalElement(id) {
                   <li class="modal__time">${filmDetails.data.filmLength} минут</li>
                   <li>Сайт: <a class="modal__link" href="${filmDetails.data.webUrl}">${filmDetails.data.webUrl}</a></li>
                   <li class="modal__description">Описание: ${filmDetails.data.description}</li>
-                  <li class="modal__description">${filmDetails.data.filmId}</li>
               </ul>
         <button onclick="closeModalElement()"  class="modal__btn-close" type="button">Закрыть</button>
     </div>
