@@ -8,6 +8,7 @@ const API_Key = "b2b7a3d8-7101-4751-9b0f-ef926351f504";
 const URL_String = "https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_MOVIES&page=1";
 const URL_String_Search = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 const URL_String_DETAILS = "https://kinopoiskapiunofficial.tech/api/v2.1/films/";
+// const URL_String_DETAILS = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
 
 async function getMovies(url) {
     try {
@@ -97,8 +98,6 @@ formElement.addEventListener("submit", async (e) => {
 
 
 async  function openModalElement(id) {
-    modalElement.classList.add("modal-show");
-
     const apiSearchUrl = URL_String_DETAILS + id;
     const filmDetailsResponse = await fetch(apiSearchUrl, {
         headers: {
@@ -108,22 +107,24 @@ async  function openModalElement(id) {
     });
 
     const filmDetails = await filmDetailsResponse.json();
-    console.log(filmDetails.data)
+    console.log("filmDetails.data", filmDetails)
 
+    modalElement.classList.add("modal-show");
+    document.body.classList.add("stop__scrolling");
 
     modalElement.innerHTML = `
     <div class="modal__card">
        <img class="modal__image" src="${filmDetails.data.posterUrl}" alt="">
-        <h2 class="modal">
+        <h2>
             <span class="modal__title">${filmDetails.data.nameRu}</span>
-             <span class="modal__release-year">${filmDetails.data.year}</span>
+             <span class="modal__release-year"> - ${filmDetails.data.year}</span>
         </h2>
              <ul class="modal__info">
               <div class="modal__load"></div>
-                 <li class="modal__genre">${filmDetails.data.genres.map(gener => gener.gener)}</li>
-                  <li class="modal__time">${filmDetails.data.filmLength}</li>
-                  <li>Сайт: <a class="modal__link" href=""></a></li>
-                  <li class="modal__description">${filmDetails.data.description}</li>
+                 <li class="modal__genre">${filmDetails.data.genres.map((el) => `<span> ${el.genre} </span>`)}</li>
+                  <li class="modal__time">${filmDetails.data.filmLength} минут</li>
+                  <li>Сайт: <a class="modal__link" href="${filmDetails.data.webUrl}">${filmDetails.data.webUrl}</a></li>
+                  <li class="modal__description">Описание: ${filmDetails.data.description}</li>
                   <li class="modal__description">${filmDetails.data.filmId}</li>
               </ul>
         <button onclick="closeModalElement()"  class="modal__btn-close" type="button">Закрыть</button>
@@ -134,7 +135,8 @@ async  function openModalElement(id) {
 }
 
 function closeModalElement() {
-    modalElement.classList.remove("modal-show")
+    modalElement.classList.remove("modal-show");
+    document.body.classList.remove("stop__scrolling");
 }
 
 window.addEventListener("click", (e) => {
