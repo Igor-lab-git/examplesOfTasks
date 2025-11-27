@@ -74,7 +74,7 @@ button {
     font-size: 23px;
 }
 .note__actions-button {
-
+background-color: inherit;
 }
 
 .note__button-edit {
@@ -100,5 +100,5 @@ button {
 }
 
 .note__description {
-
+background-color: inherit;
 }
