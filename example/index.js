@@ -17,10 +17,12 @@ const user = {
 const user2 = Object.assign({}, user);
 
 
-const friuts = ["Яблоко", "Лимон", "Груша", "Слива"];
-friuts.push("Jenna")
-friuts.forEach(el => console.log(el))
 
+const num = "f100-руб ";
+const num2 = "f100.50-руб";
+console.log(Number(num));
+console.log( parseInt(num));
+console.log( parseFloat(num2));
 
 
 

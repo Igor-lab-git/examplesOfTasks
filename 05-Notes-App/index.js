@@ -22,16 +22,40 @@ const createCardNote = (title, text) => {
 
     noteElemeny.innerHTML = `
    <header class="note__header">
-        <p class="note__title">${title}</p>
+        <p class="note__title" id="note-title">${title}</p>
+        <input data-js-title-input class="hidden" placeholder="Add name task...">
         <div class="note__actions-button">
             <button class="note__button-edit"><i class="fa-solid fa-pen-to-square"></i></button>
             <button class="note__button-delete"><i class="fa-regular fa-trash-can"></i></button>
         </div>
     </header>
-        <p id="note__description">${text}</p>
+        <p id="note-description"></p>
+        <textarea data-js-title-description class="hidden" placeholder="Description">${text}</textarea>
 `
 const editButton = noteElemeny.querySelector(".note__button-edit");
-const deleteButton = noteElemeny.querySelector(".note__button-delete");
+// const deleteButton = noteElemeny.querySelector(".note__button-delete");
+const noteTitle = noteElemeny.querySelector("#note-title");
+const noteDescription = noteElemeny.querySelector("#note-description");
+const inputTitle = noteElemeny.querySelector("[data-js-title-input]");
+const inputDescription = noteElemeny.querySelector("[data-js-title-description]");
+
+editButton.addEventListener("click", () => {
+    noteTitle.classList.toggle("hidden");
+    noteDescription.classList.toggle("hidden");
+    inputTitle.classList.toggle("hidden");
+    inputDescription.classList.toggle("hidden");
+});
+
+inputTitle.addEventListener("input", (e) => {
+    const text = e.target.value;
+    noteTitle.innerText = text;
+    
+})
+inputDescription.addEventListener("input", (e) => {
+    const text = e.target.value;
+    noteDescription.innerText = text;
+    
+})
 
 //или вариант с удалением 
 // deleteButton.addEventListener("click", () => noteElemeny.remove());
@@ -45,6 +69,5 @@ function deleteCardNote() {
 }
 
 buttonAddNoteElement.addEventListener("click", () => {
-
-    mainElement.appendChild(createCardNote("Jenna", "defoalt text"));
+    mainElement.appendChild(createCardNote("Заголовок", "Ваш текст"));
 })
