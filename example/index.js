@@ -14,15 +14,24 @@ const user = {
     }
 }
 
-const user2 = Object.assign({}, user);
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log([..."JENNA"]);
 
 
 
-const num = "f100-руб ";
-const num2 = "f100.50-руб";
-console.log(Number(num));
-console.log( parseInt(num));
-console.log( parseFloat(num2));
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

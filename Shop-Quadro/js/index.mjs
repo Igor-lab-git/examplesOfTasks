@@ -1,7 +1,13 @@
-import { renderCard } from "./modules/renderCard.mjs";
+import { closeCart, openCart } from "./modules/modal.mjs";
+import { pagination } from "./modules/pagination.mjs";
 import products from "./modules/products.mjs";
-const productContainer = document.querySelector(".js-products-list")
+import { renderProductCards } from "./modules/renderCard.mjs";
+const productContainer = document.querySelector(".js-products-list");
 
 window.addEventListener("DOMContentLoaded", () => {
-  renderCard(products, productContainer);
+  // renderProductCards(products, productContainer);
+  pagination(products);
 });
+
+openCart();
+closeCart();

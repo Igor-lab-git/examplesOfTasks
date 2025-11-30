@@ -1,8 +1,8 @@
 const image = document.querySelector(".image");
 const button = document.querySelector(".button");
 
-// const URL_String = "http://aws.random.cat/meow";
-const URL_String = "https://api.thecatapi.com/v1/images/search";
+// const URL_String = "https://api.thecatapi.com/v1/images/search";
+const URL_String = "https://api.nekosapi.com/v4/images/random";
 
 const getCats = async (url) => {
     try {
@@ -21,11 +21,11 @@ const getCats = async (url) => {
 
         const data = await response.json();
 
-        if(!Array.isArray(data) || data.length === 0) {
-            const errorMessage = "Нет изображений в ответе.";
-            throw new Error(errorMessage);
-        }
-        console.log(data[0].url);
+        // if(!Array.isArray(data) || data.length === 0) {
+        //     const errorMessage = "Нет изображений в ответе.";
+        //     throw new Error(errorMessage);
+        // }
+        console.log(data);
         const urlImage = data[0].url;
         image.src = urlImage
         
