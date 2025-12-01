@@ -20,9 +20,14 @@ const users = [
     {name: "Jenna",age: 23}, {name: "Alex",age: 26}, {name: "John",age: 35}, {name: "Peter",age: 31}
 ]
 
-const reversUsers = [...nums].sort((a, b) => b -a);
-console.log(nums);
-console.log(reversUsers);
+const intervalId = setInterval(() => {
+    console.log("JENNA");
+    
+}, (2000));
+
+setTimeout(() => {
+    clearInterval(intervalId)
+}, 10000)
 
 
 

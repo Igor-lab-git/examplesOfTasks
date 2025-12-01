@@ -5,42 +5,43 @@ const pointsList = document.querySelectorAll(".point");
 const imageList = document.querySelectorAll(".image");
 
 
-
-pointsList[0].classList.add("point-active");
-imageList[0].classList.add("image-active");
+let currentIndex = 0;
 
 function showSlider(index) {
+    imageList.forEach(image => image.classList.remove("image-active"));
+    pointsList.forEach(point => point.classList.remove("point-active"));
+
     imageList[index].classList.add("image-active");
     pointsList[index].classList.add("point-active");
+
+    currentIndex = index;
 }
 
 pointsList.forEach((point, index) => {
     point.addEventListener("click", () => showSlider(index))
 })
 
+showSlider(currentIndex);
+
+function nextShowImage() {
+    let nexIndex = currentIndex + 1;
+    if(nexIndex >= imageList.length) {
+        nexIndex = 0
+    }
+    showSlider(nexIndex);
+}
+
+function prevShowImage() {
+    let prevIndex = currentIndex - 1;
+    if(prevIndex < 0) {
+        prevIndex = imageList.length - 1;
+    }
+    showSlider(prevIndex);
+}
+    nextButton.addEventListener("click",  nextShowImage);
+    prevButton.addEventListener("click",  nextShowImage);
+
+    
 
 
 
-
-
-// script>
-//     const slides = document.querySelectorAll('.slider-image');
-//     const dots = document.querySelectorAll('.slider-dot');
-
-//     function showSlide(index) {
-//         slides.forEach(slide => slide.classList.remove('active-image'));
-//         dots.forEach(dot => dot.classList.remove('active-dot'));
-        
-//         slides[index].classList.add('active-image');
-//         dots[index].classList.add('active-dot');
-//     }
-
-//     dots.forEach((dot, idx) => {
-//         dot.onclick = () => {
-//             showSlide(idx);
-//         };
-//     });
-
-//     // Инициализация первой картинки и точки
-//     showSlide(0);
-// </script>
