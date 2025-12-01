@@ -15,7 +15,16 @@ const user = {
 }
 
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-console.log([..."JENNA"]);
+const names = ["Jenna", "Alex", "John", "Peter", "Igor"];
+const users = [
+    {name: "Jenna",age: 23}, {name: "Alex",age: 26}, {name: "John",age: 35}, {name: "Peter",age: 31}
+]
+
+const reversUsers = [...nums].sort((a, b) => b -a);
+console.log(nums);
+console.log(reversUsers);
+
+
 
 
 
