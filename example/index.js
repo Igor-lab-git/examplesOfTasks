@@ -17,10 +17,27 @@ const user = {
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const names = ["Jenna", "Alex", "John", "Peter", "Igor"];
 const users = [
-    {name: "Jenna",age: 23}, {name: "Alex",age: 26}, {name: "John",age: 35}, {name: "Peter",age: 31}
+    { name: "Jenna", age: 23 }, { name: "Alex", age: 26 }, { name: "John", age: 35 }, { name: "Peter", age: 31 }
 ]
 
-console.log(new Map(Object.entries(user)));
+
+class Book {
+    constructor() {
+        console.log("Эвапвапва");
+    }
+}
+
+const book1 = new Book()
+console.log(book1);
+
+
+
+
+
+
+
+
+
 
 
 
