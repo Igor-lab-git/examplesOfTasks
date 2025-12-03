@@ -23,7 +23,7 @@ const renderCard = (product) => {
                 <img src="./img/products/${photo[0]}" alt="${model}" class="image js-image-card">   
             </div>
             <div class="product-description">
-                <h3 class="${model}">DJI Mavic 3</h3>
+                <h3 class="title js-title-card">${model}</h3>
             </div>  
             <div class="product-price">
                 <span class="price js-price-card">${prices[0]}</span><span>₽</span>
