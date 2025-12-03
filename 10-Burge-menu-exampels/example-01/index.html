@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./globals.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Cats API Image</title>
+</head>
+<body>
+ 
+    <header class="header">
+        <div class="header__inner">
+            <a class="header__logo" href="./index.html">
+                <span class="header__logo-span">Logo-</span>😊
+            </a>
+            <div class="header__overlay" id="overlay">
+                <nav class="header__nav">
+                    <ul class="header__menu menu">
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">О компании</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Расписание</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Отзывы</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Цены</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="popup" id="popup">
+                <button class="close__popup" id="close-popup">
+                    <span class="close__popup-line"></span>
+                    <span class="close__popup-line"></span>
+                </button>
+                <nav class="header__nav">
+                    <ul class="header__menu header__menu-popup">
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">О компании</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Расписание</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Отзывы</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Цены</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link" href="#">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <button class="open__popup" id="open-popup">
+                <span class="open__popup-line"></span>
+                <span class="open__popup-line"></span>
+                <span class="open__popup-line"></span>
+            </button>
+            <a class="header__cart" href="#">
+                <span class="header__cart-span">Корзина</span>🛒
+            </a>
+        </div>
+    </header>
+    <script src="./index.js" defer></script>
+</body>
+</html>

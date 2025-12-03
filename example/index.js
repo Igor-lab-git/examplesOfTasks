@@ -14,6 +14,9 @@ const user = {
     }
 }
 
+console.log("name" in user);
+
+
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const names = ["Jenna", "Alex", "John", "Peter", "Igor"];
 const users = [
@@ -22,13 +25,23 @@ const users = [
 
 
 class Book {
-    constructor() {
-        console.log("Эвапвапва");
+    color = "red";
+    country = "Russia"
+    constructor(name, page) {
+        this.name = name;
+        this.page = page;
     }
+
+    logPage() {
+        return this.page;
+    }
+
+  
 }
 
-const book1 = new Book()
-console.log(book1);
+const book1 = new Book("Тургенев", 300);
+
+
 
 
 

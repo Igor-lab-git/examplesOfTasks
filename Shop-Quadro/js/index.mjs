@@ -1,3 +1,4 @@
+import { cartData } from "./modules/cartData.mjs";
 import { closeCart, openCart } from "./modules/modal.mjs";
 import { pagination } from "./modules/pagination.mjs";
 import products from "./modules/products.mjs";
@@ -11,3 +12,4 @@ window.addEventListener("DOMContentLoaded", () => {
 
 openCart();
 closeCart();
+cartData();
