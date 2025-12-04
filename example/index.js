@@ -26,19 +26,4 @@ class Book {
   }
 }
 
-const getPosts = async () => {
-  const result = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const data = await result.json();
-  return data;
-};
 
-const data = await getPosts();
-console.log(Array.isArray(data));
-
-
-
-data.forEach((post) => {
-  if (post.completed === true) {
-    console.log(`${post.id} : ${post.title} : ${post.completed}`);
-  }
-});
