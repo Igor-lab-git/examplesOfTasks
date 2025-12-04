@@ -71,6 +71,11 @@ const pagination = (products) => {
 
     const updatePaginetion = () => {
          paginationWrapper.addEventListener("click", (e) => {
+
+            if(!e.target.closest(".pagination-item")) {
+                return ;
+            }; // даже если не кликнули на кнопки  Java-script вес равно не создаёт события хоть мы их и не видим 
+
             if(!e.target.closest(".pagination-item")) { //Нажодим в контейнере pagination нажатую кнопку
                return;
             } else {

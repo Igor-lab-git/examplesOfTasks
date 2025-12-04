@@ -81,7 +81,7 @@ a {
 }
 
 
-.close {
+.js-remove {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -92,7 +92,7 @@ a {
   cursor: pointer;
   z-index: 110;
 }
-.close::before, .close::after {
+.js-remove::before, .js-remove::after {
   content: '';
   position: absolute;
   top: 5px;
@@ -100,10 +100,10 @@ a {
   width: 2px;
   background-color: var(--color-main-dark);
 }
-.close::before{
+.js-remove::before{
   transform: rotate(45deg);
 }
-.close::after {
+.js-remove::after {
   transform: rotate(-45deg);
 }
 
@@ -347,7 +347,7 @@ main .overlay.active {
   position: fixed;
   top: 0;
   right: -400px;
-  right: 0;
+  /* right: 0; */
   width: 400px;
   min-height: 100vh;
   max-height: 100vh;
