@@ -27,3 +27,8 @@ class Book {
 }
 
 
+
+console.log(document.body.firstElementChild);
+
+
+
