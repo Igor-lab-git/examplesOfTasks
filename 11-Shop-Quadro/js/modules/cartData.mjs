@@ -164,7 +164,7 @@ function cartData() {
 
     function calculateTotalRartValue() {
         const cartItems = document.querySelectorAll(".js-cart-item");
-        const cartTotalprice = document.querySelector(".js-cart-total-price");
+        const cartTotalPrice = document.querySelector(".js-cart-total-price");
 
         let cartTotalValue = 0;
         
@@ -178,7 +178,7 @@ function cartData() {
             cartTotalValue += itemTotalPrice;
             itemPrice.textContent = formatter.format(itemTotalPrice); // formatter.forma форматирование вида цены
         })
-        cartTotalprice.textContent = formatter.format(cartTotalValue);
+        cartTotalPrice.textContent = formatter.format(cartTotalValue);
     }
 
     calculateTotalRartValue();

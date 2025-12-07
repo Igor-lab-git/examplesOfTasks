@@ -1,5 +1,4 @@
-// let firstValue = null;
-// const secondValue = true;
+
 
 // console.log(firstValue ??= "Jenna");
 
@@ -26,9 +25,11 @@ class Book {
   }
 }
 
+const list = document.querySelector(".list");
 
+const listItems = document.querySelectorAll(".list > li");
 
-console.log(document.body.firstElementChild);
+console.log(list.contains(listItems[0]));
 
 
 

@@ -1,32 +1,69 @@
-const Tabs = document.querySelector("[data-js-tabs]");
-const List_content = Tabs.querySelector("[data-js-content]");
-const Btn_nav = document.querySelector("[data-js-nav-btn]");
-const Current_active_button = document.querySelector(".active");
+const rootElement = document.querySelectorAll('[data-js-tabs-root]');
 
-console.log(List_content);
+class Tabs{
 
+  selectors = {
+    root: '[data-js-tabs-root]',
+    btnBox: '[data-js-nav-box]',
+    btn: '[data-js-btn]',
+    tabText: '[data-tab-text]'
+}
 
-Btn_nav.addEventListener("click", (e) => {
-  const currentPressBtn = e.target;
+  attributes = {
+    btnAttribute: "data-js-btn",
+}
 
-  if (currentPressBtn.nodeName !== "BUTTON") {
-    return;
-  } else {
-    if (Current_active_button) {
-      Current_active_button.classList.remove("active");
-    }
-
-    const currentButton = currentPressBtn.dataset.btn;
-
-    const currentContent = List_content.querySelector(`[data-text=${currentButton}]`);
-    console.log("btn", currentButton);
-    console.log("text", currentContent);
-    
-    currentPressBtn.classList.add("active");
-    // currentContent.classList.add("show")
-    // console.log(Current_active_button);
+stateClasses = {
+    activeButton: 'active',
+    activeTab: 'show',
+    btn: '.tabs__btn'
+}
+  constructor(element){
+    this.rootElement = element;
+    this.boxButttonElement = this.rootElement.querySelector(this.selectors.btnBox);
+    this.listButtonElements = this.rootElement.querySelectorAll(this.selectors.btn);
+    this.listTabTextElements = this.rootElement.querySelectorAll(this.selectors.tabText);
+    this.bindEvents();
   }
-});
+
+  bindEvents() {
+    this.boxButttonElement.addEventListener("click", (e) => {
+      const targetButton = e.target.closest(this.stateClasses.btn) ? e.target : "";
+      // Находим индекс нажатой кнопки
+      const buttonIndex = Array.from(this.listButtonElements).indexOf(targetButton);
+      if(!targetButton) {
+        return;
+      } else {
+      this.listButtonElements.forEach((button) => {
+        button.classList.remove(this.stateClasses.activeButton);
+      });
+      targetButton.classList.add(this.stateClasses.activeButton);
+      }
 
 
-//JS: создание табов | ПРАВИЛЬНЫЙ подход | Class tabs | Масштабируем решение! 16-57
+      this.listTabTextElements.forEach((text) => {
+        text.classList.remove(this.stateClasses.activeTab);
+      })
+      if(this.listTabTextElements[buttonIndex]){
+        this.listTabTextElements[buttonIndex].classList.add(this.stateClasses.activeTab);
+      }
+
+
+    })
+  }
+}
+
+class TabsCollection{
+  constructor(){
+    this.init();
+  }
+
+  init() {
+    rootElement.forEach((element) => {
+      new Tabs(element);
+    })
+  }
+}
+
+new  TabsCollection();
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Добавление товаров в корзину</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__container">
+      <a href="#" class="header__logo">
+        <i class="fa-solid fa-lemon"></i>
+        Marketplace
+      </a>
+      <div class="header__cart-wrap">
+        <button class="header__cart-btn" type="button">
+          <i class="fa-solid fa-cart-shopping"></i>
+          CART: <span class="header__cart-count">0</span>
+        </button>
+        <div class="header__cart-block cart-block-header">
+          <h3 class="cart-block-header__title">Your Cart</h3>
+          <div class="cart-block-header__items">
+            <div class="cart-block-header__item item-cart-header">
+
+<!--              <a href="#" class="item-cart-header__image">-->
+<!--                <img src="./img/01.svg" alt="image product">-->
+<!--              </a>-->
+<!--              <a href="#" class="item-cart-header__link">-->
+<!--                <h4 class="item-cart-header__title"></h4>-->
+<!--              </a>-->
+<!--              <span class="item-cart-header__price"></span>-->
+<!--              <div class="item-cart-header__count">-->
+<!--                <button type="button" class="item-cart-header__btn btn-minus">-</button>-->
+<!--                <span class="item-cart-header__number"></span>-->
+<!--                <button type="button" class="item-cart-header__btn btn-plus">+</button>-->
+<!--              </div>-->
+<!--              <button type="button" class="item-cart-header__remove btn-remove">-->
+<!--                <i class="fa-solid fa-trash"></i>-->
+<!--              </button>-->
+
+
+            </div>
+          </div>
+          <div class="cart-block-header__result">
+            <h4 class="cart-block-header__result-title">Subtotal</h4>
+            <span class="cart-block-header__result-price">$0</span>
+          </div>
+          <div class="cart-block-header__links">
+            <a href="#" class="cart-block-header__link link">
+              Continue shopping
+            </a>
+            <a href="#" class="cart-block-header__link link link--2">
+              Check Out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="page">
+    <section class="hero">
+      <div class="hero__container">
+        <h1 class="hero__title">Fruit</h1>
+        <h2 class="hero__sub-title">Most Popular</h2>
+        <div class="hero__body">
+          <div class="hero__item item-hero">
+            <a href="#" class="item-hero__image">
+              <img src="img/01.svg" alt="Image">
+            </a>
+            <div class="item-hero__body">
+              <a href="#" class="item-hero__link">
+                <h3 class="item-hero__title">Apple</h3>
+              </a>
+              <p class="item-hero__price">$1.02</p>
+              <p class="item-hero__info">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla sit eveniet consequuntur quae voluptate exercitationem at?
+              </p>
+              <button type="button" class="item-hero__add-btn link"
+              data-name="Apple"
+              data-price="1.02"
+              data-image="img/01.svg"
+              data-href="#"
+              >ADD TO CART <i class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+          <div class="hero__item item-hero">
+            <a href="#" class="item-hero__image">
+              <img src="img/02.svg" alt="Image">
+            </a>
+            <div class="item-hero__body">
+              <a href="#" class="item-hero__link">
+                <h3 class="item-hero__title">Orange</h3>
+              </a>
+              <p class="item-hero__price">$2.05</p>
+              <p class="item-hero__info">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla sit eveniet consequuntur quae voluptate exercitationem at?
+              </p>
+              <button type="button" class="item-hero__add-btn link"
+              data-name="Orange"
+              data-price="2.05"
+              data-image="img/02.svg"
+              data-href="#"
+              >ADD TO CART <i class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+          <div class="hero__item item-hero">
+            <a href="#" class="item-hero__image">
+              <img src="img/03.svg" alt="Image">
+            </a>
+            <div class="item-hero__body">
+              <a href="#" class="item-hero__link">
+                <h3 class="item-hero__title">Banana</h3>
+              </a>
+              <p class="item-hero__price">$1.25</p>
+              <p class="item-hero__info">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla sit eveniet consequuntur quae voluptate exercitationem at?
+              </p>
+              <button type="button" class="item-hero__add-btn link"
+              data-name="Banana"
+              data-price="1.25"
+              data-image="img/03.svg"
+              data-href="#"
+              >ADD TO CART <i class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
