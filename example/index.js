@@ -25,11 +25,15 @@ class Book {
   }
 }
 
-const list = document.querySelector(".list");
+const btn = document.querySelector("#btn");
 
-const listItems = document.querySelectorAll(".list > li");
+btn.addEventListener("click", function() {
+  console.log(this);
+  
+})
 
-console.log(list.contains(listItems[0]));
+
+
 
 
 

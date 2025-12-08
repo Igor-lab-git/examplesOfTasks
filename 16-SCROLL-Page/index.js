@@ -13,7 +13,7 @@ const startAutoScrollDown = () => {
   }, 100)
 };
 
-const startAutoScrollBottom = () => {
+const startAutoScrollTop = () => {
   scrollInterval = setInterval(() => {
     window.scrollBy({
       top: -80,
@@ -57,7 +57,7 @@ buttonTopScroll.addEventListener("click", () => {
 
 
 buttonTopScroll.addEventListener("mousedown", () => {
-  startAutoScrollBottom();
+  startAutoScrollTop();
 });
 
 buttonTopScroll.addEventListener("mouseup", () => {
@@ -76,3 +76,19 @@ buttonTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
+
+document.addEventListener("scroll", () => {
+  const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+  if(scrollY > 350) {
+    buttonTopScroll.classList.add("show");
+    buttonTop.classList.add("show");
+  } else {
+    setTimeout(() => {
+      buttonTopScroll.classList.remove("show");
+      buttonTop.classList.remove("show");
+    }, 100)
+  }
+
+})
