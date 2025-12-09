@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    min-height: 100vh;
+    background-color: #ced6fb;
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 15px;
+}
+
+.list__buttons {
+    padding: 10px 40px 10px 0;
+    display: flex;
+    column-gap: 15px;
+}
+
+li {
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+li:hover {
+    box-shadow: 6px 7px 28px 0 rgba(16, 16, 16, 0.7);
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.orange {
+    color: orange;
+}
+
+.green {
+    color: green;
+}
+
+.pink {
+    color: pink;
+}
+
+.tomato {
+    color: tomato;
+}
+
+.box-cover {
+    display: flex;
+    flex-wrap: wrap;
+    /*ist-style: none;*/
+
+}
+
+.box {
+    min-width: 140px;
+    margin: 15px;
+    float: left;
+    padding: 0 10px;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    box-shadow: 6px 7px 28px 0 rgba(16, 16, 16, 0.7);
+}
+
+
+
+.box__red {
+    border: 3px solid red;
+}
+
+.box__blue {
+    border: 3px solid blue;
+}
+
+.box__orange {
+    border: 3px solid orange;
+}
+
+.box__green {
+    border: 3px solid green;
+}
+
+.box__pink {
+    border: 3px solid pink;
+}
+
+.box__tomato {
+    border: 3px solid tomato;
+}
+
+
+.hide {
+    opacity: 1;
+    animation-name: a1;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes a1 {
+    to {
+        opacity: 0;
+        min-height: 0;
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+}
