@@ -1,0 +1,55 @@
+body {
+  font-family: 'Rubik', sans-serif;
+  background-color: #bdc1c7;
+  font-size: 24px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+.chicken,
+.fish,
+.shrimp {
+  width: 20vw;
+}
+
+.chicken {
+  top: 3vw;
+  left: 25vw;
+}
+
+.fish {
+  top: 0;
+  left: 0;
+}
+
+.shrimp {
+  top: 17vw;
+  left: 6vw;
+}
+
+.cat {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50vw;
+}
+
+.draggable {
+  position: absolute;
+  z-index: 1;
+  cursor: grab;
+  transition-property: scale, opacity;
+  transition-duration: 0.2s;
+  touch-action: none;
+}
+
+.draggable.is-dragging {
+  cursor: grabbing;
+  opacity: 0.5;
+  scale: 1.05;
+}

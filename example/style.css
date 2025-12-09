@@ -14,3 +14,6 @@
 /*    overflow: auto;*/
 /*}*/
 
+.is-invalid {
+    border-color: brown;
+}

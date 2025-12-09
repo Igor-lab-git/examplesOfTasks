@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  min-height: 100vh;
+  background-color: #ced6fb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 15px;
+}
+
+li {
+  font-size: 24px;
+  font-weight: 600;
+}
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
+.orange {
+  color: orange;
+}
+.green {
+  color: green;
+}
+.pink {
+  color: pink;
+}
+.tomato {
+  color: tomato;
+}
