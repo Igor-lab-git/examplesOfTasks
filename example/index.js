@@ -1,25 +1,20 @@
-const input = document.querySelector("#text");
+const getData = async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    console.log(response);
+    
+    if (!response.ok) {
+      throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Ошибка в getData:', error.message);
+    throw error; // Пробрасываем ошибку дальше
+  }
+};
 
-// document.addEventListener("keydown", (e) => {
-//   const { code, key } = e;
-//   if (!e.target.matches("input")) {
-//     return;
-//   }
+getData()
 
-//   if (/\d/.test(key)) {
-//     e.preventDefault();
-//     alert("Не корректный символ");
-//   }
-// });
-
-
-const box = document.createElement("p");
-
-input.addEventListener("change", (e) => {
-  const text = e.target.value;
-const invalid = text.length < 5;
-
-input.classList.toggle("is-invalid", invalid)
- box.textContent = invalid ? "Не валидный ввод" : "";
- document.body.appendChild(box)
-})
