@@ -12,8 +12,6 @@ form.addEventListener("submit", (e) => {
 })
 
 
-
-
 const setError = (element, message) => {
   const formItem = element.parentElement;
   const mesaageError = formItem.querySelector(".error-message");
