@@ -12,20 +12,20 @@ export function showErrorMessage(message) {
     h1.insertAdjacentHTML('afterend', msg);
 }
 
-// Получение id из LS
+// Получение id из localStorage
 export function getBasketLocalStorage() {
     const cartDataJSON = localStorage.getItem('basket');
     return cartDataJSON ? JSON.parse(cartDataJSON) : [];
 }
 
-// Запись id товаров в LS
+// Запись id товаров в localStorage
 export function setBasketLocalStorage(basket) {
     const basketCount = document.querySelector('.basket__count');
     localStorage.setItem('basket', JSON.stringify(basket));
     basketCount.textContent = basket.length;
 }
 
-// Проверка, существует ли товар указанный в LS 
+// Проверка, существует ли товар указанный в localStorage 
 //(если например пару дней не заходил юзер, а товар, который у него в корзине, уже не существует)
 export function checkingRelevanceValueBasket(productsData) {
     const basket = getBasketLocalStorage();
