@@ -1,4 +1,6 @@
-const box = document.querySelector("#box");
+const input = document.querySelector(".input");
 
-console.log(window.location);
+console.log(input.classList.contains("input"));
+console.log(input.closest("input"));
+console.log(input.matches("input"));
 
