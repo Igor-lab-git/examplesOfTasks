@@ -1,25 +1,4 @@
 const box = document.querySelector("#box");
 
-console.log(box.dataset.jsBox);
-console.log(box.getAttribute("data-js-box"));
-console.dir(box);
-const getData = async () => {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    console.log(response);
-    
-    if (!response.ok) {
-      throw new Error(`Ошибка HTTP: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error('Ошибка в getData:', error.message);
-    throw error; // Пробрасываем ошибку дальше
-  }
-};
-
-getData()
+console.log(window.location);
 

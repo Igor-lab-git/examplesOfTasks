@@ -25,7 +25,7 @@ async function getProducts() {
     try {
         if(!productsData.length) { // что бы лишний раз не делать запрос на сервер, проверяем существующий массив и его длинну продуктов если он не пустой  функцию не вызывается
             // const res = await fetch("../data/products.json");
-            const res = await fetch("./data/products.json");;
+            const res = await fetch("data/products.json");;
 
             if(!res.ok) {
                 throw new Error(res.statusText);
@@ -52,7 +52,12 @@ function renderStartPage(data) {
     };
 
     const arrCards = data.slice(0, COUNT_SHOW_CARDS_CLICK); // режим нашь массив что-бы ренлдерить порциями до 5
-    createCards(arrCards)
+    createCards(arrCards);
+
+    checkingRelevanceValueBasket(data); // для проверки длительного не посещения сайта, на случай если товара уже нет в продаже тоесть в базе данной и основании этого вывода удаляет или обновляет id товара в локальном хранилище
+
+    const basket = getBasketLocalStorage(); // если есть в LocalStorage добавленные id товаров
+    checkingActiveButton(basket) // то проверяется функцией состояние кнопки и рендеридся первая страница с актуальными изменениями
 };
 
 // Рендер карточки
@@ -63,7 +68,7 @@ function createCards(arrCards) {
         const cardElement = `
                 <div class="card" data-product-id="${id}">
                     <div class="card__top">
-                        <a href="/card.html?id=${id}" class="card__image">
+                        <a href="card.html?id=${id}" class="card__image">
                             <img
                                 src="./images/${img}"
                                 alt="${title}"
@@ -76,7 +81,7 @@ function createCards(arrCards) {
                             <div class="card__price card__price--discount">${priceDiscount}</div>
                             <div class="card__price card__price--common">${price}</div>
                         </div>
-                        <a href="/card.html?id=${id}" class="card__title">${title}</a>
+                        <a href="card.html?id=${id}" class="card__title">${title}</a>
                         <button class="card__add">В корзину</button>
                     </div>
                 </div>        
@@ -132,11 +137,10 @@ function checkingActiveButton(basked) {
         const isInBasked = basked.includes(idCard); // проверяем есть ли такой id в LocalStorage
 
         button.disable = isInBasked; // в isInBasked булевое значение делает кнопку кликабельной или нет
-        button.classList.add("active", isInBasked); // и на основе булевое значение добавляет класс
+        button.classList.toggle("active", isInBasked); // и на основе булевое значение добавляет класс
         button.textContent = isInBasked ? "В корзине" : "В корзину";
     }); 
 };
 
 //Интернет-магазин на JavaScript. Кнопка показать еще. Карточка товара. Корзина. Local Storage. 41
-
 
