@@ -1,7 +1,7 @@
 "use strict"
 //==========================================
-const TELEGRAM_BOT_TOKEN = '8543598797:AAGyKwrM-USQPQfL1K2Q-uOfMVkcqpSfoqk';
-const TELEGRAM_CHAT_ID = '@APItestFront';
+const TELEGRAM_BOT_TOKEN = '8381523471:AAEdtmsN7t1hntLw1b0QlSQWamSWusKwL4M';
+const TELEGRAM_CHAT_ID = '@NewFron_igor';
 const API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`
 
 const formElement = document.querySelector("[data-js-form]");
@@ -21,7 +21,7 @@ const modalMessageSend = document.querySelector(".form__send-result");
     
     try {
         buttonElement.textContent = "Loading..."; // во время отправки менять текст 
-        const respons = await fetch(API, {
+        const response = await fetch(API, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -32,14 +32,14 @@ const modalMessageSend = document.querySelector(".form__send-result");
             })
         });
 
-        if(!respons.ok) {
+        if(!response.ok) {
              throw new Error("Ошибка на сервере");
         } else {
             modalMessageSend.textContent = sendMessage;
             formElement.reset(); //обнуляем фору тоесть отчищаем
         };
 
-        const result = respons.json();
+        const result = response.json();
         console.log(result);
         return result;
     } catch (error) {

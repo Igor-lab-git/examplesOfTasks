@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.header__content {
+    display: flex;
+    height: 200px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.164);
+}
+
+.header__text {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__lozung {
+    padding: 20px;
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.849);
+}
+
+.header_btn {
+    width: 150px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.479);
+    border: none;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.89);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.header__nav {
+    display: flex;
+    justify-content: center;
+    box-shadow: -1px -20px 20px 7px rgba(255, 255, 255, 0.164);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.164);
+}
+
+.header__list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 600px;
+}
+
+.header__item {
+    color: #bbbbbb;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    background-color: #262626;
+}
+
+.popap {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: all .8s ease 0s;
+}
+
+.popap.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popap.active .popap__body {
+    transform: perspective(600px) translate(0, 0) rotateX(0deg);
+    opacity: 1;
+}
+
+.popap__body {
+    width: 640px;
+    height: 284px;
+    margin: 200px auto;
+    position: relative;
+    transform: perspective(600px) translate(0, -100%) rotateX(45deg);
+    transition: all .8s ease 0s;
+    opacity: 0;
+}
+
+.popap__close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.main {
+    text-align: center;
+}
+
+.main__title {
+    color: rgba(255, 255, 255, 0.849);
+    font-size: 22px;
+    font-style: italic;
+}
+
+.main__img {
+    width: 400px;
+}
+
+.main_btn {
+    width: 110px;
+    height: 30px;
+    background-color: #262626;
+    border: none;
+    font-size: 16px;
+    color: #bbbbbb;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 3px solid #262626;
+}
+
+.main_btn:hover {
+    border: 3px solid #136865;
+}
