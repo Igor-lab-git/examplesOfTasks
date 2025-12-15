@@ -1,4 +1,4 @@
-// "use strict"
+"use strict"
 
 import { createGeneratorId, getTasToLocalStorage, setTasToLocalStorage, updateUIListTasks } from "./utils.mjs";
 
@@ -17,9 +17,10 @@ let idEditTask = null;
 
 formElement.addEventListener("submit", (e) => addTask(e));
 outputElement.addEventListener("click", (e) => buttonsEvents(e));
+button_Cancel.addEventListener("click", () => resetFormUI()); // для кнопки отмена редактирования функция отчистки UI внизу
 updateUIListTasks(); //для первоночального отображения тасок сахранённые в LS
 
-function addTask(e){
+function addTask(e){ // функция не только добавляет таску но и редактирует и поэтому это србытие надо отлавливать для функции saveEditTask
     e.preventDefault();
 
     const taskText = textareaElement.value.trim().replace(/\s+/g, " ");
@@ -33,11 +34,9 @@ function addTask(e){
     };
 
     if(isEditTask) { // добавление и редактирование происходит от одного и тогоже события и чтобы понимать что функции addTask делать просто добавить нову или изменить старую таску далается проверка флагом isEditTask
-        idEditTask(taskText); // передаём в функцию редактирования поле текста
+        saveEditTask(taskText); // передаём в функцию редактирования поле текста
         return; // и обязательно return что бы ниже код не выполнялся
     };
-
-    // 55
 
     const arrayTasksLS = getTasToLocalStorage(); //получаем данные из LS
 
@@ -55,10 +54,6 @@ function addTask(e){
     updateUIListTasks(); //для обновления UI
     formElement.reset();
 };
-
-console.log(createGeneratorId());
-
-
 
 // const arrayGetTasksLS = getTasToLocalStorage();
 
@@ -120,21 +115,18 @@ function bindEventPinnetBtn(e) {
     setTasToLocalStorage(arraytasksLS); // и сохраняем новый отфильтрованный масив обратно в LocalStorage
     updateUIListTasks(); //для обновления UI 
 };
-//48
+
 function bindEventEditBtn(e) {
     const currentTask = e.target.closest(".task");
     const taskText = currentTask.querySelector(".task__text");
     idEditTask = Number(currentTask.getAttribute("data-tsk-id"))
     const arrayTsaksLS = getTasToLocalStorage();
-   console.log(taskText, idEditTask);
 
    textareaElement.value = taskText.textContent;  //при нажатии на кнопку edit вставляем найденный текст из таски в поле textarea для дальнейшего редактирования
    isEditTask = true;
    button_Send.textContent = "Редактировать"; // меняем текст кнопки Добавить на Редактировать
    button_Cancel.classList.remove("none");  //реанимируем кнопку Cancel показываю её в UI
    formElement.scrollIntoView();  // позволяет программно прокрутить окно браузера до определённого элемента. Метод прокручивает контейнер родителя элемента так, чтобы элемент
-   
-   
 
     setTasToLocalStorage(arrayTsaksLS); // и сохраняем новый отфильтрованный масив обратно в LocalStorage
     updateUIListTasks(); //для обновления UI 
@@ -147,6 +139,29 @@ function bindEventDeleteBtn(e) {
 
     setTasToLocalStorage(newFiltredTaskArray); // и сохраняем новый отфильтрованный масив обратно в LocalStorage
     updateUIListTasks(); //для обновления UI
+};
+
+function saveEditTask(task) {
+    const arrayTasksLS = getTasToLocalStorage();
+    const findIndexTaskLS = arrayTasksLS.findIndex((task) => task.id === idEditTask); //idEditTask вынессена отдельно переменная для обновления таски находим индекс таски
+
+    if(findIndexTaskLS !== -1) { // проверяем найденный id есть ли он
+        arrayTasksLS[findIndexTaskLS].taskText = task; // и вычисляя найденным id из массива тасок в LS и заменяем её на тзменённую
+        setTasToLocalStorage(arrayTasksLS); // фиксируем изменения в LS
+        updateUIListTasks(); // обновляем UI
+    } else {
+        return alert("Такая задача не найдена");
+    };
+
+    resetFormUI();
+};
+
+function resetFormUI() {  // отдельная функция очистки UI
+    idEditTask = null;
+    isEditTask = false;
+    button_Send.textContent = "Добавить";
+    button_Cancel.classList.add("none");
+    formElement.reset();
 };
 
 

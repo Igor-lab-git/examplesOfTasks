@@ -56,3 +56,25 @@ function renderTasksUI(arrayTasks) {
 };
 
 
+function dragAndDrop() {
+    const listTasksUI = [...document.querySelector(".task")]; //находим весь список тасок на странице
+
+    listTasksUI.forEach((task) => { // Когда начинаем перетаскивать элемент, срабатывает событие dragstart и добавляем класс опасити
+        task.addEventListener("dragstart", () => {
+            setTimeout(() => {task.classList.add("dragging")}, 0)
+        });
+
+        task.addEventListener("dragend", () => { //Когда пользователь отпускает элемент, срабатывает событие dragend. Мы удаляем временный класс dragging и проверяем количество задач в списке:
+            task.classList.remove("dragging");
+            if(listTasksUI > 1) { //Если в списке больше одной задачи, запускается функция обновления положения задач updatePositionTask()
+                updatePositionTask();
+            };
+        });
+    });
+};
+
+function updatePositionTask() {
+
+}
+
+// 1-3
