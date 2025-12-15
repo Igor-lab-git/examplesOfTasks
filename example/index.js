@@ -1,12 +1,15 @@
 
 
-const ul = document.querySelector(".ul");
+const form = document.querySelector("[data-js-form]");
+const text = document.querySelector("#text");
 
-window.addEventListener("click", (e) => {
-    console.log(e.clientX);
-    console.log(e.clientY);
-    console.log(e.pageX);
-    console.log(e.pageY);
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    
+    const task = text.value.trim();
+
+    console.log(task);
+    text.value = ""
 })
+
+
