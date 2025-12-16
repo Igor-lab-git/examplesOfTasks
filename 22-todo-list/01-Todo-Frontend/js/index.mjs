@@ -1,6 +1,6 @@
 "use strict"
 
-import { createGeneratorId, getTasToLocalStorage, setTasToLocalStorage, updateUIListTasks } from "./utils.mjs";
+import { createGeneratorId, getTasToLocalStorage, initSortableList, setTasToLocalStorage, updateUIListTasks } from "./utils.mjs";
 
 //==========================================
 
@@ -8,8 +8,8 @@ import { createGeneratorId, getTasToLocalStorage, setTasToLocalStorage, updateUI
 const formElement = document.querySelector(".form");
 const textareaElement = document.querySelector(".form__textarea");
 const button_Send =  document.querySelector(".form__send-btn");
-const button_Cancel =  document.querySelector(".form__cancel-btn");
 const outputElement =  document.querySelector(".output");
+const button_Cancel =  document.querySelector(".form__cancel-btn");
 
 let isEditTask = false; // флаг переменная означает что в данный момент происходит редактирование, состояние
 let idEditTask = null;
@@ -18,6 +18,8 @@ let idEditTask = null;
 formElement.addEventListener("submit", (e) => addTask(e));
 outputElement.addEventListener("click", (e) => buttonsEvents(e));
 button_Cancel.addEventListener("click", () => resetFormUI()); // для кнопки отмена редактирования функция отчистки UI внизу
+outputElement.addEventListener("dragenter", (e) => e.preventDefault()); //По умолчанию браузер НЕ разрешает бросать элементы куда попало. Нужно явно сказать: "Здесь можно!"
+outputElement.addEventListener("dragover", (e) => initSortableList(e)); //Каждые несколько миллисекунд браузер говорит: "О! Опять проносят над мной!" И каждый раз вызывается initSortableList()
 updateUIListTasks(); //для первоночального отображения тасок сахранённые в LS
 
 function addTask(e){ // функция не только добавляет таску но и редактирует и поэтому это србытие надо отлавливать для функции saveEditTask

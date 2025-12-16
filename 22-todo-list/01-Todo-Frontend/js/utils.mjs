@@ -31,8 +31,8 @@ function renderTasksUI(arrayTasks) {
         if(a.done !== b.done) {
             return a.done ? 1 : -1;
         };
-        if(a.pinnet !== b.pinnet) {
-            return a.pinnet ? -1 : 1;
+        if(a.pinned !== b.pinned) {
+            return a.pinned ? -1 : 1;
         };
 
         return a.position - b.position;
@@ -53,11 +53,13 @@ function renderTasksUI(arrayTasks) {
         `
         outputUIElement.insertAdjacentHTML("beforeend", item);
     });
+
+    dragAndDrop(); // dragAndDrop вызывается только после того как отрисовались все карточки
 };
 
 
-function dragAndDrop() {
-    const listTasksUI = [...document.querySelector(".task")]; //находим весь список тасок на странице
+function dragAndDrop() { // функционас события старта перетаскивания и окончания перетаскивания с сохранением позиций по index
+    const listTasksUI = [...document.querySelectorAll(".task")]; //находим весь список тасок на странице
 
     listTasksUI.forEach((task) => { // Когда начинаем перетаскивать элемент, срабатывает событие dragstart и добавляем класс опасити
         task.addEventListener("dragstart", () => {
@@ -74,7 +76,37 @@ function dragAndDrop() {
 };
 
 function updatePositionTask() {
+    const arrayTasksLS = getTasToLocalStorage(); // получаем таски из LS
+    const listTasksUI = [...document.querySelectorAll(".task")]; // и все таски со страницы UI
 
-}
+    listTasksUI.forEach((task, index) => {
+        const getIdTaskAttribute = Number(task.getAttribute("data-tsk-id"));  // значение атрибута всегда строка
+        const findIdTask = arrayTasksLS.findIndex((item) => item.id === getIdTaskAttribute); //находим нужную задачу из LS точнее её индекс по сравнению id  из Attribute что бы с ним взаимодействовать
 
-// 1-3
+        if(findIdTask !== -1) {
+            arrayTasksLS[findIdTask].position = index; // изночально position 1000 от балды, но сейчас задаём нужную позицию, теперь её позиция является index
+        }; // тоесть согласно расположению в LS таски и будут являтся нумерации индексов и на странице UI
+    });
+
+    setTasToLocalStorage(arrayTasksLS); // обновляем LS 
+    updateUIListTasks(); // и страницу 
+};
+
+
+export function initSortableList(e) {
+    e.preventDefault(); //Здесь мы говорим браузеру: «не используй стандартные действия, связанные с перетаскиванием».
+
+    const outputElement =  document.querySelector(".output"); // контейнер вывода результата
+    const draggingItem = document.querySelector(".dragging"); //элемент, который сейчас перетаскиваем или находим элемен с навешинным классов в  task.addEventListener("dragstart", () => {setTimeout(() => {task.classList.add("dragging")}, 0)});
+    let notDraggingTasks = [...document.querySelectorAll(".task:not(.dragging)")]; // остальные элементы, кроме перетаскиваемо, тоесть наоборот находим все таск не с классом dragging
+
+    let dropDownTasks = notDraggingTasks.find((task) => { //Здесь мы проверяем, над какой задачей находится наша мышь в процессе перетаскивания. Если координата Y нашей мыши меньше середины высоты какого-то другого элемента, значит, именно туда мы собираемся поместить наш перетаскиваемый элемент.
+        return e.clientY <= task.offsetTop + task.offsetHeight / 2;
+    });
+    outputElement.insertBefore(draggingItem, dropDownTasks); // вставляем перед найденным местом, перемещаем элемент
+
+};
+
+// .output — куда вставляем перемещаемый элемент,
+// .dragging — тот самый элемент, который пользователь двигает прямо сейчас,
+// notDraggingTasks — массив всех остальных элементов, которые пока неподвижны.

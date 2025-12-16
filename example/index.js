@@ -1,4 +1,3 @@
-
 //
 // const form = document.querySelector("[data-js-form]");
 // const text = document.querySelector("#text");
@@ -12,9 +11,13 @@
 //     text.value = ""
 // })
 
-const form = document.forms[0]
+const a = {
+  name: "Jenna",
+  isLove: true,
+//   address: {
+//     city: "Los Angeles",
+//     age: 23,
+//   },
+};
 
-
-form.addEventListener("focusin", () => {
-    console.log("Jenna")
-})
+console.log(a.address?.city);
