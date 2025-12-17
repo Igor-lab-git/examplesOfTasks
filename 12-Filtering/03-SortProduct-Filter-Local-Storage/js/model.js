@@ -65,19 +65,43 @@ export class Model {
     };
 
     filterSearchInput(valueText) { // фильтрация по названию из input
-        if(valueText === "") {  // и в теории после стерания текста в ingen мы в filterData копируем все продукты ...this.data, тем самым сбрасываем всю фильтрацию
+        if(valueText === "") {  // и в теории после стерания текста в input мы в filterData копируем все продукты ...this.data, тем самым сбрасываем всю фильтрацию
             this.filterData = [...this.data]; // если пустая строка, в this.filterData  будем помещать обсолютно новый массив, тоесть фильтрации здесь не будет, как бы перепресваиваем
         } else {
             this.filterData = this.data.filter((product) => product.name.toLowerCase().includes(valueText)); // если нет,то находим все вхождения подстроки из названий всех продуктов
         };
     };
 
-    resetFilterUIElements(sirtingDomElements) { // для обнуления слектов
-        const { sortType, sortOrder, sortCategory } = sirtingDomElements; // достаём DOM элементы
+    resetFilterUIElements(sortingDomElements) { // для обнуления слектов
+        const { sortType, sortOrder, sortCategory } = sortingDomElements; // достаём DOM элементы
         sortType.value = "date"; //  и устанавливаем в значение дефолтные состояния
         sortCategory.value = "all";
         sortOrder.value = "asc";
     };
+
+    updateURL(sortingValue) {
+        const { sortType, sortOrder, sortCategory } = sortingValue; // достаём DOM элементы
+
+        const urlParams = new URLSearchParams(); // конструктор для удобной работы с URL параметрами
+        urlParams.set("sortType", sortType); // создаём параметры новые с именем sortType и значением sortType  с вытянутыми значениями в функции view.sortingElementsValue
+        urlParams.set("sortOrder", sortOrder);
+        urlParams.set("sortCategory", sortCategory);
+
+        window.history.replaceState(null, null, `?${urlParams.toString()}`); // используется для изменения текущего состояния истории браузера без перезагрузки страницы. Это особенно полезно, когда нужно обновить адресную строку (URL) и сохранить состояние приложения, не вызывая переход на новую страницу.
+    };
+
+    updateFromSaveURL(sortingDomElements) {
+        const { sortType, sortOrder, sortCategory } = sortingDomElements; // достаём DOM элементы
+        const urlParams = new URLSearchParams(window.location.search); // конструктор для удобной работы с URL параметрами и получать доступ ко всем параметрам текущей URL ссылки, тоесть URL строку с селектами
+
+        const urlParamsSortType =  urlParams.get("sortType") || "price"; // дефолтные значения на случай если пользователь поломает URL строку
+        const urlParamsSortOrder =  urlParams.get("sortOrder") || "asc"; // значения селектов из строк в URL адресе
+        const urlParamsSortCategory =  urlParams.get("sortCategory") || "all" // значения селектов из строк в URL адресе
+
+        sortType.value = urlParamsSortType; //  и вшиваем в значения селектов на странице что бы при перезагрузки страницы сортировка сохранялась или чтобы можно было скопировать строку и передать её кому нибуть
+        sortOrder.value = urlParamsSortOrder; //  и при этом еще не сбрасывается отрисовка на странице с сортировкой
+        sortCategory.value = urlParamsSortCategory;
+    };
 };
 
-//48
+
