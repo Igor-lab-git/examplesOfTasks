@@ -13,9 +13,17 @@
 
 
 
- const img= document.querySelector("#img");
+ const user = {
+    id: 1,
+    name: "Jenna",
+    age: 23,
+    isLove: true
+ }
 
- img.addEventListener("load", function (e) {
-  console.log(e)
-  console.log(`${this.offsetWidth} and ${this.offsetHeight}`);
- })
+
+const newMap = new Map(Object.entries(user));
+console.log(newMap);
+console.log(Object.fromEntries(newMap));
+
+
+ 
