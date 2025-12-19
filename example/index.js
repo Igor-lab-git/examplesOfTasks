@@ -13,17 +13,19 @@
 
 
 
- const user = {
-    id: 1,
-    name: "Jenna",
-    age: 23,
-    isLove: true
- }
+const  myFun = () => {
+   let count = 0;
+   return () => {
+     console.log(count++);
+     
+   };
+};
 
+const fuCount1 = myFun();
+fuCount1()
+fuCount1()
+fuCount1()
 
-const newMap = new Map(Object.entries(user));
-console.log(newMap);
-console.log(Object.fromEntries(newMap));
 
 
  
