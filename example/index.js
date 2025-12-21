@@ -10,22 +10,13 @@
 //     console.log(task);
 //     text.value = ""
 // })
+// const img = document.querySelector("#img")
 
 
-
-const  myFun = () => {
-   let count = 0;
-   return () => {
-     console.log(count++);
-     
-   };
+const user = {
+    id: 1,
+    name: 'Jenna',
+    age: 25,
+    isLove: true,
 };
 
-const fuCount1 = myFun();
-fuCount1()
-fuCount1()
-fuCount1()
-
-
-
- 

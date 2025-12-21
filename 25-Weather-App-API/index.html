@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/normalize.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/globals.css">
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/utils.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Weather App</title>
+</head>
+<body>
+
+<div id="app">
+    <div id="root">
+        <img class="loader" src="./images/loader.gif" alt="loader">
+    </div>
+
+    <div class="popup" id="popup">
+        <form action="GET" class="form" id="form">
+            <div class="form-group">
+                <input type="text" value="" name="city" class="form-input" id="text-input" placeholder="London" required/>
+                <input type="submit" class="form-submit" id="submit-button" value="OK"/>
+            </div>
+        </form>
+
+        <div class="popup-close" id="close">
+            <span></span>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--    https://www.youtube.com/live/kugdKyHykAA-->
+<script src="./scripts/index.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+
+html {
+    &.is-lock {
+        overflow: hidden;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 340px;
+    font-family: "Kumbh Sans", sans-serif;
+    line-height: 1.5;
+    letter-spacing: -0.03em;
+    color: #000000;
+    background-color: #1a191f;
+}
+
+main {
+    flex-grow: 1;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+    transition-duration: 0.3s;
+}
+
+a {
+    display: inline-block;
+    color: inherit;
+
+    &[class] {
+        text-decoration: none;
+    }
+}
+
+a,
+button {
+    &[aria-label] {
+        position: relative;
+    }
+
+    &::before {
+
+        content: "";
+    }
+}
+
+a,
+button {
+    &[aria-label] {
+        position: relative;
+
+        &::before {
+
+            content: "";
+        }
+    }
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+li,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
