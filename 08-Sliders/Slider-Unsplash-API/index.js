@@ -15,7 +15,7 @@ async function getRandomImage(query) {
     );
     // console.log(response);
     if (!response.ok) {
-      throw new Error(response.statusText, "Картинок нет");
+      throw new Error(response.statusText);
     }
     const data = await response.json();
     console.log(data);
