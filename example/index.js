@@ -19,26 +19,15 @@ const user = {
   isLove: true,
 };
 
-async function getSomthing() {
-  return "Hy Jenna";
-}
 
-const prom = await getSomthing();
+const text = document.querySelector("#input");
 
-console.log(prom);
 
-const getData = async () => {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-    
-  };
-};
+console.log(text.closest("[data-js-form]"));
+console.log(JSON.parse(text.getAttribute('data-js-input')));
 
-const array = await getData();
+console.log(text.classList.contains("is-active"));
 
-console.log(array);
+
+
 
