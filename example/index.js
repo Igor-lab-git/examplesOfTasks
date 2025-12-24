@@ -20,13 +20,13 @@ const user = {
 };
 
 
-const text = document.querySelector("#input");
+const img = document.querySelector("#img");
+
+console.log(img.offsetWidth);
+console.log(getComputedStyle(document.body));
 
 
-console.log(text.closest("[data-js-form]"));
-console.log(JSON.parse(text.getAttribute('data-js-input')));
 
-console.log(text.classList.contains("is-active"));
 
 
 
