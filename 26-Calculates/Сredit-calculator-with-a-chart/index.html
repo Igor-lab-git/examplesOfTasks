@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styl.css">
+    <script src="./index.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <section class="loan-calc">
+        <div class="container loan-calc_container">
+            <form action="#" class="container loan-calc_form" id="loan-calc-form">
+                <div class="loan-calc_top">
+                    <h1 class="loan-calc_title">Расчитать платёж по кредиту</h1>
+                    <div class="loan-calc_fields">
+                        <div class="loan-calc_input">
+                            <label for="loan-amount">Сумма, ₽</label>
+                            <input type="number" name="loan-amount" id="loan-amount" value="300000" min="10000" max="1000000">
+                        </div>
+
+                        <div class="loan-calc_input">
+                            <label for="loan-precent">Процентная ставка</label>
+                            <input type="number" name="loan-precent" id="loan-precent" value="20" min="0" max="100" step="0.1">
+                        </div>
+
+                        <div class="loan-calc_input">
+                            <label for="loan-term">Срок, месяцев</label>
+                            <input type="number" name="loan-term" id="loan-term" value="100" min="0" max="300">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loan-calc_bottom">
+                    <div class="loan-calc_info">
+                        <div class="loan-calc_out">
+                            <span>Ежемесячный платёж</span>
+                            <output id="loan-payment">5000</output>
+                        </div>
+
+                        <div class="loan-calc_out">
+                            <span>Сумма переплаты</span>
+                            <output id="loan-over">10000</output>
+                        </div>
+
+                        <div class="loan-calc_out">
+                            <span>Общая сумма выплаты</span>
+                            <output id="loan-total">40000</output>
+                        </div>
+
+                    </div>
+                    <div class="loan-calc_chart">
+                        <canvas id="chatr"></canvas>
+                    </div>
+                </div>
+                <button class="loan-calc_button" id="btn-submit" type="button">Расчитать</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

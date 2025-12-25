@@ -1,17 +1,3 @@
-//
-// const form = document.querySelector("[data-js-form]");
-// const text = document.querySelector("#text");
-//
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//
-//     const task = text.value.trim();
-//
-//     console.log(task);
-//     text.value = ""
-// })
-// const img = document.querySelector("#img")
-
 const user = {
   id: 1,
   name: "Jenna",
@@ -19,15 +5,22 @@ const user = {
   isLove: true,
 };
 
+const accessKey = "961f0e9d-f48c-4c12-8227-41961701db74";
 
-const img = document.querySelector("#img");
+const headers = {
+  "X-Yandex-Weather-Key": accessKey,
+};
 
-console.log(img.offsetWidth);
-console.log(getComputedStyle(document.body));
-
-
-
-
-
-
-
+async function getWeather() {
+  try {
+    const respons = await fetch(
+      "https://api.weather.yandex.ru/v2/forecast?lat=52.37125&lon=4.89388",
+      { headers }
+    );
+    const data = await respons.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+getWeather()
