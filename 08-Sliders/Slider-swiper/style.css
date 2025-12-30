@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #ced6fb;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.card__list .card__item  {
+  list-style: none;
+}
+
+.card__list .card__item .card__link {
+  width: 400px;
+  display: block;
+  padding: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: #fff;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+}
+
+.card__list .card__item .card__link:hover {
+  border-color: #5372f0;
+}
+
+.card__list .card__image.card__link {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card__list .card__link .badge {
+  padding: 8px 16px;
+  margin: 16px 0 18px;
+  width: fit-content;
+  border-radius: 50px;
+  font-weight: 500;
+  color: #5372f0;
+  background: #dde4ff;
+}
+
+.card__list .card__link .description {
+  font-weight: 600;
+  color: #000;
+
+}
+
+.card__list .card__link .card__button {
+  height: 35px;
+  aspect-ratio: 1;
+  color: #5372f0;
+  border: 2px solid #5372f0;
+  border-radius: 50%;
+  margin: 30px 0 5px;
+  rotate: -45deg;
+}
+
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

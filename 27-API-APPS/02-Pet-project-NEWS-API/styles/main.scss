@@ -1,0 +1,20 @@
+@use "./base/normalize";
+@use "./base/fonts";
+@use "./base/variables";
+@use "./base/globals";
+
+
+@use "./components/header";
+@use "./components/top-headlines";
+
+@use "./components/overlay-menu";
+@use "./components/burger-button";
+
+@use "./components/page-2";
+@use "./components/card-page2";
+
+@use "./components/footer";
+@use "./components/footer-categories";
+@use "./components/icons-footer";
+@use "./components/form-subscribe";
+

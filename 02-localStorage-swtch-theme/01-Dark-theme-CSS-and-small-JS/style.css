@@ -1,0 +1,56 @@
+
+:root {
+  --main: #333;
+  --main-rgb: 51, 51, 51;
+  color-scheme: light;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  color: var(--main);
+  /*background-color: var(--color-main-rgb);*/
+}
+
+.container {
+  margin: 20px auto;
+  max-width: 400px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+form {
+  padding: 20px;
+  background-color: rgba(var(--main-rgb), .2);
+}
+
+input[type="email"],
+textarea,
+button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  color: var(--color-main);
+}
+
+textarea {
+ resize: none;
+  min-width: 100px;
+}
+
+/*Dark*/
+
+.dark {
+  --main: #fff;
+  --main-rgb: 255, 255,255;
+  color-scheme: dark;
+}
+
+

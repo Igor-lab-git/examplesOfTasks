@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.add-button-element {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.add-button-element:hover {
+  border-color: blue;
+  color: blue;
+  background-color: gainsboro;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.note {
+  padding: 16px;
+  margin: 8px;
+  height: 300px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 2px #cacaca;
+  background-color: lightyellow;
+}
+
+.note:hover {
+  scale: 1.01;
+}
+
+.note__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.note__title {
+  font-size: 25px;
+  font-weight: bold;
+  color: greenyellow;
+  font-size: 23px;
+}
+.note__actions-button {
+  background-color: inherit;
+}
+
+.note__button-edit {
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.note__button-edit:hover {
+  border-color: blue;
+  color: blue;
+}
+
+.note__button-delete {
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.note__button-delete:hover {
+  border-color: blue;
+  color: blue;
+}
+
+.note__description {
+  background-color: inherit;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}

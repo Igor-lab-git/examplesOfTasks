@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" integrity="sha512-HHsOC+h3najWR7OKiGZtfhFIEzg5VRIPde0kB0bG2QRidTQqf+sbfcxCTB16AcFB93xMjnBIKE29/MjdzXE+qw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>News Website</title>
+</head>
+<body>
+    <header class="header" data-js-header>
+        <div class="header__inner">
+            <a class="header__logo" href="./index.html">News</a>
+            
+            <nav class="header__menu">
+                <ul class="header__list">
+                    <li class="header__item">
+                        <a href="#" class="header__link">Home</a>
+                    </li>
+
+                     <li class="header__item">
+                        <a href="#" class="header__link">Sports</a>
+                    </li>
+
+                     <li class="header__item">
+                        <a href="#" class="header__link">Business</a>
+                    </li>
+
+                     <li class="header__item">
+                        <a href="#" class="header__link">Technology</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header__overlay" data-js-header-overlay>
+                <nav>
+                    <ul class="header__overlay-list overlay-menu">
+                        <li class="overlay-menu__item">
+                            <a href="#" class="overlay-menu__link">Home</a>
+                        </li>
+    
+                         <li class="overlay-menu__item">
+                            <a href="#" class="overlay-menu__link">Sports</a>
+                        </li>
+    
+                         <li class="overlay-menu__item">
+                            <a href="#" class="overlay-menu__link">Business</a>
+                        </li>
+    
+                         <li class="overlay-menu__item">
+                            <a href="#" class="overlay-menu__link">Technology</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <button class="header__burger-button burger-button visible-mobile" title="button menu"  data-js-header-burger-button>
+                <span class="visually-hidden">navigation menu button</span>
+                <span class="burger-button__line"></span>
+                <span class="burger-button__line"></span>
+                <span class="burger-button__line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="top-headlines">
+            <div class="top-headlines__inner top-headlines__inner--left" id="breaking-news">
+            </div>
+
+            <div class="top-headlines__inner top-headlines__inner--right">
+                <h2 class="top-headlines__title top-headlines__title--right">Top Headlines</h2>
+
+                <div class="top-headlines__top-news top-headlines__top-news--rigt" id="top-news"></div>
+    
+            </div>
+        </div>
+
+        <section class="page-2">
+            <div class="page-2__news" >
+                <div class="page-2__title">
+                    <h2>Sports News</h2>
+                </div>
+
+                <div class="page-2__body" id="sports-news"></div>
+            </div>
+
+            <div class="page-2__news" >
+                <div class="page-2__title">
+                    <h2>Business News</h2>
+                </div>
+
+                <div class="page-2__body" id="business-news"></div>
+            </div>
+
+            <div class="page-2__news" >
+                <div class="page-2__title">
+                    <h2>Technology News</h2>
+                </div>
+
+                <div class="page-2__body" id="technology-news"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__left">
+                <div class="footer__categories">
+                    <p class="footer__categories-title">Categories</p>
+                    <ul class="footer__categories-list footer-categories">
+                        <li class="footer-categories__item">
+                            <a class="footer-categories__link" href="#">Sports</a>
+                        </li>
+                        <li class="footer-categories__item">
+                            <a class="footer-categories__link" href="#">Business</a>
+                        </li>
+                        <li class="footer-categories__item">
+                            <a class="footer-categories__link" href="#">Technology</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__right">
+                <div class="footer__contact-us">
+                    <p class="footer__contact-us-title">Contact Us</p>
+                    <ul class="footer__contact-us-list footer-categories footer-categories--right">
+                        <li class="footer-categories__item">
+                            <a class="footer-categories__link" href="tel:+9876543210" href="#">Photo No. - <span>9876543210</span></a>
+                        </li>
+                        <li class="footer-categories__item">
+                            <a class="footer-categories__link" href="mailto:abs@gmail.com" href="#">Email - <span>abs@gmail.com</span></a>
+                        </li>
+                        <li class="footer-categories__item">
+                            <a class="footer-categories__link" href="#">Address - <span>Mumbai, India</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__form">
+                <div class="footer__form-inner">
+                    <p class="footer__form-subtitle">Subscribe to Our newsletter</p>
+                    <form class="footer__form-form form-subscribe" action="#">
+                        <input class="form-subscribe__input" type="email" placeholder="Enter Your email...">
+                        <button class="form-subscribe__button" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer__copyrights">
+            <p class="footer__copyrights-text">© 2025 News. Все права защищены.</p>
+            <div class="footer__icons icons-footer">
+                <i class="fa-brands fa-square-facebook"></i>
+                <i class="fa-brands fa-square-instagram"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </div>
+    </footer>
+    <script src="./scripts/index.js" type="module" defer></script>
+</body>
+</html>
+
+<!-- 
+Create your own News Website using HTML CSS JavaScript 1-13 -->

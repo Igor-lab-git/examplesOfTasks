@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  min-height: 100vh;
+  background-color: gold;
+  line-height: 1.6;
+}
+
+.tabs {
+  margin: 50px auto;
+  max-width: 700px;
+  padding: 15px;
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.tabs__btn {
+  padding: 20px 30px;
+  background-color: gold;
+  color: white;
+  font-weight: 800;
+}
+
+.active {
+  background-color: white;
+  color: gold;
+}
+
+.box-title {
+  color: orangered;
+}
+
+.box-description {
+  font-weight: 500;
+}
+
+.box-text {
+  background-color: white;
+}
+
+.box-item {
+  padding: 5px;
+  display: none;
+}
+
+.show {
+  display: block;
+}

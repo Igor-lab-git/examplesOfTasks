@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "inter", "sans serif";
+  background-color: black;
+}
+
+.wrapper {
+  max-width: 500px;
+  padding: 20px;
+  width: 100%;
+  margin-inline: auto;
+  margin-top: 200px;
+  background-color: bisque;
+  border-radius: 10px;
+}
+
+.title {
+  color: teal;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 200px;
+  height: 200px;
+  justify-content: space-between;
+}
+
+.lield {
+  width: 100%;
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.label {
+  color: teal;
+}
+
+.input {
+  padding: 3px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  padding: 7px 10px;
+  color: #fff;
+  background-color: teal;
+  border-radius: 5px;
+}
+
+.label-svg {
+  position: relative;
+}
+
+.image-svg {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  display: flex;
+}
+
+.svg {
+  cursor: pointer;
+  width: 20px;
+  aspect-ratio: 1;
+}
+
+.image-svg::after {
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  width: 23px;
+  height: 2px;
+  background: black;
+  top: 0;
+  top: 43%;
+  rotate: 45deg;
+  right: -2px;
+  transition: .3s all ease;
+  opacity: 1;
+}
+
+.image-svg.is-active::after {
+  opacity: 0;
+}

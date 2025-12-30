@@ -1,0 +1,47 @@
+@use "../base/helpers" as *;
+
+.page-2 {
+  width: 100%;
+  background-color: var(--color-dark-25);
+  min-height: 100vh;
+  padding: fluid(50, 16);
+
+@include tablet-s {
+  padding-inline: rem(16);
+}
+
+  &__news {
+    padding: fluid(30, 6) 0;
+
+    &:not(:last-child) {
+      border-bottom: rem(1) solid var(--color-gray-55);
+    }
+  }
+
+  &__title {
+    & > h2 {
+      @include fluid-text(40, 20);
+
+      font-weight: 600;
+      display: inline;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  &__body {
+    width: 100%;
+    margin-top: fluid(20, 10);
+    display: flex;
+    justify-content: center;
+
+    @include tablet-s {
+      flex-wrap: wrap;
+      gap: rem(5);
+    }
+  }
+}

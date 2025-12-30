@@ -1,0 +1,45 @@
+@use "../base/helpers" as *;
+
+:root {
+  --color-light: #fff;
+  --color-dark: #141414;
+
+  --color-dark-10: #1A1A1A;
+  --color-dark-25: #16161d;
+  --color-dark-15: #262626;
+  --color-dark-20: #333333;
+  --color-dark-20: #0a0a18;
+
+  --color-gray-30: #aaa;
+  --color-gray-40: #999;
+  --color-gray-45: #777;
+  --color-gray-50: #7E7E81;
+  --color-gray-55: #555;
+  --color-gray-60: #98989A;
+
+
+  --color-accent: #FFD11A;
+  --color-image-bg: #a04;
+
+  --color-red: #FF5500;
+
+  --border: #{rem(1)} solid var(--color-light);
+
+  --shadow: 0 0 0 #{rem(4)} #191919;
+
+  --border-radius-small: #{rem(5)};
+  --border-radius: #{rem(10)};
+  --border-radius-button: #{rem(12)};
+
+  --font-family-base: "Inter", sans-serif;
+
+  --container-width: #{rem(1600)};
+  --container-padding-x: #{rem(16)};
+
+  @include laptop {
+    --container-width: #{rem(1280)};
+  }
+
+  --transition-duration: 0.3s;
+
+}

@@ -1,0 +1,51 @@
+@use "../base/helpers" as *;
+
+.form-subscribe {
+  display: flex;
+  align-items: flex-start;
+  column-gap: rem(10);
+
+  @include tablet {
+    flex-direction: column;
+    row-gap: rem(15);
+  }
+
+  &__input {
+    width: fluid(400, 300);
+    padding: rem(10) rem(25);
+    border-radius: var(--border-radius-small);
+    border: none;
+    outline: none;
+
+    @include tablet {
+      padding: rem(7) rem(20);
+    }
+
+    @include mobile {
+      padding: rem(5) rem(15);
+    }
+  }
+
+  &__button {
+    @include fluid-text(16, 14);
+
+    font-weight: 600;
+    padding: rem(10) rem(25);
+    border: var(--border);
+    border-radius: var(--border-radius-small);
+    color: var(--color-light);
+
+    @include tablet {
+      padding: rem(7) rem(20);
+    }
+
+    @include mobile {
+      padding: rem(5) rem(15);
+    }
+
+    &:hover {
+      color: var(--color-dark);
+      background-color: var(--color-light);
+    }
+  }
+}

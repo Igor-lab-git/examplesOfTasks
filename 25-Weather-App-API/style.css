@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+ max-width: 100vw;
+  min-height: 100vh;
+  font-family: "Inter", "sans-serif";
+  background: url("./images/stacked-waves-haikei.svg") no-repeat;
+  background-size: cover;
+}

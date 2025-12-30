@@ -1,0 +1,54 @@
+
+.container {
+    margin-inline: auto;
+    margin-block: auto;
+    box-sizing: border-box;
+    padding-inline: 50px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.carousel {
+    box-sizing: border-box;
+    padding: 20px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 30ch;
+    gap: 10px;
+    overflow-x: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    anchor-name: --carousel;
+    scroll-behavior: smooth;
+    border: 1px solid black;
+    background: #dde4ff;
+
+    &::scroll-button(*) {
+        position: fixed;
+        position-anchor: --carousel;
+        
+    }
+
+    &::scroll-button(right) {
+        position-area: inline-end center;
+        content: ">";
+        cursor: pointer;
+    }
+
+    &::scroll-button(left) {
+        position-area: inline-start center;
+        content: "<";
+        cursor: pointer;
+    }
+}
+
+.item {
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #000;
+    scroll-snap-align: center;
+    background-color: #fff;
+}

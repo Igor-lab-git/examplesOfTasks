@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./globals.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Cats API Image</title>
+</head>
+<body>
+ 
+    <form action="#" class="form" name="form" data-js-form>
+        <h1 class="form__title">Регистрация</h1>
+        <div class="form__item">
+            <label for="name" class="form__lable">Имя:</label>
+            <input class="form__input" type="text" id="name" name="name" placeholder="name...">
+            <span class="error-message" id="error-message"></span>
+        </div>
+
+        <div class="form__item">
+            <label for="lastname" class="form__lable">Фамилия:</label>
+            <input class="form__input" type="text" id="lastname" name="lastname" placeholder="Фамилия...">
+            <span class="error-message"></span>
+        </div>
+
+        <div class="form__item">
+            <label for="email" class="form__lable">Почта:</label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="email...">
+            <span class="error-message"></span>
+        </div>
+
+        <div class="form__item">
+            <label for="password" class="form__lable">Пароль:</label>
+            <input class="form__input" type="password" id="password" name="password" placeholder="password...">
+            <span class="error-message"></span>
+        </div>
+
+        <div class="form__item">
+            <label for="password2" class="form__lable">Повторить пароль:</label>
+            <input class="form__input" type="password2" id="password2" name="password2" placeholder="password...">
+            <span class="error-message"></span>
+        </div>
+        <input class="form__button" type="submit" value="Отправить форму">
+    </form>
+    <script src="./index.js" defer></script>
+</body>
+</html>

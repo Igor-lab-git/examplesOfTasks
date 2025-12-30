@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/normalize.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/globals.css">
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/utils.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Dictionary with free API</title>
+</head>
+<body>
+
+
+    <div class="app">
+        <main class="main">
+            <h1>Yor the best <span>Dictionary</span></h1>
+
+            <form class="form" action="#" data-js-form>
+                <div class="form-group">
+                    <input type="text" name="word" id="word-input" placeholder="Type a word..." autocomplete="off">
+                </div>
+                <button class="form-btn" id="form-btn" type="submit">Search</button>
+            </form>
+
+            <div class="error">
+                <p>Word not found</p>
+            </div>
+
+            <div class="results">
+                <div class="results-info">
+                    <div class="results-word"></div>
+                    <button type="button" class="results-sound">
+                        <img class="image-sound" src="./images/muz-2.jpg" alt="">
+                    </button>
+                </div>
+
+                <div class="results-list">
+                    <div class="results-item">
+                        <div class="results-item__part"></div>
+
+                        <div class="results-item__definitions">
+                            <div class="results-item__definition">
+                                <p>Jenna it's my live</p>
+                                <div class="results-item__example">Igor Jenna Igor Jenna</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+<!--    Делаем СЛОВАРЬ на чистом JAVASCRIPT + бесплатный API с нуля для начинающих-->
+    <script src="./scripts/index.js" defer></script>
+</body>
+</html>

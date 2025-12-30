@@ -1,0 +1,16 @@
+@use "../base/helpers" as *;
+
+.footer-categories {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(10, 8);
+    width: max-content;
+
+    &--right {
+        row-gap: fluid(8, 6);
+    }
+
+    &__item {
+        @include fluid-text(20, 12)
+    }
+}

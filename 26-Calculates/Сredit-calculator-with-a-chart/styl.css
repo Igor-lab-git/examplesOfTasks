@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  width: 100%;
+  min-height: 100vh;
+  color: #000;
+  background-color: wheat;
+}
+
+.loan-calc {
+  width: 100%;
+  height: 100%;
+}
+
+.loan-calc_container {
+  display: flex;
+  justify-content: center;
+}
+
+/* FORM================= */
+
+.loan-calc_form {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.loan-calc_top {
+  width: 100%;
+  background-color: #3d9b40;
+  color: #fff;
+}
+
+.loan-calc_title {
+  padding: 30px 30px 0 30px;
+  margin-bottom: 25px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.loan-calc_fields {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 20px;
+  background-color: #fff;
+  color: #000;
+}
+
+.loan-calc_input {
+  display: grid;
+  row-gap: 5px;
+  padding-inline: 20px;
+}
+
+.loan-calc_input label {
+  color: gray;
+}
+
+.loan-calc_input input {
+  width: 200px;
+  height: 20px;
+  padding: 4px 0 4px 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  background-color: ghostwhite;
+}
+
+/* BOTTOM============ */
+.loan-calc_bottom {
+  margin: 15px 25px;
+  display: flex;
+}
+
+.loan-calc_info {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid grey;
+  background-color: ghostwhite;
+}
+
+.loan-calc_out {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid gray;
+}
+
+.loan-calc_out span {
+  color: gray;
+}
+
+.loan-calc_out output {
+  font-weight: 600;
+  color: green;
+}
+
+.loan-calc_out > output::after {
+  content: "₽";
+}
+
+.loan-calc_button {
+  margin: 15px 0 25px 25px;
+  cursor: pointer;
+  background-color: green;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  padding: 15px 25px;
+}

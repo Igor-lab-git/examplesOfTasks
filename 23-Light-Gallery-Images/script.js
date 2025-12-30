@@ -1,0 +1,2 @@
+
+lightGallery(document.querySelector(".gallery"));

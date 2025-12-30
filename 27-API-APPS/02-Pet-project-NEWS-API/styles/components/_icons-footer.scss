@@ -1,0 +1,20 @@
+@use "../base/helpers" as *;
+
+.icons-footer {
+  display: flex;
+  column-gap: rem(10);
+
+  @include mobile {
+    column-gap: rem(5);
+  }
+
+  & i {
+    font-size: rem(25);
+    cursor: pointer;
+  }
+
+  & i:hover {
+    color: var(--color-light);
+    transform: scale(1.2);
+  }
+}
