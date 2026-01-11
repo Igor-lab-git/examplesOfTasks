@@ -1,0 +1,31 @@
+@use "../helpers" as *;
+
+.profile-info {
+
+  &__box-photo {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__photo {
+    width: rem(250);
+    height: rem(250);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: var(--border);
+    box-shadow: var(--glow-box-shadow);
+  }
+
+  &__name {
+    @include fluid-text(32, 22);
+
+    font-weight: 700;
+  }
+
+  &__job {
+    @include fluid-text(24, 18);
+  }
+}

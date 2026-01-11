@@ -1,0 +1,11 @@
+@use "base/normalize.scss";
+@use "base/fonts.scss";
+@use "base/variables.scss";
+@use "base/utils.scss";
+@use "base/globals.scss";
+
+@use "blocks/header.scss";
+@use "blocks/switchers.scss";
+@use "blocks/profile-info.scss";
+@use "blocks/main-menu.scss";
+@use "blocks/burger";

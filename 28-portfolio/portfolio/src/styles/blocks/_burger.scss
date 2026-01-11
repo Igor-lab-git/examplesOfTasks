@@ -1,0 +1,47 @@
+@use "../helpers" as *;
+
+.burger {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+  border-radius: rem(5);
+  color: var(--color-white);
+  background-color: var(--color-bg-btn-menu);
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: rem(35);
+    height: rem(35);
+
+    &.is-active {
+      .burger__line:nth-child(2) {
+        display: none;
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .burger__line:nth-child(4) {
+        rotate: 45deg;
+        transform-origin: 0;
+        translate: 0.16em -0.8em;
+      }
+      .burger__line:nth-child(3) {
+        rotate: -45deg;
+        transform-origin: 0;
+        translate: 0.20em 0.9em;
+      }
+    }
+  }
+
+  &__line {
+    height: rem(2);
+    width: 60%;
+    border-radius: rem(10);
+    background-color: var(--color-white);
+    transition-duration: var(--transition-duration);
+  }
+}
+

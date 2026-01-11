@@ -1,14 +1,59 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <title>My portfolio</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+
+  <header class="header">
+    <div class="header__inner">
+
+      <div class="header__settings switchers">
+        <button class="switchers__theme-btn" type="button" data-js-btn-switcher-theme>switch theme to light</button>
+        <button class="switchers__language-btn" type="submit" data-js-btn-switcher-language>switch language to eng</button>
+      </div>
+
+      <div class="header__avatar profile-info">
+        <div class="profile-info__box-photo">
+          <img class="profile-info__photo" src="./public/images/header/avatar-photo.jpg" alt="photo-avatar">
+        </div>
+        <span class="profile-info__name">Игорь Костюченко</span>
+        <p class="profile-info__job">Front-end developer</p>
+      </div>
+
+      <nav class="header__nav main-menu">
+        <ul class="main-menu__list list-reset">
+          <li class="main-menu__item"> <a class="main-menu__link" href="#home">главная</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link" href="#about">обо мне</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link" href="#education">образование</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link" href="#portfolio">портфолио</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link" href="#contact">контакты</a> </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="burger">
+      <button class="burger__button is-active" type="button" title="menu" data-js-burger-menu>
+        <span class="visually-hidden">button burger menu</span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+      </button>
+    </div>
+
+
+    <div class="wrapper">
+      <span>Igor</span>
+      <a href="#">Jenna</a>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi est eum velit? Ad amet aperiam assumenda, cumque deleniti earum facilis, hic in inventore ipsam laboriosam officiis ratione tempora vel voluptates?</p>
+    </div>
+  </main>
+
+    <script type="module" src="src/scripts/main.js" defer></script>
   </body>
 </html>
 
