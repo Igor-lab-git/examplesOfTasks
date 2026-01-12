@@ -10,8 +10,8 @@
   }
 
   &__photo {
-    width: rem(250);
-    height: rem(250);
+    width: fluid(250, 180);
+    height: fluid(250, 180);
     border-radius: 50%;
     object-fit: cover;
     object-position: center 20%;
@@ -20,12 +20,12 @@
   }
 
   &__name {
-    @include fluid-text(32, 22);
+    @include fluid-text(32, 18);
 
     font-weight: 700;
   }
 
   &__job {
-    @include fluid-text(24, 18);
+    @include fluid-text(24, 16);
   }
 }

@@ -1,6 +1,7 @@
 import "../styles/style.scss";
-import {switcherTheme} from "./SwitcherTheme.js";
+import "./SwitcherTheme.js";
+import "./ShowHeader.js";
 
-switcherTheme;
+
 
 console.log("Igor");

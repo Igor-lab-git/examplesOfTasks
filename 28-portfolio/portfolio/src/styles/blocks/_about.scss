@@ -1,0 +1,13 @@
+@use "../helpers" as *;
+
+.about {
+  height: 100vh;
+  padding: rem(16);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__inner {
+    margin-inline: 5rem;
+  }
+}

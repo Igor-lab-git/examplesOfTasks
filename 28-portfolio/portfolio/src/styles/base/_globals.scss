@@ -36,6 +36,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   min-width: rem(340);
+  padding-left: var(--width-header);
   font-family: var(--font-family);
   line-height: 1.5;
   letter-spacing: -0.03em;
@@ -43,6 +44,10 @@ body {
   scroll-behavior: smooth;
   color: var(--color-text);
   background-color: var(--color-bg);
+
+  @include tablet {
+    padding-left: 0;
+  }
 }
 
 body {

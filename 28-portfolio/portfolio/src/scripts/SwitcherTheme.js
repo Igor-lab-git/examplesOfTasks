@@ -42,4 +42,4 @@ class SwitcherTheme {
     }
 }
 
-export const switcherTheme = new SwitcherTheme();
+ new SwitcherTheme();

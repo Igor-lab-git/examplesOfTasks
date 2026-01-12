@@ -7,7 +7,7 @@
   </head>
   <body>
 
-  <header class="header">
+  <header class="header" data-js-header>
     <div class="header__inner">
 
       <div class="header__settings switchers">
@@ -36,8 +36,8 @@
   </header>
 
   <main>
-    <div class="burger">
-      <button class="burger__button is-active" type="button" title="menu" data-js-burger-menu>
+    <div class="burger" >
+      <button class="burger__button" type="button" title="menu" data-js-burger-button>
         <span class="visually-hidden">button burger menu</span>
         <span class="burger__line"></span>
         <span class="burger__line"></span>
@@ -45,12 +45,22 @@
       </button>
     </div>
 
+    <h1 class="visually-hidden">Page portfolio</h1>
 
-    <div class="wrapper">
-      <span>Igor</span>
-      <a href="#">Jenna</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi est eum velit? Ad amet aperiam assumenda, cumque deleniti earum facilis, hic in inventore ipsam laboriosam officiis ratione tempora vel voluptates?</p>
-    </div>
+    <section class="about" id="about">
+      <div class="about__inner">
+          <div class="about__body">
+            <h2 class="about__title">Привет! <span class="about__active-title">Меня зовут Игорь.</span></h2>
+            <p class="about__subtitle">Я <span class="about__active-subtitle">веб разработчик</span></p>
+            <p class="about__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus doloremque doloribus earum inventore possimus quia voluptate? Architecto aut eaque eius et facere fuga itaque labore maiores maxime officia, quo tempore.</p>
+          </div>
+
+        <button class="about__button">
+          <span>обо мне</span>
+          <img src="./public/icons/about-section/person-icon.svg" alt="icon-person">
+        </button>
+      </div>
+    </section>
   </main>
 
     <script type="module" src="src/scripts/main.js" defer></script>
