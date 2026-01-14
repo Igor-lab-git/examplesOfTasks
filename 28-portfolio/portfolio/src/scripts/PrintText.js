@@ -1,65 +1,16 @@
-// const mainTitle = document.querySelector('[data-js-main-title-print]');
-// const subTitle = document.querySelector('[data-js-main-subtitle-print]');
-//
-// const arrayLetterTitle = [...mainTitle.textContent];
-// const arrayLetterSubTitle = [...subTitle.textContent];
-//
-// subTitle.textContent = "";
-// mainTitle.textContent = "";
-//
-// const printText = (arrayTitle) => {
-//     let counter = 0;
-//     let accumulateText = "";
-//     let intervalId = null;
-//
-//     function addText() {
-//         clearInterval(intervalId);
-//
-//         intervalId = setInterval(() => {
-//             accumulateText += arrayTitle[counter];
-//             counter++;
-//             mainTitle.textContent = accumulateText;
-//             if(counter === arrayTitle.length) {
-//                 clearInterval(intervalId);
-//                 setTimeout(() => {
-//                     removeText();
-//                 }, 1000);
-//             };
-//         }, 150)
-//     };
-//
-//     function removeText() {
-//         clearInterval(intervalId);
-//
-//         intervalId = setInterval(() => {
-//             accumulateText = accumulateText.slice(0, -1);
-//             mainTitle.textContent = accumulateText;
-//             counter--;
-//             if(accumulateText.length === 0) {
-//                 clearInterval(intervalId);
-//                 setTimeout(() => {
-//                     addText();
-//                 }, 2000);
-//             }
-//         }, 150);
-//     };
-//
-//     addText();
-//
-//
-// };
-//
-// printText(arrayLetterTitle);
-
-
 const mainTitle = document.querySelector('[data-js-main-title-print]');
 const subTitle = document.querySelector('[data-js-main-subtitle-print]');
 
 const arrayLetterTitle = [...mainTitle.textContent];
 const arrayLetterSubTitle = [...subTitle.textContent];
 
+
 subTitle.textContent = "";
 mainTitle.textContent = "";
+
+const colors = ["7fffd4", "e52b50", "6a5acd", "c1876b", "1e5945", "f984e5", "957b8d"];
+const textShadow = ["0 0 10px #7fffd4", "0 0 10px #e52b50", "0 0 10px #6a5acd", "0 0 10px #c1876b", "0 0 10px #1e5945", "0 0 10px #f984e5", "0 0 10px #957b8d"];
+let currentIndexColor = 0;
 
 // Функция для анимации одного текста
 function printText(text, element, callback) {
@@ -71,21 +22,26 @@ function printText(text, element, callback) {
     function addText() {
         clearInterval(intervalId);
 
+
         intervalId = setInterval(() => {
             accumulateText += text[counter];
             counter++;
             element.textContent = accumulateText;
+            element.style.color = `#${colors[currentIndexColor]}`;
+            element.style.textShadow = textShadow[currentIndexColor];
 
             // Когда все буквы добавлены
             if (counter === text.length) {
                 clearInterval(intervalId);
 
+
+
                 // Ждем и начинаем удалять
                 setTimeout(() => {
                     removeText();
-                }, 1000);
+                }, 2000);
             }
-        }, 150);
+        }, 100);
     }
 
     // Функция удаления букв
@@ -100,81 +56,41 @@ function printText(text, element, callback) {
             // Когда все буквы удалены
             if (accumulateText.length === 0) {
                 clearInterval(intervalId);
-
                 // Вызываем callback, когда анимация ЗАГЕРШЕНА
-                if (callback) {
+                setTimeout(() => {
                     callback();
-                }
+                }, 1000);
             }
-        }, 150);
+        }, 100);
     }
 
     // Начинаем анимацию
     addText();
 }
 
-// Запускаем по очереди
-printText(arrayLetterTitle, mainTitle, function() {
-    // Этот код выполнится ПОСЛЕ того, как заголовок напечатается и сотрется
-    printText(arrayLetterSubTitle, subTitle, function() {
-        // Этот код выполнится ПОСЛЕ подзаголовка
-        console.log("Все анимации завершены!");
+// Функция для запуска цикла
+function startAnimationCycle() {
+    // Сначала заголовок
+    printText(arrayLetterTitle, mainTitle, function() {
+        // Когда заголовок завершился → подзаголовок
+        printText(arrayLetterSubTitle, subTitle, function() {
+            // Когда подзаголовок завершился → СНОВА заголовок (рекурсия)
+            currentIndexColor++;
+            if(currentIndexColor === colors.length) {
+                currentIndexColor = 0;
+            }
+            if(currentIndexColor === textShadow.length) {
+                currentIndexColor = 0;
+            }
+            startAnimationCycle();
+        });
     });
-});
+}
 
-// printText(arrayLetterTitle, mainTitle, function() {
-//     // Этот код выполнится ПОСЛЕ того, как заголовок напечатается и сотрется
-//     printText(arrayLetterSubTitle, subTitle, function() {
-//         // Этот код выполнится ПОСЛЕ подзаголовка
-//         console.log("Все анимации завершены!");
-//     });
-// });
+// Начинаем цикл
+startAnimationCycle();
+
+const title = document.querySelector('[data-js-title]');
 
 
 
-// export const printText = () => {
-//
-//
-//     text.textContent = '';
-//     let count = 0;
-//     let newCountText = ""
-//
-//
-//     const addPrintText = () => {
-//     let intervalId = null;
-//         intervalId = setInterval(() => {
-//             newCountText += arrayCharts[count];
-//             count++
-//             text.textContent = newCountText;
-//             if (count === arrayCharts.length) {
-//                 clearInterval(intervalId);
-//                 setTimeout(() => {
-//                     removeText();
-//                 }, 1000)
-//             }
-//         }, 150);
-//     };
-//
-//
-//     function removeText() {
-//         let intervalId = null;
-//         intervalId = setInterval(() => {
-//             newCountText = newCountText.slice(0, -1);
-//             text.textContent = newCountText;
-//             count--
-//             console.log(text)
-//             if (newCountText.length === 0) {
-//                 clearInterval(intervalId);
-//                 setTimeout(() => {
-//                     addPrintText()
-//                 }, 2000);
-//             }
-//         }, 150);
-//     };
-//     addPrintText();
-//
-//
-//
-// }
-//
-// printText()

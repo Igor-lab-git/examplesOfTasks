@@ -11,7 +11,10 @@
     <div class="header__inner">
 
       <div class="header__settings switchers">
-        <button class="switchers__theme-btn" type="button" data-js-btn-switcher-theme>switch theme to light</button>
+        <button class="switchers__theme-btn" type="button" title="включить светлую тему" data-js-btn-switcher-theme>
+          <span class="visually-hidden">Кнопка переключения светлой темы</span>
+          <img title="включить светлую тему" src="./public/icons/header/Icon-theme-dark.svg" width="36" height="36" alt="" data-js-btn-switcher-theme-icon>
+        </button>
         <button class="switchers__language-btn" type="submit" data-js-btn-switcher-language>switch language to eng</button>
       </div>
 
@@ -50,7 +53,7 @@
     <section class="about" id="about">
       <div class="about__inner">
           <div class="about__body">
-            <h2 class="about__title">Привет! <span class="about__active-title" data-js-main-title-print>Меня зовут Игорь.</span></h2>
+            <h2 class="about__title" data-js-title>Привет! <span class="about__active-title" data-js-main-title-print>Меня зовут Игорь.</span></h2>
             <p class="about__subtitle">Я <span class="about__active-subtitle" data-js-main-subtitle-print>веб разработчик.</span></p>
             <p class="about__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus doloremque doloribus earum inventore possimus quia voluptate? Architecto aut eaque eius et facere fuga itaque labore maiores maxime officia, quo tempore.</p>
           </div>
