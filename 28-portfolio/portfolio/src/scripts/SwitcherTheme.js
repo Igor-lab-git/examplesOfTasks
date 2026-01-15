@@ -14,8 +14,8 @@ class SwitcherTheme {
     }
 
     srcStateIcon = {
-        lightTheme: "./public/icons/header/Icon-theme-light.svg",
-        darkTheme: "./public/icons/header/Icon-theme-dark.svg",
+        lightIcon: "./public/icons/header/Icon-theme-light.svg",
+        darkIcon: "./public/icons/header/Icon-theme-dark.svg",
     }
 
     storageKey = "theme"
@@ -28,12 +28,25 @@ class SwitcherTheme {
     }
 
     get isDarkThemeCached() {
+        // console.log(localStorage.getItem(this.storageKey) === this.themes.dark); //boolean
         return localStorage.getItem(this.storageKey) === this.themes.dark;
     }
 
-    setInitialTheme() {
+    updateIcon() {
+        if(this.isDarkThemeCached) {
+            this.iconButtonElement.src = this.srcStateIcon.darkIcon;
+            this.iconButtonElement.alt = "Переключить на темную тему";
+            this.iconButtonElement.title = "Переключить на темную тему";
+        } else {
+            this.iconButtonElement.src = this.srcStateIcon.lightIcon;
+            this.iconButtonElement.alt = "Переключить на светлую тему";
+            this.iconButtonElement.title = "Переключить на светлую тему";
+        }
+    }
 
+    setInitialTheme() {
         document.documentElement.classList.toggle(this.stateClasses.isDarkTheme, this.isDarkThemeCached);
+        this.updateIcon();
     }
 
     onClick =  () => {
@@ -42,8 +55,8 @@ class SwitcherTheme {
             this.isDarkThemeCached ? this.themes.light : this.themes.dark
             );
         document.documentElement.classList.toggle(this.stateClasses.isDarkTheme);
-        this.iconButtonElement.src = this.srcStateIcon.darkTheme ? this.srcStateIcon.lightTheme : this.srcStateIcon.darkTheme;
-    }
+        this.updateIcon();
+    };
 
     bindEvents() {
         this.switchButtonElement.addEventListener('click', this.onClick);
