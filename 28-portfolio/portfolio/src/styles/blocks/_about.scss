@@ -1,0 +1,31 @@
+@use "../helpers" as *;
+
+.about {
+
+  &__info {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    justify-items: center;
+    align-items: center;
+    column-gap: rem(5);
+    padding: rem(30) rem(16);
+
+    @include laptop {
+      justify-items: start;
+      padding-inline: 0;
+    }
+
+    @include tablet-S {
+      grid-template-columns: 1fr;
+      row-gap: rem(25);
+      padding-block: rem(20);
+    }
+  }
+
+  &__description {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}

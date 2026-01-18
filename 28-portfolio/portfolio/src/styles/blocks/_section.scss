@@ -1,0 +1,15 @@
+@use "../helpers" as *;
+
+.section {
+  //height: 100vh;
+  padding: rem(16);
+
+  &__inner {
+    //height: 100vh;
+    padding: rem(22) 0;
+
+    @include tablet-S {
+      padding-block: rem(20);
+    }
+  }
+}

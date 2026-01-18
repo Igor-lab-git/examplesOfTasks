@@ -1,0 +1,32 @@
+@use "../helpers" as *;
+
+.education {
+
+  &__inner {
+    padding: rem(30) rem(16);
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(35);
+
+    @include tablet-S {
+      padding: rem(20) rem(10);
+    }
+  }
+
+  &__experience {
+    &-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: rem(30);
+      column-gap: rem(10);
+
+      @include tablet-S {
+        row-gap: rem(20);
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

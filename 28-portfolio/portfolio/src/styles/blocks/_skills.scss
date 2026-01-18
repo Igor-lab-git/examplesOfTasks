@@ -1,0 +1,45 @@
+@use "../helpers" as *;
+
+.skills {
+  padding: rem(20) rem(10);
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(25);
+  text-align: center;
+  background-color: var(--color-bg-header);
+
+  &__title {
+    @include fluid-text(26, 18);
+
+    font-weight: 700;
+    color: var(--color-main-blue);
+  }
+
+  &__description {
+    @include fluid-text(18, 16);
+
+    color: var(--color-text);
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10);
+  }
+
+  &__item {
+    --progress: 50%;
+    --bg-color: #e0e0e0;
+
+    display: inline-block;
+    padding: 4px;
+    background: linear-gradient(
+                    to right,
+                    var(--color-main-blue) var(--progress),
+                    var(--bg-color) 0%
+    );
+    border-radius: 100%;
+  }
+}

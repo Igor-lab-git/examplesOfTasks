@@ -2,11 +2,14 @@
 
 :root {
   --color-white: #fff;
+  --color-gray-border: #fff4;
+  --color-bg-tab: #C6C6C6;
   --color-black: #000;
   --color-bg-body: #222;
   --color-bg-btn-menu: #333;
   --color-bg-header: #0d1117;
   --color-main-blue: #00bfff;
+  --color-border-color: #fff;
 
   --color-text: var(--color-white);
   --color-bg: var(--color-bg-body);
@@ -19,6 +22,8 @@
   --container-padding-x: #{rem(16)};
 
   --border: #{rem(8)} solid var(--color-main-blue);
+
+  --border-radius: #{rem(8)};
 
   --transition-duration: 0.3s;
   --box-shadow: 0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.3);

@@ -1,14 +1,23 @@
-@use "base/normalize.scss";
-@use "base/fonts.scss";
-@use "base/variables.scss";
-@use "base/utils.scss";
-@use "base/globals.scss";
+@use "base/normalize";
+@use "base/fonts";
+@use "base/variables";
+@use "base/utils";
+@use "base/globals";
 
-@use "blocks/header.scss";
-@use "blocks/switchers.scss";
-@use "blocks/profile-info.scss";
-@use "blocks/button.scss";
-@use "blocks/main-menu.scss";
+@use "blocks/header";
+@use "blocks/switchers";
+@use "blocks/profile-info";
+@use "blocks/button";
+@use "blocks/main-menu";
 @use "blocks/burger";
-
 @use "blocks/hero";
+@use "blocks/section";
+@use "blocks/title";
+@use "blocks/about";
+@use "blocks/questionnaire";
+@use "blocks/education";
+@use "blocks/experience-card";
+@use "blocks/skills";
+@use "blocks/portfolio";
+@use "blocks/tabs";
+@use "blocks/tab-card";

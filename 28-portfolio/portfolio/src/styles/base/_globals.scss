@@ -26,6 +26,8 @@ html {
   &.is-dark-theme {
     --color-text: var(--color-bg-body);
     --color-bg: var(--color-white);
+    --color-gray-border: #000;
+    --color-border-color: #000;
   }
 }
 
@@ -133,6 +135,12 @@ ol {
   padding: 0;
   list-style: none;
 }
+
+dl, dt, dd {
+  margin: 0;
+  padding: 0;
+}
+
 
 button {
   padding: 0;

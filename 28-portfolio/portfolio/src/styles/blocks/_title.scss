@@ -1,0 +1,15 @@
+@use "../helpers" as *;
+
+.title {
+  @include fluid-text(40, 35);
+
+  text-align: center;
+  padding-bottom: rem(10);
+  border-bottom: 1px solid var(--color-gray-border);
+  color: var(--color-main-blue);
+
+  &--sub {
+    color: var(--color-text);
+  }
+}
+

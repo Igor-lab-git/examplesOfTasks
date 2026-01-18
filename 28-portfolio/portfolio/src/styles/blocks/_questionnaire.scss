@@ -1,0 +1,22 @@
+@use "../helpers" as *;
+
+.questionnaire {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(16);
+
+  &__info {
+    @include fluid-text(24, 14);
+
+    font-weight: 700;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+    row-gap: rem(5);
+  }
+
+  &__detail {
+    color: var(--color-main-blue);
+  }
+
+}

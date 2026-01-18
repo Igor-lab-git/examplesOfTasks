@@ -50,7 +50,7 @@
 
     <h1 class="visually-hidden">Page portfolio</h1>
 
-    <section class="hero" id="about">
+    <section class="hero" id="home">
       <div class="hero__inner">
           <div class="hero__body">
             <h2 class="hero__title" data-js-title>Привет! <span class="hero__active-title" data-js-main-title-print>Меня зовут Игорь.</span></h2>
@@ -67,9 +67,448 @@
       </div>
     </section>
 
-    <section class="about">
-      <div class="about__inner">
-        <h2 class="about__title">Обо <span>мне</span></h2>
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="section__inner about">
+        <h2 class="about__title title" id="about-title">Обо <span class="title--sub about__title--sub">Мне</span></h2>
+
+        <div class="about__info">
+          <div class="about__questionnaire questionnaire">
+            <dl class="questionnaire__info">
+              <dt class="questionnaire__term">имя:</dt>
+              <dd class="questionnaire__detail">Игорь Костюченко</dd>
+
+              <dt class="questionnaire__term">возраст:</dt>
+              <dd class="questionnaire__detail">36</dd>
+
+              <dt class="questionnaire__term">профессия:</dt>
+              <dd class="questionnaire__detail">разработчик</dd>
+
+              <dt class="questionnaire__term">квалификация:</dt>
+              <dd class="questionnaire__detail">новичок</dd>
+            </dl>
+
+            <a href="./public/Main.jpg" download="resume">
+              <button class="questionnaire__button button button--questionnaire" type="button" title="скачать резюме">
+                <span>Скачать БД</span>
+                <svg class="button__icon" fill="#ffffff" width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/>
+                </svg>
+              </button>
+            </a>
+          </div>
+
+          <div class="about__description">
+            <p>Я фронтенд-разработчик, живу в Нижегородской области. Я могу разрабатывать адаптивные веб-сайты с нуля и превращать их в современные веб-приложения, удобные для пользователя.</p>
+            <p>Вот уже более года я увлечен тем, что превращаю свой творческий потенциал и знания в веб-сайты. Я помогаю различным клиентам расширить свое присутствие в Интернете. Я всегда стремлюсь узнать о новейших технологиях и фреймворках</p>
+            <p>Я начал свой путь в качестве веб-разработчика в 2024 году, и с тех пор продолжаю расти и эволюционировать как разработчик, принимая новые вызовы и попутно осваивая новейшие технологии. Я создаю передовые веб-приложения, используя такие современные технологии, как React, Next.js, TypeScript, и многое другое.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="education-title">
+        <div class="section__inner education">
+          <h2 class="education__title title" id="education-title">Моё <span class="education__title--sub title--sub">Образование</span></h2>
+
+          <div class="education__inner">
+
+            <div class="education__experience">
+              <ul class="education__experience-list list-reset">
+
+                <li class="education__experience-item">
+                  <article class="experience-card">
+                    <div class="experience-card__icon-wrapper">
+                      <svg class="experience-card__icon" id="Layer_1" viewBox="0 0 64 64" width="27" height="27" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+                        <g fill="rgb(255,255,255)">
+                          <path d="m44.2736 40.732a52.11 52.11 0 0 0 -12.2666-1.296 52.1113 52.1113 0 0 0 -12.267 1.296c-3.8.9657-5.7271 2.3168-5.7271 4.016s1.9269 3.05 5.7271 4.0159a52.1109 52.1109 0 0 0 12.267 1.2961 52.1091 52.1091 0 0 0 12.2666-1.2961c3.8-.9657 5.7272-2.3168 5.7272-4.0159s-1.9269-3.0503-5.7272-4.016z"></path>
+                          <path d="m14.5978 41.2473a14.6325 14.6325 0 0 1 4.7762-1.9566 53.6137 53.6137 0 0 1 12.633-1.3418 53.6134 53.6134 0 0 1 12.633 1.3418 14.6325 14.6325 0 0 1 4.7762 1.9566 6.5007 6.5007 0 0 1 .5461.4271v-11.1655c0-1.6994-1.92-3.05-5.7072-4.0159a51.8946 51.8946 0 0 0 -12.248-1.2962 51.8964 51.8964 0 0 0 -12.2483 1.2962c-3.7869.9654-5.707 2.3165-5.707 4.0159v11.1655a6.54 6.54 0 0 1 .546-.4271z"></path>
+                          <path d="m59.511 26.9239-25.9626-12.6611a3.8751 3.8751 0 0 0 -3.0968 0l-25.9626 12.6611a1.52 1.52 0 0 0 0 2.8685l8.0757 3.9382v-3.2217a4.2261 4.2261 0 0 1 2.0647-3.4989 14.556 14.556 0 0 1 4.7621-1.9575 53.3931 53.3931 0 0 1 12.6155-1.3425 53.3928 53.3928 0 0 1 12.6154 1.342 14.5576 14.5576 0 0 1 4.7622 1.958 4.2262 4.2262 0 0 1 2.0646 3.4994v3.2149l4.0063-1.9543v3.33l-1.5173 8.011a1.7022 1.7022 0 0 0 0 .4933 2.47 2.47 0 0 0 2.815 1.77 2.176 2.176 0 0 0 2.2013-2.2628l-1.5162-8.0065v-4.3018l2.0728-1.0108a1.52 1.52 0 0 0 0-2.8685z"></path>
+                        </g>
+                      </svg>
+                    </div>
+                    <time class="experience-card__date" datetime="2011-06-20">20 июня 2011</time>
+                    <h3 class="experience-card__title">Автоматизированные системы обработак информации и управления</h3>
+                    <div class="experience-card__description">
+                      <p>Присуждена степень бакалавра Техники и Технологии по направлению "Информатика и Вычислительная Техника". Проходил обучени с 2007 г. в Негосударственном
+                       образовательном учреждении "Современная гуманитарная академия", по 2011 г. Очная форма</p>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="education__experience-item">
+                  <article class="experience-card">
+                    <div class="experience-card__icon-wrapper">
+                      <svg class="experience-card__icon" id="Layer_1" viewBox="0 0 64 64" width="27" height="27" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+                        <g fill="rgb(255,255,255)">
+                          <path d="m44.2736 40.732a52.11 52.11 0 0 0 -12.2666-1.296 52.1113 52.1113 0 0 0 -12.267 1.296c-3.8.9657-5.7271 2.3168-5.7271 4.016s1.9269 3.05 5.7271 4.0159a52.1109 52.1109 0 0 0 12.267 1.2961 52.1091 52.1091 0 0 0 12.2666-1.2961c3.8-.9657 5.7272-2.3168 5.7272-4.0159s-1.9269-3.0503-5.7272-4.016z"></path>
+                          <path d="m14.5978 41.2473a14.6325 14.6325 0 0 1 4.7762-1.9566 53.6137 53.6137 0 0 1 12.633-1.3418 53.6134 53.6134 0 0 1 12.633 1.3418 14.6325 14.6325 0 0 1 4.7762 1.9566 6.5007 6.5007 0 0 1 .5461.4271v-11.1655c0-1.6994-1.92-3.05-5.7072-4.0159a51.8946 51.8946 0 0 0 -12.248-1.2962 51.8964 51.8964 0 0 0 -12.2483 1.2962c-3.7869.9654-5.707 2.3165-5.707 4.0159v11.1655a6.54 6.54 0 0 1 .546-.4271z"></path>
+                          <path d="m59.511 26.9239-25.9626-12.6611a3.8751 3.8751 0 0 0 -3.0968 0l-25.9626 12.6611a1.52 1.52 0 0 0 0 2.8685l8.0757 3.9382v-3.2217a4.2261 4.2261 0 0 1 2.0647-3.4989 14.556 14.556 0 0 1 4.7621-1.9575 53.3931 53.3931 0 0 1 12.6155-1.3425 53.3928 53.3928 0 0 1 12.6154 1.342 14.5576 14.5576 0 0 1 4.7622 1.958 4.2262 4.2262 0 0 1 2.0646 3.4994v3.2149l4.0063-1.9543v3.33l-1.5173 8.011a1.7022 1.7022 0 0 0 0 .4933 2.47 2.47 0 0 0 2.815 1.77 2.176 2.176 0 0 0 2.2013-2.2628l-1.5162-8.0065v-4.3018l2.0728-1.0108a1.52 1.52 0 0 0 0-2.8685z"></path>
+                        </g>
+                      </svg>
+                    </div>
+                    <time class="experience-card__date" datetime="2025-07-07">01 июля 2025</time>
+                    <h3 class="experience-card__title">Профессиональная веб-разработка</h3>
+                    <div class="experience-card__description">
+                      <p>Данное обучение и диплом свидетельстует о том, что прошёл профессиональную переподготовку в Национальном исследовательском Нижегородском
+                      государственном университете им. Н.И.Лобачевского по программе "Профессиональная вкб-разработка (504 часа)". С 14 сентябра 2024 г. по 28 июня 2025 г.</p>
+                    </div>
+                  </article>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="education__skills skills">
+              <header class="skills__header">
+                <h3 class="skills__title">Навыки</h3>
+                <p class="skills__description">Навыки, инструменты и технологии, которыми я владею или которые изучаю</p>
+              </header>
+
+              <ul class="skills__list list-reset" data-js-skills-list>
+                <li class="skills__item" data-skill-level="100%">
+                  <img src="./public/icons/education-section/skills/html-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="75%">
+                  <img src="./public/icons/education-section/skills/css-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="77%">
+                  <img src="./public/icons/education-section/skills/js-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="90%">
+                  <img src="./public/icons/education-section/skills/figma-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="78%">
+                  <img src="./public/icons/education-section/skills/scss-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="80%">
+                  <img src="./public/icons/education-section/skills/git-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="80%">
+                  <img src="./public/icons/education-section/skills/vit-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="65%">
+                  <img src="./public/icons/education-section/skills/ts-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="60%">
+                  <img src="./public/icons/education-section/skills/react-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="65%">
+                  <img src="./public/icons/education-section/skills/node-js-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="40%">
+                  <img src="./public/icons/education-section/skills/express-icon.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+
+                <li class="skills__item" data-skill-level="50%">
+                  <img src="./public/icons/education-section/skills/docker.icon%201.svg" alt="иконка дисциплины ЭВМ" width="30" height="30" loading="lazy">
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="section__inner portfolio">
+        <h2 class="portfolio__title title" id="portfolio-title">Мои <span class="education__title--sub title--sub">проекты</span></h2>
+
+        <div class="portfolio__inner">
+
+          <div class="education__tabs tabs">
+            <ul class="tabs__list list-reset">
+              <li class="tabs__item">
+                <button class="tabs__button active" type="button" role="tab" data-js-button-tab="tab-1">Все</button>
+              </li>
+
+              <li class="tabs__item">
+                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-2">HTML и CSS</button>
+              </li>
+
+              <li class="tabs__item">
+                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-3">Vanilla JS</button>
+              </li>
+
+              <li class="tabs__item">
+                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-4">React</button>
+              </li>
+
+              <li class="tabs__item">
+                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-5">Next.js</button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tabs__body">
+
+            <ul class="tabs__cards-list list-reset">
+              <li class="tabs__cards-list">
+                <div class="tabs__panel" id="tab-1">
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+
+                </div>
+
+                <div class="tabs__panel" id="tab-2">
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+
+                </div>
+
+                <div class="tabs__panel" id="tab-3">
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+
+                </div>
+
+                <div class="tabs__panel" id="tab-4">
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+
+                </div>
+
+                <div class="tabs__panel" id="tab-5">
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="#">
+                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Портфолио</h3>
+                      <span class="tab-card__type-project">Frontend</span>
+                      <a class="tab-card__link-project" href="#">
+                        <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="113.05" height="25" alt="иконка git-hab" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
       </div>
     </section>
   </main>

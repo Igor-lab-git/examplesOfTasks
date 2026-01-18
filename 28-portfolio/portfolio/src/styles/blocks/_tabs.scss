@@ -1,0 +1,26 @@
+@use "../helpers" as *;
+
+.tabs {
+  &__list {
+    @include flex-center;
+
+    column-gap: rem(15);
+  }
+
+  &__button {
+    padding: rem(8) rem(20);
+    border-radius: var(--border-radius);
+    color: var(--color-white);
+    background-color: var(--color-gray-border);
+  }
+
+  &__button:hover {
+    scale: 1.04 !important;
+    background-color: var(--color-main-blue);
+  }
+
+  &__button.active {
+  pointer-events: none;
+    background-color: var(--color-main-blue);
+  }
+}
