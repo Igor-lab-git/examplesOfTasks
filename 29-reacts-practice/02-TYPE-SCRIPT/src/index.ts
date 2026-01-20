@@ -95,3 +95,8 @@ console.log(sumArr.push(null));
 
 
 
+//Кортеж
+let user2: [string, number];
+user2 = ["Igor", 36];
+
+let color2: [number, number, number] = [255, 255, 255];
