@@ -1,14 +1,20 @@
-import { type JSX } from "react";
+import type React from "react";
+
+type IButtonSubmit = 'submit' | 'reset' | 'button';
 
 interface IProps {
-  title: string;
+    children: React.ReactNode;
+    type?: IButtonSubmit;
 }
 
-const Button = ({ title }: IProps): JSX.Element => {
+const Button = (props: IProps) => {
+
+    const { children, type} = props;
+
   return (
     <>
-      <button>
-        <span>{title}</span>
+      <button className="button" type={type || "submit"}>
+        {children}
       </button>
     </>
   );
