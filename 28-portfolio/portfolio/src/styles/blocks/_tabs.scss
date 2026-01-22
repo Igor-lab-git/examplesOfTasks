@@ -23,4 +23,10 @@
   pointer-events: none;
     background-color: var(--color-main-blue);
   }
+
+  &__panel-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: rem(16);
+  }
 }

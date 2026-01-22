@@ -1,1 +1,43 @@
 @use "../helpers" as *;
+
+.tab-card {
+  transition-duration: var(--transition-duration);
+  box-shadow: var(--glow-box-shadow);
+  border: rem(3) solid var(--color-main-blue);
+  border-radius: var(--border-radius);
+  background-color: var(--color-gray-border);
+
+  &:hover {
+    scale: 1.02 !important;
+  }
+
+  &__box-image {
+    height: rem(160);
+    border-top: var(--border-radius);
+  }
+
+  &__image {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+  }
+
+  &__body {
+    padding: rem(10);
+  }
+
+  &__name {
+    @include fluid-text(16, 14);
+    color: var(--color-main-blue);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    column-gap: rem(10);
+  }
+
+  &__link-project {
+    width: rem(80);
+    height: rem(15);
+  }
+}
