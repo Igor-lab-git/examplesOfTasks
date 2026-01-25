@@ -1,0 +1,75 @@
+@use "../helpers" as *;
+
+.form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(15, 10);
+
+  @include tablet-S {
+    align-self: center;
+    width: 90%;
+  }
+
+@include mobile {
+    align-self: start;
+    width: 100%;
+  }
+
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(4, 2);
+  }
+
+  &__label {
+    @include fluid-text(16, 14);
+
+    color: var(--color-main-blue);
+  }
+
+  &__required-star {
+    color: tomato;
+  }
+
+  &__control {
+    @include fluid-text(14, 12);
+
+    padding: rem(17) rem(10);
+    height: rem(25);
+    border: 1px solid transparent;
+    border-radius: rem(5);
+    color: var(--color-text);
+    background-color: var(--color-bg-header);
+
+    &--textarea {
+      height: 100%;
+      resize: none
+    }
+
+    &::placeholder {
+      font-size: rem(14);
+      color: var(--color-gray-border);
+    }
+
+  }
+
+  &__control.focus {
+    border-color: var(--color-main-blue);
+  }
+
+  &__control.error-focus {
+    border-color: tomato;
+  }
+
+  &__control.valid-focus {
+    border-color: green;
+  }
+
+  &__error-message {
+    @include fluid-text(12);
+
+    color: tomato;
+  }
+}

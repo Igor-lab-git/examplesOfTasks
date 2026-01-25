@@ -1,0 +1,38 @@
+@use "../helpers" as *;
+
+.address {
+
+  &__title {
+    font-weight: 700;
+    margin-bottom: fluid(15, 10);
+    color: var(--color-text);
+  }
+
+  &__info-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+  }
+
+  &__info-item {
+    display: flex;
+    column-gap: rem(6);
+  }
+
+  &__info-emails {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(5);
+  }
+
+  &__info-link {
+    @include fluid-text(14, 12);
+
+    font-style: normal;
+    text-decoration: none;
+
+    &--active:hover {
+      text-decoration: underline;
+    }
+  }
+}

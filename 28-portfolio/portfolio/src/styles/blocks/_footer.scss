@@ -1,0 +1,29 @@
+@use "../helpers" as *;
+
+.footer {
+  position: relative;
+  padding: rem(30) rem(16) rem(16) rem(16);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: rem(16);
+    right: rem(16);
+    height: 1px;
+    background-color: var(--color-gray-border);
+  }
+
+  &__inner {
+    padding: rem(16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: fluid(40, 20);
+    background-color: var(--color-bg-header);
+  }
+
+  &__copyright {
+    @include fluid-text(14, 12);
+  }
+}

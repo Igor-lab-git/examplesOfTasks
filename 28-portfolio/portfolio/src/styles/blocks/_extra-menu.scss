@@ -1,0 +1,22 @@
+@use "../helpers" as *;
+
+.extra-menu {
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: rem(15);
+  }
+
+    &__link {
+      font-weight: 700;
+      transition-property: color, text-decoration;
+      transition-duration: var(--transition-duration);
+
+      &:hover {
+        text-decoration: underline;
+        color: var(--color-main-blue);
+      }
+    }
+}

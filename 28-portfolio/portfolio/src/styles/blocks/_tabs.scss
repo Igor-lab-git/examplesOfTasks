@@ -5,10 +5,15 @@
     @include flex-center;
 
     column-gap: rem(15);
+    padding-block: rem(15);
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
 
   &__button {
     padding: rem(8) rem(20);
+    white-space: nowrap;
+    user-select: none;
     border-radius: var(--border-radius);
     color: var(--color-white);
     background-color: var(--color-gray-border);
@@ -20,13 +25,27 @@
   }
 
   &__button.active {
-  pointer-events: none;
+    pointer-events: none;
     background-color: var(--color-main-blue);
+  }
+
+  &__panel {
+    display: none;
+  }
+
+  &__panel.active {
+    display: block;
   }
 
   &__panel-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: rem(16);
+
+    @include tablet-S {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: rem(20);
+    }
   }
 }

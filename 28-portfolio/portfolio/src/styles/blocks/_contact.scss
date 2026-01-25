@@ -1,0 +1,17 @@
+@use "../helpers" as *;
+
+.contact {
+  &__inner {
+    padding: rem(22) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    column-gap: rem(8);
+
+    @include tablet-S {
+      flex-direction: column;
+      align-items: start;
+      row-gap: fluid(35, 20);
+    }
+  }
+}

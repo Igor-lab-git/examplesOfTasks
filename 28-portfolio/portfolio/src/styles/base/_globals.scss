@@ -54,22 +54,26 @@ body {
 
 body {
   --sb-track-color: #222;
-  //--sb-thumb-color: #ea7711;
   --sb-size: 0.5rem;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: var(--sb-size);
 }
 
-body::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 1rem;
 }
 
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: var(--color-main-blue);
   border-radius: 1rem;
+}
+
+* {
+  scrollbar-width: thin;
+ scrollbar-color: var(--color-main-blue, #007bff) var(--sb-track-color, #222);
 }
 
 main {

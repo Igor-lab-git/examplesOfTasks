@@ -3,3 +3,7 @@ import "./SwitcherTheme.js";
 import "./ShowHeader.js";
 import "./PrintText.js";
 import "./skillLevels.js";
+import "./TabsPortfolio.js";
+import "./FormSend.js";
+import "./InputMask.js";
+import "./ToggleLanguage.js";
