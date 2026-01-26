@@ -1,10 +1,12 @@
-interface IProps {
+interface IToDoItem {
     id: string;
     title: string;
     isDone: boolean;
+    onDeleteTask: (id: string) => void;
+    onToggleTakDone: (taskId: string, isDone: boolean) => void;
 }
 
-export const ToDoItem = ({id, title, isDone}: IProps) => {
+export const ToDoItem = ({id, title, isDone, onDeleteTask, onToggleTakDone}: IToDoItem) => {
 
 
   return (
@@ -15,7 +17,7 @@ export const ToDoItem = ({id, title, isDone}: IProps) => {
             id={id}
             type="checkbox"
             checked={isDone}
-            readOnly
+            onChange={(e) => onToggleTakDone(id, e.target.checked)}
           />
           <label
             className="todo-item__label"
@@ -27,6 +29,7 @@ export const ToDoItem = ({id, title, isDone}: IProps) => {
             className="todo-item__delete-button"
             aria-label="Delete"
             title="Delete"
+            onClick={() => onDeleteTask(id)}
           >
             <svg
               width="20"

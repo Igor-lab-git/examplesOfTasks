@@ -1,4 +1,12 @@
-const ToDoInfo = ({ total, done }) => {
+import type { JSX } from "react";
+
+interface IToDoInfo {
+  onDeleteAllTasks: () => void;
+  total: number;
+  done: number;
+};
+
+const ToDoInfo = ({onDeleteAllTasks, total, done }: IToDoInfo): JSX.Element => {
 
   const hasTasks = total > 0;
 
@@ -9,7 +17,10 @@ const ToDoInfo = ({ total, done }) => {
           Done: {done} from Total: {total}
         </div>
         {hasTasks && (
-          <button className="todo__delete-all-button" type="button">
+          <button 
+          className="todo__delete-all-button" 
+          type="button"
+          onClick={onDeleteAllTasks}>
             Delete all
           </button>
         )}

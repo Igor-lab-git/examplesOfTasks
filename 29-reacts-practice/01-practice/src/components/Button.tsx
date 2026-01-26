@@ -2,12 +2,12 @@ import type React from "react";
 
 type IButtonSubmit = 'submit' | 'reset' | 'button';
 
-interface IProps {
+interface IButton {
     children: React.ReactNode;
     type?: IButtonSubmit;
 }
 
-const Button = (props: IProps) => {
+const Button = (props: IButton) => {
 
     const { children, type} = props;
 

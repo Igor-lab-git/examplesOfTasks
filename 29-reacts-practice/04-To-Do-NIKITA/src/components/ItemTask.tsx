@@ -23,7 +23,7 @@ const ItemTask = ({ item, tasksArr, setTasksArr }: IItem): JSX.Element => {
     };
 
   return (
-    <li className="item-task">
+    <li className={`item-task ${item.isDone ? "is-done" : ""}`}>
       <input
        type="checkbox" 
        checked={item.isDone}
@@ -32,9 +32,7 @@ const ItemTask = ({ item, tasksArr, setTasksArr }: IItem): JSX.Element => {
 
       <span className="text-item">{item.text}</span>
 
-      <button onClick={deleteTask}
-      className="button-delete-item"
-      >Удалить</button>
+      <button onClick={deleteTask} className="button-delete-item">Удалить</button>
     </li>
   );
 };

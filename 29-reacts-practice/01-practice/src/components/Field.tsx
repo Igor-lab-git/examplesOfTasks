@@ -1,12 +1,13 @@
-interface IProps {
+import type { ChangeEvent } from "react";
+
+interface IField {
   id: string;
   label: string;
-  type: string
-}
+  type: string;
+  onInput?: (event: ChangeEvent<HTMLInputElement>) => void;
+};
 
-const Field = (props: IProps) => {
-
-  const {id, label, type} = props;
+const Field = ({id, label, type, onInput}: IField) => {
 
   return (
     <div className="todo__field field">
@@ -19,6 +20,7 @@ const Field = (props: IProps) => {
         placeholder=" "
         autoComplete="off"
         type={type}
+        onInput={onInput}
       />
     </div>
   );

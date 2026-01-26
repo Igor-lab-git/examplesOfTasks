@@ -9,16 +9,12 @@ interface IList {
   setTasksArr: (tasksArr: ITask[] | []) => void;
 }
 
-const ListTasks = ({
-  filterTask,
-  tasksArr,
-  setTasksArr,
-}: IList): JSX.Element => {
+const ListTasks = ({filterTask, tasksArr, setTasksArr,}: IList): JSX.Element => {
   const filtredTasks = tasksArr.filter((task) => {
     if (filterTask === "done") {
-      return !task.isDone;
-    } else if (filterTask === "notDone") {
       return task.isDone;
+    } else if (filterTask === "notDone") {
+      return !task.isDone;
     } else {
       return true;
     };
@@ -27,12 +23,7 @@ const ListTasks = ({
   return (
     <ul className="list-item">
       {filtredTasks.map((item) => (
-        <ItemTask
-          key={item.id}
-          item={item}
-          tasksArr={tasksArr}
-          setTasksArr={setTasksArr}
-        />
+        <ItemTask key={item.id} item={item} tasksArr={tasksArr} setTasksArr={setTasksArr} />
       ))}
     </ul>
   );

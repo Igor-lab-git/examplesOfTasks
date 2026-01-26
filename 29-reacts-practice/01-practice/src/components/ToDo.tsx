@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import AddTaskForm from "./AddTaskForm";
 import Header from "./Header";
 import ListToDoTask from "./ListToDoTask";
@@ -10,7 +11,7 @@ export interface ITasks {
   isDone: boolean;
 }
 
-const ToDo = () => {
+const ToDo = (): JSX.Element => {
 
   const tasks: ITasks[] = [
     {
@@ -30,13 +31,36 @@ const ToDo = () => {
     },
   ];
 
+  const deleteAllTasks = () => {
+    console.log("Delete All tasks");
+  };
+
+  const deleteTask = (taskId: string) => {
+    console.log(`Delete One task with: ${taskId}`);
+  };
+
+  const toggleTaskDone = (taskId: string, isDone: boolean) => {
+    console.log(`Task with: ${taskId} Done: ${isDone ? "Done" : "not Done"}`);
+  };
+
+  const filterTasks = (query: string) => {
+    console.log("query string: ", query);
+  };
+
+  const addTask = () => {
+    console.log("Add new Task");
+  }
+
   return (
     <div className="todo">
       <Header title="To Do List" />
-      <AddTaskForm />
-      <SearchTaskForm />
-      <ToDoInfo total={tasks.length} done={tasks.filter((task) => task.isDone).length}/>
-      <ListToDoTask tasks={tasks} />
+      <AddTaskForm addNewTask={addTask}/>
+      <SearchTaskForm onSearchTaskInput={filterTasks}/>
+      <ToDoInfo 
+        onDeleteAllTasks={deleteAllTasks}
+        total={tasks.length}
+        done={tasks.filter((task) => task.isDone).length}/>
+      <ListToDoTask onDeleteTask={deleteTask} tasks={tasks} onToggleTakDone={toggleTaskDone}/>
     </div>
   );
 };

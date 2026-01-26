@@ -105,6 +105,11 @@
   border-bottom: 1px solid grey;
 } 
 
+.item-task.is-done span {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
 .text-item.active {
   opacity: 0.5;
   text-decoration: underline;

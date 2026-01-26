@@ -1,11 +1,13 @@
 import ToDoItem from "./ToDoItem";
 import type  { ITasks } from "./ToDo";
 
-interface IProps {
+interface IListToDoTask {
+  onDeleteTask: (id: string) => void;
   tasks: ITasks[];
+  onToggleTakDone: (taskId: string, isDone: boolean) => void;
 }
 
-const ListToDoTask = ({ tasks }: IProps) => {
+const ListToDoTask = ({onDeleteTask, tasks, onToggleTakDone }: IListToDoTask) => {
 
   const hasTask = true;
 
@@ -17,7 +19,9 @@ const ListToDoTask = ({ tasks }: IProps) => {
     <>
       <ul className="todo__list">
         {tasks.map(({ id, text, isDone }) => (
-          <ToDoItem key={id} id={id} title={text} isDone={isDone} />
+          <ToDoItem key={id} id={id} title={text} isDone={isDone}
+           onDeleteTask={onDeleteTask}
+          onToggleTakDone={onToggleTakDone}/>
         ))}
       </ul>
       {hasTask}
