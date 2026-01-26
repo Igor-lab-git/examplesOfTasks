@@ -24,10 +24,16 @@ html {
 
 html {
   &.is-dark-theme {
-    --color-text: var(--color-bg-body);
-    --color-bg: var(--color-white);
+    --color-text: #000;
+    --color-bg-body: #f0efeb;
     --color-gray-border: #000;
     --color-border-color: #000;
+    --color-bg-header: #cad2c5;
+    --color-bg-btn-menu: #2f3e46;
+    --color-bg-field-input: #cad2c5;
+    --color-gray-border: #c5c3c6;
+    --color-gray-placeholder: #0d1117;
+
   }
 }
 
@@ -45,7 +51,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-body);
 
   @include tablet {
     padding-left: 0;

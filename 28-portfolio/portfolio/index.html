@@ -18,24 +18,28 @@
           <span class="visually-hidden">Кнопка переключения светлой темы</span>
           <img title="" src="" width="36" height="36" alt="" data-js-btn-switcher-theme-icon>
         </button>
-        <button class="switchers__language-btn" type="submit" data-js-btn-switcher-language>switch language to eng</button>
+
+        <div class="language-switcher">
+          <button class="lang-switcher" data-lang="ru">RU</button>
+          <button class="lang-switcher" data-lang="en">EN</button>
+        </div>
       </div>
 
       <div class="header__avatar profile-info">
         <div class="profile-info__box-photo">
           <img class="profile-info__photo" src="./public/images/header/avatar-photo.jpg" alt="photo-avatar">
         </div>
-        <span class="profile-info__name">Игорь Костюченко</span>
-        <p class="profile-info__job">Front-end developer</p>
+        <span class="profile-info__name" data-lang="header.name">Игорь Костюченко</span>
+        <p class="profile-info__job" data-lang="header.profession">Front-end developer</p>
       </div>
 
       <nav class="header__nav main-menu">
         <ul class="main-menu__list list-reset">
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#home">главная</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#about">обо мне</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#education">образование</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#portfolio">портфолио</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#contact">контакты</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#home" data-lang="header.main">главная</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#about" data-lang="header.about">обо мне</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#education" data-lang="header.education">образование</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#portfolio" data-lang="header.portfolio">портфолио</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#contact" data-lang="header.contacts">контакты</a> </li>
         </ul>
       </nav>
     </div>
@@ -56,9 +60,10 @@
     <section class="hero" id="home">
       <div class="hero__inner">
           <div class="hero__body">
-            <h2 class="hero__title" data-js-title>Привет! <span class="hero__active-title" data-js-main-title-print>Меня зовут Игорь.</span></h2>
-            <p class="hero__subtitle">Я <span class="hero__active-subtitle" data-js-main-subtitle-print>веб разработчик.</span></p>
-            <p class="hero__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus doloremque doloribus earum inventore possimus quia voluptate? Architecto aut eaque eius et facere fuga itaque labore maiores maxime officia, quo tempore.</p>
+            <h2 class="hero__title" data-lang="hero.name" data-js-title >Привет! <span class="hero__active-title" data-lang="hero.greeting" data-js-main-title-print>Меня зовут Игорь.</span></h2>
+            <p class="hero__subtitle" data-lang="hero.i">Я <span class="hero__active-subtitle" data-lang="hero.profession" data-js-main-subtitle-print>веб разработчик.</span></p>
+            <p class="hero__description" data-lang="hero.about">Создаю интерактивные веб-интерфейсы, превращаю идеи в пиксельно точные интерфейсы и наполняю их жизнью благодаря современным технологиям React, TypeScript и экосистеме современного JavaScript.
+              Создаю не просто сайты — а цифровые продукты, которые решают бизнес-задачи. Моя цель — помогать бизнесу расти через качественный UI/UX дизайн и надежный frontend</p>
           </div>
 
         <button class="hero__button button">
@@ -691,7 +696,7 @@
 
     <div class="footer__inner">
       <a href="#home">
-        <img src="./public/icons/header/logo.svg" alt="logo">
+        <img class="footer__logo" src="./public/icons/header/logo.svg" width="70" height="20" alt="logo">
       </a>
 
       <div class="footer__menu">
@@ -710,14 +715,14 @@
         <ul class="soc1als__list list-reset">
 
           <li class="soc1als__item">
-            <a class="soc1als__link" href="">
+            <a class="soc1als__link" target="_blank" href="https://github.com/Igor-lab-git">
               <img class="soc1als__icon" src="./public/icons/footer/github.svg" width="30" height="30" alt="иконка соц сети" loading="lazy">
               <span class="visually-hidden">GitHub</span>
             </a>
           </li>
 
           <li class="soc1als__item">
-            <a class="soc1als__link" href="">
+            <a class="soc1als__link" target="_blank" href="https://vk.com/id67650862">
               <img class="soc1als__icon" src="./public/icons/footer/vk.svg" width="30" height="30" alt="иконка соц сети" loading="lazy">
               <span class="visually-hidden">VK</span>
             </a>
@@ -731,7 +736,7 @@
           </li>
 
           <li class="soc1als__item">
-            <a class="soc1als__link" href="">
+            <a class="soc1als__link" target="_blank" href="https://t.me/IgorKostuchenko2025">
               <img class="soc1als__icon" src="./public/icons/footer/telegram.svg" width="30" height="30" alt="иконка соц сети" loading="lazy">
               <span class="visually-hidden">Telegram</span>
             </a>

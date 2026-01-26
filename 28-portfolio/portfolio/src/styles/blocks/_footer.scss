@@ -4,6 +4,13 @@
   position: relative;
   padding: rem(30) rem(16) rem(16) rem(16);
 
+  &__logo {
+    @include mobile {
+      height: rem(18);
+      width: auto;
+    }
+  }
+
   &::before {
     content: '';
     position: absolute;

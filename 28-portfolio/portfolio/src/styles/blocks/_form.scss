@@ -41,7 +41,7 @@
     border: 1px solid transparent;
     border-radius: rem(5);
     color: var(--color-text);
-    background-color: var(--color-bg-header);
+    background-color: var(--color-bg-field-input);
 
     &--textarea {
       height: 100%;
@@ -50,7 +50,7 @@
 
     &::placeholder {
       font-size: rem(14);
-      color: var(--color-gray-border);
+      color: var(--color-gray-placeholder);
     }
 
   }

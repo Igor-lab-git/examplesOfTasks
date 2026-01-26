@@ -9,7 +9,6 @@ subTitle.textContent = "";
 mainTitle.textContent = "";
 
 const colors = ["7fffd4", "e52b50", "6a5acd", "c1876b", "1e5945", "f984e5", "957b8d"];
-const textShadow = ["0 0 10px #7fffd4", "0 0 10px #e52b50", "0 0 10px #6a5acd", "0 0 10px #c1876b", "0 0 10px #1e5945", "0 0 10px #f984e5", "0 0 10px #957b8d"];
 let currentIndexColor = 0;
 
 // Функция для анимации одного текста
@@ -28,13 +27,10 @@ function printText(text, element, callback) {
             counter++;
             element.textContent = accumulateText;
             element.style.color = `#${colors[currentIndexColor]}`;
-            element.style.textShadow = textShadow[currentIndexColor];
 
             // Когда все буквы добавлены
             if (counter === text.length) {
                 clearInterval(intervalId);
-
-
 
                 // Ждем и начинаем удалять
                 setTimeout(() => {
@@ -77,9 +73,6 @@ function startAnimationCycle() {
             // Когда подзаголовок завершился → СНОВА заголовок (рекурсия)
             currentIndexColor++;
             if(currentIndexColor === colors.length) {
-                currentIndexColor = 0;
-            }
-            if(currentIndexColor === textShadow.length) {
                 currentIndexColor = 0;
             }
             startAnimationCycle();
