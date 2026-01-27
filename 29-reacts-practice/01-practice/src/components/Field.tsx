@@ -4,10 +4,11 @@ interface IField {
   id: string;
   label: string;
   type: string;
+  value?: string;
   onInput?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Field = ({id, label, type, onInput}: IField) => {
+const Field = ({id, label, type, onInput, value}: IField) => {
 
   return (
     <div className="todo__field field">
@@ -20,6 +21,7 @@ const Field = ({id, label, type, onInput}: IField) => {
         placeholder=" "
         autoComplete="off"
         type={type}
+        value={value}
         onInput={onInput}
       />
     </div>

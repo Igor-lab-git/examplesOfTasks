@@ -1,21 +1,23 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import Field from "./Field";
 
 interface ISearchTaskForm {
-  onSearchTaskInput: (query: string) => void;
+  searchQuery: string;
+  setSearchQuery: (searchQuery: string) => void;
 }
 
-const SearchTaskForm = ({onSearchTaskInput}: ISearchTaskForm) => {
+const SearchTaskForm = ({searchQuery, setSearchQuery}: ISearchTaskForm) => {
   return (
     <>
       <form
-       className="todo__form"
-       onSubmit={e => e.preventDefault()}>
+          className="todo__form"
+          onSubmit={(e: FormEvent<HTMLFormElement>) => e.preventDefault()}>
         <Field
-         label="Search task"
+          label="Search task"
           id="search-task"
           type="search"
-          onInput={(event: ChangeEvent<HTMLInputElement>) => onSearchTaskInput(event.target.value)}/>
+          value={searchQuery}
+          onInput={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}/>
       </form>
     </>
   );

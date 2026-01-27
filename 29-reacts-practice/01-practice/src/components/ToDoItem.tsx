@@ -3,10 +3,10 @@ interface IToDoItem {
     title: string;
     isDone: boolean;
     onDeleteTask: (id: string) => void;
-    onToggleTakDone: (taskId: string, isDone: boolean) => void;
+    toggleTaskDone: (taskId: string, isDone: boolean) => void;
 }
 
-export const ToDoItem = ({id, title, isDone, onDeleteTask, onToggleTakDone}: IToDoItem) => {
+export const ToDoItem = ({id, title, isDone, onDeleteTask, toggleTaskDone}: IToDoItem) => {
 
 
   return (
@@ -17,7 +17,7 @@ export const ToDoItem = ({id, title, isDone, onDeleteTask, onToggleTakDone}: ITo
             id={id}
             type="checkbox"
             checked={isDone}
-            onChange={(e) => onToggleTakDone(id, e.target.checked)}
+            onChange={(e) => toggleTaskDone(id, e.target.checked)}
           />
           <label
             className="todo-item__label"
