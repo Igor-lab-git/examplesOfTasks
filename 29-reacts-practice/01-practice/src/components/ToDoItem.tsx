@@ -1,17 +1,20 @@
+import type { RefObject } from "react";
+
 interface IToDoItem {
     id: string;
     title: string;
     isDone: boolean;
     onDeleteTask: (id: string) => void;
     toggleTaskDone: (taskId: string, isDone: boolean) => void;
+    ref?: RefObject<HTMLLIElement | null>;
 }
 
-export const ToDoItem = ({id, title, isDone, onDeleteTask, toggleTaskDone}: IToDoItem) => {
+export const ToDoItem = ({id, title, isDone, onDeleteTask, toggleTaskDone, ref}: IToDoItem) => {
 
-
+  console.log("Item");
   return (
     <>
-        <li className="todo__item todo-item">
+        <li className="todo__item todo-item" ref={ref}>
           <input
             className="todo-item__checkbox"
             id={id}

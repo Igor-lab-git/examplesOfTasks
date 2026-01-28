@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import { memo, type JSX } from "react";
 
 interface IToDoInfo {
   onDeleteAllTasks: () => void;
@@ -7,7 +7,7 @@ interface IToDoInfo {
 };
 
 const ToDoInfo = ({onDeleteAllTasks, total, done }: IToDoInfo): JSX.Element => {
-
+  console.log("Info");
   const hasTasks = total > 0;
 
   return (
@@ -29,4 +29,4 @@ const ToDoInfo = ({onDeleteAllTasks, total, done }: IToDoInfo): JSX.Element => {
   );
 };
 
-export default ToDoInfo;
+export default memo(ToDoInfo) ;

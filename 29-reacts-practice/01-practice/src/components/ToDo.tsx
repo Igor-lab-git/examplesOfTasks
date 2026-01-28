@@ -1,9 +1,10 @@
-import { useEffect, useState, type JSX } from "react";
+import { useCallback, useEffect, useRef, useState, type JSX } from "react";
 import AddTaskForm from "./AddTaskForm";
 import Header from "./Header";
 import ListToDoTask from "./ListToDoTask";
 import SearchTaskForm from "./SearchTaskForm";
 import ToDoInfo from "./ToDoInfo";
+import Button from "./Button";
 
 export interface ITasks {
   id: string;
@@ -12,7 +13,7 @@ export interface ITasks {
 }
 
 const ToDo = (): JSX.Element => {
-
+  console.log("ToDo");
   const [tasksArray, setTasksArray] = useState<ITasks[] | []>(() => {
     const seved = localStorage.getItem("tasks");
     return seved ? JSON.parse(seved) : [];
@@ -21,23 +22,26 @@ const ToDo = (): JSX.Element => {
   const [newTitleInput, setNewTitleInput] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const firstNoDoneTaskRef = useRef<HTMLLIElement  | null>(null);
 
-  const deleteAllTasks = () => {
+
+  const firstNoDoneTaskId:string | undefined = tasksArray.find(({isDone}) => !isDone)?.id;
+
+
+  const deleteAllTasks = useCallback(() => {
     const isConfirm = confirm("Are you sure you want delete All Tasks?");
     if(isConfirm) {
       setTasksArray([]);
     };
-    console.log("Delete All tasks");
-  };
+  }, []); // опциональная функция для memo с использованием useCallback функция передаётся в комп. и обновляет комп. опционально, если ещё сам комп. куда прилетает функция уё импорт обёрнут в useMemo
 
-  const deleteTask = (taskId: string) => {
-    setTasksArray(tasksArray.filter((t) => {
-      return t.id !== taskId;
-    }));
-    console.log(`Delete One task with: ${taskId}`);
-  };
 
-  const toggleTaskDone = (taskId: string, isDone: boolean) => {
+  const deleteTask = useCallback((taskId: string) => {
+    setTasksArray(tasksArray.filter((t) => t.id !== taskId))
+  }, [tasksArray]);
+
+  const toggleTaskDone = useCallback((taskId: string, isDone: boolean) => {
     setTasksArray(tasksArray.map((task) => {
         if(task.id === taskId) {
           return {...task, isDone};
@@ -46,8 +50,7 @@ const ToDo = (): JSX.Element => {
         };
       })
     )
-    console.log(`Task with: ${taskId} Done: ${isDone ? "Done" : "not Done"}`);
-  };
+  }, [tasksArray]);
 
   const addTask = (value: string) => {
     if(value.trim().length > 0) {
@@ -56,12 +59,19 @@ const ToDo = (): JSX.Element => {
       setTasksArray([...tasksArray, newTask]);
       setNewTitleInput("");
       setSearchQuery("");
+      inputRef.current?.focus();
     };
   };
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasksArray));
   }, [tasksArray]);
+
+  useEffect(() => {
+    if(inputRef.current !== null) {
+      inputRef.current.focus();
+    };
+  }, []);
 
   const clearQueryString = searchQuery.trim().toLowerCase();
   const filteredTasks = clearQueryString.length > 0 ? tasksArray.filter((task) => task.text.toLowerCase().includes(clearQueryString)) : null;
@@ -73,6 +83,7 @@ const ToDo = (): JSX.Element => {
       <AddTaskForm 
         addTask={addTask}
         newTitleInput={newTitleInput} 
+        inputRef={inputRef}
         setNewTitleInput={setNewTitleInput}/>
 
       <SearchTaskForm 
@@ -84,13 +95,18 @@ const ToDo = (): JSX.Element => {
         total={tasksArray.length}
         done={tasksArray.filter((task) => task.isDone).length}/>
 
+      <Button onClick={() => firstNoDoneTaskRef.current?.scrollIntoView({behavior: "smooth"})}>Show first done task</Button>
+
       <ListToDoTask 
         filteredTasks={filteredTasks}
         onDeleteTask={deleteTask} 
         tasksArray={tasksArray} 
-        toggleTaskDone={toggleTaskDone}/>
+        toggleTaskDone={toggleTaskDone}
+        firstNoDoneTaskRef={firstNoDoneTaskRef}
+        firstNoDoneTaskId={firstNoDoneTaskId}/>
     </div>
   );
 };
 
 export default ToDo;
+// 13
