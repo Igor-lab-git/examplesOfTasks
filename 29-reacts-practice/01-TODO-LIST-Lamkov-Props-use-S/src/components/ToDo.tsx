@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type JSX } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from "react";
 import AddTaskForm from "./AddTaskForm";
 import Header from "./Header";
 import ListToDoTask from "./ListToDoTask";
@@ -34,7 +34,7 @@ const ToDo = (): JSX.Element => {
     if(isConfirm) {
       setTasksArray([]);
     };
-  }, []); // опциональная функция для memo с использованием useCallback функция передаётся в комп. и обновляет комп. опционально, если ещё сам комп. куда прилетает функция уё импорт обёрнут в useMemo
+  }, []); // опциональная функция для memo с использованием useCallback функция передаётся в комп. и обновляет комп. опционально, если ещё сам комп. куда прилетает функция её импорт обёрнут в useMemo
 
 
   const deleteTask = useCallback((taskId: string) => {
@@ -42,26 +42,26 @@ const ToDo = (): JSX.Element => {
   }, [tasksArray]);
 
   const toggleTaskDone = useCallback((taskId: string, isDone: boolean) => {
-    setTasksArray(tasksArray.map((task) => {
-        if(task.id === taskId) {
-          return {...task, isDone};
-        } else {
-          return task;
-        };
-      })
+    setTasksArray(prevTasksArray => prevTasksArray.map((task) => {  // prevTasksArray не видит на прямую tasksArray, а даёт react актуальное значение тасок изи облости вид. и замыкания
+      if(task.id === taskId) {
+        return {...task, isDone};
+      } else {
+        return task;
+      };
+    })
     )
-  }, [tasksArray]);
+  }, []); // если данные теже приходят в дочерний комп. то ссылка на массив всё равно меняется, так как set всё равно сетится заново, и поэтому нужно передать в массив зависимостей ссылку на этот массив, что бы он отслеживал её и на этом решал обновлять комп. или нет
 
-  const addTask = (value: string) => {
+  const addTask = useCallback((value: string) => {
     if(value.trim().length > 0) {
       const newTask = {id: crypto?.randomUUID() ?? Date.now().toString(), text: value, isDone: false};
 
-      setTasksArray([...tasksArray, newTask]);
+      setTasksArray((prevTasks) => [...prevTasks, newTask]);
       setNewTitleInput("");
       setSearchQuery("");
       inputRef.current?.focus();
     };
-  };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasksArray));
@@ -73,8 +73,14 @@ const ToDo = (): JSX.Element => {
     };
   }, []);
 
-  const clearQueryString = searchQuery.trim().toLowerCase();
-  const filteredTasks = clearQueryString.length > 0 ? tasksArray.filter((task) => task.text.toLowerCase().includes(clearQueryString)) : null;
+  const filteredTasks = useMemo(() => {
+    const clearQueryString = searchQuery.trim().toLowerCase();
+    return clearQueryString.length > 0 ? tasksArray.filter((task) => task.text.toLowerCase().includes(clearQueryString)) : null;
+  }, [searchQuery, tasksArray]); //цель useMemo оптимизация вычисляемых данных а не оптимизация функций, searchQuery, tasksArray-сущности которые тригерят лишнее изменение filteredTasks = useMemo, useMemoзапоминает результат вычислений пока данные в массиве зав. не изменились
+
+  const doneCountTasks = useMemo(() => {
+    return tasksArray.filter((task) => task.isDone).length;
+  }, [tasksArray]);
 
   return (
     <div className="todo">
@@ -92,8 +98,8 @@ const ToDo = (): JSX.Element => {
 
       <ToDoInfo 
         onDeleteAllTasks={deleteAllTasks}
-        total={tasksArray.length}
-        done={tasksArray.filter((task) => task.isDone).length}/>
+        totalCountTasks={tasksArray.length}
+        doneCountTasks={doneCountTasks}/>
 
       <Button onClick={() => firstNoDoneTaskRef.current?.scrollIntoView({behavior: "smooth"})}>Show first done task</Button>
 

@@ -2,19 +2,19 @@ import { memo, type JSX } from "react";
 
 interface IToDoInfo {
   onDeleteAllTasks: () => void;
-  total: number;
-  done: number;
+  totalCountTasks: number;
+  doneCountTasks: number;
 };
 
-const ToDoInfo = ({onDeleteAllTasks, total, done }: IToDoInfo): JSX.Element => {
+const ToDoInfo = ({onDeleteAllTasks, totalCountTasks, doneCountTasks }: IToDoInfo): JSX.Element => {
   console.log("Info");
-  const hasTasks = total > 0;
+  const hasTasks = totalCountTasks > 0;
 
   return (
     <>
       <div className="todo__info">
         <div className="todo__total-tasks">
-          Done: {done} from Total: {total}
+          Done: {doneCountTasks} from Total: {totalCountTasks}
         </div>
         {hasTasks && (
           <button 

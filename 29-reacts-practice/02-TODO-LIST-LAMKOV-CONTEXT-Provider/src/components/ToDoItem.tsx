@@ -1,20 +1,28 @@
-import type { RefObject } from "react";
+import { memo, useContext, type RefObject } from "react";
+import { ContextTask } from "../context/ContextTask";
 
 interface IToDoItem {
     id: string;
     title: string;
     isDone: boolean;
-    onDeleteTask: (id: string) => void;
-    toggleTaskDone: (taskId: string, isDone: boolean) => void;
     ref?: RefObject<HTMLLIElement | null>;
-}
+};
 
-export const ToDoItem = ({id, title, isDone, onDeleteTask, toggleTaskDone, ref}: IToDoItem) => {
+interface IContextDoItem {
+  firstNoDoneTaskId: string | null;
+  firstNoDoneTaskRef: RefObject<HTMLLIElement | null>;
+  deleteTask: (taskId: string) => void;
+  toggleTaskDone: (taskId: string, isDone: boolean) => void;
+};
 
-  console.log("Item");
+export const ToDoItem = ({id, title, isDone}: IToDoItem) => {
+
+  const context = useContext(ContextTask) as IContextDoItem;
+  const { firstNoDoneTaskId, firstNoDoneTaskRef, deleteTask, toggleTaskDone } = context;
+
   return (
     <>
-        <li className="todo__item todo-item" ref={ref}>
+        <li className="todo__item todo-item" ref={id === firstNoDoneTaskId ? firstNoDoneTaskRef : null}>
           <input
             className="todo-item__checkbox"
             id={id}
@@ -32,7 +40,7 @@ export const ToDoItem = ({id, title, isDone, onDeleteTask, toggleTaskDone, ref}:
             className="todo-item__delete-button"
             aria-label="Delete"
             title="Delete"
-            onClick={() => onDeleteTask(id)}
+            onClick={() => deleteTask(id)}
           >
             <svg
               width="20"
@@ -55,4 +63,4 @@ export const ToDoItem = ({id, title, isDone, onDeleteTask, toggleTaskDone, ref}:
   )
 };
 
-export default ToDoItem;
+export default memo(ToDoItem);
