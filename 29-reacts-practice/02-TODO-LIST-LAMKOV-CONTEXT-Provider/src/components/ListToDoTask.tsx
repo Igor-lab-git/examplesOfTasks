@@ -1,7 +1,7 @@
 import ToDoItem from "./ToDoItem";
 import type  { ITasks } from "./ToDo";
 import { memo, useContext, type JSX } from "react";
-import { ContextTask } from "../context/ContextTask";
+import { ContextTasks } from "../context/ContextTasks";
 
 interface IListToDoTask {
   filteredTasks: ITasks[] | null;
@@ -10,7 +10,7 @@ interface IListToDoTask {
 
 const ListToDoTask = (): JSX.Element => {
 
-  const context = useContext(ContextTask) as IListToDoTask;
+  const context = useContext(ContextTasks) as IListToDoTask;
   const { tasksArray = [], filteredTasks } = context;
 
   const hasTask = tasksArray.length === 0;

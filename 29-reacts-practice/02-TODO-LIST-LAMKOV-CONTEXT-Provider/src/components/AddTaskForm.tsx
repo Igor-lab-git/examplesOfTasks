@@ -1,6 +1,7 @@
-import type { FormEvent, RefObject } from "react";
+import { useContext, type FormEvent, type RefObject } from "react";
 import Button from "./Button";
 import Field from "./Field";
+import { ContextTasks } from "../context/ContextTasks";
 
 interface IAddTaskForm {
   addTask: (title: string) => void;
@@ -9,7 +10,12 @@ interface IAddTaskForm {
   setNewTitleInput: (newTitleInput: string) => void;
 };
 
-const AddTaskForm = ({addTask, newTitleInput, inputRef, setNewTitleInput }: IAddTaskForm) => {
+const AddTaskForm = () => {
+
+  const context = useContext(ContextTasks) as IAddTaskForm;
+  const {addTask, newTitleInput, inputRef, setNewTitleInput} = context;
+
+  if (!context) return null; // на всякий случай
 
   const onSubmit = (event: FormEvent<HTMLElement>) => {
     event.preventDefault();

@@ -1,12 +1,17 @@
-import type { ChangeEvent, FormEvent } from "react";
+import { useContext, type ChangeEvent, type FormEvent } from "react";
 import Field from "./Field";
+import { ContextTasks } from "../context/ContextTasks";
 
 interface ISearchTaskForm {
   searchQuery: string;
   setSearchQuery: (searchQuery: string) => void;
 }
 
-const SearchTaskForm = ({searchQuery, setSearchQuery}: ISearchTaskForm) => {
+const SearchTaskForm = () => {
+
+  const context = useContext(ContextTasks) as ISearchTaskForm;
+  const {searchQuery, setSearchQuery} = context;
+
   return (
     <>
       <form

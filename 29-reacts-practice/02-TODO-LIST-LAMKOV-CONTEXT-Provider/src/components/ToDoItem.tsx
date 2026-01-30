@@ -1,5 +1,5 @@
 import { memo, useContext, type RefObject } from "react";
-import { ContextTask } from "../context/ContextTask";
+import { ContextTasks } from "../context/ContextTasks";
 
 interface IToDoItem {
     id: string;
@@ -17,7 +17,7 @@ interface IContextDoItem {
 
 export const ToDoItem = ({id, title, isDone}: IToDoItem) => {
 
-  const context = useContext(ContextTask) as IContextDoItem;
+  const context = useContext(ContextTasks) as IContextDoItem;
   const { firstNoDoneTaskId, firstNoDoneTaskRef, deleteTask, toggleTaskDone } = context;
 
   return (

@@ -1,6 +1,6 @@
 import { memo, useContext, useMemo, type JSX } from "react";
-import { ContextTask } from "../context/ContextTask";
 import type { ITasks } from "./ToDo";
+import { ContextTasks } from "../context/ContextTasks";
 
 interface IToDoInfo {
   tasksArray: ITasks[] |[];
@@ -9,7 +9,7 @@ interface IToDoInfo {
 
 const ToDoInfo = (): JSX.Element => {
 
-const context = useContext(ContextTask) as IToDoInfo;
+const context = useContext(ContextTasks) as IToDoInfo;
 const { tasksArray = [], deleteAllTasks } = context;
 
 
