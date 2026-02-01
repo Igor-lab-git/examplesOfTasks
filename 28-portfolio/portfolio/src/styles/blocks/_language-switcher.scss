@@ -1,0 +1,7 @@
+@use "../helpers" as *;
+
+.language-switcher {
+  &__button {
+    display: block;
+  }
+}

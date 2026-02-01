@@ -1,79 +1,48 @@
-// const root = document.body;
-//
-// console.log(root);
-//
-//
-// function getTextContent(node, result = []) {
-//     // Базовый случай: если узел не существует
-//     if (!node) return result;
-//
-//     // Если это текстовый узел
-//     if (node.nodeType === 3) { // TEXT_NODE
-//         const text = node.textContent.trim();
-//         if (text) {
-//             result.push(text);
-//         }
-//     }
-//
-//     // Рекурсивно обходим только ELEMENT_NODES
-//     if (node.nodeType === 1) { // ELEMENT_NODE
-//         // Важно: обходим childNodes, а не children
-//         for (let child of node.childNodes) {
-//             getTextContent(child, result);
-//         }
-//     }
-//
-//     return result;
-// }
-//
-// // Использование
-// const allText = getTextContent(document.body);
-// console.log('Весь текст страницы:', allText);
+import {textEn} from "./data/dataLang.json.js";
+const buttonSwitchLanguage = document.querySelector("[data-js-lang-button]");
+const rootButton = document.querySelector("[data-js-lang-switcher]");
 
 
+const root = document.body.querySelectorAll('*');
+
+const getElementsText = () => {
+
+    const textObj = {};
+    const newArr = [...root].map((el) => el.textContent?.trim()).filter((text) => text && text.length > 0 && !text.includes("\n"));
+
+    newArr.forEach((el, index) => {
+        textObj[index] = el;
+    })
+
+    return textObj
+
+}
+const getText = getElementsText();
+
+buttonSwitchLanguage.addEventListener("click", () => {
+    const findImage = buttonSwitchLanguage.querySelector("[data-js-lang-button-icon]");
+
+    const getTitleAttribute = buttonSwitchLanguage.getAttribute("title");
 
 
-// Способ №2: Локальная база переводов (словарь)
-// Это самый простой и бесплатный способ. Вы создаёте объект с набором слов и соответствующих переводов. Затем получаете нужный перевод через обращение к этому объекту.
-//
-//     Пример реализации локальной базы переводов:
-//
-//     javascript
-// Копировать
-// const translations = {
-//     hello: 'привет',
-//     goodbye: 'пока',
-//     cat: 'кошка',
-// };
-//
-// function translate(word) {
-//     return translations[word.toLowerCase()] || word + '? Перевод неизвестен.';
-// }
-//
-// console.log(translate('hello')); // Привет
-// console.log(translate('goodbye')); // Пока
-// console.log(translate('dog')); // dog? Перевод неизвестен.
+    let image = findImage.getAttribute("src");
 
-import {translations} from "./dataLang.json.js";
-
-console.log(translations);
-
-let currentLang = "ru";
-
-const elements = document.querySelectorAll("[data-lang]");
-console.log(elements);
-
-elements.forEach((element) => {
-    const key = element.dataset.lang;
-
-    const keys = key.split(".");
-
-    let translation  = translations["en"];
-    console.log(translation);
-    for(const k of keys) {
-        translation = translation ? translation[k] : null;
-
+    if(image.includes("./public/icons/header/icon-switch-language-english.svg")) {
+        findImage.src = "./public/icons/header/icon-switch-language-russia.svg";
+        buttonSwitchLanguage.title = "language switch button";
+    } else {
+        findImage.src = "./public/icons/header/icon-switch-language-english.svg";
+        buttonSwitchLanguage.title = getTitleAttribute;
     }
+    console.log(image);
 
-    // element.textContent = translation;
-})
+});
+
+for(let key in getText) {
+    getText[key] = textEn[key];
+    // console.log(getText[key]);
+}
+
+const findImage = buttonSwitchLanguage.querySelector("[data-js-lang-button-icon]");
+
+console.log(findImage.src)

@@ -19,9 +19,17 @@
           <img title="" src="" width="36" height="36" alt="" data-js-btn-switcher-theme-icon>
         </button>
 
-        <div class="language-switcher">
-          <button class="lang-switcher" data-lang="ru">RU</button>
-          <button class="lang-switcher" data-lang="en">EN</button>
+        <div class="language-switcher" data-js-lang-switcher>
+          <button class="language-switcher__button" type="button" title="кнопка переключения языка" data-js-lang-button="en">
+            <img src="./public/icons/header/icon-switch-language-english.svg" data-js-lang-button-icon>
+            <span class="visually-hidden">a button to switch the language</span>
+          </button>
+
+<!--            <img src="./public/icons/header/icon-switch-language-russia.svg">-->
+<!--          <button class="language-switcher__button" type="button" title="кнопка переключения языка" data-lang="en">-->
+<!--            <img src="./public/icons/header/icon-switch-language-english.svg">-->
+<!--            <span class="visually-hidden">a button to switch the language</span>-->
+<!--          </button>-->
         </div>
       </div>
 
@@ -232,112 +240,89 @@
       <div class="section__inner portfolio">
         <h2 class="portfolio__title title" id="portfolio-title">Мои <span class="education__title--sub title--sub">проекты</span></h2>
 
-        <div class="portfolio__inner">
+        <div class="portfolio__inner" data-js-tabs>
 
-          <div class="education__tabs tabs">
+          <div class="education__tabs tabs" role="tablist" >
             <ul class="tabs__list list-reset">
               <li class="tabs__item">
-                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-1">Все</button>
+                <button
+                        class="tabs__button"
+                        type="button"
+                        aria-controls="tab-all"
+                        role="tab"
+                        aria-selected="true"
+                        tabindex="-1"
+                        data-js-button-tab="tab-all"
+                >Все
+                </button>
               </li>
 
               <li class="tabs__item">
-                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-2">HTML и CSS</button>
+                <button
+                        class="tabs__button"
+                        type="button"
+                        aria-controls="tab-1"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        data-js-button-tab="tab-2"
+                >HTML и CSS</button>
               </li>
 
               <li class="tabs__item">
-                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-3">Vanilla JS</button>
+                <button
+                        class="tabs__button"
+                        type="button"
+                        aria-controls="tab-2"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        data-js-button-tab="tab-3"
+                >Vanilla JS</button>
               </li>
 
               <li class="tabs__item">
-                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-4">React</button>
+                <button
+                        class="tabs__button"
+                        type="button"
+                        aria-controls="tab-3"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        data-js-button-tab="tab-4"
+                >React</button>
               </li>
 
               <li class="tabs__item">
-                <button class="tabs__button" type="button" role="tab" data-js-button-tab="tab-5">Next.js</button>
+                <button
+                        class="tabs__button"
+                        type="button"
+                        aria-controls="tab-4"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        data-js-button-tab="tab-5"
+                >Next.js</button>
               </li>
             </ul>
           </div>
 
           <div class="tabs__body">
 
-            <div class="tabs__panel" id="tab-1" data-js-panel>
+            <div class="tabs__panel" id="tab-2" tabindex="0" data-js-panel>
               <ul class="tabs__panel-list list-reset">
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/Crossfit" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/html-css-scss/Crossfit.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">Crossfit</h3>
                       <div class="tab-card__info">
                         <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
-                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
-                        </a>
-                      </div>
-                        <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
-                    </div>
-                  </article>
-                </li>
-
-                <li class="tabs__panel-item">
-                  <article class="tabs__card tab-card">
-                    <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
-                      </a>
-                    </div>
-                    <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
-                      <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
-                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
-                        </a>
-                      </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
-                    </div>
-                  </article>
-                </li>
-
-                <li class="tabs__panel-item">
-                  <article class="tabs__card tab-card">
-                    <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
-                      </a>
-                    </div>
-                    <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
-                      <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
-                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
-                        </a>
-                      </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
-                    </div>
-                  </article>
-                </li>
-              </ul>
-            </div>
-
-            <div class="tabs__panel" id="tab-2" data-js-panel>
-              <ul class="tabs__panel-list list-reset">
-                <li class="tabs__panel-item">
-                  <article class="tabs__card tab-card">
-                    <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/Main.jpg" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
-                      </a>
-                    </div>
-                    <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
-                      <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#" title="Проект на git-hub">
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/Crossfit" target="_blank" title="Проект на git-hub">
                           <svg title="Проект на git-hub" width="70" height="15" viewBox="0 0 114 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.8013 0C9.76163 0.000126048 6.82116 1.08185 4.50605 3.05163C2.19093 5.02141 0.652262 7.7507 0.165342 10.7511C-0.321578 13.7516 0.275029 16.8274 1.84841 19.4282C3.4218 22.029 5.86928 23.9851 8.75294 24.9465C9.39301 25.0585 9.63303 24.6745 9.63303 24.3384C9.63303 24.0344 9.61702 23.0263 9.61702 21.9542C6.40068 22.5463 5.5686 21.1702 5.31257 20.4501C5.02848 19.7498 4.57813 19.1292 4.00044 18.6419C3.55239 18.4019 2.91233 17.8098 3.98443 17.7938C4.39379 17.8382 4.78642 17.9807 5.12904 18.2091C5.47166 18.4375 5.75417 18.7451 5.95264 19.1059C6.12772 19.4204 6.36315 19.6973 6.64543 19.9207C6.92771 20.1441 7.2513 20.3096 7.59764 20.4077C7.94399 20.5058 8.3063 20.5346 8.6638 20.4924C9.02129 20.4503 9.36696 20.338 9.68099 20.162C9.73641 19.5112 10.0264 18.9028 10.4971 18.4499C7.64881 18.1299 4.67251 17.0257 4.67251 12.1293C4.65452 10.857 5.12399 9.62607 5.98464 8.68892C5.59328 7.58317 5.63907 6.36969 6.11265 5.29657C6.11265 5.29657 7.18472 4.96053 9.63301 6.60871C11.7277 6.03261 13.939 6.03261 16.0337 6.60871C18.4819 4.94454 19.554 5.29657 19.554 5.29657C20.0277 6.36967 20.0735 7.58318 19.682 8.68892C20.5453 9.62447 21.0151 10.8565 20.9942 12.1293C20.9942 17.0417 18.0018 18.1299 15.1536 18.4499C15.4591 18.7595 15.6944 19.1313 15.8435 19.5399C15.9926 19.9486 16.052 20.3845 16.0177 20.8181C16.0177 22.5303 16.0016 23.9064 16.0016 24.3385C16.0016 24.6745 16.2417 25.0746 16.8817 24.9466C19.7603 23.9773 22.2008 22.0166 23.7674 19.4145C25.3341 16.8124 25.9251 13.7381 25.4348 10.7406C24.9445 7.74305 23.4049 5.0173 21.0908 3.04992C18.7767 1.08254 15.8387 0.00158084 12.8013 0Z"
                                   fill="#161B22"/>
@@ -346,7 +331,9 @@
                           </svg>
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description"> Адаптивный лендинг фитнес-центра Crossfit. Чистая верстка на HTML5 и CSS3
+                        с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка,
+                        кроссбраузерная совместимость.</p>
                     </div>
                   </article>
                 </li>
@@ -354,19 +341,20 @@
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/Hi-Brain-message-board" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/html-css-scss/Hi-Brain.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">Hi-Brain</h3>
                       <div class="tab-card__info">
                         <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/Hi-Brain-message-board" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Адаптивный лендинг объявлений на чистом HTML/CSS. Сетка карточек на Flexbox,
+                        семантическая разметка, валидный код. Демонстрация навыков верстки сложных интерфейсов.</p>
                     </div>
                   </article>
                 </li>
@@ -374,43 +362,105 @@
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/Ink-House" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/html-css-scss/Ink-House.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">Ink-House</h3>
                       <div class="tab-card__info">
                         <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/Ink-House" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Адаптивный лендинг рекламы картин Ink-House. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
                     </div>
                   </article>
                 </li>
+
+                <li class="tabs__panel-item">
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="https://github.com/Igor-lab-git/Lionik" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/html-css-scss/Lionic.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Lionik</h3>
+                      <div class="tab-card__info">
+                        <span class="tab-card__type-project">Frontend</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/Lionik" target="_blank">
+                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
+                        </a>
+                      </div>
+                      <p class="tab-card__description">Адаптивный лендинг Lionik. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="tabs__panel-item">
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="https://github.com/Igor-lab-git/Neuros" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/html-css-scss/Neuros.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Neuros</h3>
+                      <div class="tab-card__info">
+                        <span class="tab-card__type-project">Frontend</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/Neuros" target="_blank">
+                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
+                        </a>
+                      </div>
+                      <p class="tab-card__description">Адаптивный лендинг Neuros. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="tabs__panel-item">
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="https://github.com/Igor-lab-git/Positivus" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/html-css-scss/Positivus.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">Positivus</h3>
+                      <div class="tab-card__info">
+                        <span class="tab-card__type-project">Frontend</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/Positivus" target="_blank">
+                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
+                        </a>
+                      </div>
+                      <p class="tab-card__description">Адаптивный лендинг Positivus. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                    </div>
+                  </article>
+                </li>
+
               </ul>
             </div>
 
-            <div class="tabs__panel" id="tab-3" data-js-panel>
+            <div class="tabs__panel" id="tab-3" tabindex="0" data-js-panel>
               <ul class="tabs__panel-list list-reset">
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/FutureTech" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/vanilla-js/FutureTech.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">FutureTech</h3>
                       <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <span class="tab-card__type-project">Vanilla js</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/FutureTech" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Многостраничный сайт технологического стартапа. Включает: главную страницу с анимациями,
+                        блог с динамической загрузкой статей. Frontend на чистом JavaScript без фреймворков.</p>
                     </div>
                   </article>
                 </li>
@@ -418,19 +468,20 @@
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/04-Movi-App" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/vanilla-js/Movi-web-side-API.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">Movie-web-site-API</h3>
                       <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <span class="tab-card__type-project">Vanilla js</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/04-Movi-App" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Одностраничный Веб-сайт для поиска фильмов через публичное API. Динамическая загрузка данных,
+                        фильтрация, пагинация. Чистый JavaScript, адаптивный дизайн. Клиентская сторона на чистом JavaScript с использованием Fetch API</p>
                     </div>
                   </article>
                 </li>
@@ -438,43 +489,69 @@
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/11-Shop-Quadro" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/vanilla-js/The-Drone-Store.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">The-Drone-Store</h3>
                       <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <span class="tab-card__type-project">Vanilla js</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/11-Shop-Quadro" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Интернет-магазин дронов с полным циклом покупки. Реализованы: каталог товаров с
+                        фильтрами, детальные карточки товаров, корзина покупок, оформление заказа.
+                        Динамическое обновление цены и количества товаров в реальном времени.</p>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="tabs__panel-item">
+                  <article class="tabs__card tab-card">
+                    <div class="tab-card__box-image">
+                      <a href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/22-todo-list/02-Todo-List-and-LocalStorage" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/vanilla-js/ToDo-List-vanila-js.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="tab-card__body">
+                      <h3 class="tab-card__name">ToDo-List-vanilla</h3>
+                      <div class="tab-card__info">
+                        <span class="tab-card__type-project">Vanilla js</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/22-todo-list/02-Todo-List-and-LocalStorage" target="_blank">
+                          <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
+                        </a>
+                      </div>
+                      <p class="tab-card__description"> Приложение ToDo List с полным CRUD-функционалом: создание, чтение,
+                        удаление задач. Простое и функциональное ToDo-приложение. Добавление, отметка выполнения,
+                        удаление задач. Сохранение в LocalStorage. </p>
                     </div>
                   </article>
                 </li>
               </ul>
             </div>
 
-            <div class="tabs__panel" id="tab-4" data-js-panel>
+            <div class="tabs__panel" id="tab-4" tabindex="0" data-js-panel>
               <ul class="tabs__panel-list list-reset">
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/MegaMart" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/react/Electronics-Store.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">Electronics-Store</h3>
                       <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <span class="tab-card__type-project">React</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/MegaMart" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Интернет-магазин бытовой электроники на React с многостраничной архитектурой (React Router) с
+                        Redux Toolkit для state management. Полный цикл покупки: каталог, фильтрация, корзина. Управление состоянием
+                        через Context API + LocalStorage для сохранения корзины. Адаптивный дизайн, работа с формами</p>
                     </div>
                   </article>
                 </li>
@@ -482,19 +559,21 @@
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
                     <div class="tab-card__box-image">
-                      <a href="#">
-                        <img class="tab-card__image" src="./public/images/portfolio-section/image-project.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
+                      <a href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/29-reacts-practice/02-TODO-LIST-LAMKOV-CONTEXT-Provider" target="_blank">
+                        <img class="tab-card__image" src="./src/assets/images-section-portfolio/react/ToDo-List-React.png" alt="какртинка проекта на git-hab" width="" height="" loading="lazy">
                       </a>
                     </div>
                     <div class="tab-card__body">
-                      <h3 class="tab-card__name">Портфолио</h3>
+                      <h3 class="tab-card__name">ToDo-List</h3>
                       <div class="tab-card__info">
-                        <span class="tab-card__type-project">Frontend</span>
-                        <a class="tab-card__link-project" href="#">
+                        <span class="tab-card__type-project">React</span>
+                        <a class="tab-card__link-project" href="https://github.com/Igor-lab-git/examplesOfTasks/tree/main/29-reacts-practice/02-TODO-LIST-LAMKOV-CONTEXT-Provider" target="_blank">
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description">Типизированное ToDo-приложение на React с использованием TypeScript и с использованием продвинутых хуков: Context для глобального состояния,
+                        useEffect для синхронизации с LocalStorage, useMemo для мемоизации фильтрованных задач,
+                        useCallback для стабильных колбэков. Функции: поиск по задачам, поиск первой невыполненной задачи.</p>
                     </div>
                   </article>
                 </li>
@@ -521,7 +600,7 @@
               </ul>
             </div>
 
-            <div class="tabs__panel" id="tab-5" data-js-panel>
+            <div class="tabs__panel" id="tab-5" tabindex="0" data-js-panel>
               <ul class="tabs__panel-list list-reset">
                 <li class="tabs__panel-item">
                   <article class="tabs__card tab-card">
