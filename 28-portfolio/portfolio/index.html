@@ -15,21 +15,15 @@
           <img src="./public/icons/header/logo.svg" alt="logo">
         </a>
         <button class="switchers__theme-btn" type="button" title="включить светлую тему" data-js-btn-switcher-theme>
-          <span class="visually-hidden">Кнопка переключения светлой темы</span>
+          <span class="visually-hidden" data-js-lang="switchButton">Кнопка переключения светлой темы</span>
           <img title="" src="" width="36" height="36" alt="" data-js-btn-switcher-theme-icon>
         </button>
 
         <div class="language-switcher" data-js-lang-switcher>
           <button class="language-switcher__button" type="button" title="кнопка переключения языка" data-js-lang-button="en">
             <img src="./public/icons/header/icon-switch-language-english.svg" data-js-lang-button-icon>
-            <span class="visually-hidden">a button to switch the language</span>
+            <span class="visually-hidden" data-js-lang="switchButtonLang">a button to switch the language</span>
           </button>
-
-<!--            <img src="./public/icons/header/icon-switch-language-russia.svg">-->
-<!--          <button class="language-switcher__button" type="button" title="кнопка переключения языка" data-lang="en">-->
-<!--            <img src="./public/icons/header/icon-switch-language-english.svg">-->
-<!--            <span class="visually-hidden">a button to switch the language</span>-->
-<!--          </button>-->
         </div>
       </div>
 
@@ -37,17 +31,17 @@
         <div class="profile-info__box-photo">
           <img class="profile-info__photo" src="./public/images/header/avatar-photo.jpg" alt="photo-avatar">
         </div>
-        <span class="profile-info__name" data-lang="header.name">Игорь Костюченко</span>
-        <p class="profile-info__job" data-lang="header.profession">Front-end developer</p>
+        <span class="profile-info__name" data-lang="header.name" data-js-lang="name">Игорь Костюченко</span>
+        <p class="profile-info__job" data-lang="header.profession" data-js-lang="profession">Front-end developer</p>
       </div>
 
       <nav class="header__nav main-menu">
         <ul class="main-menu__list list-reset">
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#home" data-lang="header.main">главная</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#about" data-lang="header.about">обо мне</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#education" data-lang="header.education">образование</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#portfolio" data-lang="header.portfolio">портфолио</a> </li>
-          <li class="main-menu__item"> <a class="main-menu__link button" href="#contact" data-lang="header.contacts">контакты</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#home" data-lang="header.main" data-js-lang="buttonMain">главная</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#about" data-lang="header.about" data-js-lang="buttonAbout">обо мне</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#education" data-lang="header.education" data-js-lang="buttonEducation">образование</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#portfolio" data-lang="header.portfolio" data-js-lang="buttonPortfolio">портфолио</a> </li>
+          <li class="main-menu__item"> <a class="main-menu__link button" href="#contact" data-lang="header.contacts" data-js-lang="buttonContacts">контакты</a> </li>
         </ul>
       </nav>
     </div>
@@ -68,14 +62,14 @@
     <section class="hero" id="home">
       <div class="hero__inner">
           <div class="hero__body">
-            <h2 class="hero__title" data-lang="hero.name" data-js-title >Привет! <span class="hero__active-title" data-lang="hero.greeting" data-js-main-title-print>Меня зовут Игорь.</span></h2>
-            <p class="hero__subtitle" data-lang="hero.i">Я <span class="hero__active-subtitle" data-lang="hero.profession" data-js-main-subtitle-print>веб разработчик.</span></p>
-            <p class="hero__description" data-lang="hero.about">Создаю интерактивные веб-интерфейсы, превращаю идеи в пиксельно точные интерфейсы и наполняю их жизнью благодаря современным технологиям React, TypeScript и экосистеме современного JavaScript.
+            <h2 class="hero__title" data-js-title data-js-lang="hi">Привет! <span class="hero__active-title" data-js-lang="myNameIs" data-js-main-title-print>Меня зовут Игорь.</span></h2>
+            <p class="hero__subtitle" data-js-title data-js-lang="i">Я <span class="hero__active-subtitle" data-js-title data-js-lang="webDeveloper" data-js-main-subtitle-print>веб разработчик.</span></p>
+            <p class="hero__description" data-js-lang="myDescription">Создаю интерактивные веб-интерфейсы, превращаю идеи в пиксельно точные интерфейсы и наполняю их жизнью благодаря современным технологиям React, TypeScript и экосистеме современного JavaScript.
               Создаю не просто сайты — а цифровые продукты, которые решают бизнес-задачи. Моя цель — помогать бизнесу расти через качественный UI/UX дизайн и надежный frontend</p>
           </div>
 
         <button class="hero__button button">
-          <span>обо мне</span>
+          <span data-js-lang="heroAbout">обо мне</span>
           <svg class="hero__button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
           </svg>
@@ -85,27 +79,27 @@
 
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="section__inner about">
-        <h2 class="about__title title" id="about-title">Обо <span class="title--sub about__title--sub">Мне</span></h2>
+        <h2 class="about__title title" id="about-title" data-js-lang="sectionAboutTitle">Обо <span class="title--sub about__title--sub" data-js-lang="sectionAboutTitleMy">Мне</span></h2>
 
         <div class="about__info">
           <div class="about__questionnaire questionnaire">
             <dl class="questionnaire__info">
-              <dt class="questionnaire__term">имя:</dt>
-              <dd class="questionnaire__detail">Игорь Костюченко</dd>
+              <dt class="questionnaire__term" data-js-lang="sectionAboutKeyName">имя:</dt>
+              <dd class="questionnaire__detail" data-js-lang="sectionAboutName">Игорь Костюченко</dd>
 
-              <dt class="questionnaire__term">возраст:</dt>
+              <dt class="questionnaire__term" data-js-lang="sectionAboutKeyAge">возраст:</dt>
               <dd class="questionnaire__detail">36</dd>
 
-              <dt class="questionnaire__term">профессия:</dt>
-              <dd class="questionnaire__detail">разработчик</dd>
+              <dt class="questionnaire__term" data-js-lang="sectionAboutKeyProfession">профессия:</dt>
+              <dd class="questionnaire__detail" data-js-lang="sectionAboutProfession">разработчик</dd>
 
-              <dt class="questionnaire__term">квалификация:</dt>
-              <dd class="questionnaire__detail">новичок</dd>
+              <dt class="questionnaire__term" data-js-lang="sectionAboutKeyQualification">квалификация:</dt>
+              <dd class="questionnaire__detail" data-js-lang="sectionAboutQualification">новичок</dd>
             </dl>
 
             <a href="./public/Main.jpg" download="resume">
               <button class="questionnaire__button button button--questionnaire" type="button" title="скачать резюме">
-                <span>Скачать БД</span>
+                <span data-js-lang="sectionAboutButton">Скачать БД</span>
                 <svg class="button__icon" fill="#ffffff" width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                   <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/>
                 </svg>
@@ -114,9 +108,9 @@
           </div>
 
           <div class="about__description">
-            <p>Я фронтенд-разработчик, живу в Нижегородской области. Я могу разрабатывать адаптивные веб-сайты с нуля и превращать их в современные веб-приложения, удобные для пользователя.</p>
-            <p>Вот уже более года я увлечен тем, что превращаю свой творческий потенциал и знания в веб-сайты. Я помогаю различным клиентам расширить свое присутствие в Интернете. Я всегда стремлюсь узнать о новейших технологиях и фреймворках</p>
-            <p>Я начал свой путь в качестве веб-разработчика в 2024 году, и с тех пор продолжаю расти и эволюционировать как разработчик, принимая новые вызовы и попутно осваивая новейшие технологии. Я создаю передовые веб-приложения, используя такие современные технологии, как React, Next.js, TypeScript, и многое другое.</p>
+            <p data-js-lang="sectionAboutDescriptionOne">Я фронтенд-разработчик, живу в Нижегородской области. Я могу разрабатывать адаптивные веб-сайты с нуля и превращать их в современные веб-приложения, удобные для пользователя.</p>
+            <p data-js-lang="sectionAboutDescriptionTwo">Вот уже более года я увлечен тем, что превращаю свой творческий потенциал и знания в веб-сайты. Я помогаю различным клиентам расширить свое присутствие в Интернете. Я всегда стремлюсь узнать о новейших технологиях и фреймворках</p>
+            <p data-js-lang="sectionAboutDescriptionThree">Я начал свой путь в качестве веб-разработчика в 2024 году, и с тех пор продолжаю расти и эволюционировать как разработчик, принимая новые вызовы и попутно осваивая новейшие технологии. Я создаю передовые веб-приложения, используя такие современные технологии, как React, Next.js, TypeScript, и многое другое.</p>
           </div>
         </div>
       </div>
@@ -124,7 +118,7 @@
 
     <section class="section" id="education" aria-labelledby="education-title">
         <div class="section__inner education">
-          <h2 class="education__title title" id="education-title">Моё <span class="education__title--sub title--sub">Образование</span></h2>
+          <h2 class="education__title title" id="education-title" data-js-lang="educationMy">Моё <span class="education__title--sub title--sub" data-js-lang="educationEducation">Образование</span></h2>
 
           <div class="education__inner">
 
@@ -142,10 +136,10 @@
                         </g>
                       </svg>
                     </div>
-                    <time class="experience-card__date" datetime="2011-06-20">20 июня 2011</time>
-                    <h3 class="experience-card__title">Автоматизированные системы обработак информации и управления</h3>
+                    <time class="experience-card__date" datetime="2011-06-20" data-js-lang="educationDate1">20 июня 2011</time>
+                    <h3 class="experience-card__title" data-js-lang="educationSpecialization1">Автоматизированные системы обработак информации и управления</h3>
                     <div class="experience-card__description">
-                      <p>Присуждена степень бакалавра Техники и Технологии по направлению "Информатика и Вычислительная Техника". Проходил обучени с 2007 г. в Негосударственном
+                      <p data-js-lang="educationDescription1">Присуждена степень бакалавра Техники и Технологии по направлению "Информатика и Вычислительная Техника". Проходил обучени с 2007 г. в Негосударственном
                        образовательном учреждении "Современная гуманитарная академия", по 2011 г. Очная форма</p>
                     </div>
                   </article>
@@ -162,11 +156,10 @@
                         </g>
                       </svg>
                     </div>
-                    <time class="experience-card__date" datetime="2025-07-07">01 июля 2025</time>
-                    <h3 class="experience-card__title">Профессиональная веб-разработка</h3>
+                    <time class="experience-card__date" datetime="2025-07-07" data-js-lang="educationDate2">01 июля 2025</time>
+                    <h3 class="experience-card__title" data-js-lang="educationSpecialization2">Профессиональная веб-разработка</h3>
                     <div class="experience-card__description">
-                      <p>Данное обучение и диплом свидетельстует о том, что прошёл профессиональную переподготовку в Национальном исследовательском Нижегородском
-                      государственном университете им. Н.И.Лобачевского по программе "Профессиональная вкб-разработка (504 часа)". С 14 сентябра 2024 г. по 28 июня 2025 г.</p>
+                      <p data-js-lang="educationDescription2">Данное обучение и диплом свидетельстует о том, что прошёл профессиональную переподготовку в Национальном исследовательском Нижегородском государственном университете им. Н.И.Лобачевского по программе "Профессиональная вкб-разработка (504 часа)". С 14 сентябра 2024 г. по 28 июня 2025 г.</p>
                     </div>
                   </article>
                 </li>
@@ -176,8 +169,8 @@
 
             <div class="education__skills skills">
               <header class="skills__header">
-                <h3 class="skills__title">Навыки</h3>
-                <p class="skills__description">Навыки, инструменты и технологии, которыми я владею или которые изучаю</p>
+                <h3 class="skills__title" data-js-lang="skills">Навыки</h3>
+                <p class="skills__description" data-js-lang="skillsDescription">Навыки, инструменты и технологии, которыми я владею или которые изучаю</p>
               </header>
 
               <ul class="skills__list list-reset" data-js-skills-list>
@@ -238,7 +231,7 @@
 
     <section class="section" id="portfolio" aria-labelledby="portfolio-title">
       <div class="section__inner portfolio">
-        <h2 class="portfolio__title title" id="portfolio-title">Мои <span class="education__title--sub title--sub">проекты</span></h2>
+        <h2 class="portfolio__title title" id="portfolio-title" data-js-lang="portfolioMy">Мои <span class="education__title--sub title--sub" data-js-lang="portfolioProjects">проекты</span></h2>
 
         <div class="portfolio__inner" data-js-tabs>
 
@@ -253,6 +246,7 @@
                         aria-selected="true"
                         tabindex="-1"
                         data-js-button-tab="tab-all"
+                        data-js-lang="portfolioButtonAll"
                 >Все
                 </button>
               </li>
@@ -331,7 +325,7 @@
                           </svg>
                         </a>
                       </div>
-                      <p class="tab-card__description"> Адаптивный лендинг фитнес-центра Crossfit. Чистая верстка на HTML5 и CSS3
+                      <p class="tab-card__description" data-js-lang="portfolioTabHTMLOne">Адаптивный лендинг фитнес-центра Crossfit. Чистая верстка на HTML5 и CSS3
                         с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка,
                         кроссбраузерная совместимость.</p>
                     </div>
@@ -353,8 +347,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Адаптивный лендинг объявлений на чистом HTML/CSS. Сетка карточек на Flexbox,
-                        семантическая разметка, валидный код. Демонстрация навыков верстки сложных интерфейсов.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabHTMLTwo">Адаптивный лендинг объявлений на чистом HTML/CSS. Сетка карточек на Flexbox, семантическая разметка, валидный код. Демонстрация навыков верстки сложных интерфейсов.</p>
                     </div>
                   </article>
                 </li>
@@ -374,7 +367,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Адаптивный лендинг рекламы картин Ink-House. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabHTMLThree">Адаптивный лендинг рекламы картин Ink-House. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
                     </div>
                   </article>
                 </li>
@@ -394,7 +387,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Адаптивный лендинг Lionik. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabHTMLFour">Адаптивный лендинг Lionik. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
                     </div>
                   </article>
                 </li>
@@ -414,7 +407,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Адаптивный лендинг Neuros. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabHTMLFive">Адаптивный лендинг Neuros. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
                     </div>
                   </article>
                 </li>
@@ -434,7 +427,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Адаптивный лендинг Positivus. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabHTMLSix">Адаптивный лендинг Positivus. Чистая верстка на HTML5 и CSS3 с использованием Flexbox/Grid. Полностью валидный код, семантическая разметка, кроссбраузерная совместимость.</p>
                     </div>
                   </article>
                 </li>
@@ -459,8 +452,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Многостраничный сайт технологического стартапа. Включает: главную страницу с анимациями,
-                        блог с динамической загрузкой статей. Frontend на чистом JavaScript без фреймворков.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabVanillaOne">Многостраничный сайт технологического стартапа. Включает: главную страницу с анимациями, блог с динамической загрузкой статей. Frontend на чистом JavaScript без фреймворков.</p>
                     </div>
                   </article>
                 </li>
@@ -480,8 +472,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Одностраничный Веб-сайт для поиска фильмов через публичное API. Динамическая загрузка данных,
-                        фильтрация, пагинация. Чистый JavaScript, адаптивный дизайн. Клиентская сторона на чистом JavaScript с использованием Fetch API</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabVanillaTwo">Одностраничный Веб-сайт для поиска фильмов через публичное API. Динамическая загрузка данных, фильтрация, пагинация. Чистый JavaScript, адаптивный дизайн. Клиентская сторона на чистом JavaScript с использованием Fetch API.</p>
                     </div>
                   </article>
                 </li>
@@ -501,9 +492,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Интернет-магазин дронов с полным циклом покупки. Реализованы: каталог товаров с
-                        фильтрами, детальные карточки товаров, корзина покупок, оформление заказа.
-                        Динамическое обновление цены и количества товаров в реальном времени.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabVanillaThree">Интернет-магазин дронов с полным циклом покупки. Реализованы: каталог товаров с фильтрами, детальные карточки товаров, корзина покупок, оформление заказа. Динамическое обновление цены и количества товаров в реальном времени.</p>
                     </div>
                   </article>
                 </li>
@@ -523,9 +512,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description"> Приложение ToDo List с полным CRUD-функционалом: создание, чтение,
-                        удаление задач. Простое и функциональное ToDo-приложение. Добавление, отметка выполнения,
-                        удаление задач. Сохранение в LocalStorage. </p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabVanillaFour">Приложение ToDo List с полным CRUD-функционалом: создание, чтение, удаление задач. Простое и функциональное ToDo-приложение. Добавление, отметка выполнения, удаление задач. Сохранение в LocalStorage.</p>
                     </div>
                   </article>
                 </li>
@@ -549,9 +536,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Интернет-магазин бытовой электроники на React с многостраничной архитектурой (React Router) с
-                        Redux Toolkit для state management. Полный цикл покупки: каталог, фильтрация, корзина. Управление состоянием
-                        через Context API + LocalStorage для сохранения корзины. Адаптивный дизайн, работа с формами</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabReactOne">Интернет-магазин бытовой электроники на React с многостраничной архитектурой (React Router) с Redux Toolkit для state management. Полный цикл покупки: каталог, фильтрация, корзина. Управление состоянием через Context API + LocalStorage для сохранения корзины. Адаптивный дизайн, работа с формами.</p>
                     </div>
                   </article>
                 </li>
@@ -571,9 +556,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Типизированное ToDo-приложение на React с использованием TypeScript и с использованием продвинутых хуков: Context для глобального состояния,
-                        useEffect для синхронизации с LocalStorage, useMemo для мемоизации фильтрованных задач,
-                        useCallback для стабильных колбэков. Функции: поиск по задачам, поиск первой невыполненной задачи.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabReactTwo">Типизированное ToDo-приложение на React с использованием TypeScript и с использованием продвинутых хуков: Context для глобального состояния, useEffect для синхронизации с LocalStorage, useMemo для мемоизации фильтрованных задач, useCallback для стабильных колбэков. Функции: поиск по задачам, поиск первой невыполненной задачи.</p>
                     </div>
                   </article>
                 </li>
@@ -593,7 +576,7 @@
                           <img src="./public/icons/portfolio-section/git-hab-icon.svg" width="70" height="15" alt="иконка git-hab" loading="lazy">
                         </a>
                       </div>
-                      <p class="tab-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
+                      <p class="tab-card__description" data-js-lang="portfolioTabReactTree">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at expedita facilis fugit laudantium odio optio repellendus sunt tempora ullam.</p>
                     </div>
                   </article>
                 </li>
@@ -672,12 +655,12 @@
 
     <section class="section" id="contact" aria-labelledby="portfolio-title">
       <div class="section__inner contact">
-        <h2 class="contact__title title" id="contact-title">Свяжитесь <span class="education__title--sub title--sub">со мной</span></h2>
+        <h2 class="contact__title title" id="contact-title" data-js-lang="contactTitleUs">Свяжитесь <span class="education__title--sub title--sub" data-js-lang="contactTitleWithMe">со мной</span></h2>
 
         <div class="contact__inner">
 
           <div class="contact__address address">
-            <h3 class="address__title">Контактная информация</h3>
+            <h3 class="address__title" data-js-lang="addressTitle">Контактная информация</h3>
 
             <address class="address__info">
               <ul class="address__info-list list-reset">
@@ -697,7 +680,7 @@
 
                 <li class="address__info-item">
                   <img src="./public/icons/contact-section/Location.svg" width="20" height="20" alt="icon address">
-                  <span class="address__info-link">Нижегородская область. пос.Лукино ул.Желелезнодорожная</span>
+                  <span class="address__info-link" data-js-lang="addressLocation">Нижегородская область. пос.Лукино ул.Желелезнодорожная</span>
                 </li>
 
                 <li class="address__info-item">
@@ -716,7 +699,7 @@
             <form class="contact__form form" action="https://api.web3forms.com/submit" method="POST" novalidate data-js-form>
               <input type="hidden" name="access_key" value="e07afe55-e97c-4871-9a05-9525596b9b13">
               <div class="form__field">
-                <label class="form__label" for="name">
+                <label class="form__label" for="name" data-js-lang="contactFormLabelName">
                   Ваше имя
                   <span class="form__required-star" aria-hidden="true">*</span>
                 </label>
@@ -731,7 +714,7 @@
               </div>
 
               <div class="form__field">
-                <label class="form__label" for="email">
+                <label class="form__label" for="email" data-js-lang="contactFormLabelEmail">
                   Ваша почта
                   <span class="form__required-star" aria-hidden="true">*</span>
                 </label>
@@ -750,12 +733,12 @@
               </div>
 
               <div class="form__field">
-                <label class="form__label" for="telephone">Ваш номер телефона</label>
+                <label class="form__label" for="telephone" data-js-lang="contactFormLabelNumber">Ваш номер телефона</label>
                 <input class="form__control" type="tel" id="telephone" name="telephone" pattern="^\+7$\d{3}$\s\d{3}-\d{2}-\d{2}$" autocomplete="off" placeholder="+7(999) 999-99-99">
               </div>
 
               <div class="form__field">
-                <label class="form__label" for="message">
+                <label class="form__label" for="message" data-js-lang="contactFormLabelMessage">
                   Сообщение
                   <span class="form__required-star" aria-hidden="true">*</span>
                 </label>
@@ -763,7 +746,7 @@
                 <span class="form__error-message" id="message-error" data-js-form-error-message></span>
               </div>
 
-              <button class="button button--questionnaire" type="submit" data-js-form-button>Отправить</button>
+              <button class="button button--questionnaire" type="submit" data-js-form-button data-js-lang="contactFormButton">Отправить</button>
             </form>
         </div>
       </div>
@@ -781,11 +764,11 @@
       <div class="footer__menu">
         <nav class="footer__menu extra-menu">
           <ul class="extra-menu__list list-reset">
-            <li class="extra-menu__item"> <a class="extra-menu__link" href="#home">главная</a> </li>
-            <li class="extra-menu__item"> <a class="extra-menu__link" href="#about">обо мне</a> </li>
-            <li class="extra-menu__item"> <a class="extra-menu__link" href="#education">образование</a> </li>
-            <li class="extra-menu__item"> <a class="extra-menu__link" href="#portfolio">портфолио</a> </li>
-            <li class="extra-menu__item"> <a class="extra-menu__link" href="#contact">контакты</a> </li>
+            <li class="extra-menu__item"> <a class="extra-menu__link" href="#home" data-js-lang="footerMain">главная</a> </li>
+            <li class="extra-menu__item"> <a class="extra-menu__link" href="#about" data-js-lang="footerAbout">обо мне</a> </li>
+            <li class="extra-menu__item"> <a class="extra-menu__link" href="#education" data-js-lang="footerEducation">образование</a> </li>
+            <li class="extra-menu__item"> <a class="extra-menu__link" href="#portfolio" data-js-lang="footerPortfolio">портфолио</a> </li>
+            <li class="extra-menu__item"> <a class="extra-menu__link" href="#contact" data-js-lang="footerContacts">контакты</a> </li>
           </ul>
         </nav>
       </div>

@@ -1,23 +1,8 @@
 import {textEn} from "./data/dataLang.json.js";
 const buttonSwitchLanguage = document.querySelector("[data-js-lang-button]");
-const rootButton = document.querySelector("[data-js-lang-switcher]");
 
 
-const root = document.body.querySelectorAll('*');
 
-const getElementsText = () => {
-
-    const textObj = {};
-    const newArr = [...root].map((el) => el.textContent?.trim()).filter((text) => text && text.length > 0 && !text.includes("\n"));
-
-    newArr.forEach((el, index) => {
-        textObj[index] = el;
-    })
-
-    return textObj
-
-}
-const getText = getElementsText();
 
 buttonSwitchLanguage.addEventListener("click", () => {
     const findImage = buttonSwitchLanguage.querySelector("[data-js-lang-button-icon]");
@@ -38,11 +23,19 @@ buttonSwitchLanguage.addEventListener("click", () => {
 
 });
 
-for(let key in getText) {
-    getText[key] = textEn[key];
-    // console.log(getText[key]);
+
+const toggleTex = (lang) => {
+    const getAllElements = document.querySelectorAll("[data-js-lang]");
+    // console.log([...getAllElements].forEach(el => el.getAttribute("[data-js-lang]")));
+    getAllElements.forEach((el) => {
+        const key = el.getAttribute("data-js-lang");
+        if(textEn[lang] && textEn[lang][key]) {
+            el.textContent = textEn[lang][key];
+        }
+    })
 }
+toggleTex("ru")
 
-const findImage = buttonSwitchLanguage.querySelector("[data-js-lang-button-icon]");
 
-console.log(findImage.src)
+//
+
