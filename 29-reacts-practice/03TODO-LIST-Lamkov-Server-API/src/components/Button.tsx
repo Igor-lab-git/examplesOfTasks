@@ -6,7 +6,7 @@ interface IButton {
     children: React.ReactNode;
     type?: IButtonSubmit;
     onClick?: () => void;
-    isDisabled: boolean;
+    isDisabled?: boolean;
 };
 
 const Button = ({ children, type, onClick, isDisabled}: IButton) => {
