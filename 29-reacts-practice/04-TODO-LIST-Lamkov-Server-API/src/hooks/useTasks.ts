@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ITasks } from "../components/ToDo";
+import tasksApi from "../api/tasksAPI";
 
 const useTasks = () => {
 
@@ -13,23 +14,37 @@ const useTasks = () => {
 
       const deleteAllTasks = useCallback(() => {
         const isConfirm = confirm("Are you sure you want delete All Tasks?");
-        if(isConfirm) {
-          setTasksArray([]);
-        };
-      }, []); // опциональная функция для memo с использованием useCallback функция передаётся в комп. и обновляет комп. опционально, если ещё сам комп. куда прилетает функция её импорт обёрнут в useMemo
-    
+        if (isConfirm) {
+          // Получаем текущие задачи через setState
+          // tasksApi.deleteAll(setTasksArray)
+          setTasksArray(currentTasks => {
+            // currentTasks - всегда актуальный tasksArray
+            tasksApi.deleteAll(currentTasks).catch(error => {
+              console.error("Ошибка при удалении:", error);
+              // Можно показать уведомление пользователю
+            });
+            
+            return []; // Возвращаем пустой массив
+          });
+        }
+      }, []); // ✅ Пустой массив зависимостей
+      // опциональная функция для memo с использованием useCallback функция передаётся в комп. и обновляет комп. опционально, если ещё сам комп. куда прилетает функция её импорт обёрнут в useMemo
+    // Нужно что бы Promise вернул статус ok и только после return [] обнулять UI и показывать пустые таски на странице, а то может, на сервере не удалиться одна, а на странице уже пусто
+
     
       const deleteTask = useCallback((taskId: string) => {
         try {
-          fetch(`http://localhost:3001/tasks/${taskId}`, {method: "DELETE"})
+          tasksApi.delete(taskId)
           .then(() => setTasksArray(tasksArray.filter((t) => t.id !== taskId)));
         } catch (error) {
           console.log(error);
         };
       }, [tasksArray]);
     
+
       const toggleTaskDone = useCallback((taskId: string, isDone: boolean) => {
-        setTasksArray(prevTasksArray => prevTasksArray.map((task) => {  // prevTasksArray не видит на прямую tasksArray, а даёт react актуальное значение тасок изи облости вид. и замыкания
+        tasksApi.toggleDone(taskId, isDone).then(() => {
+        setTasksArray(prevTasksArray => prevTasksArray.map((task) => {  // prevTasksArray не видит на прямую tasksArray, а даёт react актуальное значение тасок из облости вид. и замыкания
           if(task.id === taskId) {
             return {...task, isDone};
           } else {
@@ -37,6 +52,7 @@ const useTasks = () => {
           };
         })
         )
+      });
       }, []); // если данные теже приходят в дочерний комп. то ссылка на массив всё равно меняется, так как set всё равно сетится заново, и поэтому нужно передать в массив зависимостей ссылку на этот массив, что бы он отслеживал её и на этом решал обновлять комп. или нет
     
       const addTask = useCallback((value: string) => {
@@ -44,14 +60,7 @@ const useTasks = () => {
           const newTask = { text: value, isDone: false};
 
           try {
-            fetch("http://localhost:3001/tasks", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(newTask),
-            })
-            .then((response) => response.json())
+            tasksApi.add(newTask)
             .then((addedTasks) => {
               setTasksArray((prevTasks) => [...prevTasks, addedTasks]);
               setNewTitleInput("");
@@ -70,14 +79,10 @@ const useTasks = () => {
         if(inputRef.current !== null) {
           inputRef.current.focus();
         };
-
         try {
-          fetch("http://localhost:3001/tasks")
-          .then((data) => data.json())
-          .then((data) => setTasksArray(data))
+          tasksApi.getAll().then((data) => setTasksArray(data));
         } catch (error) {
           console.log(error);
-          
         }
       }, []);
     

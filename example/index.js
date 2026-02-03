@@ -71,3 +71,19 @@ class  Header {
 }
 
 new Header();
+
+const colorPalette = [
+  '#FFE6E6', // светло-красный
+  '#E6FFE6', // светло-зеленый  
+  '#E6E6FF', // светло-синий
+  '#FFFFE6', // светло-желтый
+  '#FFE6FF', // светло-розовый
+  '#E6FFFF', // светло-голубой
+  '#F0E6FF', // светло-фиолетовый
+  '#FFF0E6', // светло-оранжевый
+  '#E6FFF0', // светло-бирюзовый
+  '#FFFAE6'  // светло-кремовый
+];
+
+const ffff = [Math.floor(Math.random() * colorPalette.length)];
+console.log(colorPalette[ffff]);
