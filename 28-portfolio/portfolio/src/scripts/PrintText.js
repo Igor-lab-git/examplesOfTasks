@@ -1,12 +1,20 @@
-const mainTitle = document.querySelector('[data-js-main-title-print]');
-const subTitle = document.querySelector('[data-js-main-subtitle-print]');
+import {toggleTex} from "./ToggleLanguage.js";
 
-const arrayLetterTitle = [...mainTitle.textContent];
-const arrayLetterSubTitle = [...subTitle.textContent];
+// const mainTitle = document.querySelector('[data-js-main-title-print]');
+// const subTitle = document.querySelector('[data-js-main-subtitle-print]');
+let arrayLetterTitle = []
+let arrayLetterSubTitle = []
+document.addEventListener(("changeTextLanguage"), (event) => {
+    const mainTitle = document.querySelector('[data-js-main-title-print]');
+    const subTitle = document.querySelector('[data-js-main-subtitle-print]');
+    subTitle.textContent = "";
+    mainTitle.textContent = "";
+arrayLetterTitle = [...mainTitle.textContent];
+arrayLetterSubTitle = [...subTitle.textContent];
+})
 
 
-subTitle.textContent = "";
-mainTitle.textContent = "";
+
 
 const colors = ["7fffd4", "e52b50", "6a5acd", "c1876b", "1e5945", "f984e5", "957b8d"];
 let currentIndexColor = 0;
@@ -61,12 +69,13 @@ function printText(text, element, callback) {
     }
 
     // Начинаем анимацию
+
     addText();
+
 }
 
 // Функция для запуска цикла
-function startAnimationCycle() {
-    // Сначала заголовок
+export function startAnimationCycle() {
     printText(arrayLetterTitle, mainTitle, function() {
         // Когда заголовок завершился → подзаголовок
         printText(arrayLetterSubTitle, subTitle, function() {
@@ -81,8 +90,8 @@ function startAnimationCycle() {
 }
 
 // Начинаем цикл
-startAnimationCycle();
 
+startAnimationCycle();
 const title = document.querySelector('[data-js-title]');
 
 
