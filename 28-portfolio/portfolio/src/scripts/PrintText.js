@@ -1,20 +1,14 @@
 import {toggleTex} from "./ToggleLanguage.js";
 
-// const mainTitle = document.querySelector('[data-js-main-title-print]');
-// const subTitle = document.querySelector('[data-js-main-subtitle-print]');
-let arrayLetterTitle = []
-let arrayLetterSubTitle = []
-document.addEventListener(("changeTextLanguage"), (event) => {
-    const mainTitle = document.querySelector('[data-js-main-title-print]');
-    const subTitle = document.querySelector('[data-js-main-subtitle-print]');
-    subTitle.textContent = "";
-    mainTitle.textContent = "";
-arrayLetterTitle = [...mainTitle.textContent];
-arrayLetterSubTitle = [...subTitle.textContent];
-})
+const mainTitle = document.querySelector('[data-js-main-title-print]');
+const subTitle = document.querySelector('[data-js-main-subtitle-print]');
 
 
+let arrayLetterTitle = [...mainTitle.textContent];
+let arrayLetterSubTitle = [...subTitle.textContent];
 
+subTitle.textContent = "";
+mainTitle.textContent = "";
 
 const colors = ["7fffd4", "e52b50", "6a5acd", "c1876b", "1e5945", "f984e5", "957b8d"];
 let currentIndexColor = 0;
