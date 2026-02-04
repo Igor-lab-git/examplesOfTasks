@@ -1,5 +1,4 @@
 import {textEn} from "./data/dataLang.json.js";
-import {startAnimationCycle} from "./PrintText.js";
 const buttonSwitchLanguage = document.querySelector("[data-js-lang-button]");
 
 const changeTextLanguage = new CustomEvent("toggleTextLanguage", {
@@ -21,6 +20,7 @@ export const toggleTex = (lang) => {
         }
     })
 };
+const toggleTextLangEvent = new Event("toggleText", {bubbles: true, cancelable: true});
 
 
 buttonSwitchLanguage.addEventListener("click", () => {
@@ -34,11 +34,13 @@ buttonSwitchLanguage.addEventListener("click", () => {
     if(image.includes("./public/icons/header/icon-switch-language-english.svg")) {
         findImage.src = "./public/icons/header/icon-switch-language-russia.svg";
         buttonSwitchLanguage.title = "language switch button";
-        toggleTex("en")
+        toggleTex("en");
+        buttonSwitchLanguage.dispatchEvent(toggleTextLangEvent);
     } else {
         findImage.src = "./public/icons/header/icon-switch-language-english.svg";
         buttonSwitchLanguage.title = getTitleAttribute;
-        toggleTex("ru")
+        toggleTex("ru");
+        buttonSwitchLanguage.dispatchEvent(toggleTextLangEvent);
     }
     console.log(image);
 
@@ -49,8 +51,7 @@ buttonSwitchLanguage.addEventListener("click", () => {
 
 buttonSwitchLanguage.dispatchEvent(changeTextLanguage);
 // document.dispatchEvent(changeTextLanguage);
-toggleTex("en");
-
+toggleTex("ru");
 
 
 

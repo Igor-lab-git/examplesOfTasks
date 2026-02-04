@@ -1,0 +1,59 @@
+@use "../helpers" as *;
+
+.print-text {
+  --type-speed: 4s;          /* Время печати вперед */
+  --pause-time: 1s;          /* Пауза после печати */
+  --back-speed: 3s;          /* Время печати назад */
+  --start-delay: 0.5s;       /* Задержка перед началом */
+  //const colors = ["7fffd4", "e52b50", "6a5acd", "c1876b", "1e5945", "f984e5", "957b8d"];
+  --color-print: #e52b50;     /* Цвет при печати вперед */
+  --color-pause: #6a5acd;     /* Цвет при паузе */
+  --color-delete: #c1876b;    /* Цвет при удалении */
+
+  margin: 0 0 15px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  color: var(--color-print);
+
+  /* Общая анимация с задержкой начала */
+  animation: lineTypingCustom calc(var(--type-speed) + var(--pause-time) + var(--back-speed) + var(--start-delay)) infinite;
+  animation-delay: var(--start-delay);
+
+  @keyframes lineTypingCustom {
+    /* Начало - задержка */
+    0% {
+      width: 0;
+      opacity: 1;
+      color: var(--color-print);
+    }
+
+    /* Печать вперед */
+    30% {
+      width: 100%;
+      opacity: 1;
+      color: var(--color-print)
+    }
+
+    /* Пауза с полным текстом */
+    50% {
+      width: 100%;
+      opacity: 1;
+      color: var(--color-pause);
+    }
+
+    /* Печать назад (удаление) */
+    80% {
+      width: 0;
+      opacity: 1;
+      color: var(--color-delete);
+    }
+
+    /* Пауза перед новым циклом */
+    100% {
+      width: 0;
+      opacity: 1;
+      color: var(--color-delete);
+    }
+  }
+}
