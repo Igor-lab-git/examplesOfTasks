@@ -1,5 +1,6 @@
 import { memo, useContext, type RefObject } from "react";
 import { ContextTasks } from "../context/ContextTasks";
+import { Link } from "react-router-dom";
 
 interface IToDoItem {
     id: string;
@@ -14,17 +15,32 @@ interface IContextDoItem {
   deleteTask: (taskId: string) => void;
   toggleTaskDone: (taskId: string, isDone: boolean) => void;
   color: string;
+  isDisappearing: string | null;
+  appearing: string | null;
 };
 
 export const ToDoItem = ({id, title, isDone}: IToDoItem) => {
 
   const context = useContext(ContextTasks) as IContextDoItem;
   if (!context) return null;
-  const { firstNoDoneTaskId, firstNoDoneTaskRef, deleteTask, toggleTaskDone, color } = context;
+  const { 
+    firstNoDoneTaskId,
+    firstNoDoneTaskRef,
+    deleteTask,
+    toggleTaskDone,
+    color,
+    isDisappearing,
+    appearing } = context;
 
   return (
     <>
-        <li style={{backgroundColor: color}} className="todo__item todo-item" ref={id === firstNoDoneTaskId ? firstNoDoneTaskRef : null}>
+        <li 
+          style={{backgroundColor: color}} 
+          className={
+            `todo__item todo-item ${isDisappearing === id ? "is-disappearing" : ""} 
+            ${appearing === id ? "is-appearing" : ""}`
+          }
+          ref={id === firstNoDoneTaskId ? firstNoDoneTaskRef : null}>
           <input
             className="todo-item__checkbox"
             id={id}
@@ -33,11 +49,14 @@ export const ToDoItem = ({id, title, isDone}: IToDoItem) => {
             onChange={(e) => toggleTaskDone(id, e.target.checked)}
           />
           <label
-            className="todo-item__label"
+            className="todo-item__label visually-hidden"
             htmlFor={id}
           >
             {title}
           </label>
+          <Link to={`/task/${id}`} aria-label="Task detail page">
+            {title}
+          </Link>
           <button
             className="todo-item__delete-button"
             aria-label="Delete"

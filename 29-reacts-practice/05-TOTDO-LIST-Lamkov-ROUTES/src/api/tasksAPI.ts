@@ -9,7 +9,8 @@ const headers = {
   interface INewTask {
     text: string;
     isDone: boolean;
-  }
+  };
+
   const tasksApi =  {
     getAll: () => {
         return fetch(URL_STRING).then((data) => data.json());
@@ -24,6 +25,10 @@ const headers = {
           .then((response) => response.json())
     },
 
+    getTaskById: (id: string) => {
+      return fetch(`${URL_STRING}/${id}`).then((task) => task.json());
+    },
+
     delete: (taskId: string) => {
         return fetch(`${URL_STRING}/${taskId}`, {method: "DELETE"});
     },
@@ -35,6 +40,7 @@ const headers = {
             )
           )
     },
+
     toggleDone: (taskId: string, isDone: boolean) => {
         return fetch(`${URL_STRING}/${taskId}`, {
             method: "PATCH",

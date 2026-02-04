@@ -41,6 +41,8 @@ const {
   inputRef,
   addTask,
   color,
+  isDisappearing,
+  appearing,
 } = useTasks();
 
 const {
@@ -64,6 +66,8 @@ const {
       inputRef,
       addTask,
       color,
+      isDisappearing,
+      appearing,
     }}>
       {children} // Здесь ToDo.tsx из App.tsx
 

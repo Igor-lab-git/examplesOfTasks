@@ -16,6 +16,8 @@ export interface ITaskContext {
   deleteAllTasks: () => void;
   toggleTaskDone: (taskId: string, isDone: boolean) => void;
   color: string;
+  isDisappearing: string | null;
+  appearing: string | null;
 };
 
 export const ContextTasks = createContext<ITaskContext | null>(null); // Здесь только создаете контекст и объявляете типы для нужных оборачеваемых мне комп.

@@ -9,6 +9,8 @@ const useTasks = () => {
     
       const [newTitleInput, setNewTitleInput] = useState<string>("");
       const [searchQuery, setSearchQuery] = useState<string>("");
+      const [isDisappearing, setIsDisappearing] = useState<string | null>(null); // для синхронизации удаления таски с сервера, если сервер тормозит, то не сразу удаляем таску со страницы, а после ответа сервера
+      const [appearing, setAppearing] = useState<string | null>(null); // для синхронизации добавления таски с сервера, если сервер тормозит, то не сразу добавит таску со страницы, а после ответа сервера
     
       const inputRef = useRef<HTMLInputElement | null>(null);
       const [color, setColor] = useState<string>("white");
@@ -46,7 +48,14 @@ const useTasks = () => {
       const deleteTask = useCallback((taskId: string) => {
         try {
           tasksApi.delete(taskId)
-          .then(() => setTasksArray(tasksArray.filter((t) => t.id !== taskId)));
+          .then(() => {
+            setIsDisappearing(taskId); // после успешного ответа от сервера после удаления таски
+
+            setTimeout(() => {
+              setTasksArray(tasksArray.filter((t) => t.id !== taskId));
+              setIsDisappearing(null); //обнуляем изначальное состояние
+            }, 400)
+          });
         } catch (error) {
           console.log(error);
         };
@@ -78,6 +87,9 @@ const useTasks = () => {
               setNewTitleInput("");
               setSearchQuery("");
               inputRef.current?.focus();
+              setAppearing(addedTasks.id);
+
+              setTimeout(() => setAppearing(null), 400);
             })
           } catch (error) {
             console.log(error);
@@ -114,6 +126,8 @@ const useTasks = () => {
       inputRef,
       addTask,
       color,
+      isDisappearing,
+      appearing,
       }
 }
 
