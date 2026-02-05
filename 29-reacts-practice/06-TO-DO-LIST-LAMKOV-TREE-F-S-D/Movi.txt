@@ -1,0 +1,971 @@
+# React + Vite
+
+ПРИМЕРНЫЙ ФУНКЦИОНАЛ ПРОЕКТА:
+В шапке Бургер меню-Главный поиск, форма с функцией ввода слова и находит все возможные фильм по вхождению или просто ввод иного фильма,  рядом шистирёнка смены темы с тёмной на светлую, Всё сохраняется в LocalStorage. Бургер меню с выборкой фильмов например топ, 100 топ 250, Вампиры, Семейные, зомби, в низу под чертой, фильтрация, Фильмы, Сериалы, Мультфильмы, заходя в категорию, там есть пагинация страниц и также при клике на фильм переход к детальной информации
+
+На главной странице- Главная страница с каруселями, каждой категории: категории Фильмы, Сериалы, Мультфильмы, заходя в каждую кетегорию список фильмов, сверху есть фильтрация По оценкам, Страны, Жанр, Год и кнопка сбросить, так же есть пагинация страниц
+
+Делальная информация-по клику на любой фильм заходим в детальную информацию, там главная картинка рядом с ней ссылки с возможностями смотреть страницу с актёром и там его фильмы где участвовал, тоже ссылки на фильмы. Видео плеер по середине. Сиквелы и приквелы внизу
+
+ГРАФИЧЕСКАЯ СХЕМА FSD СТРУКТУРЫ ПРОЕКТА
+text
+                                  ┌─────────────────────────────────┐
+                                  │        src/                     │
+                                  └────────────────┬────────────────┘
+                                                   │
+        ┌──────────────────────────────────────────┼──────────────────────────────────────────┐
+        │                                          │                                          │
+        ▼                                          ▼                                          ▼
+   ┌───────────┐                            ┌───────────┐                              ┌───────────┐
+   │   app/    │                            │  shared/  │                              │  pages/   │
+   │  (ядро)   │                            │ (общее)   │                              │(страницы) │
+   └─────┬─────┘                            └─────┬─────┘                              └─────┬─────┘
+         │                                          │                                          │
+         │                                          │                                          │
+         ▼                                          ▼                                          ▼
+┌──────────────────┐                ┌─────────────────────────────┐            ┌─────────────────────────────┐
+│ app/router/      │                │ shared/ui/                  │            │ pages/home/                │
+│ app/store/       │◄───────────────┤ - Button                    │◄───────────┤ - HomePage                  │
+│ app/styles/      │                │ - Input                     │            │   └── использует ────────┐  │
+│ app/providers/   │                │ - ThemeToggle               │            │                          ▼  │
+└──────────────────┘                │ - BurgerMenu                │            │                    ┌──────────┐
+         ▲                          │ - SearchBar                 │            │                    │ widgets/ │
+         │                          │ - Carousel                  │            │                    └────┬─────┘
+         └──────────────────────────┴─────────────────────────────┘            │                         │
+                                     ▲                                          │                         │
+                                     │                                          │                         ▼
+                                     │                                          │                ┌─────────────────┐
+                                     │                                          │                │ widgets/        │
+                                     │                                          │                │ - Header       │
+                                     │                                          │                │ - MainCarousel │
+                                     │                                          │                │ - MovieGrid    │
+                                     │                                          │                └────────┬────────┘
+                                     │                                          │                         │
+                                     │                                          │                         │
+                                     │                                          ▼                         │
+                              ┌──────────────┐                     ┌─────────────────────────┐           │
+                              │  features/   │                     │ pages/movie-details/    │           │
+                              │   (фичи)     │                     │ - MovieDetailsPage      │◄──────────┘
+                              └──────┬───────┘                     └─────────────────────────┘
+                                     │                                          ▲
+        ┌────────────────────────────┼────────────────────────────┐             │
+        │                            │                            │             │
+        ▼                            ▼                            ▼             │
+┌─────────────────┐        ┌──────────────────┐        ┌──────────────────┐     │
+│ features/       │        │ features/        │        │ features/        │     │
+│ - movie-search/ │        │ - theme-toggle/  │        │ - filters/       │     │
+│   - ui/Search   │        │   - ui/Toggle    │        │   - ui/FilterBar │     │
+│   - model/      │        │   - model/       │        │   - model/       │     │
+└────────┬────────┘        └─────────┬────────┘        └─────────┬────────┘     │
+         │                            │                            │             │
+         │                            │                            │             │
+         │                            │                            │             │
+         ▼                            ▼                            ▼             │
+┌─────────────────────────────────────────────────────────────────────┐         │
+│                         entities/                                   │         │
+│                        (сущности)                                   │         │
+└─────────────────────────────────┬───────────────────────────────────┘         │
+        ▲                         │                         ▲                   │
+        │                         │                         │                   │
+        │                         ▼                         │                   │
+┌──────────────┐        ┌──────────────────┐        ┌──────────────┐           │
+│ entities/    │        │ entities/        │        │ entities/    │           │
+│ - movie/     │◄───────┤ - actor/         │        │ - category/  │◄──────────┘
+│   - model    │        │   - model        │        │   - model    │
+│   - api      │        │   - api          │        │   - api      │
+│   - ui/MovieCard │    │   - ui/ActorCard │        │              │
+└──────────────┘        └──────────────────┘        └──────────────┘
+        ▲                         ▲
+        │                         │
+        └─────────────────────────┘
+          (актёр связан с фильмами)
+🔄 СХЕМА ПОТОКА ДАННЫХ (стрелочки)
+text
+┌─────────┐      ┌─────────┐      ┌─────────┐      ┌────────────┐
+│  Пользователь  │──────▶│   UI    │──────▶│  Фича   │──────▶│  Сущность  │
+│   (клик)       │       │(кнопка) │       │(логика) │       │  (данные)  │
+└─────────┘      └─────────┘      └─────────┘      └────────────┘
+                                                             │
+                                                             ▼
+┌─────────┐      ┌─────────┐      ┌─────────┐      ┌────────────┐
+│  Данные  │◀──────│  API    │◀──────│Сущность │◀──────│  Сервер   │
+│  (стор)  │       │(запрос) │       │(модель) │       │   (TMDB)   │
+└─────────┘       └─────────┘       └─────────┘       └────────────┘
+       │
+       ▼
+┌─────────┐      ┌─────────┐      ┌─────────┐
+│ Компонент│◀──────│  Стор   │◀──────│  Фича   │
+│(отображает)│      │(обновляет)│      │(изменяет)│
+└─────────┘      └─────────┘      └─────────┘
+📝 ДЕТАЛЬНЫЙ ПСЕВДОКОД ПРОЕКТА
+ШАГ 0: ОПРЕДЕЛЕНИЕ СУЩНОСТЕЙ (Entities)
+pseudocode
+СУЩНОСТИ = {
+    ФИЛЬМ: {
+        id: string
+        title: string
+        originalTitle: string
+        posterUrl: string
+        backdropUrl: string
+        rating: number
+        year: number
+        duration: number
+        genres: string[]
+        countries: string[]
+        description: string
+        actors: АКТЁР[]
+        sequels: ФИЛЬМ[]
+        prequels: ФИЛЬМ[]
+        type: 'movie' | 'series' | 'cartoon'
+        videos: ВИДЕО[]
+    },
+    
+    АКТЁР: {
+        id: string
+        name: string
+        photoUrl: string
+        role: string
+        movies: ФИЛЬМ[]  // фильмы с участием
+    },
+    
+    ВИДЕО: {
+        id: string
+        title: string
+        url: string
+        type: 'trailer' | 'teaser' | 'clip'
+    },
+    
+    КАТЕГОРИЯ: {
+        id: string
+        title: string
+        type: 'top' | 'genre' | 'theme'
+        slug: string  // 'top-250', 'vampires', 'family'
+    }
+}
+ШАГ 1: СТРУКТУРА ПАПОК FSD
+pseudocode
+src/
+├── app/                    # Инициализация приложения
+│   ├── router/           # Настройка маршрутов
+│   ├── store/            # Глобальный стор (Zustand/Redux)
+│   ├── styles/           # Глобальные стили + темы
+│   ├── providers/        # ThemeProvider, RouterProvider
+│   └── index.tsx         # Точка входа
+│
+├── pages/                # Страницы (маршруты)
+│   ├── home/            # Главная страница /
+│   │   ├── index.tsx    # HomePage компонент
+│   │   ├── ui/          # Компоненты только главной
+│   │   └── model/       # Логика главной
+│   │
+│   ├── movies/          # /movies - все фильмы
+│   │   ├── index.tsx
+│   │   ├── ui/
+│   │   └── model/
+│   │
+│   ├── movie-details/   # /movie/:id - детали фильма
+│   │   ├── index.tsx
+│   │   ├── ui/
+│   │   └── model/
+│   │
+│   ├── category/        # /category/:slug - категория
+│   │   ├── index.tsx
+│   │   ├── ui/
+│   │   └── model/
+│   │
+│   └── search/          # /search?q=query - поиск
+│       ├── index.tsx
+│       ├── ui/
+│       └── model/
+│
+├── widgets/             # Сложные переиспользуемые блоки
+│   ├── header/         # Шапка с бургером и поиском
+│   │   ├── index.tsx
+│   │   └── ui/
+│   │
+│   ├── main-carousel/  # Карусель на главной
+│   │   ├── index.tsx
+│   │   └── ui/
+│   │
+│   ├── movie-grid/     # Сетка фильмов
+│   │   ├── index.tsx
+│   │   └── ui/
+│   │
+│   └── pagination/     # Пагинация
+│       ├── index.tsx
+│       └── ui/
+│
+├── features/           # Бизнес-фичи
+│   ├── movie-search/   # Поиск фильмов
+│   │   ├── ui/SearchBar.tsx
+│   │   ├── ui/SearchResults.tsx
+│   │   └── model/useSearch.ts
+│   │
+│   ├── theme-toggle/   # Переключение темы
+│   │   ├── ui/ThemeToggle.tsx
+│   │   └── model/useTheme.ts
+│   │
+│   ├── filters/        # Фильтрация
+│   │   ├── ui/FilterBar.tsx
+│   │   ├── ui/FilterDropdown.tsx
+│   │   └── model/useFilters.ts
+│   │
+│   ├── burger-menu/    # Бургер меню
+│   │   ├── ui/BurgerMenu.tsx
+│   │   └── model/useBurgerMenu.ts
+│   │
+│   └── video-player/   # Видео плеер
+│       ├── ui/VideoPlayer.tsx
+│       └── model/useVideoPlayer.ts
+│
+├── entities/           # Бизнес-сущности
+│   ├── movie/          # Сущность "Фильм"
+│   │   ├── api/        # API запросы к TMDB
+│   │   ├── model/      # Типы, сторы для фильмов
+│   │   └── ui/         # MovieCard, MovieDetails
+│   │
+│   ├── actor/          # Сущность "Актёр"
+│   │   ├── api/
+│   │   ├── model/
+│   │   └── ui/         # ActorCard, ActorDetails
+│   │
+│   ├── category/       # Сущность "Категория"
+│   │   ├── api/
+│   │   ├── model/
+│   │   └── ui/         # CategoryCard
+│   │
+│   └── video/          # Сущность "Видео"
+│       ├── api/
+│       ├── model/
+│       └── ui/         # VideoPlayer
+│
+└── shared/             # Переиспользуемый код
+    ├── ui/             # UI компоненты
+    │   ├── Button/
+    │   ├── Input/
+    │   ├── Select/
+    │   ├── Checkbox/
+    │   └── Modal/
+    │
+    ├── api/            # axios/fecth клиент
+    ├── lib/            # утилиты, форматирование
+    ├── config/         # конфигурация
+    └── types/          # общие типы TypeScript
+ШАГ 2: ГЛОБАЛЬНОЕ СОСТОЯНИЕ (App Store)
+pseudocode
+// app/store/movieStore.ts
+ГЛОБАЛЬНЫЙ_СТОР = {
+    // Данные
+    movies: ФИЛЬМ[]                 # кэшированные фильмы
+    categories: КАТЕГОРИЯ[]         # категории из бургера
+    searchResults: ФИЛЬМ[]          # результаты поиска
+    
+    // UI состояние
+    theme: 'light' | 'dark'         # тема (в localStorage)
+    burgerMenuOpen: false           # открыт ли бургер
+    currentCategory: string         # текущая категория
+    
+    // Фильтры
+    filters: {
+        type: 'all' | 'movie' | 'series' | 'cartoon'
+        genre: string
+        country: string
+        yearFrom: number
+        yearTo: number
+        ratingFrom: number
+        ratingTo: number
+    }
+    
+    // Пагинация
+    pagination: {
+        currentPage: number
+        totalPages: number
+        itemsPerPage: number
+    }
+    
+    // Действия (actions)
+    setTheme(theme): сохранить в localStorage
+    toggleBurgerMenu(): открыть/закрыть
+    setFilters(filters): применить фильтры
+    resetFilters(): сбросить к значениям по умолчанию
+    searchMovies(query): поиск фильмов
+    loadMovies(page): загрузка с пагинацией
+}
+ШАГ 3: КОМПОНЕНТ ШАПКИ (Widgets/Header)
+pseudocode
+// widgets/header/index.tsx
+КОМПОНЕНТ Header:
+    ИМПОРТИРУЕМ:
+        - BurgerMenu из features/burger-menu/ui
+        - SearchBar из features/movie-search/ui
+        - ThemeToggle из features/theme-toggle/ui
+    
+    СОСТОЯНИЕ:
+        - isScrolled: boolean (для прозрачности)
+    
+    ЭФФЕКТЫ:
+        - При скролле менять isScrolled
+        - Восстановить тему из localStorage
+    
+    РЕНДЕР:
+        <header>
+            <div слева>
+                <BurgerMenu />
+                <Logo />
+            </div>
+            
+            <div по_центру>
+                <SearchBar />
+            </div>
+            
+            <div справа>
+                <ThemeToggle />
+            </div>
+        </header>
+ШАГ 4: БУРГЕР МЕНЮ (Features/BurgerMenu)
+pseudocode
+// features/burger-menu/ui/BurgerMenu.tsx
+КОМПОНЕНТ BurgerMenu:
+    СОСТОЯНИЕ из store:
+        - burgerMenuOpen: boolean
+        - categories: КАТЕГОРИЯ[]
+    
+    ДЕЙСТВИЯ:
+        - toggleMenu() - переключить меню
+    
+    ДАННЫЕ МЕНЮ:
+        КАТЕГОРИИ_ВЕРХ = [
+            {name: 'Топ 100', slug: 'top-100'},
+            {name: 'Топ 250', slug: 'top-250'},
+            {name: 'Вампиры', slug: 'vampires'},
+            {name: 'Семейные', slug: 'family'},
+            {name: 'Зомби', slug: 'zombie'}
+        ]
+        
+        КАТЕГОРИИ_НИЗ = [
+            {name: 'Фильмы', type: 'movie'},
+            {name: 'Сериалы', type: 'series'},
+            {name: 'Мультфильмы', type: 'cartoon'}
+        ]
+    
+    РЕНДЕР:
+        <div бургер_кнопка onClick={toggleMenu}>
+            ☰
+        </div>
+        
+        ЕСЛИ burgerMenuOpen:
+            <div меню_контейнер>
+                <div меню_верх>
+                    ДЛЯ каждой категории В КАТЕГОРИИ_ВЕРХ:
+                        <Link to={`/category/${категория.slug}`}>
+                            {категория.name}
+                        </Link>
+                
+                <hr />
+                
+                <div меню_низ>
+                    ДЛЯ каждой категории В КАТЕГОРИИ_НИЗ:
+                        <Link to={`/movies?type=${категория.type}`}>
+                            {категория.name}
+                        </Link>
+            </div>
+ШАГ 5: ПОИСК (Features/MovieSearch)
+pseudocode
+// features/movie-search/model/useSearch.ts
+ХУК useSearch:
+    СОСТОЯНИЕ:
+        - query: string (поисковый запрос)
+        - results: ФИЛЬМ[] (результаты)
+        - isLoading: boolean
+        - error: string | null
+    
+    ФУНКЦИИ:
+        searchMovies(query):
+            ЕСЛИ query.length < 2: ВЕРНУТЬ
+            
+            установить isLoading(true)
+            
+            ПОПЫТАТЬСЯ:
+                // Запрос к API через entities/movie/api
+                результаты = await movieApi.search(query)
+                установить results(результаты)
+                сохранитьВИсторииПоиска(query)
+            
+            ОШИБКА error:
+                установить error(error.message)
+            
+            ФИНАЛЬНО:
+                установить isLoading(false)
+        
+        clearSearch():
+            установить query('')
+            установить results([])
+    
+    ЭФФЕКТЫ:
+        - При изменении query вызывать searchMovies
+        - Восстановить историю из localStorage
+ШАГ 6: ГЛАВНАЯ СТРАНИЦА (Pages/Home)
+pseudocode
+// pages/home/index.tsx
+КОМПОНЕНТ HomePage:
+    ИМПОРТИРУЕМ:
+        - MainCarousel из widgets/main-carousel
+        - MovieGrid из widgets/movie-grid
+    
+    СОСТОЯНИЕ:
+        - featuredMovies: ФИЛЬМ[] (для карусели)
+        - moviesByCategory: {категория: ФИЛЬМ[]}
+        - isLoading: boolean
+    
+    ЭФФЕКТЫ при монтировании:
+        - Загрузить featuredMovies (топ 10 по рейтингу)
+        - Загрузить moviesByCategory:
+            * топ фильмы
+            * топ сериалы  
+            * топ мультфильмы
+    
+    РЕНДЕР:
+        <div>
+            <MainCarousel movies={featuredMovies} />
+            
+            <section категория="Фильмы">
+                <h2>Популярные фильмы</h2>
+                <MovieGrid movies={moviesByCategory.movies} />
+                <Link to="/movies?type=movie">Все фильмы →</Link>
+            </section>
+            
+            <section категория="Сериалы">
+                <h2>Популярные сериалы</h2>
+                <MovieGrid movies={moviesByCategory.series} />
+                <Link to="/movies?type=series">Все сериалы →</Link>
+            </section>
+            
+            <section категория="Мультфильмы">
+                <h2>Популярные мультфильмы</h2>
+                <MovieGrid movies={moviesByCategory.cartoons} />
+                <Link to="/movies?type=cartoon">Все мультфильмы →</Link>
+            </section>
+        </div>
+ШАГ 7: СТРАНИЦА ФИЛЬМОВ С ФИЛЬТРАМИ (Pages/Movies)
+pseudocode
+// pages/movies/index.tsx
+КОМПОНЕНТ MoviesPage:
+    ИМПОРТИРУЕМ:
+        - FilterBar из features/filters/ui
+        - MovieGrid из widgets/movie-grid
+        - Pagination из widgets/pagination
+    
+    СОСТОЯНИЕ из URL:
+        - type: 'movie' | 'series' | 'cartoon'
+        - page: number (пагинация)
+        - filters: параметры из query string
+    
+    СОСТОЯНИЕ из store:
+        - movies: ФИЛЬМ[]
+        - totalPages: number
+        - isLoading: boolean
+    
+    ДЕЙСТВИЯ:
+        loadMovies():
+            фильтры = получитьИзURL()
+            результаты = запросКAPI(фильтры, страница)
+            установитьВStore(результаты)
+        
+        handleFilterChange(фильтры):
+            обновитьURL(фильтры)
+            loadMovies() // перезагрузка
+        
+        handlePageChange(новаяСтраница):
+            обновитьURL({page: новаяСтраница})
+            loadMovies()
+    
+    ЭФФЕКТЫ:
+        - При изменении URL загружать фильмы
+    
+    РЕНДЕР:
+        <div>
+            <h1>{тип === 'movie' ? 'Фильмы' : тип === 'series' ? 'Сериалы' : 'Мультфильмы'}</h1>
+            
+            <FilterBar 
+                currentFilters={фильтры}
+                onChange={handleFilterChange}
+                onReset={сброситьФильтры}
+            />
+            
+            <MovieGrid movies={movies} />
+            
+            <Pagination
+                currentPage={page}
+                totalPages={totalPages}
+                onChange={handlePageChange}
+            />
+        </div>
+ШАГ 8: ДЕТАЛЬНАЯ СТРАНИЦА ФИЛЬМА (Pages/MovieDetails)
+pseudocode
+// pages/movie-details/index.tsx
+КОМПОНЕНТ MovieDetailsPage:
+    ПАРАМЕТРЫ из URL:
+        - movieId: string
+    
+    СОСТОЯНИЕ:
+        - movie: ФИЛЬМ | null
+        - actors: АКТЁР[]
+        - sequels: ФИЛЬМ[]
+        - prequels: ФИЛЬМ[]
+        - videos: ВИДЕО[]
+        - selectedVideo: ВИДЕО | null
+        - isLoading: boolean
+    
+    ЭФФЕКТЫ при монтировании:
+        - Загрузить movie по ID
+        - Загрузить actors фильма
+        - Загрузить sequels и prequels
+        - Загрузить videos (трейлеры)
+    
+    ФУНКЦИИ:
+        handleActorClick(actorId):
+            переход на /actor/:actorId
+        
+        handleVideoSelect(video):
+            установить selectedVideo(video)
+            открыть видео плеер
+    
+    РЕНДЕР:
+        <div>
+            {/* Хедер с постером и инфо */}
+            <div инфо_блок>
+                <img постер src={movie.posterUrl} />
+                
+                <div текст_блок>
+                    <h1>{movie.title}</h1>
+                    <p>{movie.year} • {movie.duration}мин • {movie.countries.join(', ')}</p>
+                    <p>Рейтинг: {movie.rating} ★</p>
+                    <p>{movie.description}</p>
+                    
+                    {/* Жанры */}
+                    <div жанры>
+                        ДЛЯ каждого жанра В movie.genres:
+                            <span тег>{жанр}</span>
+                    </div>
+                    
+                    {/* Актёры (ссылки) */}
+                    <div актёры>
+                        <h3>В главных ролях:</h3>
+                        ДЛЯ каждого актёра В actors.slice(0, 5):
+                            <div актёр onClick={() => handleActorClick(актёр.id)}>
+                                <img src={актёр.photoUrl} />
+                                <span>{актёр.name}</span>
+                                <span>{актёр.role}</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+            {/* Видео плеер */}
+            <div видео_секция>
+                <h2>Трейлеры и видео</h2>
+                ДЛЯ каждого video В videos:
+                    <button onClick={() => handleVideoSelect(video)}>
+                        {video.title}
+                    </button>
+                
+                ЕСЛИ selectedVideo:
+                    <VideoPlayer video={selectedVideo} />
+            </div>
+            
+            {/* Сиквелы и приквелы */}
+            <div связанные_фильмы>
+                ЕСЛИ sequels.length > 0:
+                    <h2>Сиквелы</h2>
+                    <MovieGrid movies={sequels} />
+                
+                ЕСЛИ prequels.length > 0:
+                    <h2>Приквелы</h2>
+                    <MovieGrid movies={prequels} />
+            </div>
+        </div>
+ШАГ 9: ФИЛЬТРАЦИЯ (Features/Filters)
+pseudocode
+// features/filters/ui/FilterBar.tsx
+КОМПОНЕНТ FilterBar:
+    ПРОПСЫ:
+        - currentFilters: ОБЪЕКТ_ФИЛЬТРОВ
+        - onChange: функция(новые_фильтры)
+        - onReset: функция()
+    
+    СОСТОЯНИЕ_ЛОКАЛЬНОЕ:
+        - localFilters: ОБЪЕКТ_ФИЛЬТРОВ
+    
+    ФИЛЬТРЫ = [
+        {
+            тип: 'select',
+            название: 'Тип',
+            поле: 'type',
+            опции: [
+                {значение: 'all', метка: 'Все'},
+                {значение: 'movie', метка: 'Фильмы'},
+                {значение: 'series', метка: 'Сериалы'},
+                {значение: 'cartoon', метка: 'Мультфильмы'}
+            ]
+        },
+        {
+            тип: 'select',
+            название: 'Жанр', 
+            поле: 'genre',
+            опции: загрузитьИзAPI()
+        },
+        {
+            тип: 'select',
+            название: 'Страна',
+            поле: 'country',
+            опции: загрузитьИзAPI()
+        },
+        {
+            тип: 'range',
+            название: 'Год',
+            поле: 'year',
+            min: 1900,
+            max: текущийГод,
+            шаг: 1
+        },
+        {
+            тип: 'range',
+            название: 'Рейтинг',
+            поле: 'rating',
+            min: 0,
+            max: 10,
+            шаг: 0.1
+        }
+    ]
+    
+    ФУНКЦИИ:
+        handleFilterChange(поле, значение):
+            обновить localFilters
+            // Дебаунс 500ms перед вызовом onChange
+        
+        handleApply():
+            вызвать onChange(localFilters)
+        
+        handleReset():
+            сбросить localFilters к значениям по умолчанию
+            вызвать onReset()
+    
+    РЕНДЕР:
+        <div фильтр_бар>
+            ДЛЯ каждого фильтра В ФИЛЬТРЫ:
+                ЕСЛИ фильтр.тип === 'select':
+                    <Select 
+                        label={фильтр.название}
+                        value={localFilters[фильтр.поле]}
+                        options={фильтр.опции}
+                        onChange={(value) => handleFilterChange(фильтр.поле, value)}
+                    />
+                
+                ЕСЛИ фильтр.тип === 'range':
+                    <RangeSlider
+                        label={фильтр.название}
+                        min={фильтр.min}
+                        max={фильтр.max}
+                        value={localFilters[фильтр.поле]}
+                        onChange={(value) => handleFilterChange(фильтр.поле, value)}
+                    />
+            
+            <div кнопки>
+                <button применить onClick={handleApply}>
+                    Применить
+                </button>
+                <button сбросить onClick={handleReset}>
+                    Сбросить
+                </button>
+            </div>
+        </div>
+ШАГ 10: ПАГИНАЦИЯ (Widgets/Pagination)
+pseudocode
+// widgets/pagination/index.tsx
+КОМПОНЕНТ Pagination:
+    ПРОПСЫ:
+        - currentPage: number
+        - totalPages: number  
+        - onChange: функция(новаяСтраница)
+        - visiblePages: number = 5
+    
+    ФУНКЦИИ:
+        getPagesToShow():
+            // Рассчитать какие страницы показывать
+            половина = Math.floor(visiblePages / 2)
+            начало = Math.max(1, currentPage - половина)
+            конец = Math.min(totalPages, начало + visiblePages - 1)
+            
+            ЕСЛИ (конец - начало + 1) < visiblePages:
+                начало = Math.max(1, конец - visiblePages + 1)
+            
+            ВЕРНУТЬ массив_от_начала_до_конца
+    
+    РЕНДЕР:
+        <div пагинация>
+            <button 
+                назад
+                disabled={currentPage === 1}
+                onClick={() => onChange(currentPage - 1)}
+            >
+                ←
+            </button>
+            
+            ЕСЛИ начало > 1:
+                <button onClick={() => onChange(1)}>1</button>
+                ЕСЛИ начало > 2: <span>...</span>
+            
+            ДЛЯ каждой страницы В getPagesToShow():
+                <button
+                    активный={страница === currentPage}
+                    onClick={() => onChange(страница)}
+                >
+                    {страница}
+                </button>
+            
+            ЕСЛИ конец < totalPages:
+                ЕСЛИ конец < totalPages - 1: <span>...</span>
+                <button onClick={() => onChange(totalPages)}>
+                    {totalPages}
+                </button>
+            
+            <button
+                вперед
+                disabled={currentPage === totalPages}
+                onClick={() => onChange(currentPage + 1)}
+            >
+                →
+            </button>
+        </div>
+ШАГ 11: ТЕМА (Features/ThemeToggle)
+pseudocode
+// features/theme-toggle/model/useTheme.ts
+ХУК useTheme:
+    СОСТОЯНИЕ из store:
+        - theme: 'light' | 'dark'
+    
+    ДЕЙСТВИЯ из store:
+        - setTheme: функция(тема)
+    
+    ФУНКЦИИ:
+        toggleTheme():
+            новаяТема = theme === 'light' ? 'dark' : 'light'
+            setTheme(новаяТема)
+            сохранитьВLocalStorage('theme', новаяТема)
+            применитьКДокументу(новаяТема) // class на body
+    
+    ЭФФЕКТ при монтировании:
+        - Восстановить тему из localStorage
+        - Если нет в localStorage: определить системную
+        - Применить к document.body
+    
+    РЕНДЕР (в компоненте):
+        <button onClick={toggleTheme}>
+            {theme === 'light' ? '🌙' : '☀️'}
+        </button>
+        
+🎯 ПОШАГОВЫЙ ПЛАН РЕАЛИЗАЦИИ
+pseudocode
+НЕДЕЛЯ 1: БАЗА И СТРУКТУРА
+1. Создать проект (Vite + React + TypeScript)
+2. Настроить FSD структуру папок
+3. Создать shared/ui компоненты (Button, Input, etc.)
+4. Настроить роутинг (react-router-dom)
+5. Создать базовые типы TypeScript
+
+НЕДЕЛЯ 2: ШАПКА И ПОИСК  
+1. Реализовать Header widget
+2. Создать BurgerMenu feature
+3. Реализовать MovieSearch feature
+4. Создать ThemeToggle feature
+5. Настроить глобальный стор (Zustand)
+
+НЕДЕЛЯ 3: ГЛАВНАЯ СТРАНИЦА
+1. Создать MainCarousel widget
+2. Реализовать MovieGrid widget
+3. Создать Home page с каруселями
+4. Подключить API (TMDB или мок данные)
+
+НЕДЕЛЯ 4: КАТАЛОГ И ФИЛЬТРЫ
+1. Создать Movies page
+2. Реализовать Filters feature
+3. Создать Pagination widget
+4. Настроить query параметры в URL
+
+НЕДЕЛЯ 5: ДЕТАЛИ ФИЛЬМА
+1. Создать MovieDetails page
+2. Реализовать VideoPlayer feature
+3. Создать актёрские карточки
+4. Добавить сиквелы/приквелы
+
+НЕДЕЛЯ 6: ОПТИМИЗАЦИЯ
+1. Добавить кэширование
+2. Реализовать lazy loading
+3. Добавить skeletons/loaders
+4. Оптимизировать бандл
+
+НЕДЕЛЯ 7: ТЕСТИРОВАНИЕ
+1. Написать unit тесты
+2. Протестировать все сценарии
+3. Проверить responsive дизайн
+4. Оптимизировать производительность
+💡 ВАЖНЫЕ МОМЕНТЫ
+Начните с мок данных — не ждите API
+
+Сначала структура, потом стили — используйте простые div
+
+Разделяй и властвуй — делайте по одному компоненту за раз
+
+Документируйте зависимости — рисуйте стрелочки кто от кого зависит
+
+Тестируйте каждую фичу отдельно — прежде чем интегрировать
+
+
+
+ПУБЛИЧНЫЕ ФАЙЛЫ (public/)
+text
+public/
+├── favicon.ico                    # Фавикон
+├── favicon.svg                    # SVG фавикон
+├── apple-touch-icon.png           # Для iOS
+├── manifest.json                  # PWA манифест
+├── robots.txt                     # Правила для поисковиков
+├── sitemap.xml                    # Карта сайта (генерируется)
+│
+├── icons/                         # Иконки для PWA
+│   ├── icon-72x72.png
+│   ├── icon-96x96.png
+│   ├── icon-128x128.png
+│   ├── icon-144x144.png
+│   └── icon-192x192.png
+│
+├── fonts/                         # ТОЛЬКО если шрифты не обрабатываются
+│   └── legacy-font.woff           # Старые шрифты, если нужно
+│
+├── locales/                       # JSON файлы переводов (если не через i18n)
+│   ├── en.json
+│   └── ru.json
+│
+└── mock/                          # Мок данные для разработки
+    ├── movies.json
+    └── actors.json
+
+    АССЕТЫ (src/assets/)
+text
+src/
+├── assets/                        # ОСНОВНОЙ КАТАЛОГ АССЕТОВ
+│   │
+│   ├── images/                    # Изображения
+│   │   ├── logos/                 # Логотипы
+│   │   │   ├── logo.svg           # SVG лого
+│   │   │   ├── logo-dark.svg
+│   │   │   └── logo-light.svg
+│   │   │
+│   │   ├── ui/                    # UI элементы
+│   │   │   ├── buttons/
+│   │   │   ├── icons/             # Иконки компонентов
+│   │   │   │   ├── search.svg
+│   │   │   │   ├── burger.svg
+│   │   │   │   └── theme-toggle.svg
+│   │   │   └── backgrounds/
+│   │   │
+│   │   ├── placeholders/          # Заглушки
+│   │   │   ├── movie-poster.png
+│   │   │   ├── actor-photo.png
+│   │   │   └── backdrop.jpg
+│   │   │
+│   │   └── screenshots/           # Скриншоты для readme
+│   │
+│   ├── fonts/                     # Современные шрифты
+│   │   ├── Inter/                 # Шрифт Inter
+│   │   │   ├── Inter-Regular.woff2
+│   │   │   ├── Inter-Medium.woff2
+│   │   │   └── Inter-Bold.woff2
+│   │   └── icons.ttf              # Иконочный шрифт
+│   │
+│   ├── styles/                    # Глобальные стили
+│   │   ├── _variables.scss        # Переменные
+│   │   ├── _mixins.scss           # Миксины
+│   │   ├── _fonts.scss            # Подключение шрифтов
+│   │   ├── _reset.scss            # Сброс стилей
+│   │   ├── _theme-light.scss      # Тема светлая
+│   │   ├── _theme-dark.scss       # Тема тёмная
+│   │   └── main.scss              # Главный файл
+│   │
+│   └── data/                      # Статические данные
+│       ├── movie-genres.json      # Жанры фильмов
+│       ├── countries.json         # Страны производства
+│       └── categories.json        # Категории для бургера
+│
+├── shared/                        # FSD слой
+│   └── ui/                        # Здесь компонентные ассеты
+│       ├── Button/
+│       │   ├── Button.tsx
+│       │   ├── Button.module.scss # Стили КОМПОНЕНТА
+│       │   └── icon-right.svg     # Иконка КОНКРЕТНОЙ кнопки
+│       └── MovieCard/
+│           ├── MovieCard.tsx
+│           ├── MovieCard.module.scss
+│           └── default-poster.jpg # Дефолтный постер для КОМПОНЕНТА
+│
+└── app/                           # Глобальные настройки
+    └── styles/
+        ├── globals.css            # Импортирует из assets/styles/
+        └── theme.css              # Тематические переменные CSS
+
+        🎬 ДЛЯ ВАШЕГО КИНОПРОЕКТА РЕКОМЕНДУЮ:
+        public/
+├── favicon.ico          # Фавикон
+├── manifest.json        # Для PWA
+├── robots.txt          # SEO
+└── og-image.jpg        # Для соцсетей
+
+src/assets/
+├── images/
+│   ├── logos/          # Логотипы сайта
+│   ├── ui/             # Иконки UI
+│   └── placeholders/   # Заглушки при загрузке
+├── fonts/              # Кастомные шрифты
+└── styles/             # Глобальные стили + темы
+
+// Постеры и фото актёров — ТОЛЬКО CDN!
+`https://image.tmdb.org/t/p/{size}/{path}`
+
+
+КОГДА ЧТО ИСПОЛЬЗОВАТЬ:
+Используйте import из assets/ когда:
+javascript
+// 1. SVG как React компонент (лучший способ!)
+import { ReactComponent as Logo } from './assets/logo.svg'
+
+// 2. Оптимизация важна
+import optimizedIcon from './assets/icon.svg'
+
+// 3. Нужно менять стили
+import icon from './assets/icon.svg'
+// <img src={icon} className="custom-style" />
+
+// 4. Динамический импорт
+const icons = {
+  home: import('./assets/home.svg'),
+  search: import('./assets/search.svg')
+}
+
+// 5. В составе компонента
+// components/Button/icon.svg + Button.tsx
+Используйте путь из public/ когда:
+javascript
+// 1. Фавиконки
+<link rel="icon" href="/favicon.ico" />
+
+// 2. Open Graph изображения (для соцсетей)
+<meta property="og:image" content="/og-image.jpg" />
+
+// 3. Старые скрипты / полифиллы
+<script src="/legacy-polyfill.js"></script>
+
+// 4. Документы для скачивания
+<a href="/brochure.pdf">Скачать PDF</a>
+
+// 5. Внешние библиотеки с собственными путями
+// (которые ожидают файлы по определенным URL)
