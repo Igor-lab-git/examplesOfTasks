@@ -1,59 +1,79 @@
-import {textEn} from "./data/dataLang.json.js";
+import {translatorObject} from "./data/dataLang.json.js";
 const buttonSwitchLanguage = document.querySelector("[data-js-lang-button]");
 
-const changeTextLanguage = new CustomEvent("toggleTextLanguage", {
-    bubbles: true, // Событие всплывает
-    cancelable: true, // Можно отменить
-    detail: { // Дополнительные данные
-        timestamp: Date.now(),
-        source: 'languageButton'
-    }
-});
 
-export const toggleTex = (lang) => {
-    const getAllElements = document.querySelectorAll("[data-js-lang]");
-    // console.log([...getAllElements].forEach(el => el.getAttribute("[data-js-lang]")));
-    getAllElements.forEach((el) => {
-        const key = el.getAttribute("data-js-lang");
-        if(textEn[lang] && textEn[lang][key]) {
-            el.textContent = textEn[lang][key];
-        }
-    })
+document.addEventListener("DOMContentLoaded", () => {
+    if(buttonSwitchLanguage) {
+        buttonSwitchLanguage.addEventListener("click", () => handleSwitchText())
+    }
+})
+
+
+const configUpdateButton = {
+    "ru": {
+        icon: "./public/icons/header/icon-switch-language-english.svg",
+        title: "Переключить не русский язык",
+        altTitle: "Русский язык",
+        lang: "ru"
+    },
+    "en": {
+        icon: "./public/icons/header/icon-switch-language-russia.svg",
+        title: "Language switch button",
+        altTitle: "English language",
+        lang: "en"
+    }
+}
+
+let currentLang = "en"
+
+
+function toggleText(lang, config) {
+    const { icon, title, altTitle } = config[lang];
+    const imageButtonElement = buttonSwitchLanguage.firstElementChild;
+
+        currentLang = lang === "ru" ? "en" : "ru";
+
+    if(currentLang === "en") {
+        imageButtonElement.src = config[currentLang].icon;
+
+        buttonSwitchLanguage.title = config[currentLang].title;
+    } else if(currentLang === "ru") {
+        imageButtonElement.src = config[currentLang].icon;
+
+        buttonSwitchLanguage.title = config[currentLang].title;
+    }
+    const getElementsWithText = document.querySelectorAll("[data-js-lang]");
+
+    getElementsWithText.forEach((element) => {
+        const getAttributeElement = element.getAttribute("data-js-lang");
+        const text = translatorObject[lang][getAttributeElement];
+        element.textContent = text;
+
+    });
+
 };
-const toggleTextLangEvent = new Event("toggleText", {bubbles: true, cancelable: true});
-
-
-buttonSwitchLanguage.addEventListener("click", () => {
-    const findImage = buttonSwitchLanguage.querySelector("[data-js-lang-button-icon]");
-
-    const getTitleAttribute = buttonSwitchLanguage.getAttribute("title");
-
-
-    let image = findImage.getAttribute("src");
-
-    if(image.includes("./public/icons/header/icon-switch-language-english.svg")) {
-        findImage.src = "./public/icons/header/icon-switch-language-russia.svg";
-        buttonSwitchLanguage.title = "language switch button";
-        toggleTex("en");
-        buttonSwitchLanguage.dispatchEvent(toggleTextLangEvent);
-    } else {
-        findImage.src = "./public/icons/header/icon-switch-language-english.svg";
-        buttonSwitchLanguage.title = getTitleAttribute;
-        toggleTex("ru");
-        buttonSwitchLanguage.dispatchEvent(toggleTextLangEvent);
-    }
-    console.log(image);
-
-});
 
 
 
+function handleSwitchText() {
+    const getLang = configUpdateButton[currentLang].lang
+    toggleText(getLang, configUpdateButton);
+}
 
-buttonSwitchLanguage.dispatchEvent(changeTextLanguage);
-// document.dispatchEvent(changeTextLanguage);
-toggleTex("ru");
 
+// ПСЕВДОКОД - ОЧЕНЬ ПРОСТО
+/*
+1. Есть объект с переводами на два языка
+2. Есть переменная currentLang = 'ru'
+3. Есть элементы с data-lang атрибутами
+4. При клике на кнопку:
+   - Меняем язык на противоположный
+   - Берем все элементы с data-lang
+   - Для каждого элемента:
+        * Берем ключ из data-lang
+        * Берем текст из объекта переводов
+        * Вставляем текст в элемент
+5. Меняем иконку кнопки
+*/
 
-
-//
 

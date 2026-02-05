@@ -1,4 +1,4 @@
-export const textEn = {
+export const translatorObject  = {
     ru: {
         switchButton: "Кнопка переключения светлой темы",
         switchButtonLang: "кнопка для переключения языка",
