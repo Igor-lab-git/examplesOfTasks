@@ -178,7 +178,7 @@ src/
 ├── widgets/             # Сложные переиспользуемые блоки
 │   ├── header/         # Шапка с бургером и поиском
 │   │   ├── index.tsx
-│   │   └── ui/
+│   │   └── ui/widgets/ui/ = КОМПОНЕНТЫ (отображение)
 │   │
 │   ├── main-carousel/  # Карусель на главной
 │   │   ├── index.tsx
@@ -194,8 +194,8 @@ src/
 │
 ├── features/           # Бизнес-фичи
 │   ├── movie-search/   # Поиск фильмов
-│   │   ├── ui/SearchBar.tsx
-│   │   ├── ui/SearchResults.tsx
+│   │   ├── ui/SearchBar.tsx  features/ = ФИЧИ (бизнес-логика + UI)
+│   │   ├── ui/SearchResults.tsx  
 │   │   └── model/useSearch.ts
 │   │
 │   ├── theme-toggle/   # Переключение темы
@@ -248,6 +248,22 @@ src/
     ├── lib/            # утилиты, форматирование
     ├── config/         # конфигурация
     └── types/          # общие типы TypeScript
+
+    // Эти идут в model/
+fetchUserData()          // работа с API
+calculateTotalPrice()    // вычисления
+validateEmail()          // проверки
+formatDate()             // преобразование данных
+filterMovies()           // фильтрация
+sortByRating()           // сортировка
+
+// Эти остаются в компоненте/`ui/`
+handleClick()            // просто клик
+toggleModal()            // открыть/закрыть
+setActiveTab()           // переключить вкладку
+renderStars()            // отрисовать звездочки
+getButtonColor()         // цвет кнопки (если простой)
+
 ШАГ 2: ГЛОБАЛЬНОЕ СОСТОЯНИЕ (App Store)
 pseudocode
 // app/store/movieStore.ts
