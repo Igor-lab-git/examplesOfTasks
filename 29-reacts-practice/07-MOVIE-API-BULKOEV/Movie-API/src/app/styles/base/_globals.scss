@@ -1,0 +1,165 @@
+@use "../helpers" as *;
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+//* {
+//  border: 1px solid red;
+//}
+
+html {
+  &.is-lock {
+    overflow: hidden;
+  }
+}
+
+html {
+  &.is-dark-theme {
+    --color-text: #000;
+    --color-bg-body: #f0efeb;
+    --color-gray-border: #000;
+    --color-border-color: #000;
+    --color-bg-header: #cad2c5;
+    --color-bg-btn-menu: #2f3e46;
+    --color-bg-field-input: #cad2c5;
+    --color-gray-border: #c5c3c6;
+    --color-gray-placeholder: #0d1117;
+
+  }
+}
+
+body {
+  @include fluid-text(18, 14);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: rem(340);
+  font-family: var(--font-family);
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  color: var(--color-text);
+//   background-color: var(--color-bg-body);
+
+  @include tablet {
+    padding-left: 0;
+  }
+}
+
+body {
+  --sb-track-color: #222;
+  --sb-size: 0.5rem;
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 1rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-main-blue);
+  border-radius: 1rem;
+}
+
+* {
+  scrollbar-width: thin;
+ scrollbar-color: var(--color-main-blue, #007bff) var(--sb-track-color, #222);
+}
+
+main {
+  flex-grow: 1;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--color-black);
+  font-weight: 500;
+  font-family: var(--font-family);
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+
+  &[class] {
+    text-decoration: none;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+li,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+dl, dt, dd {
+  margin: 0;
+  padding: 0;
+}
+
+
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: rem(2) dashed var(--color-white);
+  outline-offset: rem(4);
+  transition-duration: 0s !important;
+}

@@ -1,10 +1,16 @@
+import style from "../header.module.scss";
 
-const BurgerButton = () => {
+interface IProps {
+  toggleNavBar: () => void;
+}
+
+const BurgerButton = ({toggleNavBar}: IProps) => {
+
   return (
-    <div>
-        <span></span>
-        <span></span>
-        <span></span>
+    <div onClick={toggleNavBar} className={style.burgerButton}>
+        <span className={style.buttonLine}></span>
+        <span className={style.buttonLine}></span>
+        <span className={style.buttonLine}></span>
     </div>
   )
 };

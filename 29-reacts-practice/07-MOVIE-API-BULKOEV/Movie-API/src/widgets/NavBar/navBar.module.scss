@@ -1,0 +1,34 @@
+@use "../../app/styles/main.scss" as main;
+@use "../../app/styles/helpers" as *;
+
+.navBar {
+  position: fixed;
+  height: 100vh;
+  width: 400px;
+  background-color: gray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(40);
+  transition: transform 0.3s ease; // Добавьте анимацию
+
+  &.visible {
+    transform: translateX(0);
+  }
+
+  &.hidden {
+    transform: translateX(-100%);
+  }
+
+  ul {
+    @extend .list-reset;
+  }
+}
+
+.mainLinkNavBar {
+  display: flex;
+  align-items: center;
+  column-gap: rem(10);
+}
