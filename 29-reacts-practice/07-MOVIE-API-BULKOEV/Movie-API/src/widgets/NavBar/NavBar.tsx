@@ -17,7 +17,9 @@ const NavBar = ({isOpen, onClose}: IProps) => {
     <div className={`${style.navBar} ${isOpen ? style.visible : style.hidden}`}>
         <ul className={`list-reset`}>
           {TOP_LIST.map(({id, title, icon, nameIcon, url}) => (
-              <LinkCategoriesMovies id={id} url={url} onClose={onClose} title={title} icon={icon} nameIcon={nameIcon} />
+            <li key={id}>
+              <LinkCategoriesMovies url={url} onClose={onClose} title={title} icon={icon} nameIcon={nameIcon} />
+        </li>
           ))}
         </ul>
 

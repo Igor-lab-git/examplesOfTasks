@@ -37,7 +37,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "ТОП 100 популярных фильмов",
         icon: ICONS.top100,
         nameIcon: "ТОП 100",
-        url: "/top100",
+        url: "/top-100",
         type: "top100",
     },
     {
@@ -45,7 +45,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "ТОП 250 популярных фильмов",
         icon: ICONS.top250,
         nameIcon: "ТОП 250",
-        url: "/top100",
+        url: "/top-250",
         type: "top250",
     },
     {
@@ -53,7 +53,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Вампиры",
         icon: ICONS.bloDVampire,
         nameIcon: "вампиры",
-        url: "/top100",
+        url: "/category/Вампиры",
         type: "catigory",
     },
     {
@@ -61,7 +61,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Комиксы",
         icon: ICONS.comics,
         nameIcon: "комиксы",
-        url: "/top100",
+        url: "/category/Комиксы",
         type: "catigory",
     },
     {
@@ -69,7 +69,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Семейные",
         icon: ICONS.family,
         nameIcon: "семейные",
-        url: "/top100",
+        url: "/category/Семейные",
         type: "catigory",
     },
     {
@@ -77,7 +77,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Романтика",
         icon: ICONS.romance,
         nameIcon: "романтика",
-        url: "/top100",
+        url: "/category/Романтика",
         type: "catigory",
     },
     {
@@ -85,7 +85,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Зомби",
         icon: ICONS.zombies,
         nameIcon: "Зомби",
-        url: "/top100",
+        url: "/category/Зомби",
         type: "catigory",
     },
     {
@@ -93,7 +93,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Катастрофы",
         icon: ICONS.catostropheIcon,
         nameIcon: "катастрофы",
-        url: "/top100",
+        url: "/category/Катастрофы",
         type: "catigory",
     },
     {
@@ -101,7 +101,7 @@ export const TOP_LIST: ITOP_LIST[] = [
         title: "Популярные сериалы",
         icon: ICONS.popular_seriesIconIcon,
         nameIcon: "сериалы",
-        url: "",
+        url: "/category/Популярные-сериалы",
         type: "catigory",
     },
 ];
@@ -112,15 +112,15 @@ export const MOVIE_LIST: IMOVIE_LIST[] = [
         title: "Фильмы",
         icon: ICONS_Categories.categoriesMovies,
         nameIcon: "фильмы",
-        url: "",
-        type: "movie",
+        url: "/movies",
+        type: "movies",
     },
     {
         id: 2,
         title: "Сериалы",
         icon: ICONS_Categories.categoriesTvSeries,
         nameIcon: "сериалы",
-        url: "",
+        url: "/series",
         type: "series",
     },
     {
@@ -128,7 +128,7 @@ export const MOVIE_LIST: IMOVIE_LIST[] = [
         title: "Мыльтфильмы",
         icon: ICONS_Categories.categoriesCartoons,
         nameIcon: "мыльтфильмы",
-        url: "",
+        url: "/cartoon",
         type: "cartoon",
     },
 ];
