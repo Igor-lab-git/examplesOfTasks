@@ -1,0 +1,8 @@
+@use "../../app/styles/main.scss" as *;
+@use "../../app/styles/helpers/" as *;
+
+.listCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(15);
+}

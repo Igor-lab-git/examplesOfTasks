@@ -1,4 +1,4 @@
-import type { IMOVIE_LIST, ITOP_LIST } from "../../typse/types";
+import type { IMOVIE_CONTENT_LIST, IMOVIE_GENRES_LIST, IMOVIE_TOP_RANKINGS_LIST } from "../../typse/types";
 import top100Icon from '../../assets/icons/nav-bar/category-top-muvies-navBar/top_100.svg';
 import top250Icon from '../../assets/icons/nav-bar/category-top-muvies-navBar/top_250.svg';
 import bloDVampireIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/blood-vampire.svg';
@@ -31,96 +31,100 @@ export const ICONS_Categories = {
     categoriesTvSeries: categories_tv_seriesIcon,
   } as const;
 
-export const TOP_LIST: ITOP_LIST[] = [
+export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
     {
         id: 1,
         title: "ТОП 100 популярных фильмов",
         icon: ICONS.top100,
         nameIcon: "ТОП 100",
-        url: "/top-100",
-        type: "top100",
+        path: "/top-100",
+        type: "TOP_POPULAR_MOVIES",
     },
     {
         id: 2,
         title: "ТОП 250 популярных фильмов",
         icon: ICONS.top250,
         nameIcon: "ТОП 250",
-        url: "/top-250",
-        type: "top250",
+        path: "/top-250",
+        type: "TOP_250_MOVIES",
     },
+
+];
+
+export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     {
         id: 3,
         title: "Вампиры",
         icon: ICONS.bloDVampire,
         nameIcon: "вампиры",
-        url: "/category/Вампиры",
-        type: "catigory",
+        path: "/category/vampire",
+        type: "VAMPIRE_THEME",
     },
     {
         id: 4,
         title: "Комиксы",
         icon: ICONS.comics,
         nameIcon: "комиксы",
-        url: "/category/Комиксы",
-        type: "catigory",
+        path: "/category/comics",
+        type: "COMICS_THEME",
     },
     {
         id: 5,
         title: "Семейные",
         icon: ICONS.family,
         nameIcon: "семейные",
-        url: "/category/Семейные",
-        type: "catigory",
+        path: "/category/family",
+        type: "FAMILY",
     },
     {
         id: 6,
         title: "Романтика",
         icon: ICONS.romance,
         nameIcon: "романтика",
-        url: "/category/Романтика",
-        type: "catigory",
+        path: "/category/love",
+        type: "LOVE_THEME",
     },
     {
         id: 7,
         title: "Зомби",
         icon: ICONS.zombies,
         nameIcon: "Зомби",
-        url: "/category/Зомби",
-        type: "catigory",
+        path: "/category/zombie",
+        type: "ZOMBIE_THEME",
     },
     {
         id: 8,
         title: "Катастрофы",
         icon: ICONS.catostropheIcon,
         nameIcon: "катастрофы",
-        url: "/category/Катастрофы",
-        type: "catigory",
+        path: "/category/catastrophe",
+        type: "CATASTROPHE_THEME",
     },
     {
         id: 9,
         title: "Популярные сериалы",
         icon: ICONS.popular_seriesIconIcon,
         nameIcon: "сериалы",
-        url: "/category/Популярные-сериалы",
-        type: "catigory",
+        path: "/category/popular_series",
+        type: "POPULAR_SERIES",
     },
-];
+]
 
-export const MOVIE_LIST: IMOVIE_LIST[] = [
+export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
     {
         id: 1,
         title: "Фильмы",
         icon: ICONS_Categories.categoriesMovies,
         nameIcon: "фильмы",
-        url: "/movies",
-        type: "movies",
+        path: "/movies",
+        type: "FILM",
     },
     {
         id: 2,
         title: "Сериалы",
         icon: ICONS_Categories.categoriesTvSeries,
         nameIcon: "сериалы",
-        url: "/series",
+        path: "/series",
         type: "series",
     },
     {
@@ -128,7 +132,7 @@ export const MOVIE_LIST: IMOVIE_LIST[] = [
         title: "Мыльтфильмы",
         icon: ICONS_Categories.categoriesCartoons,
         nameIcon: "мыльтфильмы",
-        url: "/cartoon",
+        path: "/cartoon",
         type: "cartoon",
     },
 ];

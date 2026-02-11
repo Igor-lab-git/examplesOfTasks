@@ -1,5 +1,5 @@
-import { MOVIE_LIST, TOP_LIST } from "../../shared/lib/constants";
-import LinkCategoriesMovies from "./ui/LinkCategoriesMovies";
+import { MOVIE_CONTENT_LIST, MOVIE_GENRES_LIST, MOVIE_TOP_RANKINGS_LIST } from "../../shared/lib/constants";
+// import LinkCategoriesMovies from "./ui/LinkCategoriesMovies";
 
 import style from "./navBar.module.scss";
 import { Link } from "react-router-dom";
@@ -16,17 +16,32 @@ const NavBar = ({isOpen, onClose}: IProps) => {
   return (
     <div className={`${style.navBar} ${isOpen ? style.visible : style.hidden}`}>
         <ul className={`list-reset`}>
-          {TOP_LIST.map(({id, title, icon, nameIcon, url}) => (
+          {MOVIE_TOP_RANKINGS_LIST.map(({id, title, icon, nameIcon, path}) => (
             <li key={id}>
-              <LinkCategoriesMovies url={url} onClose={onClose} title={title} icon={icon} nameIcon={nameIcon} />
+              <Link to={path} onClick={onClose}>
+                <span>{title}</span>
+                <img src={icon} alt={`иконка ${nameIcon}`} />
+              </Link>
+              {/* <LinkCategoriesMovies url={url} onClose={onClose} title={title} icon={icon} nameIcon={nameIcon} /> */}
         </li>
           ))}
         </ul>
 
         <ul>
-          {MOVIE_LIST.map(({id, title, icon, nameIcon, url}) => (
+          {MOVIE_GENRES_LIST.map(({id, title, icon, nameIcon, path}) => (
             <li key={id}>
-              <Link to={url} onClick={onClose}>
+              <Link to={path} onClick={onClose}>
+                <span>{title}</span>
+                <img src={icon} alt={`иконка ${nameIcon}`} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <ul>
+          {MOVIE_CONTENT_LIST.map(({id, title, icon, nameIcon, path}) => (
+            <li key={id}>
+              <Link to={path} onClick={onClose}>
                 <span>{title}</span>
                 <img src={icon} alt={`иконка ${nameIcon}`} />
               </Link>

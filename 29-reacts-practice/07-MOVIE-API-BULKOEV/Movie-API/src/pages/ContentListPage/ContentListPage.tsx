@@ -1,8 +1,15 @@
 // import { useParams } from "react-router-dom";
 // import { TOP_LIST } from "../../shared/lib/constants";
 
+interface IContentListPage {
+  type: string;
+}
 
-const CategoryPage = () => {
+
+const ContentListPage = ({type}: IContentListPage) => {
+
+  console.log(type);
+  
   // const slug = useParams<string>()
 
   // const findCatigory = TOP_LIST.find((item) => {
@@ -19,8 +26,10 @@ const CategoryPage = () => {
           <span>{itemCatigory.nameIcon}</span>
         </li>
       ))} */}
+
+      {type === ""}
     </div>
   )
 };
 
-export default CategoryPage;
+export default ContentListPage;
