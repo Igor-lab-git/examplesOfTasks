@@ -47,7 +47,7 @@ export const moviesApi = createApi({
         getMoviesTopCollections: builder.query<IMoviesCollectionResponse, { type?: string; page: number }>({
             query: ({type, page}) => `/v2.2/films/collections?type=${type}&page=${page}`,
         }),
-        getFilteredContent: builder.query<IFilterувContent, { countries?: number; genres?: number, order?: string, type?: string, year?: number, page?: number}>({
+        getFilteredContent: builder.query<IFilterувContent, { countries?: string; genres?: string, order?: string, type?: string, year?: number, page?: number}>({
             query: ({
                 countries,
                 genres,

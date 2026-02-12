@@ -3,8 +3,8 @@ import type { RootState } from "../store";
 
 // Define a type for the slice state
 interface ICurrentGlobalState {
-  countries: number;
-  genres: number;
+  countries: string;
+  genres: string;
   order: "NUM_VOTE" | string;
   type: string;
   year: number;
@@ -13,39 +13,22 @@ interface ICurrentGlobalState {
 
 // Define the initial state using that type
 const initialState: ICurrentGlobalState = {
-  countries: 0,
-  genres: 0,
+  countries: "",
+  genres: "",
   order: "NUM_VOTE",
   type: "",
-  year: 2002,
+  year: 1000,
   page: 1,
 };
-
-// const fetchMovies = createAsyncThunk("movies/etchMovies", async() => {
-//     try {
-//         const responce = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301', {
-//             method: 'GET',
-//             headers: {
-//                 'X-API-KEY': 'b991989e-b5f5-499d-af3b-7032b60b94d0',
-//                 'Content-Type': 'application/json',
-//             },
-//         });
-
-//         const data = await responce.json();
-//         return data;
-//     } catch (error) {
-//      console.log(error);
-//     }
-// });
 
 export const moviesSlice = createSlice({
   name: "moviesSlice",
   initialState,
   reducers: {
-    setCuntries: (state, action: PayloadAction<number>) => {
+    setCuntries: (state, action: PayloadAction<string>) => {
       state.countries = action.payload;
     },
-    setGenres: (state, action: PayloadAction<number>) => {
+    setGenres: (state, action: PayloadAction<string>) => {
       state.genres = action.payload;
     },
     setOrder: (state, action: PayloadAction<string>) => {
