@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import {moviesSlice} from "./ui/moviesSlice.ts";
 import {moviesApi} from "./ui/moviesApi.ts";
+import { moviesSlice } from "./ui/moviesSlice.ts";
+
 
 
 export const store = configureStore({
     reducer: {
         // movies: moviesSlice.reducer,
         [moviesApi.reducerPath]: moviesApi.reducer,
+        movies: moviesSlice.reducer,
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.

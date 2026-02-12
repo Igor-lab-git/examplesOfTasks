@@ -125,7 +125,7 @@ export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
         icon: ICONS_Categories.categoriesTvSeries,
         nameIcon: "сериалы",
         path: "/series",
-        type: "series",
+        type: "TV_SERIES",
     },
     {
         id: 3,
@@ -133,6 +133,6 @@ export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
         icon: ICONS_Categories.categoriesCartoons,
         nameIcon: "мыльтфильмы",
         path: "/cartoon",
-        type: "cartoon",
+        type: "FILM",
     },
 ];

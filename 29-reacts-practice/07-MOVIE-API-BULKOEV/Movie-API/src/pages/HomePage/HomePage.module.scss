@@ -1,0 +1,50 @@
+.carouselWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; // или 100%
+    margin: 0 auto;
+  }
+  
+  .container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 16px;
+    padding: 16px 0;
+    
+    // ✅ 1. Убираем скроллбар (опционально)
+    scrollbar-width: none;  // Firefox
+    &::-webkit-scrollbar {
+      display: none;  // Chrome, Safari
+    }
+    
+    // ✅ 2. ЗАПРЕЩАЕМ ЭЛЕМЕНТАМ СЖИМАТЬСЯ
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+  
+  // ✅ 3. КНОПКИ ПОВЕРХ КОНТЕНТА
+  .prevButton, .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    
+    &:hover {
+      background: rgba(0,0,0,0.8);
+    }
+  }
+  
+  .prevButton {
+    left: 0;
+  }
+  
+  .nextButton {
+    right: 0;
+  }

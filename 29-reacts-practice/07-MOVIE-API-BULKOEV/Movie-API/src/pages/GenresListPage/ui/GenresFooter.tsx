@@ -8,6 +8,9 @@ interface IGenresFooter {
 }
 
 const GenresFooter = ({totalPages, quantityMovies, numberPage, setNumberPage,}: IGenresFooter) => {
+
+  console.log(totalPages, quantityMovies, numberPage, setNumberPage,);
+  
   return (
     <div>GenresFooter</div>
   );

@@ -19,14 +19,14 @@ const AppRouter = () => {
         <Route path="/detailedPage/:id" element={<DetailedPage />} />
         <Route path="/actorPage/:id" element={<ActorPage />} />
 
-        {MOVIE_TOP_RANKINGS_LIST && MOVIE_TOP_RANKINGS_LIST.map(({id, path, type}) => (
-          <Route key={id} path={path} element={<TopRankingsPage type={type}/>}/>
+        {MOVIE_TOP_RANKINGS_LIST && MOVIE_TOP_RANKINGS_LIST.map(({id, path}) => (
+          <Route key={id} path={path} element={<TopRankingsPage />}/>
         ))};
 
         <Route path="/category/:slug" element={<GenresListPage/>}/>
 
-        {MOVIE_CONTENT_LIST && MOVIE_CONTENT_LIST.map(({id, path, type}) => (
-          <Route key={id} path={path} element={<ContentListPage type={type}/>}/>
+        {MOVIE_CONTENT_LIST && MOVIE_CONTENT_LIST.map(({id, path}) => (
+          <Route key={id} path={path} element={<ContentListPage />}/>
         ))};
         
         <Route path="*" element={<div>404 - Страница не найдена</div>} />
