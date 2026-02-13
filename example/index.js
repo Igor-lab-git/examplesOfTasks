@@ -87,3 +87,8 @@ const colorPalette = [
 
 const ffff = [Math.floor(Math.random() * colorPalette.length)];
 console.log(colorPalette[ffff]);
+
+const exceptions = ["", "новости", "для взрослых", "церемония", "концерт"]
+const respons = ["", "новости", "для взрослых", "церемония", "концерт", "Швейцария", "военный", "комедия"]
+const cvv = respons.filter(res => !exceptions.includes(res))
+console.log(cvv);

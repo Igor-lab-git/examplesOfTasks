@@ -27,6 +27,20 @@ interface IFilterувContent {
     items: IMovies[];
 };
 
+interface ISelectOptions {
+    genres: 
+        {
+          "id": number,
+          "genre": string
+        }[];
+        countries: 
+    {
+      "id": number,
+      "country": string
+    }[];
+};
+
+const exceptionsGenres = ["", "новости", "для взрослых", "церемония", "концерт"]
 
 
 // const KEY_API = import.meta.env.VITE_KINOPOISK_KEY || "";
@@ -47,22 +61,31 @@ export const moviesApi = createApi({
         getMoviesTopCollections: builder.query<IMoviesCollectionResponse, { type?: string; page: number }>({
             query: ({type, page}) => `/v2.2/films/collections?type=${type}&page=${page}`,
         }),
-        getFilteredContent: builder.query<IFilterувContent, { countries?: string; genres?: string, order?: string, type?: string, year?: number, page?: number}>({
+        getFilteredContent: builder.query<IFilterувContent, { country?: string; genre?: string, order?: string, type?: string, year?: number, page?: number}>({
             query: ({
-                countries,
-                genres,
+                country,
+                genre,
                 order = "NUM_VOTE",
                 type = "FILM",
                 year,
                 page
-            })=> `/v2.2/films?countries=${countries}&genres=${genres}&order=${order}&type=${type}&year=${year}&page=${page}`,
+            })=> `/v2.2/films?countries=${country}&genres=${genre}&order=${order}&type=${type}&year=${year}&page=${page}`,
         }),
+        getSelectOptions: builder.query<ISelectOptions, void>({
+            query: ()=> `v2.2/films/filters`,
+            transformResponse: (response: ISelectOptions) => ({
+                ...response,
+                genres: response.genres.filter(
+                    (genre: { genre: string }) => !exceptionsGenres.includes(genre.genre)
+                )
+            })
+        })
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMoviesTopCollectionsQuery, useGetFilteredContentQuery } = moviesApi;
+export const { useGetMoviesTopCollectionsQuery, useGetFilteredContentQuery, useGetSelectOptionsQuery } = moviesApi;
 
 
 

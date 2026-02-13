@@ -14,6 +14,7 @@ export interface IMOVIE_CONTENT_LIST {
   nameIcon: string;
   path: string;
   type: string,
+  genres: string
 };
 
 export interface IMOVIE_GENRES_LIST {

@@ -3,8 +3,8 @@ import type { RootState } from "../store";
 
 // Define a type for the slice state
 interface ICurrentGlobalState {
-  countries: string;
-  genres: string;
+  country: string;
+  genre: string;
   order: "NUM_VOTE" | string;
   type: string;
   year: number;
@@ -13,8 +13,8 @@ interface ICurrentGlobalState {
 
 // Define the initial state using that type
 const initialState: ICurrentGlobalState = {
-  countries: "",
-  genres: "",
+  country: "",
+  genre: "",
   order: "NUM_VOTE",
   type: "",
   year: 1000,
@@ -25,11 +25,11 @@ export const moviesSlice = createSlice({
   name: "moviesSlice",
   initialState,
   reducers: {
-    setCuntries: (state, action: PayloadAction<string>) => {
-      state.countries = action.payload;
+    setCountryes: (state, action: PayloadAction<string>) => {
+      state.country = action.payload;
     },
     setGenres: (state, action: PayloadAction<string>) => {
-      state.genres = action.payload;
+      state.genre = action.payload;
     },
     setOrder: (state, action: PayloadAction<string>) => {
       state.order = action.payload;
@@ -48,7 +48,7 @@ export const moviesSlice = createSlice({
 
 // Other code such as selectors can use the imported `RootState` type
 
-export const { setCuntries, setGenres, setOrder, setType, setYear, setPage } = moviesSlice.actions;
+export const { setCountryes, setGenres, setOrder, setType, setYear, setPage } = moviesSlice.actions;
 export const selectFilters = (state: RootState) => state.movies;
 
 
