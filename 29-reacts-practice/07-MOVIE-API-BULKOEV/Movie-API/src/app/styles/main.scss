@@ -1,5 +1,5 @@
-@use "./base/normalize";
-@use "./base/fonts";
-@use "./base/variables";
-@use "./base/utils";
-@use "./base/globals";
+@forward './base/_normalize';
+@forward './base/_fonts';
+@forward './base/_variables';
+@forward './base/_utils';
+@forward './base/_globals';

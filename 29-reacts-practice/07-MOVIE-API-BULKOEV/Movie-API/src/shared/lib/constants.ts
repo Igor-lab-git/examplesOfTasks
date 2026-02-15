@@ -8,10 +8,10 @@ import romanceIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/r
 import zombiesIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/zombies.svg';
 import catostropheIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/catostrophe.svg';
 import popular_TV_seriesIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/popular_TV_series.svg';
-
 import categories_moviesIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/categories_movies.svg';
 import categories_cartoonsIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/categories_cartoons.svg';
 import categories_tv_seriesIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/categories_tv_series.svg';
+import { generatorUniqueID} from "./helpers.ts";
 
 export const ICONS = {
   top100: top100Icon,
@@ -33,7 +33,7 @@ export const ICONS_Categories = {
 
 export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
     {
-        id: 1,
+        id: generatorUniqueID,
         title: "ТОП 100 популярных фильмов",
         icon: ICONS.top100,
         nameIcon: "ТОП 100",
@@ -41,19 +41,18 @@ export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
         type: "TOP_POPULAR_MOVIES",
     },
     {
-        id: 2,
+        id: generatorUniqueID,
         title: "ТОП 250 популярных фильмов",
         icon: ICONS.top250,
         nameIcon: "ТОП 250",
         path: "/top-250",
         type: "TOP_250_MOVIES",
     },
-
 ];
 
 export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     {
-        id: 3,
+        id: generatorUniqueID,
         title: "Вампиры",
         icon: ICONS.bloDVampire,
         nameIcon: "вампиры",
@@ -61,7 +60,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "VAMPIRE_THEME",
     },
     {
-        id: 4,
+        id: generatorUniqueID,
         title: "Комиксы",
         icon: ICONS.comics,
         nameIcon: "комиксы",
@@ -69,7 +68,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "COMICS_THEME",
     },
     {
-        id: 5,
+        id: generatorUniqueID,
         title: "Семейные",
         icon: ICONS.family,
         nameIcon: "семейные",
@@ -77,7 +76,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "FAMILY",
     },
     {
-        id: 6,
+        id: generatorUniqueID,
         title: "Романтика",
         icon: ICONS.romance,
         nameIcon: "романтика",
@@ -85,7 +84,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "LOVE_THEME",
     },
     {
-        id: 7,
+        id: generatorUniqueID,
         title: "Зомби",
         icon: ICONS.zombies,
         nameIcon: "Зомби",
@@ -93,7 +92,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "ZOMBIE_THEME",
     },
     {
-        id: 8,
+        id: generatorUniqueID,
         title: "Катастрофы",
         icon: ICONS.catostropheIcon,
         nameIcon: "катастрофы",
@@ -101,7 +100,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "CATASTROPHE_THEME",
     },
     {
-        id: 9,
+        id: generatorUniqueID,
         title: "Популярные сериалы",
         icon: ICONS.popular_seriesIconIcon,
         nameIcon: "сериалы",
@@ -112,30 +111,30 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
 
 export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
     {
-        id: 1,
+        id: generatorUniqueID,
         title: "Фильмы",
         icon: ICONS_Categories.categoriesMovies,
         nameIcon: "фильмы",
         path: "/movies",
         type: "FILM",
-        genres: "1",
+        genre: "1",
     },
     {
-        id: 2,
+        id: generatorUniqueID,
         title: "Сериалы",
         icon: ICONS_Categories.categoriesTvSeries,
         nameIcon: "сериалы",
         path: "/series",
         type: "TV_SERIES",
-        genres: "1",
+        genre: "1",
     },
     {
-        id: 3,
+        id: generatorUniqueID,
         title: "Мыльтфильмы",
         icon: ICONS_Categories.categoriesCartoons,
         nameIcon: "мыльтфильмы",
         path: "/cartoon",
         type: "FILM",
-        genres: "18",
+        genre: "18",
     },
 ];

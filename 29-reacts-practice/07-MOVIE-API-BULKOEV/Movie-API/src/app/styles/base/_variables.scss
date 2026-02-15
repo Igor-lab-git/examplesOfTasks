@@ -1,7 +1,10 @@
 @use "../helpers" as *;
-
 :root {
   --color-white: #fff;
+  --burger-color: #79C142;
+  --search-input: #EEEEEE;
+
+
   --color-gray-border: #fff4;
   --color-gray-placeholder: #fff4;
   --color-bg-tab: #C6C6C6;
@@ -13,7 +16,6 @@
   --color-main-blue: #00bfff;
   --color-border-color: #fff;
   --color-text: #F9FAFB;
-
 
   --width-header: 25rem;
 
@@ -33,3 +35,11 @@
   0rem 0rem 0.3rem var(--color-main-blue),
   0rem 0rem 0.4rem var(--color-main-blue);
 }
+
+.darkTheme {
+  --color-white: #fff;
+}
+
+
+
+

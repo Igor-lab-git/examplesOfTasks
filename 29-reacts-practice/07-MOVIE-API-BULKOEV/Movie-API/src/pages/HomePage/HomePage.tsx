@@ -1,10 +1,11 @@
 import Carousel from "./Carousel";
 import style from "./HomePage.module.scss";
 import { Link } from "react-router-dom";
-import {useHookContentQuery} from "../../app/store/ui/hooks.ts";
 import ErrorMessage from "../../shared/ui/ErrorMessage/ErrorMessage.tsx";
+import {useHookContentQuery} from "../../features";
+import {type JSX} from "react";
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
 
 const {
     isLoading,
@@ -14,7 +15,13 @@ const {
     getContentFilms,
     getContentSeries,
     getContentCartoon,} = useHookContentQuery();
+    // const sequelsPrequels = useGetSequelsPrequelsQuery({id: 839818});
 
+    console.log(getTopPopularFilms.data)
+    console.log(getTopBestFilms.data)
+    console.log(getContentFilms.data)
+    console.log(getContentSeries.data)
+    console.log(getContentCartoon.data)
 const carouselFormatedContent = [
   {
     title: "Популярные фильмы",
@@ -69,7 +76,6 @@ if(isError) return <ErrorMessage />;
                 </Carousel>
             </div>
         ))}
-
     </div>
   )
 };

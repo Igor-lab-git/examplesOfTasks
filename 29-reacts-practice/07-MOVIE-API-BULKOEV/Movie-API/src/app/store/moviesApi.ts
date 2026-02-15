@@ -1,0 +1,153 @@
+// Need to use the React-specific entry point to import createApi
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+export interface IMovies {
+    kinopoiskId: number;
+    imdbId: string | null;
+    nameRu: string | null;
+    nameEn: string | null;
+    nameOriginal: string | null;
+    posterUrl: string;
+    posterUrlPreview: string;
+    description: string;
+    ratingImdb: number;
+    ratingKinopoisk: number;
+
+};
+
+interface IMoviesCollectionResponse {
+    total: number;
+    totalPages: number;
+    items: IMovies[];
+};
+
+interface IFilteredContent {
+    total: number;
+    totalPages: number;
+    items: IMovies[];
+};
+
+interface ISelectOptions {
+    genres: 
+        {
+          "id": number,
+          "genre": string
+        }[];
+        countries: 
+    {
+      "id": number,
+      "country": string
+    }[];
+};
+
+interface IMovieById {
+    kinopoiskId: number;
+    posterUrl: string;
+    "nameRu": null | string;
+    ratingKinopoisk: number;
+    year: number | null;
+    countries: {
+        country: string
+    }[];
+    genres: {
+        genre: string
+    }[];
+    filmLength: number;
+    description: string;
+    webUrl: string;
+    imdbId: string;
+};
+
+interface ISequelsPrequels {
+    "filmId": number;
+    "nameRu": null | string;
+    "nameEn": string;
+    "nameOriginal": string;
+    "posterUrl": string;
+    "posterUrlPreview": string;
+    relationType: string;
+};
+
+interface IPersonById {
+    "staffId": number
+    "nameRu": string
+    "nameEn": string,
+    "description": null | string,
+    "posterUrl": string,
+    "professionText": string;
+    "professionKey": string
+};
+
+interface  ITeaserAndTrailerById {
+    items: {
+        name: string;
+        site: string;
+        url: string
+    }[]
+    total: number
+}
+
+const exceptionsGenres = ["", "новости", "для взрослых", "церемония", "концерт"]
+
+const KEY_API = import.meta.env.VITE_KINOPOISK_KEY || "";
+const BASE_URL = "https://kinopoiskapiunofficial.tech/api";
+
+export const moviesApi = createApi({
+    reducerPath: 'moviesApi',
+    baseQuery: fetchBaseQuery({ baseUrl: BASE_URL,
+    prepareHeaders: headers => {
+        headers.set('X-API-KEY', KEY_API);
+        headers.set('Content-Type', 'application/json',);
+        return headers;
+    }}),
+    endpoints: (builder) => ({
+        getMoviesTopCollections: builder.query<IMoviesCollectionResponse, { type?: string; page: number }>({
+            query: ({type, page}) => `/v2.2/films/collections?type=${type}&page=${page}`,
+        }),
+        getFilteredContent: builder.query<IFilteredContent, { country?: string; genre?: string, order?: string, type?: string, year?: number, page?: number}>({
+            query: ({
+                country,
+                genre,
+                order = "NUM_VOTE",
+                type = "FILM",
+                year,
+                page
+            })=> `/v2.2/films?countries=${country}&genres=${genre}&order=${order}&type=${type}&yearFrom=${year}&yearTo=${year}&page=${page}`,
+        }),
+        getSelectOptions: builder.query<ISelectOptions, void>({
+            query: ()=> `v2.2/films/filters`,
+            transformResponse: (response: ISelectOptions) => ({
+                ...response,
+                genres: response.genres.filter(
+                    (genre: { genre: string }) => !exceptionsGenres.includes(genre.genre)
+                )
+            })
+        }),
+        getMovieById: builder.query<IMovieById, {id: number}>({
+            query: ({id})=> `/v2.2/films/${id}`,
+        }),
+        getSequelsPrequels: builder.query<ISequelsPrequels[], {id: number}>({
+            query: ({id})=> `v2.1/films/${id}/sequels_and_prequels`,
+        }),
+        getPersonById: builder.query<IPersonById[], {id: number}>({
+            query: ({id})=> `v1/staff?filmId=${id}`,
+        }),
+        getTeaserAndTrailerById: builder.query<ITeaserAndTrailerById, {id: number}>({
+            query: ({id})=> `v2.2/films/${id}/videos`,
+        }),
+    }),
+
+
+})
+
+export const {
+    useGetMoviesTopCollectionsQuery,
+    useGetFilteredContentQuery,
+    useGetSelectOptionsQuery,
+    useGetMovieByIdQuery,
+    useGetSequelsPrequelsQuery,
+    useGetPersonByIdQuery,
+    useGetTeaserAndTrailerByIdQuery} = moviesApi;
+
+
+

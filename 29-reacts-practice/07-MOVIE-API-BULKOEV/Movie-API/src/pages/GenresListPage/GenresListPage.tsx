@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { MOVIE_GENRES_LIST } from "../../shared/lib/constants";
-import { useGetMoviesTopCollectionsQuery } from "../../app/store/ui/moviesApi";
+import { useGetMoviesTopCollectionsQuery } from "../../app/store/moviesApi.ts";
 import { useState } from "react";
 import GenresHeader from "./ui/GenresHeader";
 import GenresFooter from "./ui/GenresFooter";
@@ -23,8 +23,7 @@ const GenresListPage  = () => {
       <GenresHeader getTypeGenres={getTypeGenres}/>
 
       <GenresBody movies={data?.items}/>
-
-      <GenresFooter
+        <GenresFooter
         totalPages={data?.totalPages}
         quantityMovies={data?.items}
         numberPage={numberPage}

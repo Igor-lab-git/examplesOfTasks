@@ -1,4 +1,4 @@
-import {useGetMoviesTopCollectionsQuery} from "../../app/store/ui/moviesApi.ts";
+import {useGetMoviesTopCollectionsQuery} from "../../app/store/moviesApi.ts";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {MOVIE_TOP_RANKINGS_LIST} from "../../shared/lib/constants.ts";
 import {useState} from "react";

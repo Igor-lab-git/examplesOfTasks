@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import type { IMOVIE_CONTENT_LIST } from "../../../typse/types";
+import type { IMOVIE_GENRES_LIST} from "../../../typse/types";
 
 interface IGenresHeader {
-    getTypeGenres?: IMOVIE_CONTENT_LIST
+    getTypeGenres?: IMOVIE_GENRES_LIST;
 }
 
  const GenresHeader = ({getTypeGenres}: IGenresHeader) => {

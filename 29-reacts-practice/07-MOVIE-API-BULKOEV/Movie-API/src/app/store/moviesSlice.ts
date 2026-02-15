@@ -1,7 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
+import type { RootState } from "./store.ts";
 
-// Define a type for the slice state
 interface ICurrentGlobalState {
   country: string;
   genre: string;
@@ -9,9 +8,8 @@ interface ICurrentGlobalState {
   type: string;
   year: number;
   page: number;
-}
+};
 
-// Define the initial state using that type
 const initialState: ICurrentGlobalState = {
   country: "",
   genre: "",
@@ -25,7 +23,7 @@ export const moviesSlice = createSlice({
   name: "moviesSlice",
   initialState,
   reducers: {
-    setCountryes: (state, action: PayloadAction<string>) => {
+    setCountries: (state, action: PayloadAction<string>) => {
       state.country = action.payload;
     },
     setGenres: (state, action: PayloadAction<string>) => {
@@ -46,10 +44,7 @@ export const moviesSlice = createSlice({
   },
 });
 
-// Other code such as selectors can use the imported `RootState` type
-
-export const { setCountryes, setGenres, setOrder, setType, setYear, setPage } = moviesSlice.actions;
+export const { setCountries, setGenres, setOrder, setType, setYear, setPage } = moviesSlice.actions;
 export const selectFilters = (state: RootState) => state.movies;
-
 
 export default moviesSlice.reducer;

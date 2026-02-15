@@ -1,4 +1,4 @@
-import type { IMovies } from "../../../app/store/ui/moviesApi";
+import type { IMovies } from "../../../app/store/moviesApi.ts";
 
 interface IGenresFooter {
   totalPages?: number;

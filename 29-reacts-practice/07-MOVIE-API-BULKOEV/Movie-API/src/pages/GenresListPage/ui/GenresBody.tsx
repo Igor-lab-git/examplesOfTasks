@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { IMovies } from "../../../app/store/ui/moviesApi";
+import type { IMovies } from "../../../app/store/moviesApi.ts";
 import style from "../GenresListPage.module.scss"
 
 interface IGenresBody {
@@ -14,6 +14,7 @@ const GenresBody = ({ movies }: IGenresBody) => {
           movies.map((movie) => (
             <li key={movie.kinopoiskId}>
               <Link to={`/movie/${movie.kinopoiskId}`}>
+
                 <img
                   src={movie.posterUrlPreview}
                   alt={movie.nameRu ? movie.nameRu : "постер фильма"}

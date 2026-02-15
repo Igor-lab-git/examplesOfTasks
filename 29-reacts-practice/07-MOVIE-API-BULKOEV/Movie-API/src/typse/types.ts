@@ -1,5 +1,5 @@
 export interface IMOVIE_TOP_RANKINGS_LIST {
-  id: number;
+  id: string;
   title: string;
   icon: string;
   nameIcon: string;
@@ -8,17 +8,17 @@ export interface IMOVIE_TOP_RANKINGS_LIST {
 }
 
 export interface IMOVIE_CONTENT_LIST {
-  id: number;
+  id: string;
   title: string;
   icon: string;
   nameIcon: string;
   path: string;
   type: string,
-  genres: string
+  genre: string
 };
 
 export interface IMOVIE_GENRES_LIST {
-  id: number;
+  id: string;
   title: string;
   icon: string;
   nameIcon: string;

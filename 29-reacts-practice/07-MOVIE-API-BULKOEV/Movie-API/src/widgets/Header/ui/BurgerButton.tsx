@@ -1,17 +1,25 @@
 import style from "../header.module.scss";
+import "../../../app/styles/base/_utils.scss"
 
 interface IProps {
-  toggleNavBar: () => void;
+    isOpen: boolean
+    toggleNavBar: () => void;
 }
 
-const BurgerButton = ({toggleNavBar}: IProps) => {
+const BurgerButton = ({toggleNavBar, isOpen}: IProps) => {
 
   return (
-    <div onClick={toggleNavBar} className={style.burgerButton}>
-        <span className={style.buttonLine}></span>
-        <span className={style.buttonLine}></span>
-        <span className={style.buttonLine}></span>
-    </div>
+      <button
+          className={style.burgerButton}
+          aria-label="Открыть меню навигации"
+          aria-controls={isOpen ? "Закрыть меню навигации" : "Открыть меню навигации"}
+          title={isOpen ? "Закрыть меню навигации" : "Открыть меню навигации"}
+          onClick={toggleNavBar}>
+          <span className={style.buttonLine}></span>
+          <span className={style.buttonLine}></span>
+          <span className={style.buttonLine}></span>
+          <span className="visuallyHidden">Меню</span>
+      </button>
   )
 };
 

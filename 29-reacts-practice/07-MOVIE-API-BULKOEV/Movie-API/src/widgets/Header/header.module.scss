@@ -1,29 +1,45 @@
 @use "../../app/styles/main.scss" as main;
-@use "../../app/styles/helpers/" as *;
+@use "../../app/styles/helpers/index" as *;
+
 
 .header {
-    width: 100vw;
-    height: rem(80);
-    background: gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: rem(20) rem(60);
-  }
+  width: 100vw;
+  height: rem(80);
+
+  padding: rem(20) rem(60);
+  background: var(--color-white);
+}
+
+.containerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .burgerButton {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    cursor: pointer;
-    // margin-left: auto;
-    background-color: red;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: rem(5);
+  align-items: center;
+  cursor: pointer;
+  border-radius: rem(5);
+  background-color: var(--burger-color);
+}
+
+.burgerButton:hover {
+  opacity: 0.9;
+}
+
+.burgerButton:active {
+  opacity: 0.7;
 }
 
 .buttonLine {
-    width: 80%;
-    height: 2px;
-    background-color: black;
+  width: 55%;
+  height: rem(3);
+  border-radius: rem(10);
+  background-color: var(--color-white);
 }

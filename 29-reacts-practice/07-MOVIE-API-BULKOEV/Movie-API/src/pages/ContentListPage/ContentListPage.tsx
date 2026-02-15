@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { useGetFilteredContentQuery } from "../../app/store/ui/moviesApi";
-import { selectFilters } from "../../app/store/ui/moviesSlice";
+import { useGetFilteredContentQuery } from "../../app/store/moviesApi.ts";
+import { selectFilters } from "../../app/store/moviesSlice.ts";
 import { MOVIE_CONTENT_LIST } from "../../shared/lib/constants";
 import { useLocation } from "react-router-dom";
 import { ErrorMessage } from "../../shared/ui/ErrorMessage";
@@ -15,15 +15,14 @@ const location = useLocation();
 const [numberPage, setNumberPage] = useState<number>(1);
 
 
-  const {country, order, year, genre: selectedGenres} = useSelector(selectFilters);
+  const {country, order, year, genre} = useSelector(selectFilters);
 
   const contentType = MOVIE_CONTENT_LIST.find(el => el.path === location.pathname);
   // console.log(contentType?.type);
   
-  const genreParams = selectedGenres || contentType?.genres
+  // const genreParams = selectedGenres || contentType?.genres
 
-  const {data, error, isLoading} = useGetFilteredContentQuery({country, genre: genreParams, order, type: contentType?.type, year, page: numberPage});
-// console.log(data);
+  const {data, error, isLoading} = useGetFilteredContentQuery({country: country, genre: genre, order, type: contentType?.type, year: year, page: numberPage});
 
 if(isLoading) return <h2>Загрузка данных...</h2>
 if(error) return <ErrorMessage />
@@ -34,19 +33,19 @@ const handlePageClick = (event: { selected: number }) => {
     setNumberPage(event.selected + 1); // React Paginate считает с 0
 };
 
-console.log('URL params:', {
-  countries: country,
-  genres: genreParams,
-  order: order,
-  type: contentType?.type,
-  year: year,
-  page: numberPage
-});
+// console.log('URL params:', {
+//   countries: country,
+//   genres: genreParams,
+//   order: order,
+//   type: contentType?.type,
+//   year: year,
+//   page: numberPage
+// });
   return (
     <div>
       <h2>ContentListPage</h2>
       
-      <FilterSelectContent country={country} order={order} year={year} genre={selectedGenres}/>
+      <FilterSelectContent country={country} order={order} year={year} genre={genre}/>
 
       {data && data.items.map((movie) => (
         <li key={movie.kinopoiskId}>

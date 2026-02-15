@@ -1,7 +1,8 @@
 import { type JSX } from "react";
-import { useGetSelectOptionsQuery } from "../../../app/store/ui/moviesApi";
+import { useGetSelectOptionsQuery } from "../../../app/store/moviesApi.ts";
 import { useDispatch } from "react-redux";
-import { setCountryes, setGenres, setOrder, setYear } from "../../../app/store/ui/moviesSlice";
+import {setCountries, setGenres, setOrder, setYear} from "../../../app/store/moviesSlice.ts";
+import {ErrorMessage} from "../../../shared/ui/ErrorMessage";
 
 interface IFilterSelectContent {
     country: string;
@@ -13,24 +14,24 @@ interface IFilterSelectContent {
  const FilterSelectContent = ({country, order, year, genre}: IFilterSelectContent): JSX.Element => {
 
     const {data,  error, isLoading} = useGetSelectOptionsQuery()
-
-    console.log(  error, isLoading)
     const dispatch = useDispatch()
 
-    const genrestList = data?.genres;
-    const countrytList = data?.countries;
+    // console.log(  error, isLoading);
+
+    if(error) return <ErrorMessage />
+    if(isLoading) return <p>Loading...</p>
+
+    const genresList = data?.genres;
+    const countryList = data?.countries;
     const currentYear = new Date().getFullYear();
     const yearsList = Array.from({ length: 80 }, (_, i) => currentYear - i);
     const listSorting = [
         {title: "по рэйтенгу", value: "RATING"},
         {title: "по голосам", value: "NUM_VOTE"}
     ];
-    yearsList.forEach(el => console.log(typeof el))
-    console.log(yearsList.forEach(el => typeof el), "yearsList");
-    
 
     const toggleCountry = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setCountryes(e.target.value))
+        dispatch(setCountries(e.target.value))
     }
 
     const toggleYear = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,6 +44,13 @@ interface IFilterSelectContent {
 
     const toggleSorrting = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(setOrder(e.target.value))
+    };
+
+    const resetFilter = () => {
+        dispatch(setCountries(""));
+        dispatch(setYear(1000));
+        dispatch(setGenres(""));
+        dispatch(setOrder("NUM_VOTE"));
     };
 
   return (
@@ -58,26 +66,26 @@ interface IFilterSelectContent {
 
         <select name="country" id="" value={country} onChange={toggleCountry}>
             <option value="" disabled selected>Страна</option>
-            {countrytList && countrytList.map((country) => (
+            {countryList && countryList.map((country) => (
                 <option key={country.id} value={country.id}>{country.country}</option>
             ))}
         </select>
 
         <select name="genre" id="" value={genre} onChange={toggleGenres}>
             <option value="" disabled selected>Жанр</option>
-            {genrestList && genrestList.map((genre) => (
+            {genresList && genresList.map((genre) => (
                 <option key={genre.id} value={genre.id}>{genre.genre}</option>
             ))}
         </select>
 
         <select name="year" id="" value={year} onChange={toggleYear}>
             <option value="">Год</option>
-            {yearsList && yearsList.map((year, index) => (
-                <option key={index} value={year}>{year}</option>
+            {yearsList && yearsList.map((yearItem, index) => (
+                <option key={index} value={yearItem}>{yearItem}</option>
             ))}
         </select>
 
-        <button>сбросить</button>
+        <button onClick={resetFilter}>сбросить фильтры</button>
     </div>
   )
 };
