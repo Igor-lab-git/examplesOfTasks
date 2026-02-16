@@ -6,7 +6,7 @@ import style from "./SearchInput.module.scss"
 const SearchInput = (): JSX.Element => {
     return (
         <div className={style.inputContainer}>
-            <input className={style.inputElement} type="text"/>
+            <input className={style.inputElement} type="text" placeholder="Поиск по сайту..."/>
             <div className={style.icon}>
                 <img src={searchIcon} alt=""/>
             </div>

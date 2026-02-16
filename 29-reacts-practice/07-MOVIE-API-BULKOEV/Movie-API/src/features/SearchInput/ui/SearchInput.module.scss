@@ -6,21 +6,43 @@
 }
 
 .inputElement {
-  max-width: rem(400);
+  max-width: rem(300);
   width: 100%;
   outline: none;
-  border: 0;
+  border: 1px solid transparent;
   padding: rem(10) rem(10);
   height: rem(35);
   line-height: rem(35);
+  border-radius: 6px;
   background-color: var(--search-input);
   box-shadow: inset 0 0 0 1px #e3e3e3, inset 1px 2px 5px rgba(0, 0, 0, 0.2);
+
+  &::placeholder {
+    color: #999; 
+    font-size: 14px;      
+    font-style: italic;  
+    font-weight: 400;  
+    opacity: 0.8; 
+    transition: opacity 0.3s ease;
+  }
+
+  &:focus {
+    border: 1px solid var(--green-color); 
+    outline: var(--green-color);
+    &::placeholder {
+      opacity: 0.5;    
+    }
+  }
+
+  &:focus {
+    color: var(--color-dark-333);
+  }
 }
 
 .icon {
-  position: absolute;
-  top: 50%;
-  right: rem(10);
-
   @include abs-y;
+
+  position: absolute;
+  right: rem(10);
+  top: 46%;
 }

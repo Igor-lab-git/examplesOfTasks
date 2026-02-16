@@ -16,27 +16,6 @@ html {
 //  border: 1px solid red;
 //}
 
-html {
-  &.is-lock {
-    overflow: hidden;
-  }
-}
-
-html {
-  &.is-dark-theme {
-    --color-text: #000;
-    --color-bg-body: #f0efeb;
-    --color-gray-border: #000;
-    --color-border-color: #000;
-    --color-bg-header: #cad2c5;
-    --color-bg-btn-menu: #2f3e46;
-    --color-bg-field-input: #cad2c5;
-    --color-gray-border: #c5c3c6;
-    --color-gray-placeholder: #0d1117;
-
-  }
-}
-
 body {
   @include fluid-text(18, 14);
 
@@ -50,17 +29,8 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   color: var(--color-black);
-//   background-color: var(--color-bg-body);
-
-  @include tablet {
-    padding-left: 0;
-  }
 }
 
-body {
-  --sb-track-color: #222;
-  --sb-size: 0.5rem;
-}
 
 *::-webkit-scrollbar {
   width: var(--sb-size);
@@ -72,13 +42,13 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--color-main-blue);
+  background: var(--burger-color);
   border-radius: 1rem;
 }
 
 * {
   scrollbar-width: thin;
- scrollbar-color: var(--color-main-blue, #007bff) var(--sb-track-color, #222);
+ scrollbar-color: var(--burger-color, var(--burger-color)) var(--sb-track-color, #222);
 }
 
 main {
@@ -131,6 +101,10 @@ a {
   }
 }
 
+a:hover {
+  color: var(--green-color);
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -159,7 +133,7 @@ button {
 }
 
 :focus-visible {
-  outline: rem(2) dashed var(--color-white);
+  outline: rem(2) dashed var(--green-color);
   outline-offset: rem(4);
   transition-duration: 0s !important;
 }

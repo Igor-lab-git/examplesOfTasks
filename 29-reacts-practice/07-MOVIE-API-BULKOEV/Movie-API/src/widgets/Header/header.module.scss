@@ -1,19 +1,33 @@
 @use "../../app/styles/main.scss" as main;
 @use "../../app/styles/helpers/index" as *;
 
-
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   width: 100vw;
   height: rem(80);
-
-  padding: rem(20) rem(60);
+  padding: rem(20);
+ 
+  -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  box-shadow: var(--box-shadow);
   background: var(--color-white);
+}
+
+.headerStiky {
+  opacity: 0.5;
 }
 
 .containerHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.wrapperSettings {
+  display: flex;
+  column-gap: rem(16);
 }
 
 .burgerButton {
@@ -24,9 +38,8 @@
   justify-content: center;
   row-gap: rem(5);
   align-items: center;
-  cursor: pointer;
   border-radius: rem(5);
-  background-color: var(--burger-color);
+  background-color: var(--green-color);
 }
 
 .burgerButton:hover {
@@ -42,4 +55,25 @@
   height: rem(3);
   border-radius: rem(10);
   background-color: var(--color-white);
+}
+
+.switchThemeButoon:hover {
+  &:hover {
+    .moonInner {
+      fill: var(--color-white);
+      transition: fill 0.3s ease;
+    }
+    .moonOutline {
+      fill: var(--green-color);
+      transition: fill 0.3s ease;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }
