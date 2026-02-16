@@ -3,7 +3,6 @@ import {selectFilters} from "../../app/store/moviesSlice.ts";
 import {useGetFilteredContentQuery, useGetMoviesTopCollectionsQuery} from "../../app/store/moviesApi.ts";
 import {MOVIE_TOP_RANKINGS_LIST} from "../../shared/lib/constants.ts";
 
-
 export const useHookContentQuery = () => {
     const {country, order, year, page} = useSelector(selectFilters);
 
@@ -43,8 +42,6 @@ export const useHookContentQuery = () => {
         order: order,
         year: year
     });
-    console.log(getTopPopularFilms)
-    console.log(getTopBestFilms)
 
     const isLoading =
         getTopPopularFilms.isLoading ||
@@ -68,6 +65,5 @@ export const useHookContentQuery = () => {
         getContentFilms,
         getContentSeries,
         getContentCartoon,
-    }
-
-}
+    };
+};

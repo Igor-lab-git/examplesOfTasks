@@ -1,9 +1,10 @@
-import {type JSX} from "react";
+import {type JSX, memo} from "react";
 import searchIcon from "../../../../public/header/Search.svg"
 import style from "./SearchInput.module.scss"
 
 
 const SearchInput = (): JSX.Element => {
+    console.log("SearchInput")
     return (
         <div className={style.inputContainer}>
             <input className={style.inputElement} type="text" placeholder="Поиск по сайту..."/>
@@ -14,4 +15,4 @@ const SearchInput = (): JSX.Element => {
     )
 };
 
-export  default SearchInput;
+export  default memo(SearchInput);

@@ -1,5 +1,5 @@
 import LogoSVG from "../../../../public/logo/logo_cinemahub.svg";
-import { type JSX } from "react";
+import {type JSX, memo} from "react";
 
 const Logo = (): JSX.Element => {
   return (
@@ -11,4 +11,4 @@ const Logo = (): JSX.Element => {
   );
 };
 
-export default Logo;
+export default memo(Logo);

@@ -11,7 +11,8 @@ import popular_TV_seriesIcon from '../../assets/icons/nav-bar/category-top-muvie
 import categories_moviesIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/categories_movies.svg';
 import categories_cartoonsIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/categories_cartoons.svg';
 import categories_tv_seriesIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/categories_tv_series.svg';
-import { generatorUniqueID} from "./helpers.ts";
+import generateUniqueID from "./helpers.ts";
+
 
 export const ICONS = {
   top100: top100Icon,
@@ -33,7 +34,7 @@ export const ICONS_Categories = {
 
 export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "ТОП 100 популярных фильмов",
         icon: ICONS.top100,
         nameIcon: "ТОП 100",
@@ -41,7 +42,7 @@ export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
         type: "TOP_POPULAR_MOVIES",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "ТОП 250 популярных фильмов",
         icon: ICONS.top250,
         nameIcon: "ТОП 250",
@@ -52,7 +53,7 @@ export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
 
 export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Вампиры",
         icon: ICONS.bloDVampire,
         nameIcon: "вампиры",
@@ -60,7 +61,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "VAMPIRE_THEME",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Комиксы",
         icon: ICONS.comics,
         nameIcon: "комиксы",
@@ -68,7 +69,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "COMICS_THEME",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Семейные",
         icon: ICONS.family,
         nameIcon: "семейные",
@@ -76,7 +77,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "FAMILY",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Романтика",
         icon: ICONS.romance,
         nameIcon: "романтика",
@@ -84,7 +85,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "LOVE_THEME",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Зомби",
         icon: ICONS.zombies,
         nameIcon: "Зомби",
@@ -92,7 +93,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "ZOMBIE_THEME",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Катастрофы",
         icon: ICONS.catostropheIcon,
         nameIcon: "катастрофы",
@@ -100,7 +101,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
         type: "CATASTROPHE_THEME",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Популярные сериалы",
         icon: ICONS.popular_seriesIconIcon,
         nameIcon: "сериалы",
@@ -111,7 +112,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
 
 export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Фильмы",
         icon: ICONS_Categories.categoriesMovies,
         nameIcon: "фильмы",
@@ -120,7 +121,7 @@ export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
         genre: "1",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Сериалы",
         icon: ICONS_Categories.categoriesTvSeries,
         nameIcon: "сериалы",
@@ -129,7 +130,7 @@ export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
         genre: "1",
     },
     {
-        id: generatorUniqueID,
+        id: generateUniqueID(),
         title: "Мыльтфильмы",
         icon: ICONS_Categories.categoriesCartoons,
         nameIcon: "мыльтфильмы",

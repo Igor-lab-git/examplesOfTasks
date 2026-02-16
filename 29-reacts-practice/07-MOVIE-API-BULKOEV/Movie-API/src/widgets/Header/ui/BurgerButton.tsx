@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const BurgerButton = ({toggleNavBar, isOpen, ref}: IProps) => {
-
+    console.log("BurgerButton")
   return (
       <button
           className={style.burgerButton}
