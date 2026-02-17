@@ -6,7 +6,6 @@ interface ISectionCard {
 }
 
 const SectionCard = ({ movies }: ISectionCard) => {
-  console.log(movies);
 
   return (
     <>

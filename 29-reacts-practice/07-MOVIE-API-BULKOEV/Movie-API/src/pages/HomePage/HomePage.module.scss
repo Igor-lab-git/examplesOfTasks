@@ -40,16 +40,18 @@
 
 .containerScroll {
   display: flex;
+  max-width: 100%;
   column-gap: fluid(20, 15);
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
 
+
   & > * {
     flex-shrink: 0;
-    pointer-events: auto; 
+    pointer-events: auto;
   }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -91,7 +93,8 @@
 
 .cardMovie {
   position: relative;
-  width: fluid(250, 150);
+  width: fluid(250, 140); // уменьшил минимальную ширину
+  min-width: fluid(140, 120);
   flex-shrink: 0;
   overflow: hidden;
   pointer-events: auto;
@@ -120,11 +123,11 @@
 
 .cardMovieTitle {
   @include abs-x;
-  @include fluid-text(18, 16);
+  @include fluid-text(16, 14);
 
   text-align: center;
   position: absolute;
   color: var(--color-white);
-  top: 75%;
+  top: 80%;
   z-index: 100;
 }

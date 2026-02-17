@@ -8,12 +8,15 @@ interface IProps {
   isOpen: boolean;
   onClose: () => void;
   ref: ForwardedRef<HTMLDivElement>;
+  children: React.ReactNode;
+
 };
 
-const NavBar = ({isOpen, onClose, ref}: IProps): JSX.Element => {
+const NavBar = ({isOpen, onClose, ref, children }: IProps): JSX.Element => {
     console.log("NavBar")
     return (
         <div className={`${style.navBar} ${isOpen ? style.visible : style.hidden}`} ref={ref}>
+            {children}
             <NavBarLinkCategory item={MOVIE_TOP_RANKINGS_LIST} onClose={onClose}/>
             <NavBarLinkCategory item={MOVIE_GENRES_LIST} onClose={onClose}/>
             <NavBarLinkCategory item={MOVIE_CONTENT_LIST} onClose={onClose}/>

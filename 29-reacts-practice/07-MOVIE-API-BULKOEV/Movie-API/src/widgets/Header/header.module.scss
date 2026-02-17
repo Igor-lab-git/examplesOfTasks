@@ -8,11 +8,18 @@
   width: 100vw;
   height: rem(80);
   padding: rem(20);
- 
   -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   box-shadow: var(--box-shadow);
   background: var(--color-white);
+
+  @include tablet-S {
+    padding: rem(15);
+  }
+
+  @include mobile {
+    padding: rem(10);
+  }
 }
 
 .headerStiky {
@@ -23,11 +30,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  column-gap: rem(16);
+  height: 100%;
 }
 
 .wrapperSettings {
   display: flex;
   column-gap: rem(16);
+  //max-width: rem(500);
 }
 
 .burgerButton {
@@ -63,6 +73,7 @@
       fill: var(--color-white);
       transition: fill 0.3s ease;
     }
+
     .moonOutline {
       fill: var(--green-color);
       transition: fill 0.3s ease;
