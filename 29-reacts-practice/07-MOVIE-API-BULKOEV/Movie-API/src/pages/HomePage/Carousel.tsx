@@ -1,23 +1,20 @@
 import React, { useRef } from "react";
 import style from "./HomePage.module.scss";
 
-interface IProps {
+interface ICarousel {
     children: React.ReactNode
-}
+};
 
-const Carousel = ({children}: IProps) => {
+const Carousel = ({children}: ICarousel) => {
   const containerCaruselRef = useRef<HTMLDivElement>(null);
-
-  
 
   const handleScroll = (direction: string) => {
     if(!containerCaruselRef.current) return;
     
     const container = containerCaruselRef.current;
-    const amount = 400;
+    const amount = 300;
     
     if(direction === "left") {
-        // Если в начале - прыгаем в конец
         if (container.scrollLeft <= 0) {
             container.scrollLeft = container.scrollWidth - container.clientWidth;
         } else {
@@ -26,7 +23,6 @@ const Carousel = ({children}: IProps) => {
     }
     
     if(direction === "right") {
-        // Если в конце - прыгаем в начало
         if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 10) {
             container.scrollLeft = 0;
         } else {
@@ -36,19 +32,20 @@ const Carousel = ({children}: IProps) => {
   }
   
   
-
   return (
     <div className={style.carouselWrapper}>
-    <button className={style.prevButton}
-    onClick={() => handleScroll("left")}>назад</button>
-    <div className={style.container}
-    ref={containerCaruselRef}
-    
-    >
-        {children}
-    </div>
-    <button className={style.nextButton}
-     onClick={() => handleScroll("right")}>вперёд</button>
+        <button 
+            className={style.prevButton}
+            onClick={() => handleScroll("left")}>назад</button>
+        <div 
+            className={style.containerScroll}
+            ref={containerCaruselRef} >
+            {children}
+        </div>
+
+        <button 
+            className={style.nextButton}
+            onClick={() => handleScroll("right")}>вперёд</button>
     </div>
   );
 };

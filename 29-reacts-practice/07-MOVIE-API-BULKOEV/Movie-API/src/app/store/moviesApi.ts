@@ -12,10 +12,10 @@ export interface IMovies {
     description: string;
     ratingImdb: number;
     ratingKinopoisk: number;
-
+    year: number | null;
 };
 
-interface IMoviesCollectionResponse {
+export interface IMoviesCollectionResponse {
     total: number;
     totalPages: number;
     items: IMovies[];
@@ -43,7 +43,8 @@ interface ISelectOptions {
 interface IMovieById {
     kinopoiskId: number;
     posterUrl: string;
-    "nameRu": null | string;
+    nameRu: string | null;
+    nameOriginal: string | null;
     ratingKinopoisk: number;
     year: number | null;
     countries: {

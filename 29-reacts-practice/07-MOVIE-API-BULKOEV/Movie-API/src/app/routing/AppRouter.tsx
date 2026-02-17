@@ -6,10 +6,6 @@ import { MOVIE_CONTENT_LIST, MOVIE_TOP_RANKINGS_LIST } from "../../shared/lib/co
 import { TopRankingsPage } from "../../pages/TopRankingsPage";
 import { GenresListPage } from "../../pages/GenresListPage";
 import { ContentListPage } from "../../pages/ContentListPage";
-// import { ContentPage } from "../../pages/ContentPage";
-// import { MovieListTop } from "../../pages/MovieListTop";
-// import { CategoryPage } from "../../pages/CategoryPage";
-
 
 const AppRouter = () => {
   return (

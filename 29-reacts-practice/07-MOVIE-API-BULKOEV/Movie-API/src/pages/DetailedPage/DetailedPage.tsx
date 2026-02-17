@@ -6,13 +6,14 @@ import {
 } from "../../app/store/moviesApi.ts";
 import {ErrorMessage} from "../../shared/ui/ErrorMessage";
 import VideoPlayer from "../../shared/ui/VideoPlayer/VideoPlayer.tsx";
+import NavigationPage from "../../shared/ui/NavigationPage/NavigationPage.tsx";
 
 const DetailedPage = () => {
 
     const { id } = useParams();
     const movieId = Number(id);
-    console.log("DetailedPage загружен с ID:", id);
-    console.log(id)
+    // console.log("DetailedPage загружен с ID:", id);
+    // console.log(id)
 
     const filmQuery = useGetMovieByIdQuery({ id: movieId });
     const sequelsQuery = useGetSequelsPrequelsQuery({ id: movieId });
@@ -26,9 +27,8 @@ const DetailedPage = () => {
 
   return (
       <div>
-          <h1>DetailedPage</h1>
-          <button>Back</button>
-          {filmQuery.data?.nameRu}
+        <NavigationPage title={filmQuery.data?.nameRu ? filmQuery.data?.nameRu : filmQuery.data?.nameOriginal}/>
+          
           <div>
               <div>
                   <img src={filmQuery.data?.posterUrl} alt=""/>

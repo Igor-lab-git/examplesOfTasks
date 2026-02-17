@@ -1,6 +1,10 @@
 @use "../../app/styles/main.scss" as *;
 @use "../../app/styles/helpers/" as *;
 
+.genresPage {
+    background-color: var(--color-bg-body);
+}
+
 .listCards {
     display: flex;
     flex-wrap: wrap;

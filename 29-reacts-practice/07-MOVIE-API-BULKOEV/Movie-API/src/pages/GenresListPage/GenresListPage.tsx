@@ -1,35 +1,32 @@
-import { useLocation } from "react-router-dom";
-import { MOVIE_GENRES_LIST } from "../../shared/lib/constants";
-import { useGetMoviesTopCollectionsQuery } from "../../app/store/moviesApi.ts";
-import { useState } from "react";
-import GenresHeader from "./ui/GenresHeader";
 import GenresFooter from "./ui/GenresFooter";
 import GenresBody from "./ui/GenresBody";
+import ErrorMessage from "../../shared/ui/ErrorMessage/ErrorMessage.tsx";
+import GenresListPageApi from "./model/GenresListPage.api.ts";
+import NavigationPage from "../../shared/ui/NavigationPage/NavigationPage.tsx";
+import ContainerPages from "../../shared/ui/ContainerPages/ContainerPages.tsx";
+import "../../app/styles/main.scss";
+import style from "./GenresListPage.module.scss";
 
-const GenresListPage  = () => {
+const GenresListPage = () => {
+  const { data, error, isLoading, numberPage, setNumberPage, getTypeGenres } = GenresListPageApi();
 
-  const location = useLocation();
-  const [numberPage, setNumberPage] = useState<number>(1);
-
-  const getTypeGenres =  MOVIE_GENRES_LIST.find((el) => el.path === location.pathname);
-
-  const {data, error, isLoading} = useGetMoviesTopCollectionsQuery({type: getTypeGenres?.type, page: numberPage});
-
-  if(error) return <h2>Ошибка на сервере, зайтиде позже :(</h2>;
-  if(isLoading) return <h2>Загрузка данных...</h2>;
+  if (error) return <ErrorMessage />;
+  if (isLoading) return <h2>Загрузка данных...</h2>;
 
   return (
-    <div>
-      <GenresHeader getTypeGenres={getTypeGenres}/>
-
-      <GenresBody movies={data?.items}/>
+    <ContainerPages>
+      <div className={`${style.genresPage} containerMain`}>
+        <NavigationPage title={getTypeGenres?.title} />
+        <GenresBody movies={data?.items} />
         <GenresFooter
-        totalPages={data?.totalPages}
-        quantityMovies={data?.items}
-        numberPage={numberPage}
-        setNumberPage={setNumberPage}/>
-    </div>
-  )
+          totalPages={data?.totalPages}
+          quantityMovies={data?.items}
+          numberPage={numberPage}
+          setNumberPage={setNumberPage}
+        />
+      </div>
+    </ContainerPages>
+  );
 };
 
-export default GenresListPage ;
+export default GenresListPage;

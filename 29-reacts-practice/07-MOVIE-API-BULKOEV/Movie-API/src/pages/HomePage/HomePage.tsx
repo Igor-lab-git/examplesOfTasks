@@ -1,9 +1,12 @@
 import Carousel from "./Carousel";
-import style from "./HomePage.module.scss";
-import { Link } from "react-router-dom";
+import {type JSX} from "react";
 import ErrorMessage from "../../shared/ui/ErrorMessage/ErrorMessage.tsx";
 import {useHookContentQuery} from "../../features";
-import {type JSX} from "react";
+import HomeHeaderLink from "./ui/HomeHeaderLink.tsx";
+import SectionCard from "./ui/SectionCard.tsx";
+import style from "./HomePage.module.scss"
+import "../../app/styles/main.scss";
+import ContainerPages from "../../shared/ui/ContainerPages/ContainerPages.tsx";
 
 const HomePage = (): JSX.Element => {
 
@@ -15,13 +18,7 @@ const {
     getContentFilms,
     getContentSeries,
     getContentCartoon,} = useHookContentQuery();
-    // const sequelsPrequels = useGetSequelsPrequelsQuery({id: 839818});
 
-    console.log(getTopPopularFilms.data)
-    console.log(getTopBestFilms.data)
-    console.log(getContentFilms.data)
-    console.log(getContentSeries.data)
-    console.log(getContentCartoon.data)
 const carouselFormatedContent = [
   {
     title: "Популярные фильмы",
@@ -55,28 +52,18 @@ if(isLoading) return <h2>Загрузка данных с сервера...</h2>
 if(isError) return <ErrorMessage />;
 
   return (
-    <div>
-        <h1>HomePage</h1>
-
-        { carouselFormatedContent && carouselFormatedContent.map((carouseContent, index) => (
-            <div key={index}>
-                <Link to={carouseContent.url}>
-                    {carouseContent.title}
-                </Link>
-                <Carousel>
-                    <ul>
-                    </ul>
-                    {carouseContent.data && carouseContent.data.map((movie) => (
-                        <li key={movie.kinopoiskId}>
-                            <Link to={`/movie/${movie.kinopoiskId}`}>
-                                    {<img className={style.poster} src={movie.posterUrlPreview} alt=""/>}
-                            </Link>
-                        </li>
-                    ))}
-                </Carousel>
-            </div>
-        ))}
-    </div>
+    <ContainerPages>
+        <div className={`${style.homePage} containerMain`} >
+          {carouselFormatedContent && carouselFormatedContent.map(({data, title, url}, index) => (
+            <section className={style.sectionContent} key={index}>
+              <HomeHeaderLink title={title} url={url}/>
+              <Carousel> 
+                <SectionCard  movies={data}/>
+              </Carousel>
+            </section>
+          ))}
+        </div>
+    </ContainerPages>
   )
 };
 
