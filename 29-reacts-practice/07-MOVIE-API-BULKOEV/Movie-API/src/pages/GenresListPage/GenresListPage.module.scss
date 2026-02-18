@@ -1,5 +1,5 @@
-@use "../../app/styles/main.scss" as *;
-@use "../../app/styles/helpers/" as *;
+@use "../../app/styles/main.scss" as main;
+@use "../../app/styles/helpers" as *;
 
 .genresPage {
   padding-block: fluid(40, 20);
