@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef} from "react";
 import style from "./HomePage.module.scss";
 
 interface ICarousel {
-    children: React.ReactNode
+    children: React.ReactNode;
 };
 
 const Carousel = ({children}: ICarousel) => {
@@ -30,8 +30,8 @@ const Carousel = ({children}: ICarousel) => {
         }
     }
   }
-  
-  
+
+
   return (
     <div className={style.carouselWrapper}>
         <button 

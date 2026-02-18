@@ -1,5 +1,11 @@
 @use "../../../app/styles/main.scss" as main;
+@use "../../../app/styles/helpers/" as *;
 
 .main {
+    padding-inline: rem(70);
     background-color: var(--color-bg-main);
+
+    @include tablet-S {
+        padding-inline: rem(40);
+    }
 }

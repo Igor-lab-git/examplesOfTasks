@@ -8,12 +8,13 @@ interface IGenresBody {
 }
 
 const GenresBody = ({ movies }: IGenresBody) => {
+  
   return (
     <div>
       <ul className={`${style.listCards} list-reset`}>
         {movies &&
           movies.map((movieCard) => (
-            <li key={movieCard.kinopoiskId}>
+            <li className={style.cardItem} key={movieCard.kinopoiskId}>
               <MovieCard movieCard={movieCard} />
             </li>
           ))}

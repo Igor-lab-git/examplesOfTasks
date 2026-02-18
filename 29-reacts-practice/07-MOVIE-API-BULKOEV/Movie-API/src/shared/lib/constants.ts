@@ -54,7 +54,7 @@ export const MOVIE_TOP_RANKINGS_LIST: IMOVIE_TOP_RANKINGS_LIST[] = [
 export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     {
         id: generateUniqueID(),
-        title: "Вампиры",
+        title: "вампиры",
         icon: ICONS.bloDVampire,
         nameIcon: "вампиры",
         path: "/category/vampire",
@@ -62,7 +62,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     },
     {
         id: generateUniqueID(),
-        title: "Комиксы",
+        title: "комиксы",
         icon: ICONS.comics,
         nameIcon: "комиксы",
         path: "/category/comics",
@@ -70,7 +70,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     },
     {
         id: generateUniqueID(),
-        title: "Семейные",
+        title: "семейные",
         icon: ICONS.family,
         nameIcon: "семейные",
         path: "/category/family",
@@ -78,7 +78,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     },
     {
         id: generateUniqueID(),
-        title: "Романтика",
+        title: "романтика",
         icon: ICONS.romance,
         nameIcon: "романтика",
         path: "/category/love",
@@ -86,7 +86,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     },
     {
         id: generateUniqueID(),
-        title: "Зомби",
+        title: "зомби",
         icon: ICONS.zombies,
         nameIcon: "Зомби",
         path: "/category/zombie",
@@ -94,7 +94,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     },
     {
         id: generateUniqueID(),
-        title: "Катастрофы",
+        title: "катастрофы",
         icon: ICONS.catostropheIcon,
         nameIcon: "катастрофы",
         path: "/category/catastrophe",
@@ -102,7 +102,7 @@ export const MOVIE_GENRES_LIST: IMOVIE_GENRES_LIST[] = [
     },
     {
         id: generateUniqueID(),
-        title: "Популярные сериалы",
+        title: "популярные сериалы",
         icon: ICONS.popular_seriesIconIcon,
         nameIcon: "сериалы",
         path: "/category/popular_series",

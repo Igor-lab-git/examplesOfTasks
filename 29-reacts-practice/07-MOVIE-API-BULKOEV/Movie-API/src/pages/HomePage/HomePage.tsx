@@ -1,5 +1,5 @@
 import Carousel from "./Carousel";
-import {type JSX} from "react";
+import { type JSX} from "react";
 import ErrorMessage from "../../shared/ui/ErrorMessage/ErrorMessage.tsx";
 import {useHookContentQuery} from "../../features";
 import HomeHeaderLink from "./ui/HomeHeaderLink.tsx";

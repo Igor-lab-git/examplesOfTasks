@@ -99,6 +99,21 @@
   overflow: hidden;
   pointer-events: auto;
   transition-duration: var(--transition-duration);
+
+  @media (max-width: 768px) {
+    width: 160px;
+    min-width: 160px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 130px;
+    min-width: 130px;
+  }
+  
+  @media (max-width: 360px) {
+    width: 110px;
+    min-width: 110px;
+  }
 }
 
 .cardMovie:hover {

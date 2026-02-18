@@ -2,8 +2,9 @@
 @use "../../../app/styles/helpers/" as *;
 
 .cardMovie {
-    position: relative;
-  width: fluid(300, 200);
+  width: 100%;
+  aspect-ratio: 2/3;
+  position: relative;
   flex-shrink: 0;
   overflow: hidden;
   pointer-events: auto;
@@ -11,74 +12,71 @@
 }
 
 .poster {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-    
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 .cardMovie:hover {
-    scale: 1.02;
-  }
+  scale: 1.02;
+}
 
-  .cardMovie::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(to top, rgba(0,0,0,1), transparent);
-    pointer-events: none;
-    z-index: 5;
-  }
+.cardMovie::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+  pointer-events: none;
+  z-index: 5;
+}
 
-  .cardBody {
-      @include fluid-text(18, 16);
-      @include abs-x;
+.cardBody {
+  @include fluid-text(18, 16);
+  @include abs-x;
 
-      display: flex;
-      flex-direction: column;
-    // text-align: center;
-    top: 75%;
-    z-index: 100;
-    color: var(--color-white);
-  }
+  display: flex;
+  flex-direction: column;
+  bottom: 5%;
+  z-index: 100;
+  color: var(--color-white);
+}
 
-  .cardDescription {
-    display: flex;
-    flex-direction: column;
-    row-gap: fluid(5, 3);
-    text-align: center;
-  }
+.cardDescription {
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(5, 3);
+  text-align: center;
+}
 
-  .cardWrapperRating {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;  // ✅ теперь работает!
-    align-items: center;
-    gap: 16px;
-  }
+.cardWrapperRating {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
 
-  .cardRatingImdb,
-  .cardRatingKinopoisk {
-    display: flex;
-    column-gap: 5px;
-  }
+.cardRatingImdb,
+.cardRatingKinopoisk {
+  display: flex;
+  column-gap: 5px;
+}
 
-  .cardImdbLabel {
-    margin-right: 5px;
-      text-transform: uppercase;
-      color: #f60;  /* цвет лейбла */
-      font-weight: 500;
-  }
+.cardImdbLabel {
+  margin-right: 5px;
+  text-transform: uppercase;
+  color: #f60; /* цвет лейбла */
+  font-weight: 500;
+}
 
-  .cardKinopoiskLabel {
-    margin-right: 5px;
-      text-transform: uppercase;
-      color: #f5c518;  /* цвет лейбла */
-      font-weight: 500;
-  }
-
-  
+.cardKinopoiskLabel {
+  margin-right: 5px;
+  text-transform: uppercase;
+  color: #f5c518; /* цвет лейбла */
+  font-weight: 500;
+}

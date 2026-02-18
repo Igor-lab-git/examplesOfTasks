@@ -1,0 +1,34 @@
+@use "../../../app/styles/main.scss" as main;
+@use "../../../app//styles/helpers/" as *;
+
+.containerNavigation {
+  display: flex;
+  column-gap: fluid(10, 5);
+}
+
+.navigationItem {
+  @include fluid-text(16, 14);
+  transition-duration: var(--transition-duration);
+  transition-property: color;
+  
+  font-weight: 700;
+  color: var(--color-bg-main);
+}
+
+.navigationItem:not(:last-child) {
+
+  @include hover {
+    color: var(--green-color);
+  }
+  &::after {
+    position: absolute;
+    content: "/";
+    margin-left: 3px;
+  }
+}
+
+.navigationItem:last-child{
+    @include fluid-text(18, 16);
+  
+    font-weight: 800;
+}

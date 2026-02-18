@@ -2,11 +2,17 @@
 @use "../../app/styles/helpers/" as *;
 
 .genresPage {
-    background-color: var(--color-bg-body);
+  padding-block: fluid(40, 20);
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(15, 10);
+  background-color: var(--color-bg-body);
 }
 
 .listCards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: rem(15);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  width: 100%;
+  margin: 0 auto;
+  gap: rem(15);
 }

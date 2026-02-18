@@ -1,0 +1,83 @@
+@use "../../../app//styles/main.scss" as main;
+@use "../../../app//styles/helpers/" as *;
+
+.paginationList {
+  display: flex;
+  min-width: 500px;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.prevButton a,
+.nextButton a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(40);
+  aspect-ratio: 1;
+  background-color: var(--green-color);
+  border-radius: rem(5);
+  cursor: pointer;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid var(--color-white);
+    border-right: 3px solid var(--color-white);
+  }
+
+  @include mobile {
+    width: rem(30);
+    height: rem(30);
+  }
+}
+
+.prevButton:hover,
+.nextButton:hover {
+    opacity: 0.8;
+}
+
+.prevButton a::before {
+  transform: rotate(-135deg);
+  margin-left: 4px;
+}
+
+.nextButton a::before {
+  transform: rotate(45deg); // стрелка вправо
+  margin-right: 4px;
+}
+
+.prevButton a:hover::before,
+.nextButton a:hover::before {
+  border-color: var(--color-bg-tab);
+}
+
+.paginationPage a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(40);
+  height: rem(40);
+  background: #f0f0f0;
+  color: #333;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #ddd;
+  }
+
+  @include mobile {
+    width: rem(30);
+    height: rem(30);
+  }
+}
+
+.paginationActive a {
+  background-color: var(--green-color);
+  color: var(--color-white);
+}

@@ -60,23 +60,23 @@ interface IMovieById {
 };
 
 interface ISequelsPrequels {
-    "filmId": number;
-    "nameRu": null | string;
-    "nameEn": string;
-    "nameOriginal": string;
-    "posterUrl": string;
-    "posterUrlPreview": string;
+    filmId: number;
+    nameRu: null | string;
+    nameEn: string;
+    nameOriginal: string;
+    posterUrl: string;
+    posterUrlPreview: string;
     relationType: string;
 };
 
 interface IPersonById {
-    "staffId": number
-    "nameRu": string
-    "nameEn": string,
-    "description": null | string,
-    "posterUrl": string,
-    "professionText": string;
-    "professionKey": string
+    staffId: number;
+    nameRu: string;
+    nameEn: string;
+    description: null | string;
+    posterUrl: string;
+    professionText: string;
+    professionKey: string;
 };
 
 interface  ITeaserAndTrailerById {
