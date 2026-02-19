@@ -1,5 +1,4 @@
 import {ErrorMessage} from "../../shared/ui/ErrorMessage";
-import {FilterSelectContent} from "../../features/FilterSelectContent/ui";
 import {PaginationPages} from "../../shared/ui/PaginationPages";
 import ContentListBody from "./ui/ContentListBody.tsx";
 import {NavigationPage} from "../../shared/ui/NavigationPage";
@@ -7,6 +6,7 @@ import {ContainerPages} from "../../shared/ui/ContainerPages";
 import ContentListApi from "./model/ContentListApi.ts";
 import style from "../GenresListPage/GenresListPage.module.scss";
 import "../../app/styles/main.scss";
+import { FilterSelectContent } from "../../features/FilterSelectContent/index.ts";
 
 
 const ContentListPage = () => {

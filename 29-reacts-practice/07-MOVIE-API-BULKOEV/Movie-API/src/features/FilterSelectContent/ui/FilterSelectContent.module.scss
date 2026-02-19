@@ -1,0 +1,107 @@
+@use "../../../app/styles/main.scss" as main;
+@use "../../../app/styles/helpers" as *;
+
+.containerFilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: fluid(16, 12);
+  padding: fluid(20, 12) 0;
+  width: 100%;
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.selectElement {
+  @include fluid-text(16, 14);
+
+  padding: fluid(10, 8) fluid(16, 12);
+  border-radius: rem(8);
+  cursor: pointer;
+  transition: all var(--transition-duration) ease;
+  border: rem(1) solid var(--color-bg-main);
+  background-color: var(--color-white);
+  color: var(--color-text-primary);
+
+  width: auto;
+  min-width: rem(180);
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  &:hover {
+    border-color: var(--green-color);
+    background-color: var(--color-white);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--green-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  }
+
+  option {
+    font-size: rem(14);
+    padding: rem(8);
+  }
+}
+
+.selectElement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: rem(16);
+  appearance: none;
+  padding-right: rem(40);
+}
+
+.buttonReset {
+  @include fluid-text(16, 14);
+
+  font-weight: 600;
+  padding: rem(12) rem(14);
+  background: linear-gradient(135deg, var(--green-color), var(--green-color));
+  border: none;
+  border-radius: rem(5);
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  color: var(--color-white);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, (--green-color), (--green-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  .containerFilters {
+    gap: rem(8);
+    padding: rem(10) rem(0);
+  }
+
+  .selectElement {
+    @include fluid-text(14, 12);
+
+    padding: rem(10);
+    background-position: right rem(8) center;
+    background-size: rem(14);
+    padding-right: rem(32);
+  }
+}

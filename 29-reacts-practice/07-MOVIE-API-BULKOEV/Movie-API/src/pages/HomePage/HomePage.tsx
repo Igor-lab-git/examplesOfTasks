@@ -1,12 +1,12 @@
 import Carousel from "./Carousel";
 import { type JSX} from "react";
 import ErrorMessage from "../../shared/ui/ErrorMessage/ErrorMessage.tsx";
-import {useHookContentQuery} from "../../features";
 import HomeHeaderLink from "./ui/HomeHeaderLink.tsx";
 import SectionCard from "./ui/SectionCard.tsx";
 import style from "./HomePage.module.scss"
 import "../../app/styles/main.scss";
 import ContainerPages from "../../shared/ui/ContainerPages/ContainerPages.tsx";
+import { useHookContentQuery } from "../../features/hooks/useHookContentQuery.ts";
 
 const HomePage = (): JSX.Element => {
 

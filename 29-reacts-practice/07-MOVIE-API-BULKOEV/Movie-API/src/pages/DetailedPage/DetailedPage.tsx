@@ -7,6 +7,15 @@ import {
 import {ErrorMessage} from "../../shared/ui/ErrorMessage";
 import VideoPlayer from "../../shared/ui/VideoPlayer/VideoPlayer.tsx";
 import NavigationPage from "../../shared/ui/NavigationPage/NavigationPage.tsx";
+import ContainerPages from "../../shared/ui/ContainerPages/ContainerPages.tsx";
+import "../../app/styles/main.scss";
+import style from "./DetailedPage.module.scss";
+import  DetailedPoster  from "./ui/DetailedPoster.tsx";
+import DetailedName from "./ui/DetailedName.tsx";
+import DetailedDescription from "./ui/DetailedDescription.tsx";
+import DetailedInfo from "./ui/DetailedInfo.tsx";
+import DetailedDirectors from "./ui/DetailedStaff.tsx";
+import DetailedSourcelink from "./ui/DetailedSourcelink.tsx";
 
 const DetailedPage = () => {
 
@@ -20,65 +29,36 @@ const DetailedPage = () => {
     const personsQuery = useGetPersonByIdQuery({ id: movieId });
     console.log(filmQuery.data)
     // console.log(sequelsQuery.data)
-    // console.log(personsQuery.data)
+    console.log(personsQuery.data, "DetailedPage")
 
     if(filmQuery.isLoading || sequelsQuery.isLoading || personsQuery.isLoading) return <p>Loading...</p>
     if(filmQuery.error || personsQuery.error) return <ErrorMessage/>
 
   return (
-      <div>
-        <NavigationPage title={filmQuery.data?.nameRu ? filmQuery.data?.nameRu : filmQuery.data?.nameOriginal}/>
-          
-          <div>
-              <div>
-                  <img src={filmQuery.data?.posterUrl} alt=""/>
-              </div>
-              <div>
-                  <h2>Год</h2>
-                  {filmQuery.data?.year}
-              </div>
-              <div>
-                  <h2>Страна</h2>
-                  {filmQuery.data?.countries.map((countryItem, index) => (
-                      <span key={index}>{countryItem.country}</span>
-                  ))}
-              </div>
-              <div>
-                  <h2>Жанры</h2>
-                  {filmQuery.data?.genres.map((countryItem, index) => (
-                      <span key={index}>{countryItem.genre}</span>
-                  ))}
-              </div>
-              <div>
-                  <h2>Режисёры</h2>
-                  {personsQuery.data?.filter((staff) => staff.professionText === "Режиссеры").map(({nameRu}) => (
-                      <span key={nameRu}>{nameRu}</span>
-                  ))}
-              </div>
+      <ContainerPages>
+            <div className={` ${style.homePage} containerMain`}>
+                <NavigationPage title={filmQuery.data?.nameRu ? filmQuery.data?.nameRu : filmQuery.data?.nameOriginal}/>
+            <div className={style.containerInfo}>
+                <DetailedPoster 
+                    poster={filmQuery.data?.posterUrl} 
+                    nameRu={filmQuery.data?.nameRu }
+                    nameOriginal={filmQuery.data?.nameOriginal}/>
+            <div className={style.containerInfoBody}>
+                <DetailedName nameRu={filmQuery.data?.nameRu} nameOriginal={filmQuery.data?.nameOriginal} year={filmQuery.data?.year}/>
+                <DetailedDescription description={filmQuery.data?.description}/>
+            <div className={style.containerInfoStaff}>
+                <DetailedInfo 
+                    year={filmQuery.data?.year} 
+                    countriesArr={filmQuery.data?.countries}
+                    genresArr={filmQuery.data?.genres}
+                    filmLength={filmQuery.data?.filmLength}/>
 
-              <div>
-                  <h2>Продолжительность</h2>
-                  <span>{filmQuery.data?.filmLength} мин.</span>
-              </div>
-              <div>
-                  <h2>Описание</h2>
-                  <p>{filmQuery.data?.description ? filmQuery.data?.description : "Описание отсутствует"}</p>
-              </div>
+                <DetailedDirectors staff={personsQuery.data}/>
+            </div>
+            </div>
           </div>
 
-          <div>
-              <h2>В главных ролях</h2>
-              {personsQuery.data?.filter((staff) => staff.professionText === "Актеры").map(({nameRu}) => (
-                  <span key={nameRu}>{nameRu}</span>
-              )).slice(1, 15)}
-          </div>
-
-          <div>
-              webUrl
-              <h2>Перейти по ссылке</h2>
-              <a href={filmQuery.data?.webUrl} target="_blank" rel="noopener noreferrer">Кинопоиск</a>
-              <a href={`https://www.imdb.com/title/${filmQuery.data?.imdbId}`} target="_blank" rel="noopener noreferrer">Imdb</a>
-          </div>
+          <DetailedSourcelink webUrl={filmQuery.data?.webUrl} imdUrl={filmQuery.data?.imdbId}/>
 
           <div>
               {filmQuery.data?.kinopoiskId && <VideoPlayer movieId={filmQuery.data?.kinopoiskId}/>}
@@ -102,6 +82,7 @@ const DetailedPage = () => {
               </ul>
           </div>
       </div>
+        </ContainerPages>
   )
 };
 
