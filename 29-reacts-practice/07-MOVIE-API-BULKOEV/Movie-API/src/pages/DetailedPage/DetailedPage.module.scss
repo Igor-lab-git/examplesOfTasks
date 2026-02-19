@@ -1,10 +1,9 @@
-@use "../../app/styles//main.scss" as main;
-@use "../../app/styles/helpers/" as *;
+@use "../../app/styles/main.scss" as main;
+@use "../../app/styles/helpers" as *;
 
 .homePage {
   display: flex;
   flex-direction: column;
-  // row-gap: fluid(50, 40);
   padding-block: fluid(30, 15);
   background-color: var(--color-bg-body-alt);
 }
@@ -12,6 +11,12 @@
 .containerInfo {
   display: flex;
   column-gap: rem(16);
+
+  @include tablet-S {
+    flex-direction: column;
+    row-gap: fluid(30, 15);
+  }
+
 }
 
 .containerInfoBody {
@@ -23,15 +28,21 @@
 .containerInfoStaff {
   display: grid;
   grid-template-columns: 1fr 2fr;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+  }
 }
 
 .containerPoster {
-  width: fluid(300, 200);
+  width: fluid(400, 200);
   width: 100%;
   height: auto;
 }
 
-.poaster {
+.poster {
   width: 100%;
   height: auto;
 }
@@ -43,7 +54,7 @@
 }
 
 .description {
-  @include fluid-text(18, 16);
+  @include fluid-text(18, 14);
 
   line-height: 1.4;
   color: var(--color-dark-333);
@@ -62,7 +73,7 @@
 }
 
 .valueInfo {
-  @include fluid-text(18, 16);
+  @include fluid-text(18, 14);
 
   line-height: 1.4;
   color: var(--color-dark-333);
@@ -90,58 +101,116 @@
 }
 
 .containerSourcelink {
-    align-self: center;
-    margin: rem(30) rem(0);
-    padding: rem(20);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
-    color: var(--color-white);
+  align-self: center;
+  margin: rem(30) rem(0);
+  padding: rem(20);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: var(--color-white);
+
+  @include mobile {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+    margin: rem(15) rem(0);
+    padding: rem(10);
+  }
 }
 
-  
-  .title {
-    @include fluid-text(18, 16); 
-    margin: rem(0) rem(0) rem(16) rem(0);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: rem(1);
+
+.title {
+  @include fluid-text(18, 16);
+
+  margin: rem(0) rem(0) rem(16) rem(0);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: rem(1);
+  text-align: center;
+}
+
+.kinopoisk {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(8);
+  padding: rem(10) rem(20);
+  border-radius: rem(50);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: var(--color-white);
+
+  @include mobile {
     text-align: center;
+    padding: rem(5) rem(10);
+    justify-content: center;
   }
 
-  .kinopoisk {
-    display: inline-flex;
-    align-items: center;
-    gap: rem(8);
-    padding: rem(10) rem(20);
-    border-radius: rem(50);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    color: var(--color-white);
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
+  @include hover{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
-  
-  .kinopoisk {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    
-    &:hover {
-      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
-    }
+}
+
+.kinopoisk {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+  @include hover {
+    background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
   }
-  
-  .imdb {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    
-    &:hover {
-      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    }
+}
+
+.imdb {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
+  @include hover {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
   }
-  
-  .icon {
-    font-size: rem(20);
+}
+
+.icon {
+  font-size: rem(20);
+}
+
+.containerSequels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: fluid(15, 5);
+
+
+}
+
+.sequelsTitle {
+  @include fluid-text(22, 16);
+
+  font-weight: 700;
+}
+
+.containerArticle {
+  display: flex;
+  gap: fluid(10, 8);
+
+  @include mobile {
+    flex-direction: column;
   }
+}
+
+.sequelsArticle {
+  text-align: center;
+  max-width: rem(200);
+  height: auto;
+}
+
+.sequelsPoster {
+  width: 100%;
+  height: 100%;
+  margin-bottom: rem(5);
+
+  @include hover {
+    scale: 1.01;
+  }
+}
+
+
   

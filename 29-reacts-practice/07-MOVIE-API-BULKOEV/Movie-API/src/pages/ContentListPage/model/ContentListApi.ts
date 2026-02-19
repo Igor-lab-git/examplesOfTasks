@@ -20,7 +20,8 @@ const ContentListApi  = () => {
         order,
         type: getTypeContent?.type,
         year: year,
-        page: numberPage
+        page: numberPage,
+        keyword: ""
     });
 
     return {

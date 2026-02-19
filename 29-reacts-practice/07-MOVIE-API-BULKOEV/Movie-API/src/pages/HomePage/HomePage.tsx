@@ -51,6 +51,8 @@ if(isLoading) return <h2>Загрузка данных с сервера...</h2>
 
 if(isError) return <ErrorMessage />;
 
+
+
   return (
     <ContainerPages>
         <div className={`${style.homePage} containerMain`} >

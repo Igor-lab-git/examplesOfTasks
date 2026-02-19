@@ -66,7 +66,7 @@ interface ISequelsPrequels {
     nameOriginal: string;
     posterUrl: string;
     posterUrlPreview: string;
-    relationType: string;
+    relationType: "PREQUEL" | "SEQUEL";
 };
 
 interface IPersonById {
@@ -105,15 +105,16 @@ export const moviesApi = createApi({
         getMoviesTopCollections: builder.query<IMoviesCollectionResponse, { type?: string; page: number }>({
             query: ({type, page}) => `/v2.2/films/collections?type=${type}&page=${page}`,
         }),
-        getFilteredContent: builder.query<IFilteredContent, { country?: string; genre?: string, order?: string, type?: string, year?: number, page?: number}>({
+        getFilteredContent: builder.query<IFilteredContent, { country?: string; genre?: string, order?: string, type?: string, year?: number, page?: number, keyword?: string}>({
             query: ({
                 country,
                 genre,
                 order = "NUM_VOTE",
                 type = "FILM",
                 year,
-                page
-            })=> `/v2.2/films?countries=${country}&genres=${genre}&order=${order}&type=${type}&yearFrom=${year}&yearTo=${year}&page=${page}`,
+                page,
+                keyword = "",
+            })=> `/v2.2/films?countries=${country}&genres=${genre}&order=${order}&type=${type}&yearFrom=${year}&yearTo=${year}&page=${page}&keyword=${keyword}`,
         }),
         getSelectOptions: builder.query<ISelectOptions, void>({
             query: ()=> `v2.2/films/filters`,
@@ -133,7 +134,7 @@ export const moviesApi = createApi({
         getPersonById: builder.query<IPersonById[], {id: number}>({
             query: ({id})=> `v1/staff?filmId=${id}`,
         }),
-        getTeaserAndTrailerById: builder.query<ITeaserAndTrailerById, {id: number}>({
+        getTeaserAndTrailerById: builder.query<ITeaserAndTrailerById, {id?: number}>({
             query: ({id})=> `v2.2/films/${id}/videos`,
         }),
     }),

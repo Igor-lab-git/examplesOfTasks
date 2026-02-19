@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {
     useGetMovieByIdQuery,
     useGetPersonByIdQuery,
@@ -16,20 +16,17 @@ import DetailedDescription from "./ui/DetailedDescription.tsx";
 import DetailedInfo from "./ui/DetailedInfo.tsx";
 import DetailedDirectors from "./ui/DetailedStaff.tsx";
 import DetailedSourcelink from "./ui/DetailedSourcelink.tsx";
+import DetailedSequels from "./ui/DetailedSequels.tsx";
+import {type JSX} from "react";
 
-const DetailedPage = () => {
+const DetailedPage = (): JSX.Element => {
 
     const { id } = useParams();
     const movieId = Number(id);
-    // console.log("DetailedPage загружен с ID:", id);
-    // console.log(id)
 
     const filmQuery = useGetMovieByIdQuery({ id: movieId });
     const sequelsQuery = useGetSequelsPrequelsQuery({ id: movieId });
     const personsQuery = useGetPersonByIdQuery({ id: movieId });
-    console.log(filmQuery.data)
-    // console.log(sequelsQuery.data)
-    console.log(personsQuery.data, "DetailedPage")
 
     if(filmQuery.isLoading || sequelsQuery.isLoading || personsQuery.isLoading) return <p>Loading...</p>
     if(filmQuery.error || personsQuery.error) return <ErrorMessage/>
@@ -52,34 +49,14 @@ const DetailedPage = () => {
                     countriesArr={filmQuery.data?.countries}
                     genresArr={filmQuery.data?.genres}
                     filmLength={filmQuery.data?.filmLength}/>
-
                 <DetailedDirectors staff={personsQuery.data}/>
             </div>
             </div>
           </div>
-
-          <DetailedSourcelink webUrl={filmQuery.data?.webUrl} imdUrl={filmQuery.data?.imdbId}/>
-
+                <DetailedSourcelink webUrl={filmQuery.data?.webUrl} imdUrl={filmQuery.data?.imdbId}/>
+                <VideoPlayer movieId={filmQuery.data?.kinopoiskId}/>
           <div>
-              {filmQuery.data?.kinopoiskId && <VideoPlayer movieId={filmQuery.data?.kinopoiskId}/>}
-          </div>
-
-          <div>
-              <h3>Сиквелы, приквелы и ремейки</h3>
-              <ul>
-                  {sequelsQuery?.data && sequelsQuery?.data.map((sequel) => (
-                      <li key={sequel.filmId}>
-                          <img src={sequel.posterUrl} alt={sequel.nameEn}/>
-                          <a href={`https://www.kinopoisk.ru/film/${sequel.filmId}/`} target="_blank" rel="noopener noreferrer">
-                              <span>{sequel.nameRu}</span>
-                          </a>
-                          <Link to={`/movie/${sequel.filmId}`}>
-                              {sequel.nameRu}
-                          </Link>
-                          <span>{sequel.relationType}</span>
-                      </li>
-                  ))}
-              </ul>
+              <DetailedSequels sequels={sequelsQuery?.data}/>
           </div>
       </div>
         </ContainerPages>

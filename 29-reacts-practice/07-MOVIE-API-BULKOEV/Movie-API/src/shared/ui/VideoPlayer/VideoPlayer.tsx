@@ -1,36 +1,48 @@
 import {useGetTeaserAndTrailerByIdQuery} from "../../../app/store/moviesApi.ts";
-// import ReactPlayer from 'react-player';
-// import type { ReactPlayerProps } from 'react-player';
 
+interface IVideoPlayer {
+    movieId?: number | undefined;
+};
 
-const VideoPlayer = ({ movieId }: { movieId: number }) => {
+const VideoPlayer = ({ movieId }: IVideoPlayer) => {
     const { data, error, isLoading } = useGetTeaserAndTrailerByIdQuery({ id: movieId });
 
     const videos = data?.items || [];
     const youtubeVideo = videos.find(v => v.site === 'YOUTUBE');
+    const trailer = videos[0];
+    console.log(youtubeVideo, "youtubeVideo")
 
-    console.log('Все видео:', videos);
-    console.log('YouTube видео:', youtubeVideo);
 
     if (isLoading) return <div>⏳ Загрузка...</div>;
     if (error) return <div>❌ Ошибка</div>;
-    if (!youtubeVideo) return <div>🎬 Нет трейлера</div>;
-    // if (!youtubeTrailer) return <div>Трейлер не найден</div>;
+    if (videos.length === 0) return <div>🎬 Нет трейлера</div>;
+
     return (
-        <div className="player-wrapper" style={{position: 'relative', paddingTop: '20'}}>
-            <iframe
-                src={`https://www.youtube.com/embed/${movieId}`}
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '500',
-                    height: '500',
-                    border: 'none'
-                }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            />
+        <div style={{
+            width: '100%',
+            maxWidth: '800px',
+            margin: '0 auto',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+        }}>
+            <video
+                src={trailer.url}
+                controls
+                style={{width: '100%', height: 'auto', display: 'block'}}
+                preload="metadata">
+                <source src={trailer.url} type="video/mp4"/>
+                Ваш браузер не поддерживает видео тег.
+            </video>
+            {trailer.name && (
+                <div style={{
+                    padding: '8px',
+                    textAlign: 'center',
+                    background: 'rgba(0,0,0,0.05)'
+                }}>
+                    {trailer.name}
+                </div>
+            )}
         </div>
     );
 };
