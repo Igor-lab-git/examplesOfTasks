@@ -8,6 +8,7 @@ interface ICurrentGlobalState {
     type: string;
     year: number;
     page: number;
+    keyword: string;
 };
 
 const initialState: ICurrentGlobalState = {
@@ -17,10 +18,11 @@ const initialState: ICurrentGlobalState = {
     type: "",
     year: 1000,
     page: 1,
+    keyword: "",
 };
 
-export const moviesSlice = createSlice({
-    name: "moviesSlice",
+export const searchKeywordSlice = createSlice({
+    name: "searchKeywordSlice",
     initialState,
     reducers: {
         setCountries: (state, action: PayloadAction<string>) => {
@@ -41,10 +43,13 @@ export const moviesSlice = createSlice({
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
+        setSearchKeywordMovie: (state, action: PayloadAction<string>) => {
+            state.keyword = action.payload;
+        },
     },
 });
 
-export const { setCountries, setGenres, setOrder, setType, setYear, setPage } = moviesSlice.actions;
-export const selectFilters = (state: RootState) => state.movies;
+export const { setCountries, setGenres, setOrder, setType, setYear, setPage, setSearchKeywordMovie } = searchKeywordSlice.actions;
+export const selectKeywort = (state: RootState) => state.moviesKeyWord;
 
-export default moviesSlice.reducer;
+export default searchKeywordSlice.reducer;

@@ -137,6 +137,7 @@ export const moviesApi = createApi({
         getTeaserAndTrailerById: builder.query<ITeaserAndTrailerById, {id?: number}>({
             query: ({id})=> `v2.2/films/${id}/videos`,
         }),
+        
     }),
 
 
