@@ -1,18 +1,15 @@
-import {  type ChangeEvent, type JSX, memo, useState} from "react";
-import searchIcon from "../../../../public/header/Search.svg"
+import {  type JSX, memo, useEffect, useState} from "react";
 import style from "./SearchInput.module.scss"
 import {useGetFilteredContentQuery} from "../../../app/store/moviesApi.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {  selectKeywort, setSearchKeywordMovie } from "../../../app/store/searchKeywordSlice.ts";
-// import { getSearchMovie } from "../../../app/store/moviesSlice.ts";
-
-
+import { Autocomplete, TextField } from "@mui/material";
 
 const SearchInput = (): JSX.Element => {
 
-    const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState<string>("");
     const dispatch = useDispatch();
-    dispatch(setSearchKeywordMovie(searchText));
+    
     const {
         country,
         genre,
@@ -20,8 +17,16 @@ const SearchInput = (): JSX.Element => {
         type,
         year,
         page,
-        keyword,} = useSelector(selectKeywort);
+        keyword
+    } = useSelector(selectKeywort);
 
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            dispatch(setSearchKeywordMovie(searchText));
+        }, 500);
+
+        return () => clearTimeout(timeoutId)
+    }, [searchText, dispatch])
     
     const {data} = useGetFilteredContentQuery({
         country,
@@ -30,55 +35,40 @@ const SearchInput = (): JSX.Element => {
         type,
         year,
         page,
-        keyword}, {
-            skip: searchText.length < 3 // Не отправлять запрос, если мало символов
-          });
-    console.log(data)
-
-    // useEffect(() => {
-    //     dispatch(getSearchKeywordMovie(searchText))
-    // }, [searchText])
-
-    // getSearchMovie("Гарри")
-
-    // const listMovies = data?.items.map((item) => item.nameRu)
-
-    
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setSearchText(value);
-        // console.log('1. Локальный searchText:', value);
+        keyword});
         
-        // console.log('2. Диспатчнули в Redux');
+    const autocompleteStyles = {
+        width: { xs: '100%', sm: 300, md: 500 },
+        '& .MuiOutlinedInput-root': {
+            height: 35,
+            '& fieldset': {
+                borderColor: '#79C142',
+            },
+            '&:hover fieldset': {
+                borderColor: '#79C142',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: 'var(--green-color)',
+                borderWidth: '2px',
+            }
+        }
     };
-    
-    
-    // const toggleSearchText = (e: ChangeEvent<HTMLInputElement>) => {
-    //     dispatch(getSearchMovie(e.target.value)); // e.target.value, а не e.value!
-    // };
 
-//     console.log('3. keyword из Redux для запроса:', keyword);
-// console.log('4. URL запроса:', useGetFilteredContentQuery);
-
-// ===========
-
-
-    console.log(page, keyword, "SearchInput")
     return (
-        <div className={style.inputContainer}>
-            <input
-                value={searchText}
-                // value={data && data?.items.map((el) => el.nameRu)}
-                // options={data && data?.items.map((el) => el.nameRu)}
-                onChange={handleInputChange}
-                className={style.inputElement}
-                type="search"
-                placeholder="Поиск по сайту..."/>
-            <div className={style.icon}>
-                <img src={searchIcon} alt=""/>
-            </div>
-
-        </div>
+        <>
+            <Autocomplete
+                id="free-solo-demo"
+                sx={autocompleteStyles}
+                freeSolo
+                options={data && data.items ? data.items.map((movie) => movie.nameRu) : []}
+                getOptionLabel={(option) => option ?? ''}
+                value={searchText || ""}
+                onInputChange={(_event, newValue) => setSearchText(newValue)}
+                renderInput={(params) => <TextField {...params} placeholder="Название фильма..."  
+                className={style.label} 
+                />}
+            />
+        </>
     )
 };
 
