@@ -1,14 +1,16 @@
 import {  type JSX, memo, useEffect, useState} from "react";
 import style from "./SearchInput.module.scss"
-import {useGetFilteredContentQuery} from "../../../app/store/moviesApi.ts";
+import {useGetFilteredContentQuery, type IMovies} from "../../../app/store/moviesApi.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {  selectKeywort, setSearchKeywordMovie } from "../../../app/store/searchKeywordSlice.ts";
 import { Autocomplete, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = (): JSX.Element => {
 
     const [searchText, setSearchText] = useState<string>("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const {
         country,
@@ -60,8 +62,19 @@ const SearchInput = (): JSX.Element => {
                 id="free-solo-demo"
                 sx={autocompleteStyles}
                 freeSolo
-                options={data && data.items ? data.items.map((movie) => movie.nameRu) : []}
-                getOptionLabel={(option) => option ?? ''}
+                options={data?.items ? data?.items : []}
+                getOptionLabel={(movie) => {
+                    if (typeof movie === 'object' && movie !== null) {
+                        return movie.nameRu || movie.nameEn || '';
+                    }
+                    return movie || '';
+                }}
+                onChange={(_event, value) => {
+                    if (value && typeof value === 'object') {
+                        const movie = value as IMovies; 
+                        navigate(`/movie/${movie.kinopoiskId}`)
+                    }
+                }}
                 value={searchText || ""}
                 onInputChange={(_event, newValue) => setSearchText(newValue)}
                 renderInput={(params) => <TextField {...params} placeholder="Название фильма..."  
