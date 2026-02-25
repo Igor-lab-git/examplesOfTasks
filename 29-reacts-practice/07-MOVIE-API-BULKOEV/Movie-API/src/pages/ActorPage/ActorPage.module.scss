@@ -1,0 +1,10 @@
+@use "../../app/styles/main.scss" as main;
+@use "../../app/styles/helpers/" as *;
+
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  padding-block: fluid(30, 15);
+  background-color: var(--color-bg-body-alt);
+}

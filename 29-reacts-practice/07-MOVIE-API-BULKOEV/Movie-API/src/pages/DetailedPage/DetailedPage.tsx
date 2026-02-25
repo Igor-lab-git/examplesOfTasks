@@ -31,6 +31,9 @@ const DetailedPage = (): JSX.Element => {
     if(filmQuery.isLoading || sequelsQuery.isLoading || personsQuery.isLoading) return <p>Loading...</p>
     if(filmQuery.error || personsQuery.error) return <ErrorMessage/>
 
+    // console.log(personsQuery);
+    
+
   return (
       <ContainerPages>
             <div className={` ${style.homePage} containerMain`}>
@@ -52,13 +55,13 @@ const DetailedPage = (): JSX.Element => {
                 <DetailedDirectors staff={personsQuery.data}/>
             </div>
             </div>
-          </div>
+            </div>
                 <DetailedSourcelink webUrl={filmQuery.data?.webUrl} imdUrl={filmQuery.data?.imdbId}/>
                 <VideoPlayer movieId={filmQuery.data?.kinopoiskId}/>
-          <div>
-              <DetailedSequels sequels={sequelsQuery?.data}/>
-          </div>
-      </div>
+                <div>
+                    <DetailedSequels sequels={sequelsQuery?.data}/>
+                </div>
+            </div>
         </ContainerPages>
   )
 };

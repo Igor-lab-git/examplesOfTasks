@@ -79,6 +79,28 @@ interface IPersonById {
     professionKey: string;
 };
 
+interface IActorById {
+    personId: string;
+    webUrl: string;
+    nameRu: string;
+    nameEn: string;
+    sex: string;
+    posterUrl: string;
+    birthday: string;
+    age: number;
+    birthplace: string;
+    profession: string;
+    films: {
+        filmId: number;
+      nameRu: string;
+      nameEn: string;
+      rating: string;
+      general: boolean;
+      description: string;
+      professionKey: string;
+    }
+}
+
 interface  ITeaserAndTrailerById {
     items: {
         name: string;
@@ -90,7 +112,7 @@ interface  ITeaserAndTrailerById {
 
 const exceptionsGenres = ["", "новости", "для взрослых", "церемония", "концерт"]
 
-const KEY_API = import.meta.env.VITE_KINOPOISK_KEY || "";
+const KEY_API = import.meta.env.VITE_API_KEY || "";
 const BASE_URL = "https://kinopoiskapiunofficial.tech/api";
 
 export const moviesApi = createApi({
@@ -129,13 +151,16 @@ export const moviesApi = createApi({
             query: ({id})=> `/v2.2/films/${id}`,
         }),
         getSequelsPrequels: builder.query<ISequelsPrequels[], {id: number}>({
-            query: ({id})=> `v2.1/films/${id}/sequels_and_prequels`,
+            query: ({id})=> `/v2.1/films/${id}/sequels_and_prequels`,
         }),
         getPersonById: builder.query<IPersonById[], {id: number}>({
-            query: ({id})=> `v1/staff?filmId=${id}`,
+            query: ({id})=> `/v1/staff?filmId=${id}`,
         }),
         getTeaserAndTrailerById: builder.query<ITeaserAndTrailerById, {id?: number}>({
-            query: ({id})=> `v2.2/films/${id}/videos`,
+            query: ({id})=> `/v2.2/films/${id}/videos`,
+        }),
+        getActorById: builder.query<IActorById[], {id: number}>({
+            query: ({id})=> `/v1/staff/${id}`,
         }),
         
     }),
@@ -150,7 +175,8 @@ export const {
     useGetMovieByIdQuery,
     useGetSequelsPrequelsQuery,
     useGetPersonByIdQuery,
-    useGetTeaserAndTrailerByIdQuery} = moviesApi;
+    useGetTeaserAndTrailerByIdQuery,
+    useGetActorByIdQuery} = moviesApi;
 
 
 

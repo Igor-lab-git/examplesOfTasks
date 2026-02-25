@@ -1,5 +1,6 @@
 import style from "../DetailedPage.module.scss";
 import "../../../app/styles/main.scss";
+import { Link } from "react-router-dom";
 
 interface IStaff {
   staffId?: number;
@@ -14,6 +15,9 @@ interface IDetailedStaff {
 }
 
 const DetailedStaff = ({ staff }: IDetailedStaff) => {
+
+  console.log(staff);
+  
   return (
     <div className={style.constainerStaff}>
       <div className={style.satffList}>
@@ -28,10 +32,23 @@ const DetailedStaff = ({ staff }: IDetailedStaff) => {
       <div className={style.satffList}>
         <span>В главных ролях: </span>
         <ul className={`${style.listDirector} list-reset`}>
-          {staff?.filter((staff) => staff.professionText === "Актеры").map(({ nameRu }) => (
-              <li className={style.valueInfo} key={nameRu}>{nameRu}</li>
-            )).slice(1, 15)}
-        </ul>
+            {staff?.filter((staff) => staff.professionText === "Актеры")
+              .map(({ nameRu, staffId }) => {
+                // Убираем двоеточие, если оно есть
+                const cleanId = staffId?.toString().replace(':', '');
+                console.log('ACTOR RAW DATA:', {
+        staffId: "actor.staffId",
+        nameRu: "actor.nameRu",
+        type: typeof "actor.staffId"
+      });
+                
+                return (
+                  <Link key={staffId} to={`/actorPage/${cleanId}`}>
+                    <li className={style.valueInfo}>{nameRu}</li>
+                  </Link>
+                );
+              }).slice(1, 15)}
+          </ul>
       </div>
     </div>
   );
