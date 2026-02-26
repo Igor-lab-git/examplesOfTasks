@@ -1,10 +1,115 @@
 @use "../../app/styles/main.scss" as main;
 @use "../../app/styles/helpers/" as *;
 
-
 .homePage {
   display: flex;
   flex-direction: column;
   padding-block: fluid(30, 15);
   background-color: var(--color-bg-body-alt);
+}
+
+.containerInfo {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: rem(16);
+}
+
+.wrapperPoster {
+  max-width: rem(400);
+  aspect-ratio: 2/3;
+  align-self: flex-start;
+  background-color: var(--color-bg-body-alt);
+}
+
+.poster {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.wrapperTitle {
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(12, 5);
+}
+
+.title {
+  @include fluid-text(32, 26);
+
+  font-weight: 700;
+}
+
+.titleEnglish {
+  @include fluid-text(26, 18);
+
+  font-weight: 600;
+}
+
+.containerBiography {
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(10, 6);
+}
+
+.titleBiography {
+  @include fluid-text(26, 18);
+
+  font-weight: 600;
+}
+
+.wrapperInfoDetailed {
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(10, 6);
+}
+
+.wrapperInfoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: rem(10);
+}
+
+.itemTitle {
+  @include fluid-text(18, 14);
+
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.itemValue {
+  @include fluid-text(18, 14);
+
+  font-weight: 400;
+  color: var(--color-bg-main);
+}
+
+.containerFilmography {
+  display: flex;
+  flex-direction: column;
+
+   & > span{
+    @include fluid-text(22, 16);
+
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-black);
+  }
+}
+
+.listFilmography {
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  // gap: 12px;
+  // margin-top: 16px;
+}
+
+.itemFilm {
+  display: flex;
+  align-items: center;
+  column-gap: fluid(8, 4);
+}
+
+.linkFilm {
+  color: var(--color-bg-main);
 }

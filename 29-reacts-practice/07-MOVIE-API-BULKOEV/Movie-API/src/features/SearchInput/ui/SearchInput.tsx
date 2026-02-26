@@ -69,6 +69,12 @@ const SearchInput = (): JSX.Element => {
                     }
                     return movie || '';
                 }}
+                getOptionKey={(movie) => {
+                    if (typeof movie === 'object' && movie !== null && 'kinopoiskId' in movie) {
+                        return `movie-${(movie as IMovies).kinopoiskId}`;
+                    }
+                    return `option-${Math.random()}`;
+                }}
                 onChange={(_event, value) => {
                     if (value && typeof value === 'object') {
                         const movie = value as IMovies; 

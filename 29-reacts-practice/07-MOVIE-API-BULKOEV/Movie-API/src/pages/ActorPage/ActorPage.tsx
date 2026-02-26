@@ -4,27 +4,40 @@ import style from "./ActorPage.module.scss";
 import { NavigationPage } from "../../shared/ui/NavigationPage";
 import { useGetActorByIdQuery } from "../../app/store/moviesApi";
 import { useParams } from "react-router-dom";
+import { ErrorMessage } from "../../shared/ui/ErrorMessage";
+import ActorPoster from "./ui/ActorPoster";
+import ActorName from "./ui/ActorName";
+import ActorBiography from "./ui/ActorBiography";
+import ActorFilmography from "./ui/ActorFilmography";
 
 const ActorPage = () => {
-  const staffIdParms = useParams();
-  console.log(staffIdParms);
-  console.log('window.location.href:', window.location.href);
+  const {id} = useParams();
+  const numberId = Number(id);
 
-  const {data} = useGetActorByIdQuery({id: 66539});
+  const {data, error, isLoading} = useGetActorByIdQuery({id: numberId}, {skip: isNaN(numberId)});
 
   console.log(data);
+
+  if(error) return <ErrorMessage />
+  if(isLoading) return <h1>Загрузка страницы...</h1>
   
   return (
     <>
     <ContainerPages>
       <div className={`${style.homePage} containerMain`}>
-        <NavigationPage />
-
-      <h1>ActorPage</h1>
+        <NavigationPage title={data?.nameRu ? data?.nameRu : data?.nameEn}/>
+        <div className={style.containerInfo}>
+          <ActorPoster poster={data?.posterUrl} nameRu={data?.nameRu} nameEn={data?.nameEn}/>
+          <div>
+            <ActorName nameRu={data?.nameRu} nameEn={data?.nameEn}/>
+            <ActorBiography personData={data}/>
+          </div>
+        </div>
+          <ActorFilmography films={data?.films}/>
       </div>
     </ContainerPages>
     </>
   );
 };
-
+// Filmography
 export default ActorPage;

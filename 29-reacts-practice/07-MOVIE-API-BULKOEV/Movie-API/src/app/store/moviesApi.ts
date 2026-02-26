@@ -79,7 +79,17 @@ interface IPersonById {
     professionKey: string;
 };
 
-interface IActorById {
+export interface IFilms {
+     filmId: number;
+      nameRu: string;
+      nameEn: string;
+      rating: string;
+      general: boolean;
+      description: string;
+      professionKey: string;
+}
+
+export interface IActorById {
     personId: string;
     webUrl: string;
     nameRu: string;
@@ -90,15 +100,9 @@ interface IActorById {
     age: number;
     birthplace: string;
     profession: string;
-    films: {
-        filmId: number;
-      nameRu: string;
-      nameEn: string;
-      rating: string;
-      general: boolean;
-      description: string;
-      professionKey: string;
-    }
+    facts: string[];
+    growth: number;
+    films: IFilms[];
 }
 
 interface  ITeaserAndTrailerById {
@@ -159,7 +163,7 @@ export const moviesApi = createApi({
         getTeaserAndTrailerById: builder.query<ITeaserAndTrailerById, {id?: number}>({
             query: ({id})=> `/v2.2/films/${id}/videos`,
         }),
-        getActorById: builder.query<IActorById[], {id: number}>({
+        getActorById: builder.query<IActorById, {id: number}>({
             query: ({id})=> `/v1/staff/${id}`,
         }),
         

@@ -34,14 +34,7 @@ const DetailedStaff = ({ staff }: IDetailedStaff) => {
         <ul className={`${style.listDirector} list-reset`}>
             {staff?.filter((staff) => staff.professionText === "Актеры")
               .map(({ nameRu, staffId }) => {
-                // Убираем двоеточие, если оно есть
                 const cleanId = staffId?.toString().replace(':', '');
-                console.log('ACTOR RAW DATA:', {
-        staffId: "actor.staffId",
-        nameRu: "actor.nameRu",
-        type: typeof "actor.staffId"
-      });
-                
                 return (
                   <Link key={staffId} to={`/actorPage/${cleanId}`}>
                     <li className={style.valueInfo}>{nameRu}</li>
