@@ -1,0 +1,97 @@
+@use "../../../app//styles/main.scss" as main;
+
+.preloader {
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    position: relative;
+    background-color: var(--search-input);
+}
+.preloader.circle {
+    width: 180px;
+    height: 180px;
+    border-top: 10px solid var(--green-color);
+    border-right: 10px solid var(--green-color);
+    border-bottom: 10px solid #B6D99A;
+    border-left: 10px solid #B6D99A;    
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    animation: preloader-6-rotate 5s infinite linear;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.preloader .circleSmall {
+    width: 150px;
+    height: 150px;
+    border-top: 10px solid #B6D99A;
+    border-right: 10px solid #B6D99A;
+    border-bottom: 10px solid var(--green-color);
+    border-left: 10px solid var(--green-color);    
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    animation: preloader-6-rotate-rev 3s infinite linear;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.preloader .circlezBig{
+    width: 210px;
+    height: 210px;
+    border: 4px dotted #9BF358;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    animation: preloader-6-rotate-rev 10s infinite linear;
+}
+.preloader .circleInner {
+    width: 80px;
+    height: 80px;
+    background-color: #9BF358;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    animation: preloader-6-pulse 1.5s infinite ease-in;
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.preloader .circleInnerInner {
+    width: 100px;
+    height: 100px;
+    background-color: #B6D99A;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    animation: preloader-6-pulse 1.5s infinite ease-in;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+@keyframes preloader-6-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes preloader-6-rotate-rev {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+@keyframes preloader-6-pulse {
+    0% {
+        transform: scale(0.1);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.1);
+        opacity: 0.2;
+    }
+}

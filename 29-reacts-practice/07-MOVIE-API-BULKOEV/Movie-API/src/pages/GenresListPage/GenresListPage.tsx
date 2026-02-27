@@ -6,18 +6,18 @@ import ContainerPages from "../../shared/ui/ContainerPages/ContainerPages.tsx";
 import "../../app/styles/main.scss";
 import style from "./GenresListPage.module.scss";
 import { PaginationPages } from "../../shared/ui/PaginationPages/PaginationPages.tsx";
+import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
 
 const GenresListPage = () => {
-  const { data, error, isLoading, numberPage, setNumberPage, getTypeGenres } =
-    GenresListPageApi();
+  const { data, error, isLoading, numberPage, setNumberPage, getTypeGenres } = GenresListPageApi();
   const totalPages = data?.totalPages || 1;
-
-  if (error) return <ErrorMessage />;
-  if (isLoading) return <h2>Загрузка данных...</h2>;
 
   const handlePageClick = (event: { selected: number }) => {
     setNumberPage(event.selected + 1);
   };
+
+  if (error) return <ErrorMessage />;
+  if (isLoading) return <Preloader />;
 
   return (
     <ContainerPages>

@@ -18,6 +18,7 @@ import DetailedDirectors from "./ui/DetailedStaff.tsx";
 import DetailedSourcelink from "./ui/DetailedSourcelink.tsx";
 import DetailedSequels from "./ui/DetailedSequels.tsx";
 import {type JSX} from "react";
+import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
 
 const DetailedPage = (): JSX.Element => {
 
@@ -28,11 +29,8 @@ const DetailedPage = (): JSX.Element => {
     const sequelsQuery = useGetSequelsPrequelsQuery({ id: movieId });
     const personsQuery = useGetPersonByIdQuery({ id: movieId });
 
-    if(filmQuery.isLoading || sequelsQuery.isLoading || personsQuery.isLoading) return <p>Loading...</p>
-    if(filmQuery.error || personsQuery.error) return <ErrorMessage/>
-
-    // console.log(personsQuery);
-    
+    if(filmQuery.isLoading || sequelsQuery.isLoading || personsQuery.isLoading) return <Preloader />;
+    if(filmQuery.error || personsQuery.error) return <ErrorMessage/>;
 
   return (
       <ContainerPages>

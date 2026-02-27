@@ -10,6 +10,7 @@ import style from "./header.module.scss";
 export const Header = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isSkrolled, setIsSkrolled] = useState<boolean>(false);
   const refNavBar = useRef<HTMLDivElement>(null);
   const refBurgerButton = useRef<HTMLButtonElement>(null);
 
@@ -19,7 +20,6 @@ export const Header = (): JSX.Element => {
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    console.log(checkMobile)
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
@@ -33,8 +33,27 @@ export const Header = (): JSX.Element => {
     setIsOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      
+      if (scrollPosition > 150) {
+        setIsSkrolled(true);
+      } else {
+        setIsSkrolled(false);
+      }
+    };
+
+   
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   return (
-    <header className={style.header}>
+    <header 
+      className={`${style.header} ${isSkrolled ? style.scrollHeight : ""} `} >
       <div className={`containerMain ${style.containerHeader}`}>
         <Logo />
         <div className={style.wrapperSettings}>

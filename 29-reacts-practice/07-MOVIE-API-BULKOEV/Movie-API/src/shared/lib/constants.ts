@@ -1,4 +1,4 @@
-import type { IMOVIE_CONTENT_LIST, IMOVIE_GENRES_LIST, IMOVIE_TOP_RANKINGS_LIST } from "../../typse/types";
+import type { IMOVIE_CONTENT_LIST, IMOVIE_GENRES_LIST, IMOVIE_TOP_RANKINGS_LIST, IPROFESSION_TRANSLATIONS } from "../../typse/types";
 import top100Icon from '../../assets/icons/nav-bar/category-top-muvies-navBar/top_100.svg';
 import top250Icon from '../../assets/icons/nav-bar/category-top-muvies-navBar/top_250.svg';
 import bloDVampireIcon from '../../assets/icons/nav-bar/category-top-muvies-navBar/blood-vampire.svg';
@@ -139,3 +139,11 @@ export const MOVIE_CONTENT_LIST: IMOVIE_CONTENT_LIST[] = [
         genre: "18",
     },
 ];
+
+export const PROFESSION_TRANSLATIONS: IPROFESSION_TRANSLATIONS = {
+    DIRECTOR: "Режиссёр",
+    WRITER: "Сценарист",
+    ACTOR: "Актёр",
+    PRODUCER: "Продюссер",
+};
+

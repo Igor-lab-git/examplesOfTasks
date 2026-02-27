@@ -9,6 +9,7 @@ import ActorPoster from "./ui/ActorPoster";
 import ActorName from "./ui/ActorName";
 import ActorBiography from "./ui/ActorBiography";
 import ActorFilmography from "./ui/ActorFilmography";
+import Preloader from "../../shared/ui/Preloader/Preloader";
 
 const ActorPage = () => {
   const {id} = useParams();
@@ -16,10 +17,8 @@ const ActorPage = () => {
 
   const {data, error, isLoading} = useGetActorByIdQuery({id: numberId}, {skip: isNaN(numberId)});
 
-  console.log(data);
-
-  if(error) return <ErrorMessage />
-  if(isLoading) return <h1>Загрузка страницы...</h1>
+  if(error) return <ErrorMessage />;
+  if(isLoading) return <Preloader />;
   
   return (
     <>

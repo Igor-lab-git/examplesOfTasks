@@ -6,7 +6,7 @@ import TopRankingsBody from "./ui/TopRankingsBody.tsx";
 import "../../app/styles/main.scss";
 import style from "./TopRankingsPage.module.scss";
 import TopRankingsPageApi from "./model/TopRankingsPageApi.ts";
-
+import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
 
 const TopRankingsPage = () => {
 
@@ -24,7 +24,7 @@ const TopRankingsPage = () => {
     setNumberPage(event.selected + 1);
   };
 
-  if (isLoading) return <h2>Загрузка...</h2>;
+  if (isLoading) return <Preloader />;
   if (error) return <ErrorMessage />;
 
   return (

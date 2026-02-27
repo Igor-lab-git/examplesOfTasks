@@ -7,6 +7,7 @@ import style from "./HomePage.module.scss"
 import "../../app/styles/main.scss";
 import ContainerPages from "../../shared/ui/ContainerPages/ContainerPages.tsx";
 import { useHookContentQuery } from "../../features/hooks/useHookContentQuery.ts";
+import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
 
 const HomePage = (): JSX.Element => {
 
@@ -47,7 +48,7 @@ const carouselFormatedContent = [
   },
 ];
 
-if(isLoading) return <h2>Загрузка данных с сервера...</h2>;
+if(isLoading) return <Preloader />;
 
 if(isError) return <ErrorMessage />;
 

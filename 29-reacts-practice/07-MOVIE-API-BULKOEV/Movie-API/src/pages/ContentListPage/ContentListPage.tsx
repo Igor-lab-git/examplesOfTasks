@@ -7,7 +7,7 @@ import ContentListApi from "./model/ContentListApi.ts";
 import style from "../GenresListPage/GenresListPage.module.scss";
 import "../../app/styles/main.scss";
 import { FilterSelectContent } from "../../features/FilterSelectContent/index.ts";
-
+import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
 
 const ContentListPage = () => {
 
@@ -24,16 +24,14 @@ const ContentListPage = () => {
         getTypeContent
     } = ContentListApi();
 
-
-
-    if (isLoading) return <h2>Загрузка данных...</h2>
-    if (error) return <ErrorMessage/>
-
     const totalPages = data?.totalPages || 1;
 
     const handlePageClick = (event: { selected: number }) => {
         setNumberPage(event.selected + 1);
     };
+
+     if (error) return <ErrorMessage/>;
+     if (isLoading) return <Preloader />;
 
     return (
         <ContainerPages>

@@ -4,7 +4,7 @@ export interface IMOVIE_TOP_RANKINGS_LIST {
   icon: string;
   nameIcon: string;
   path: string;
-  type: string,
+  type: string;
 }
 
 export interface IMOVIE_CONTENT_LIST {
@@ -13,9 +13,9 @@ export interface IMOVIE_CONTENT_LIST {
   icon: string;
   nameIcon: string;
   path: string;
-  type: string,
-  genre: string
-};
+  type: string;
+  genre: string;
+}
 
 export interface IMOVIE_GENRES_LIST {
   id: string;
@@ -23,5 +23,12 @@ export interface IMOVIE_GENRES_LIST {
   icon: string;
   nameIcon: string;
   path: string;
-  type: string,
-};
+  type: string;
+}
+
+export interface IPROFESSION_TRANSLATIONS {
+  DIRECTOR: string;
+  WRITER: string;
+  ACTOR: string;
+  PRODUCER: string;
+}

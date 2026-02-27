@@ -8,10 +8,15 @@
   width: 100vw;
   height: rem(80);
   padding: rem(20);
+  transition-duration: var(--transition-duration);
   -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   box-shadow: var(--box-shadow);
   background: var(--color-white);
+
+  @include hover {
+    opacity: 1;
+  }
 
   @include tablet-S {
     padding: rem(15);
@@ -87,4 +92,8 @@
 
 .visible {
   display: block;
+}
+
+.scrollHeight {
+  opacity: 0.7;
 }

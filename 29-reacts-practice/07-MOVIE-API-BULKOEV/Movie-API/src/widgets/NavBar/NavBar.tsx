@@ -13,7 +13,6 @@ interface IProps {
 };
 
 const NavBar = ({isOpen, onClose, ref, children }: IProps): JSX.Element => {
-    console.log("NavBar")
     return (
         <div className={`${style.navBar} ${isOpen ? style.visible : style.hidden}`} ref={ref}>
             {children}

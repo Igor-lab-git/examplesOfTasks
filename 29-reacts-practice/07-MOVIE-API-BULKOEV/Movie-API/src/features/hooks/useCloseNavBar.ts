@@ -18,9 +18,7 @@ const useCloseNavBar = ({ refNavBar, refBurgerButton, setIsOpen }: IUseCloseNavB
   };
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
+    return () => document.removeEventListener("click", handleClickOutside);
   });
 };
 

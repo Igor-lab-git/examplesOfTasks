@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import  { memo, useMemo } from "react";
 import style from "../ActorPage.module.scss";
 import "../../../app/styles/main.scss";
+import { PROFESSION_TRANSLATIONS } from "../../../shared/lib/constants";
 
 interface IActorFilmography {
   films?: IFilms[];
@@ -11,7 +12,6 @@ interface IActorFilmography {
 
 const ActorFilmography = ({ films }: IActorFilmography): JSX.Element => {
 
-  console.log(films, "films");
   const groupedFilms = useMemo(() => {
     if (!films) return [];
     
@@ -34,33 +34,35 @@ const ActorFilmography = ({ films }: IActorFilmography): JSX.Element => {
     return Array.from(filmMap.values());
   }, [films]);
 
+
+ const getProfessionName = (professionKey: string): string => {
+    if (professionKey && professionKey in PROFESSION_TRANSLATIONS) {
+      return PROFESSION_TRANSLATIONS[professionKey as keyof typeof PROFESSION_TRANSLATIONS];
+    }
+    return professionKey || "Неизвестно";
+  };
+
+  const getRatingClass = useMemo(() => (rating: string): string => {
+    const numberRating = Number(rating);
+    if(!numberRating) return style.ratingNone;
+    if (numberRating >= 7) return style.ratingHigh;
+    if (numberRating >= 6) return style.ratingMedium;
+    return style.ratingLow;
+  }, []) ;
  
-
-  const filtredProfession = () => {
-    const listProfessionKey = ["DIRECTOR", "WRITER", "ACTOR", "PRODUCER"];
-    const result = films?.filter((film) => {
-      return listProfessionKey.includes(film.professionKey);
-    })
-
-    return result
-  }
-
-  console.log(filtredProfession(), "filtredProfession");
-  
-  
 
   return (
     <div className={style.containerFilmography}>
       <span className={style.itemTitle}>Фильмография</span>
-      <ul className={ `${style.listFilmography}  list-reset`}>
-        {groupedFilms && groupedFilms.map((film, index) => (
+      <ul className={ `list-reset ${style.listFilmography}`}>
+        {groupedFilms && groupedFilms.map((film) => (
             <li className={style.itemFilm} key={film.filmId}>
-              <span>{index + 1}. </span>
               <Link className={style.linkFilm} to={`/movie/${film.filmId}`}>
-                <span>{film.nameRu ? film.nameRu : film.nameEn}</span>
-                <span>{film.professionKey === "DIRECTOR" ? "Режисёр" : "Режисёр"}</span>
+                <span className={style.linkName}>{film.nameRu ? film.nameRu : film.nameEn}</span>
+                <span className={style.linkDescription}>{film.description ? film.description : ""}</span>
+                <span className={style.linkProfession}>{getProfessionName(film.professionKey)}</span>
               </Link>
-              <span>{film.rating ? film.rating : "0"}</span>
+              <span className={getRatingClass(film.rating)}>{film.rating ? film.rating : "0"}</span>
             </li>
           ))}
       </ul>
