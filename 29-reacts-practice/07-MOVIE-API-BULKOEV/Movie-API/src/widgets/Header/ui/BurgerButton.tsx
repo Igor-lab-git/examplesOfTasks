@@ -1,6 +1,7 @@
 import style from "../header.module.scss";
 import "../../../app/styles/base/_utils.scss"
-import type { ForwardedRef } from "react";
+import {  type ForwardedRef } from "react";
+
 
 interface IProps {
     isOpen: boolean

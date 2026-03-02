@@ -1,21 +1,32 @@
-import {useState, type JSX, memo} from "react";
+import { type JSX, memo, useContext} from "react";
 import "../../../app/styles/main.scss";
+import { ThemeModeContext } from "../../../app/ThemeContext/ThemeModeContext";
 import style from "../header.module.scss";
 
-const SwitchingThemes = memo((): JSX.Element => {
-  const [toggleTheme, setToggleTheme] = useState(false);
-  console.log("SwitchingThemes")
 
-  const handllerSwitchTheme = () => {
-    setToggleTheme(!toggleTheme);
-  };
+
+const SwitchingThemes = memo((): JSX.Element => {
+
+const context  = useContext(ThemeModeContext);
+
+if(!context ) {
+     throw new Error('SwitchingThemes must be used within ThemeProvider');
+};
+
+const {theme, toggleTheme} = context;
+
+   const isDark = theme === 'dark';
+
+console.log(theme);
+
+
 
   return (
       <button
           title="Переключить тему"
-          aria-label={toggleTheme ? "включить тёмную тему" : "включить светлую тему"}
+          aria-label={theme ? "включить тёмную тему" : "включить светлую тему"}
           className={style.switchThemeButoon}
-          onClick={() => handllerSwitchTheme()}
+          onClick={toggleTheme}
       >
         <svg
             width="35"
@@ -33,14 +44,14 @@ const SwitchingThemes = memo((): JSX.Element => {
 
           {/* Внутренняя часть (месяц) - будет желтой при наведении */}
           <path
-              className={`${style.hidden} ${toggleTheme ? style.visible : style.hidden} `}
+              className={`${style.hidden} ${isDark ? style.visible : style.hidden} `}
               d="M8.58287 5.6352C9.47214 5.22705 10.4609 5 11.5 5C15.366 5 18.5 8.13401 18.5 12C18.5 15.866 15.366 19 11.5 19C10.4609 19 9.47214 18.7729 8.58287 18.3648C8.22768 18.2018 8 17.8468 8 17.456C8 17.0651 8.22768 16.7101 8.58287 16.5471C10.3064 15.7561 11.5 14.0164 11.5 12C11.5 9.98362 10.3064 8.24392 8.58287 7.45289C8.22768 7.28987 8 6.93486 8 6.54404C8 6.15322 8.22768 5.79822 8.58287 5.6352Z"
               fill="#FFD700" // пока такой же зеленый
           />
 
           {/* Звездочка */}
           <g
-              className={`${style.hidden} ${!toggleTheme ? style.visible : style.hidden} `}
+              className={`${style.hidden} ${!isDark ? style.visible : style.hidden} `}
           >
             {/* Центр солнца */}
             <circle

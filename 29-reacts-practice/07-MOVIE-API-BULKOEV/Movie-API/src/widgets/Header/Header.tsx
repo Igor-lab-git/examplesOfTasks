@@ -1,4 +1,4 @@
-import {type JSX, useEffect, useRef, useState} from "react";
+import {type JSX, useContext, useEffect, useRef, useState} from "react";
 import NavBar from "../NavBar/NavBar";
 import BurgerButton from "./ui/BurgerButton";
 import { SearchInput } from "../../features/SearchInput";
@@ -6,6 +6,8 @@ import Logo from "./ui/Logo.tsx";
 import SwitchingThemes from "./ui/SwitchingThemes.tsx";
 import useCloseNavBar from "../../features/hooks/useCloseNavBar.ts";
 import style from "./header.module.scss";
+import "../../app/styles/main.scss";
+import { ThemeModeContext } from "../../app/ThemeContext/ThemeModeContext.ts";
 
 export const Header = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -13,6 +15,15 @@ export const Header = (): JSX.Element => {
   const [isSkrolled, setIsSkrolled] = useState<boolean>(false);
   const refNavBar = useRef<HTMLDivElement>(null);
   const refBurgerButton = useRef<HTMLButtonElement>(null);
+
+  const  context = useContext(ThemeModeContext);
+
+ if(!context ) {
+     throw new Error('SwitchingThemes must be used within ThemeProvider');
+};
+  const {theme} = context;
+  console.log(theme);
+  
 
   useEffect(() => {
     const checkMobile = () => {
@@ -44,27 +55,25 @@ export const Header = (): JSX.Element => {
       }
     };
 
-   
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
 
   return (
-    <header 
-      className={`${style.header} ${isSkrolled ? style.scrollHeight : ""} `} >
-      <div className={`containerMain ${style.containerHeader}`}>
-        <Logo />
-        <div className={style.wrapperSettings}>
-          <NavBar ref={refNavBar}  isOpen={isOpen} onClose={onClose} >
-            {isMobile && <SearchInput />}
-          </NavBar>
-            {!isMobile && <SearchInput />}
-          <BurgerButton ref={refBurgerButton} toggleNavBar={toggleNavBar} isOpen={isOpen} />
-          <SwitchingThemes />
+      <header 
+        className={`${style.header} ${isSkrolled ? style.scrollHeight : ""} ${theme === "dark" ? style.ligtheTheme : ""}`} >
+        <div className={`containerMain ${style.containerHeader}`}>
+          <Logo />
+          <div className={style.wrapperSettings}>
+            <NavBar ref={refNavBar}  isOpen={isOpen} onClose={onClose} >
+              {isMobile && <SearchInput />}
+            </NavBar>
+              {!isMobile && <SearchInput />}
+            <BurgerButton ref={refBurgerButton} toggleNavBar={toggleNavBar} isOpen={isOpen} />
+            <SwitchingThemes/>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
   );
 };
