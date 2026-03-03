@@ -12,32 +12,33 @@ interface IStaff {
 
 interface IDetailedStaff {
   staff?: IStaff[];
+  theme: "light" | "dark";
 }
 
-const DetailedStaff = ({ staff }: IDetailedStaff) => {
+const DetailedStaff = ({ staff, theme }: IDetailedStaff) => {
 
   console.log(staff);
   
   return (
     <div className={style.constainerStaff}>
       <div className={style.satffList}>
-        <span>Режисёры:</span>
+        <span className={`${theme === "dark" ? style.nameMovieDark : ""}`}>Режисёры:</span>
         <ul className={`${style.listActor} list-reset`}>
           {staff?.filter((staff) => staff.professionText === "Режиссеры").map(({ nameRu }) => (
-              <li className={style.valueInfo}  key={nameRu}>{nameRu}</li>
+              <li className={`${style.valueInfo} ${theme === "dark" ? style.valueInfoDark : ""}`}  key={nameRu}>{nameRu}</li>
             ))}
         </ul>
       </div>
 
       <div className={style.satffList}>
-        <span>В главных ролях: </span>
+        <span className={`${theme === "dark" ? style.nameMovieDark : ""}`}>В главных ролях: </span>
         <ul className={`${style.listDirector} list-reset`}>
             {staff?.filter((staff) => staff.professionText === "Актеры")
               .map(({ nameRu, staffId }) => {
                 const cleanId = staffId?.toString().replace(':', '');
                 return (
                   <Link key={staffId} to={`/actorPage/${cleanId}`}>
-                    <li className={style.valueInfo}>{nameRu}</li>
+                    <li className={`${style.valueInfo} ${theme === "dark" ? style.valueInfoDark : ""}`}>{nameRu}</li>
                   </Link>
                 );
               }).slice(1, 15)}

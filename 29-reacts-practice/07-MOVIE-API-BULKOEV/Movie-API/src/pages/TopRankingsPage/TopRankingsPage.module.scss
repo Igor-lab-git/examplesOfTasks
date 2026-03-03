@@ -9,6 +9,10 @@
   background-color: var(--color-bg-body);
 }
 
+.topRankingsPageDark {
+  background-color: var(--color-dark-333);
+}
+
 .listCards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

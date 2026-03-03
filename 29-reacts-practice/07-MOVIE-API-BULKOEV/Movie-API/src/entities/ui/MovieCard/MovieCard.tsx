@@ -4,10 +4,9 @@ import style from "./MovieCard.module.scss";
 
 interface IMovieCard {
   movieCard: IMovies;
-}
+};
 
 const MovieCard = ({ movieCard }: IMovieCard) => {
-  console.log(movieCard);
 
   return (
     <Link to={`/movie/${movieCard.kinopoiskId}`}>

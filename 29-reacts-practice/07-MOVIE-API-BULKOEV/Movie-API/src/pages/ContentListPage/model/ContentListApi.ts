@@ -11,8 +11,7 @@ const ContentListApi  = () => {
 
     const {country, order, year, genre} = useSelector(selectFilters);
 
-    const getTypeContent = MOVIE_CONTENT_LIST.find((item) => item.type === location.pathname);
-
+    const getTypeContent = MOVIE_CONTENT_LIST.find((item) => item.path === location.pathname);
 
     const {data, error, isLoading} = useGetFilteredContentQuery({
         country: country,

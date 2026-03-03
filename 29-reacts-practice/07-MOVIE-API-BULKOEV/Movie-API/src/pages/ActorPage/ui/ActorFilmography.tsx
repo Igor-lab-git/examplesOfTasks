@@ -2,15 +2,16 @@ import type { JSX } from "@emotion/react/jsx-runtime";
 import type { IFilms } from "../../../app/store/moviesApi";
 import { Link } from "react-router-dom";
 import  { memo, useMemo } from "react";
+import { PROFESSION_TRANSLATIONS } from "../../../shared/lib/constants";
 import style from "../ActorPage.module.scss";
 import "../../../app/styles/main.scss";
-import { PROFESSION_TRANSLATIONS } from "../../../shared/lib/constants";
 
 interface IActorFilmography {
   films?: IFilms[];
+  theme: "light" | "dark";
 };
 
-const ActorFilmography = ({ films }: IActorFilmography): JSX.Element => {
+const ActorFilmography = ({ films, theme }: IActorFilmography): JSX.Element => {
 
   const groupedFilms = useMemo(() => {
     if (!films) return [];
@@ -53,14 +54,14 @@ const ActorFilmography = ({ films }: IActorFilmography): JSX.Element => {
 
   return (
     <div className={style.containerFilmography}>
-      <span className={style.itemTitle}>Фильмография</span>
+      <span className={`${style.itemTitle} ${theme === "dark" ? style.itemTitleDark : ""}`}>Фильмография</span>
       <ul className={ `list-reset ${style.listFilmography}`}>
         {groupedFilms && groupedFilms.map((film) => (
             <li className={style.itemFilm} key={film.filmId}>
               <Link className={style.linkFilm} to={`/movie/${film.filmId}`}>
-                <span className={style.linkName}>{film.nameRu ? film.nameRu : film.nameEn}</span>
-                <span className={style.linkDescription}>{film.description ? film.description : ""}</span>
-                <span className={style.linkProfession}>{getProfessionName(film.professionKey)}</span>
+                <span className={`${style.linkName} ${theme === "dark" ? style.linkNameDark : ""}`}>{film.nameRu ? film.nameRu : film.nameEn}</span>
+                <span className={`${style.linkDescription} ${theme == "dark" ? style.linkDescriptionDark : ""}`}>{film.description ? film.description : ""}</span>
+                <span className={`${style.linkProfession} ${theme === "dark" ? style.linkProfessionDark : ""}`}>{getProfessionName(film.professionKey)}</span>
               </Link>
               <span className={getRatingClass(film.rating)}>{film.rating ? film.rating : "0"}</span>
             </li>

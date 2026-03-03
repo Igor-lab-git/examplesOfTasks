@@ -32,3 +32,9 @@
   
     font-weight: 800;
 }
+
+.navigationItemDark {
+  color: var(--color-white);
+}
+
+// ${theme === "dark" ? style.navigationItemDark : style.navigationItem}

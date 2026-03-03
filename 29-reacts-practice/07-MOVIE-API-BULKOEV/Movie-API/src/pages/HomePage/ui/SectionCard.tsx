@@ -3,7 +3,7 @@ import style from "../HomePage.module.scss";
 
 interface ISectionCard {
   movies: IMovies[] | undefined;
-}
+};
 
 const SectionCard = ({ movies }: ISectionCard) => {
 

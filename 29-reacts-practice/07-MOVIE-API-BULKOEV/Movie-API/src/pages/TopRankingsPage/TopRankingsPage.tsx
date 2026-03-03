@@ -7,8 +7,18 @@ import "../../app/styles/main.scss";
 import style from "./TopRankingsPage.module.scss";
 import TopRankingsPageApi from "./model/TopRankingsPageApi.ts";
 import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
+import { useContext } from "react";
+import { ThemeModeContext } from "../../app/ThemeContext/ThemeModeContext.ts";
+import type { JSX } from "@emotion/react/jsx-runtime";
 
-const TopRankingsPage = () => {
+const TopRankingsPage = (): JSX.Element => {
+   const context = useContext(ThemeModeContext);
+          
+      if (!context) {
+        throw new Error("SwitchingThemes must be used within ThemeProvider");
+      };
+          
+      const { theme } = context;
 
   const {
     getTypeTopMovies,
@@ -16,7 +26,8 @@ const TopRankingsPage = () => {
     error,
     isLoading,
     numberPage,
-    setNumberPage} = TopRankingsPageApi();
+    setNumberPage
+  } = TopRankingsPageApi();
 
   const totalPages = data?.totalPages || 1;
 
@@ -29,7 +40,7 @@ const TopRankingsPage = () => {
 
   return (
     <ContainerPages>
-      <div className={`${style.topRankingsPage} containerMain`}>
+      <div className={`${style.topRankingsPage} ${theme === "dark" ? style.topRankingsPageDark : ""} containerMain`}>
         <NavigationPage title={getTypeTopMovies?.title} />
         <TopRankingsBody movies={data?.items} />
         <PaginationPages

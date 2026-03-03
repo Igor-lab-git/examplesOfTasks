@@ -8,8 +8,17 @@ import style from "../GenresListPage/GenresListPage.module.scss";
 import "../../app/styles/main.scss";
 import { FilterSelectContent } from "../../features/FilterSelectContent/index.ts";
 import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
+import { useContext } from "react";
+import { ThemeModeContext } from "../../app/ThemeContext/ThemeModeContext.ts";
 
 const ContentListPage = () => {
+      const context = useContext(ThemeModeContext);
+        
+          if (!context) {
+            throw new Error("SwitchingThemes must be used within ThemeProvider");
+          };
+        
+          const { theme } = context;
 
     const {
         data,
@@ -32,11 +41,10 @@ const ContentListPage = () => {
 
      if (error) return <ErrorMessage/>;
      if (isLoading) return <Preloader />;
-
+    
     return (
         <ContainerPages>
-            <div className={`${style.genresPage} containerMain`}>
-                <h1>{getTypeContent?.title}</h1>
+            <div className={`${style.genresPage} ${theme === "dark" ? style.genresPageDark : ""} containerMain`}>
                 <FilterSelectContent country={country} order={order} year={year} genre={genre}/>
                 <NavigationPage title={getTypeContent?.title}/>
                 <ContentListBody movies={data?.items}/>

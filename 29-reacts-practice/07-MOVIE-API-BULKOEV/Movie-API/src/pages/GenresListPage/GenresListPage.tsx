@@ -7,8 +7,18 @@ import "../../app/styles/main.scss";
 import style from "./GenresListPage.module.scss";
 import { PaginationPages } from "../../shared/ui/PaginationPages/PaginationPages.tsx";
 import Preloader from "../../shared/ui/Preloader/Preloader.tsx";
+import { useContext } from "react";
+import { ThemeModeContext } from "../../app/ThemeContext/ThemeModeContext.ts";
 
 const GenresListPage = () => {
+  const context = useContext(ThemeModeContext);
+  
+    if (!context) {
+      throw new Error("SwitchingThemes must be used within ThemeProvider");
+    };
+  
+    const { theme } = context;
+
   const { data, error, isLoading, numberPage, setNumberPage, getTypeGenres } = GenresListPageApi();
   const totalPages = data?.totalPages || 1;
 
@@ -21,7 +31,7 @@ const GenresListPage = () => {
 
   return (
     <ContainerPages>
-      <div className={`${style.genresPage} containerMain`}>
+      <div className={`${style.genresPage} ${theme === "dark" ? style.genresPageDark : ""} containerMain`}>
         <NavigationPage title={getTypeGenres?.title} />
         <GenresBody movies={data?.items} />
         <PaginationPages

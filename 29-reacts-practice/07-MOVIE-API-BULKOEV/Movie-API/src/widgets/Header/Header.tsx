@@ -22,9 +22,7 @@ export const Header = (): JSX.Element => {
      throw new Error('SwitchingThemes must be used within ThemeProvider');
 };
   const {theme} = context;
-  console.log(theme);
   
-
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768.98);
@@ -34,7 +32,7 @@ export const Header = (): JSX.Element => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  useCloseNavBar({refNavBar, refBurgerButton, setIsOpen})
+  useCloseNavBar({refNavBar, refBurgerButton, setIsOpen});
 
   const toggleNavBar = () => {
     setIsOpen((prev) => !prev);
@@ -59,12 +57,11 @@ export const Header = (): JSX.Element => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
       <header 
         className={`${style.header} ${isSkrolled ? style.scrollHeight : ""} ${theme === "dark" ? style.ligtheTheme : ""}`} >
         <div className={`containerMain ${style.containerHeader}`}>
-          <Logo />
+          <Logo theme={theme}/>
           <div className={style.wrapperSettings}>
             <NavBar ref={refNavBar}  isOpen={isOpen} onClose={onClose} >
               {isMobile && <SearchInput />}

@@ -6,36 +6,37 @@ interface IDetailedInfo {
   countriesArr?: {country: string}[];
   genresArr?: {genre: string}[];
   filmLength?: number | null;
+  theme: "light" | "dark";
 
 }
-const DetailedInfo = ({ year, countriesArr, genresArr, filmLength}: IDetailedInfo) => {
+const DetailedInfo = ({ year, countriesArr, genresArr, filmLength, theme}: IDetailedInfo) => {
   return (
     <div className={style.containerDetailedInfo}>
 
     <div className={style.containerDetailedCountry}>
-      <span>Год:</span>
-      <span className={style.valueInfo}>{year}</span>
+      <span className={`${theme === "dark" ? style.nameMovieDark : ""}`}>Год:</span>
+      <span className={`${style.valueInfo} ${theme === "dark" ? style.valueInfoDark : ""}`}>{year}</span>
     </div>
 
     <div className={style.containerDetailedCountry}>
-      <span>Длительность:</span>
-      <span className={style.valueInfo}>{filmLength} мин.</span>
+      <span className={`${theme === "dark" ? style.nameMovieDark : ""}`}>Длительность:</span>
+      <span className={`${style.valueInfo} ${theme === "dark" ? style.valueInfoDark : ""}`}>{filmLength} мин.</span>
     </div>
 
     <div className={style.containerDetailedCountry}>
-      <span>Страна:</span>
+      <span className={`${theme === "dark" ? style.nameMovieDark : ""}`}>Страна:</span>
       <ul className={`${style.list} list-reset`}>
         {countriesArr?.map((item, index) => (
-          <li className={style.valueInfo} key={index}><span>{item.country}</span></li>
+          <li className={`${style.valueInfo} ${theme === "dark" ? style.valueInfoDark : ""}`} key={index}><span>{item.country}</span></li>
         ))}
       </ul>
     </div>
 
     <div className={style.containerDetailedGanre}>
-      <span>Жанр:</span>
+      <span className={`${theme === "dark" ? style.nameMovieDark : ""}`}>Жанр:</span>
       <ul className={`${style.list} list-reset`}>
         {genresArr?.map((item, index) => (
-          <li className={style.valueInfo} key={index}><span>{item.genre}</span></li>
+          <li className={`${style.valueInfo} ${theme === "dark" ? style.valueInfoDark : ""}`} key={index}><span>{item.genre}</span></li>
         ))}
       </ul>
     </div>

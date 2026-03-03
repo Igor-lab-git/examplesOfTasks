@@ -61,3 +61,8 @@
   opacity: 1;
   color: #4FB500;
 }
+
+.dark {
+  color: var(--color-white);
+  background-color: var(--color-bg-main);
+}

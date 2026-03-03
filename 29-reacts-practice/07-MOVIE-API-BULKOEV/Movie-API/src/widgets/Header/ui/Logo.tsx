@@ -1,13 +1,16 @@
-import LogoSVG from "../../../../public/logo/logo_cinemahub.svg";
 import {type JSX, memo} from "react";
+import LogoIcon from "./LogoIcon";
 
-const Logo = (): JSX.Element => {
+interface ILogo {
+  theme: "light" | "dark";
+}
+
+const Logo = ({ theme }: ILogo): JSX.Element => {
+
   return (
-    <>
-      <a href="/">
-        <img src={LogoSVG} alt="Логотип CinemaHub" />
-      </a>
-    </>
+    <a href="/">
+      <LogoIcon theme={theme}/>
+    </a>
   );
 };
 

@@ -4,6 +4,7 @@
 .homePage {
   display: flex;
   flex-direction: column;
+  row-gap: fluid(20, 10);
   padding-block: fluid(30, 15);
   background-color: var(--color-bg-body-alt);
 }
@@ -202,14 +203,32 @@
   height: auto;
 }
 
-.sequelsPoster {
+.sequelsPosterLink {
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-bottom: rem(5);
 
   @include hover {
     scale: 1.01;
   }
+}
+.sequelsName {
+  @include fluid-text(14, 10);
+}
+
+.homePageDark {
+  background-color: var(--color-dark-333);
+}
+
+.sequelsNameDark,
+.nameMovieDark,
+.descriptionDark {
+  color:  var(--color-white);
+}
+
+.sequelsTitleDark,
+.valueInfoDark {
+  color: var(--color-yellow);
 }
 
 

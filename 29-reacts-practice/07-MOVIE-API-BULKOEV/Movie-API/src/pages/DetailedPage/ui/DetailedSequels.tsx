@@ -1,5 +1,6 @@
-import style from "../DetailedPage.module.scss";
 import {Link} from "react-router-dom";
+import style from "../DetailedPage.module.scss";
+import "../../../app/styles/main.scss";
 
 interface ISequels {
     sequels?: {
@@ -10,28 +11,33 @@ interface ISequels {
         posterUrlPreview: string | null;
         posterUrl: string | null;
         relationType: "PREQUEL" | "SEQUEL";
-    }[] | undefined
+    }[] | undefined;
+    theme: "light" | "dark";
 };
 
-const DetailedSequels = ({sequels}: ISequels) => {
+const DetailedSequels = ({sequels, theme}: ISequels) => {
 
     console.log(sequels)
 
     return (
         <div className={style.containerSequels}>
-            <h4 className={style.sequelsTitle}>Сиквелы, приквелы и ремейки</h4>
+            <h4 className={`${style.sequelsTitle} ${theme === "dark" ? style.sequelsTitleDark : ""}`}>Сиквелы, приквелы и ремейки</h4>
 
-            <div className={style.containerArticle}>
+            <div >
+                <ul className={`${style.containerArticle} list-reset`}>
                 {sequels && sequels.map((sequel) => (
-                    <article className={style.sequelsArticle} key={sequel.filmId}>
-                        <Link className={style.sequelsPoster} to={`/movie/${sequel.filmId}`}>
-                            <img className={style.sequelsPoster} src={sequel.posterUrlPreview || sequel.posterUrl || ""} alt={sequel.nameRu || sequel.nameOriginal || "Постер"}/>
-                            <div>
-                                <span className={style.sequelsName}>{sequel.nameRu || sequel.nameOriginal || sequel.nameEn}</span>
-                            </div>
-                        </Link>
-                    </article>
+                    <li className={style.sequelsItem} key={sequel.filmId}>
+                        <article className={style.sequelsArticle} >
+                            <Link className={style.sequelsPosterLink} to={`/movie/${sequel.filmId}`}>
+                                <img className={style.sequelsPoster} src={sequel.posterUrlPreview || sequel.posterUrl || ""} alt={sequel.nameRu || sequel.nameOriginal || "Постер"}/>
+                                <div>
+                                    <span className={`${style.sequelsName} ${theme === "dark" ? style.sequelsNameDark : ""}`}>{sequel.nameRu || sequel.nameOriginal || sequel.nameEn}</span>
+                                </div>
+                            </Link>
+                        </article>
+                    </li>
                 ))}
+                </ul>
             </div>
         </div>
     );

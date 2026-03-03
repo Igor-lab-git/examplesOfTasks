@@ -5,8 +5,7 @@ import style from "../TopRankingsPage.module.scss"
 
 interface ITopRankingsBody {
     movies?: IMovies[];
-}
-
+};
 
 const TopRankingsBody = ({movies}: ITopRankingsBody): JSX.Element => {
   return (
