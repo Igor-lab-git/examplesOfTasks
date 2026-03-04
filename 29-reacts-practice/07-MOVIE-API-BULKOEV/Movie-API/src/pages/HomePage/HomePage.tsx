@@ -1,5 +1,5 @@
 import Carousel from "./Carousel";
-import { useContext, type JSX} from "react";
+import { memo, useContext, type JSX} from "react";
 import ErrorMessage from "../../shared/ui/ErrorMessage/ErrorMessage.tsx";
 import HomeHeaderLink from "./ui/HomeHeaderLink.tsx";
 import SectionCard from "./ui/SectionCard.tsx";
@@ -17,7 +17,7 @@ const HomePage = (): JSX.Element => {
      throw new Error('SwitchingThemes must be used within ThemeProvider');
 };
 
-  const {theme} = context;
+const {theme} = context;
 
 const {
     isLoading,
@@ -75,4 +75,4 @@ if(isError) return <ErrorMessage />;
   )
 };
 
-export default HomePage
+export default memo(HomePage);

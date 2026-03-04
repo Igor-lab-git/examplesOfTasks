@@ -16,9 +16,6 @@ interface ISequels {
 };
 
 const DetailedSequels = ({sequels, theme}: ISequels) => {
-
-    console.log(sequels)
-
     return (
         <div className={style.containerSequels}>
             <h4 className={`${style.sequelsTitle} ${theme === "dark" ? style.sequelsTitleDark : ""}`}>Сиквелы, приквелы и ремейки</h4>

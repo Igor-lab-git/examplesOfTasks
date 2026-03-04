@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import style from "../DetailedPage.module.scss";
 import "../../../app/styles/main.scss";
-import { Link } from "react-router-dom";
 
 interface IStaff {
   staffId?: number;
@@ -8,16 +8,14 @@ interface IStaff {
   nameRu: string;
   posterUrl: string;
   professionText: string;
-}
+};
 
 interface IDetailedStaff {
   staff?: IStaff[];
   theme: "light" | "dark";
-}
+};
 
 const DetailedStaff = ({ staff, theme }: IDetailedStaff) => {
-
-  console.log(staff);
   
   return (
     <div className={style.constainerStaff}>

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { IMovies } from "../../../app/store/moviesApi";
 import style from "../HomePage.module.scss";
 
@@ -26,4 +27,4 @@ const SectionCard = ({ movies }: ISectionCard) => {
   );
 };
 
-export default SectionCard;
+export default memo(SectionCard);

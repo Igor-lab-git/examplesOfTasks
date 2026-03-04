@@ -1,4 +1,4 @@
-import { type JSX, memo, useContext, useEffect, useState } from "react";
+import { type JSX, memo, useContext, useEffect, useMemo, useState } from "react";
 import style from "./SearchInput.module.scss";
 import { useGetFilteredContentQuery, type IMovies } from "../../../app/store/moviesApi.ts";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,7 +51,7 @@ const SearchInput = (): JSX.Element => {
   // Цвета в зависимости от темы
   const isDark = theme === 'dark';
   
-  const autocompleteStyles = {
+  const autocompleteStyles = useMemo(() => ({
     width: { xs: '100%', sm: 300, md: 500 },
     '& .MuiOutlinedInput-root': {
       height: 35,
@@ -90,9 +90,8 @@ const SearchInput = (): JSX.Element => {
         backgroundColor: isDark ? '#4d4d4d' : '#e8f0fe',
       },
     },
-  };
+  }), [isDark]);
 
-  // Функция для очистки поиска
   const handleClearSearch = () => {
     setSearchText("");
     dispatch(setSearchKeywordMovie(""));

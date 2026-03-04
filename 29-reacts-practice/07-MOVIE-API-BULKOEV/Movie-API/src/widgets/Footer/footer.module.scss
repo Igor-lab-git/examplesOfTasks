@@ -1,3 +1,41 @@
+@use "../../app/styles/helpers/" as *;
+
 .footer {
-    background-color: plum;
+    background-color: var(--color-white);
+}
+
+.footerInner {
+    @include fluid-text(14, 10);
+    @include flex-between();
+
+    padding-block: fluid(20, 10);
+}
+
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(6, 3);
+}
+
+.containerCopyright {
+    display: flex;
+    column-gap: rem(6);
+}
+
+.containerDisclaimer {
+    @include fluid-text(10, 8);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(2, 2);
+}
+
+.footerLogo {
+    display: flex;
+    align-self: flex-end;
+}
+
+.footerDark {
+    color: var(--color-white);
+    background-color: #4b3e63;
 }

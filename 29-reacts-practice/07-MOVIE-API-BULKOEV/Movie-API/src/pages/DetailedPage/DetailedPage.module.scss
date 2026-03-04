@@ -178,8 +178,6 @@
   flex-direction: column;
   align-items: center;
   row-gap: fluid(15, 5);
-
-
 }
 
 .sequelsTitle {
@@ -200,18 +198,24 @@
 .sequelsArticle {
   text-align: center;
   max-width: rem(200);
-  height: auto;
+  height: rem(250);
+  object-fit: cover;
 }
 
 .sequelsPosterLink {
-  width: 100%;
-  height: auto;
   margin-bottom: rem(5);
 
   @include hover {
     scale: 1.01;
   }
 }
+
+.sequelsPoster {
+  max-width: rem(200);
+  height: rem(250);
+  object-fit: cover;
+}
+
 .sequelsName {
   @include fluid-text(14, 10);
 }

@@ -3,12 +3,13 @@ import LogoIcon from "./LogoIcon";
 
 interface ILogo {
   theme: "light" | "dark";
+  className?: string;
 }
 
-const Logo = ({ theme }: ILogo): JSX.Element => {
+const Logo = ({ theme, className }: ILogo): JSX.Element => {
 
   return (
-    <a href="/">
+    <a className={`${className}`} href="/">
       <LogoIcon theme={theme}/>
     </a>
   );

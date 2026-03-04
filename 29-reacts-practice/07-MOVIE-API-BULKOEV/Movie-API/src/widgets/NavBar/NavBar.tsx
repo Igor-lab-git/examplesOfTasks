@@ -1,7 +1,7 @@
 import { MOVIE_CONTENT_LIST, MOVIE_GENRES_LIST, MOVIE_TOP_RANKINGS_LIST } from "../../shared/lib/constants";
 import NavBarLinkCategory from "./ui/NavBarLinkCategory";
 import style from "./navBar.module.scss";
-import {useContext, type ForwardedRef, type JSX} from "react";
+import {memo, useContext, type ForwardedRef, type JSX} from "react";
 import { ThemeModeContext } from "../../app/ThemeContext/ThemeModeContext";
 
 
@@ -34,4 +34,4 @@ const NavBar = ({isOpen, onClose, ref, children }: IProps): JSX.Element => {
 
 
 
-export default NavBar ;
+export default memo(NavBar);

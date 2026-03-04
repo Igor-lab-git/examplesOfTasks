@@ -8,10 +8,8 @@ const VideoPlayer = ({ movieId }: IVideoPlayer) => {
     const { data, error, isLoading } = useGetTeaserAndTrailerByIdQuery({ id: movieId });
 
     const videos = data?.items || [];
-    const youtubeVideo = videos.find(v => v.site === 'YOUTUBE');
+    // const youtubeVideo = videos.find(v => v.site === 'YOUTUBE');
     const trailer = videos[0];
-    console.log(youtubeVideo, "youtubeVideo")
-
 
     if (isLoading) return <div>⏳ Загрузка...</div>;
     if (error) return <div>❌ Ошибка</div>;

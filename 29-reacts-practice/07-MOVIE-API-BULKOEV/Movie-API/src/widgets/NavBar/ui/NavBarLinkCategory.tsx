@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "../navBar.module.scss";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { ThemeModeContext } from "../../../app/ThemeContext/ThemeModeContext";
 import type { JSX } from "@emotion/react/jsx-runtime";
 
@@ -46,4 +46,4 @@ const NavBarLinkCategory = ({ item, onClose }: INavBarLinkCategory): JSX.Element
   );
 };
 
-export default NavBarLinkCategory;
+export default memo(NavBarLinkCategory);

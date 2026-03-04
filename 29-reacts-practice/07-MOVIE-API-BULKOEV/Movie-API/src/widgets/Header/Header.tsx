@@ -1,4 +1,4 @@
-import {type JSX, useContext, useEffect, useRef, useState} from "react";
+import {type JSX, useCallback, useContext, useEffect, useRef, useState} from "react";
 import NavBar from "../NavBar/NavBar";
 import BurgerButton from "./ui/BurgerButton";
 import { SearchInput } from "../../features/SearchInput";
@@ -34,9 +34,9 @@ export const Header = (): JSX.Element => {
 
   useCloseNavBar({refNavBar, refBurgerButton, setIsOpen});
 
-  const toggleNavBar = () => {
+  const toggleNavBar = useCallback(() => {
     setIsOpen((prev) => !prev);
-  };
+  }, [setIsOpen]) ;
 
   const onClose = () => {
     setIsOpen((prev) => !prev);

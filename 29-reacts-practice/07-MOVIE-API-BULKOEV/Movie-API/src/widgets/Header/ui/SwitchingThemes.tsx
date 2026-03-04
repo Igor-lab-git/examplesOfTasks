@@ -15,11 +15,7 @@ if(!context ) {
 
 const {theme, toggleTheme} = context;
 
-   const isDark = theme === 'dark';
-
-console.log(theme);
-
-
+const isDark = theme === 'dark';
 
   return (
       <button

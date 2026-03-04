@@ -1,5 +1,6 @@
-import { useState, type ReactNode } from "react";
+import {  useState, type ReactNode } from "react";
 import { ThemeModeContext } from "./ThemeModeContext";
+import { getStateThemeLocalStorage, setStateThemeLocalStorage } from "./lib/storage";
 
 interface IThemeContext {
     children: ReactNode;
@@ -7,7 +8,9 @@ interface IThemeContext {
 
 const ThemeContext = ({children}: IThemeContext) => {
 
-    const [theme, setTheme] = useState<"light" | "dark">("light");
+    const [theme, setTheme] = useState<"light" | "dark">(getStateThemeLocalStorage());
+
+    setStateThemeLocalStorage(theme);
 
     const toggleTheme = () => {
       setTheme((prev) => prev === "light" ? "dark" : "light");
