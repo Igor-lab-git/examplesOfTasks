@@ -1,11 +1,23 @@
 @use "../../../app//styles/main.scss" as main;
-@use "../../../app//styles/helpers/" as *;
+@use "../../../app//styles/helpers" as *;
+
+.containerPagination {
+  display: flex;
+  justify-content: center;
+}
 
 .paginationList {
   display: flex;
   min-width: 500px;
   justify-content: center;
   column-gap: 10px;
+
+  @include tablet-S {
+    min-width: 50px;
+    column-gap: rem(4);
+  }
+
+
 }
 
 .prevButton a,
@@ -29,20 +41,31 @@
     border-right: 3px solid var(--color-white);
   }
 
-  @include mobile {
-    width: rem(30);
-    height: rem(30);
+  @include tablet-S {
+    width: rem(25);
+    height: rem(25);
   }
+
+  @include mobile {
+    width: rem(20);
+    height: rem(20);
+  }
+
 }
 
 .prevButton:hover,
 .nextButton:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .prevButton a::before {
   transform: rotate(-135deg);
   margin-left: 4px;
+
+  @include tablet-S {
+    width: rem(10);
+    height: rem(10);
+  }
 }
 
 .nextButton a::before {
@@ -71,9 +94,19 @@
     background: #ddd;
   }
 
+  @include tablet-S {
+    width: rem(25);
+    height: rem(25);
+  }
+
   @include mobile {
-    width: rem(30);
-    height: rem(30);
+    width: rem(20);
+    height: rem(20);
+  }
+
+  @include mobile {
+    // width: rem(30);
+    // height: rem(30);
   }
 }
 

@@ -178,6 +178,7 @@
   flex-direction: column;
   align-items: center;
   row-gap: fluid(15, 5);
+  margin-bottom: rem(25)
 }
 
 .sequelsTitle {
@@ -188,17 +189,20 @@
 
 .containerArticle {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: fluid(10, 8);
 
   @include mobile {
     flex-direction: column;
+    row-gap: rem(25);
   }
 }
 
 .sequelsArticle {
   text-align: center;
-  max-width: rem(200);
-  height: rem(250);
+  max-width: fluid(200, 150);
+  max-height: rem(250);
   object-fit: cover;
 }
 

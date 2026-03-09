@@ -10,10 +10,10 @@ const Carousel = ({children}: ICarousel) => {
 
   const handleScroll = (direction: string) => {
     if(!containerCaruselRef.current) return;
-    
+
     const container = containerCaruselRef.current;
     const amount = 300;
-    
+
     if(direction === "left") {
         if (container.scrollLeft <= 0) {
             container.scrollLeft = container.scrollWidth - container.clientWidth;
@@ -21,7 +21,7 @@ const Carousel = ({children}: ICarousel) => {
             container.scrollLeft -= amount;
         }
     }
-    
+
     if(direction === "right") {
         if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 10) {
             container.scrollLeft = 0;
@@ -30,7 +30,6 @@ const Carousel = ({children}: ICarousel) => {
         }
     }
   }
-
 
   return (
     <div className={style.carouselWrapper}>

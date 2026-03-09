@@ -3,15 +3,19 @@
 
 .containerNavigation {
   display: flex;
-  column-gap: fluid(10, 5);
+  column-gap: fluid(10, 8);
+}
+
+.navigationHomeBtn {
+  flex-shrink: 0;
 }
 
 .navigationItem {
-  @include fluid-text(16, 14);
+  @include fluid-text(16, 12);
   transition-duration: var(--transition-duration);
   transition-property: color;
-  
   font-weight: 700;
+
   color: var(--color-bg-main);
 }
 
@@ -20,6 +24,7 @@
   @include hover {
     color: var(--green-color);
   }
+
   &::after {
     position: absolute;
     content: "/";
@@ -27,10 +32,14 @@
   }
 }
 
-.navigationItem:last-child{
-    @include fluid-text(18, 16);
-  
-    font-weight: 800;
+.navigationItem:last-child {
+  @include fluid-text(18, 16);
+
+  font-weight: 800;
+}
+
+.navigationTitltPage {
+  @include fluid-text(16, 12);
 }
 
 .navigationItemDark {

@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  width: 100vw;
+  width: 100%;
   height: rem(80);
   padding: rem(20);
   transition-duration: var(--transition-duration);
@@ -100,4 +100,22 @@
 
 .ligtheTheme {
   background: var(--color-bg-main);
+}
+
+//.logoImg {
+//  @include mobile {
+//    transform: translate(140px, 0);
+//    //height: 50px;
+//    //clip-path: inset(0 148px 0 0);
+//  }
+//}
+
+.logoSvg {
+  @include mobile {
+    display: none;
+    transform: translate(-24, 0);
+    //width: 50px;
+    //height: 50px;
+    //clip-path: inset(0 148px 0 0);
+  }
 }

@@ -116,7 +116,7 @@ interface  ITeaserAndTrailerById {
 
 const exceptionsGenres = ["", "новости", "для взрослых", "церемония", "концерт"]
 
-const KEY_API = import.meta.env.VITE_API_KEY || "";
+const KEY_API = import.meta.env.VITE_KINOPOISK_KEY || "";
 const BASE_URL = "https://kinopoiskapiunofficial.tech/api";
 
 export const moviesApi = createApi({

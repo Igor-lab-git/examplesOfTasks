@@ -66,6 +66,7 @@
   }
 }
 
+
 .prevButton,
 .nextButton {
   position: absolute;
@@ -75,6 +76,7 @@
   background: rgba(0, 0, 0, 0.8);
   color: var(--color-white);
   border: none;
+  border-radius: rem(5);
   padding: fluid(10, 5) fluid(15, 10);
   cursor: pointer;
   transition-duration: var(--transition-duration);
@@ -96,32 +98,20 @@
 
 .cardMovie {
   position: relative;
-  width: fluid(250, 140); // уменьшил минимальную ширину
-  min-width: fluid(140, 120);
-  flex-shrink: 0;
+  width: fluid(250, 200);
   overflow: hidden;
   pointer-events: auto;
   transition-duration: var(--transition-duration);
 
-  @media (max-width: 768px) {
-    width: 160px;
-    min-width: 160px;
-  }
-
-  @media (max-width: 480px) {
-    width: 130px;
-    min-width: 130px;
-  }
-
-  @media (max-width: 360px) {
-    width: 110px;
-    min-width: 110px;
+  @include laptop {
+    width: fluid(250, 200);
   }
 }
 
 .cardMovie:hover {
   scale: 1.02;
 }
+
 .cardMovie::after {
   content: "";
   position: absolute;
@@ -147,7 +137,7 @@
   position: absolute;
   color: var(--color-white);
   top: 80%;
-  z-index: 100;
+  z-index: 50;
 }
 
 .titleLinkDark {

@@ -22,12 +22,12 @@ app.use(express.static(path.resolve(__dirname, "static")));
 
 app.use("/api", router);
 
+app.get("/", (req, res) => {
+    res.status(200).json({message: "WORKING!!! :)"})
+});
+
 //Обработка ошибок идет последней, после неё ничего нет, по этой причине внутри него мы не вызываем функцию next
 app.use(errorHandler);
-
-app.get("/", (req, res) => {
-    res.status(200).json({message: "WORGING!!! :)"})
-})
 
  const start = async() => {
     try {

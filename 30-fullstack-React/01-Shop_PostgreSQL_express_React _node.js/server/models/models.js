@@ -75,7 +75,7 @@ Rating.belongsTo(Device); // Оценка относится к конкретн
 Device.hasMany(BasketDevice);  //Товар может лежать в нескольких корзинах
 BasketDevice.belongsTo(Device); // Запись в корзине относится к конкретному товару
 
-Device.hasMany(DeviceInfo); // У товара может быть много характеристик
+Device.hasMany(DeviceInfo, {as: "info"}); // У товара может быть много характеристик
 DeviceInfo.belongsTo(Device); // Характеристика относится к конкретному товару
 
 Type.belongsToMany(Brand, {through: TypeBrand});

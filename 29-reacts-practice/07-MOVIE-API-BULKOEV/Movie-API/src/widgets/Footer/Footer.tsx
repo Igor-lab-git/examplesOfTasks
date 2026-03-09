@@ -9,7 +9,7 @@ const Footer = (): JSX.Element => {
 
   if (!context) {
     throw new Error("SwitchingThemes must be used within ThemeProvider");
-  }
+  };
   const { theme } = context;
 
   return (
@@ -26,7 +26,7 @@ const Footer = (): JSX.Element => {
             <span>Все права пренадлежат правообладателю.</span>
           </div>
         </div>
-          <Logo theme={theme} className={style.footerLogo}/>
+          <Logo theme={theme} className={style.footerLogo} isFooter={true} />
       </div>
     </footer>
   );

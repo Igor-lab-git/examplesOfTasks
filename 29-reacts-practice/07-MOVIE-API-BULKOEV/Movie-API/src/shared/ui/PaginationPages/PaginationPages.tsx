@@ -14,7 +14,7 @@ export const PaginationPages = ({
   numberPage,
 }: IPaginationPages) => {
   return (
-    <>
+    <div className={style.containerPagination}>
       <ReactPaginate
         className={`${style.paginationList} list-reset`}  
         breakLabel="..."
@@ -39,6 +39,6 @@ export const PaginationPages = ({
         ariaLabelBuilder={(page) => `Страница${page}`}
         extraAriaContext="Пагинация фильмов"
       />
-    </>
+    </div>
   );
 };

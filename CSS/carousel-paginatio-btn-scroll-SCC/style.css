@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    width: 90%;
+    height: 100vh;
+    background: linear-gradient(314deg, #3e3e3e, #000000);
+}
+
+.carousel-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch;
+
+    /* Скрываем скроллбар для Firefox */
+    scrollbar-width: none;
+}
+
+/* Скрываем скроллбар для Chrome/Safari/Opera */
+.carousel::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.card {
+    flex: 0 0 300px;
+    scroll-snap-align: start; /*Это свойство задаёт выравнивание элемента внутри прокручиваемого контейнера при остановке скролла*/
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Адаптация под экраны */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 0 0 200px;
+    }
+}
