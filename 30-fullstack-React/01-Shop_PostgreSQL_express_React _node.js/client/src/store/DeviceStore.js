@@ -4,14 +4,26 @@ export default class DeviceStore {
     constructor () {
         this._types = [
             {id: 1, name: "Холодильники"},
-            {id: 2, name: "Смартфоны"}
+            {id: 2, name: "Смартфоны"},
+            {id: 3, name: "Ноутбуки"},
+            {id: 4, name: "Телевизоры"},
         ]
+
         this._brands = [
-            {id: 1, name: "Iphone 12 pro", price: 2500, reting: 5, img: ""},
-            {id: 2, name: "Iphone 12 pro", price: 2500, reting: 5, img: ""},
-            {id: 3, name: "Iphone 12 pro", price: 2500, reting: 5, img: ""},
-            {id: 4, name: "Iphone 12 pro", price: 2500, reting: 5, img: ""},
-            {id: 5, name: "Apple"}        ]
+            {id: 1, name: "Samsung"},
+            {id: 2, name: "Apple"},
+            {id: 3, name: "Lenovo"},
+            {id: 4, name: "Asus"},
+        ]
+
+        this._devices = [
+            {id: 1, name: "Iphone 12 pro", price: 2500, rating: 5, img: "https://cdn.fastcup.net/logos/teams/185965_89leafde2.webp"},
+            {id: 2, name: "Iphone 12 pro", price: 2500, rating: 5, img: "https://cdn.fastcup.net/logos/teams/185965_89leafde2.webp"},
+            {id: 3, name: "Iphone 12 pro", price: 2500, rating: 5, img: "https://cdn.fastcup.net/logos/teams/185965_89leafde2.webp"},
+            {id: 4, name: "Iphone 12 pro", price: 2500, rating: 5, img: "https://cdn.fastcup.net/logos/teams/185965_89leafde2.webp"},
+        ]
+        this._selectedType = {}
+        this._selectedBrand = {}
         makeAutoObservable(this);
     }
 
@@ -27,6 +39,14 @@ export default class DeviceStore {
         this._devices = devices;
     }
 
+    setSelectedType(type) {
+        this._selectedType = type
+    }
+
+    setSelectedBrand(brand) {
+        this._selectedBrand = brand
+    }
+
     get types() {
         return this._types
     }
@@ -36,6 +56,14 @@ export default class DeviceStore {
     }
 
      get devices() {
-        return this._idevices
+        return this._devices
+    }
+
+    get selectedType() {
+        return this._selectedType
+    }
+
+    get selectedBrand() {
+        return this._selectedBrand
     }
 }

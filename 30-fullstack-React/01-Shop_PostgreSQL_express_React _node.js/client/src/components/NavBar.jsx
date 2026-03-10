@@ -3,14 +3,14 @@ import { Context } from "../context/Context";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Button, Container } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import { SHOP_ROUTE } from "../constants/consts";
 import { observer } from "mobx-react-lite";
 
 const NavBar = observer(() => {
     const {user} = useContext(Context);
-    console.log(user);
-    
+
+
   return (
      <Navbar bg="dark" data-bs-theme="dark">
         <Container>
