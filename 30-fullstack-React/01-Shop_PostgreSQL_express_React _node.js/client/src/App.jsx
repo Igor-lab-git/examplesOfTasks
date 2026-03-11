@@ -5,7 +5,6 @@ import { Context } from "./context/Context";
 import DeviceStore from "./store/DeviceStore";
 import NavBar from "./components/NavBar";
 
-
 function App() {
   return (
     <>

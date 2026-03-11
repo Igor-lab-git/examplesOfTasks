@@ -7,7 +7,7 @@ const BrandBar = observer(() => {
     const {device} = useContext(Context);
     // console.log(device)
     return (
-        <Row className="d-flex">
+        <Row className="d-flex" style={{columnGap: "10px"}}>
             {device.brands.map((brand) => (
                 <Card
                     key={brand.id}

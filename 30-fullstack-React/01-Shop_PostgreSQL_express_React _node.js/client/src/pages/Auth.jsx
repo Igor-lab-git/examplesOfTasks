@@ -1,13 +1,21 @@
 import {Button, Card, Container, Form, Row} from 'react-bootstrap';
 import {Link, useLocation} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../constants/consts.js";
+import { registration } from '../http/userApi.js';
 
 const Auth = () => {
 
     const {pathname} = useLocation();
 
     const isLogin = pathname === LOGIN_ROUTE; //всзависимости показывать страницу login в противном случае показывать страницу регистрации
-    console.log(pathname, "pathname")
+
+    const signIn = async () => {
+        const response = await registration();
+        console.log(response);
+        
+    };
+    console.log(signIn());
+    
 
     return (
         <Container
@@ -35,7 +43,6 @@ const Auth = () => {
                                 <Link to={LOGIN_ROUTE}>Войдите!</Link>
                             </div>
                         }
-
                         <Button className="mt-3 align-self-end">{isLogin ? "Войти" : "Регистрация"} </Button>
                     </Row>
                 </Form>
@@ -45,4 +52,4 @@ const Auth = () => {
 };
 
 export default Auth
-//1-30
+//2-05

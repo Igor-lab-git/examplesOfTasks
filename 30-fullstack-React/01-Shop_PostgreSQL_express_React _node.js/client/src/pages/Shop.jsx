@@ -2,6 +2,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import TypeBar from "../components/TypeBar.jsx";
 import BrandBar from "../components/BrandBar.jsx";
 import DeviceList from "../components/DeviceList.jsx";
+import "./style.css"
 
 const Shop = () => {
   return (
