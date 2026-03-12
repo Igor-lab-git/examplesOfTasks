@@ -8,7 +8,6 @@ import {check} from "./http/userApi.js";
 import {Spinner} from "react-bootstrap";
 
 const App = observer(() => {
-
   const {user} = useContext(Context);
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +24,7 @@ const App = observer(() => {
 
   if(loading) {
     return <Spinner animation={"grow"} />;
-  }
+  };
 
   return (
       <>
