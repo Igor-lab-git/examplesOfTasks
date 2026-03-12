@@ -37,4 +37,3 @@ const NavBar = observer(() => {
 
 export default NavBar;
 
-//2-14
