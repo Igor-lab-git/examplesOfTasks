@@ -5,13 +5,11 @@ import { DEVICE_ROUTE } from "../constants/consts";
 
 const DeviceItem = ({device}) => {
     const navigate = useNavigate();
-    console.log(navigate);
     // const history = HistoryRouter()
     // onclick(() => history.push(DEVICE_ROUTE + "/" + device.id))
     // // console.log(device);
     const handleNavigateCard = () => {
         const goToCard = `${DEVICE_ROUTE}/${device.id}`;  // сначала создаем путь
-        console.log("Переходим по пути:", goToCard);       // выводим путь
         navigate(goToCard);
     };
 

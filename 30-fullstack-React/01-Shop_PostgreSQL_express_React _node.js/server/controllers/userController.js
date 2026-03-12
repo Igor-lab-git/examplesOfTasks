@@ -26,8 +26,8 @@ class UserController {
      const hashPassword = await bcrypt.hash(password, 5); //если нет такого getPerson хешируем пароль и создаём нового пользователя
      const createUser = await User.create({email, password: hashPassword, role}); // создаём пользователя
      const createBasket = await Basket.create({id: createUser.id}) // и сразуже под него создаём карзину
-     const createJwt = generateJwt(createUser.id, createUser.email, createUser.role);
-     return res.json({createJwt})
+     const token  = generateJwt(createUser.id, createUser.email, createUser.role);
+     return res.json({token})
      // res.json({ message: "Registrated serRouter :)" });
    } catch (error) {
      console.error('Ошибка в getOne:', error);
@@ -49,8 +49,8 @@ class UserController {
       if(!comparePassword) {
         return next(ApiError.internal("Не правильный пароль"));
       };  // если не находит ошибка
-      const jwt = generateJwt(findUser.id, findUser.email, findUser.role); //создаём токен
-      return res.json({jwt}); // и возвращаем токен клиенту для пользования если вошёл под своим login
+      const token  = generateJwt(findUser.id, findUser.email, findUser.role); //создаём токен
+      return res.json({token}); // и возвращаем токен клиенту для пользования если вошёл под своим login
     } catch (error) {
       console.error('Ошибка в getOne:', error);
     }
