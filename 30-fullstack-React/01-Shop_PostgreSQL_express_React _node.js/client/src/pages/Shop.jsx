@@ -7,6 +7,7 @@ import {useContext, useEffect} from "react";
 import {fetchBrand, fetchDevice, fetchTypes} from "../http/deviceApi.js";
 import {Context} from "../context/Context.js";
 import "./style.css";
+import PaginationPages from "../components/PaginationPages.jsx";
 
 const Shop = observer(() => {
     const {device} = useContext(Context);
@@ -20,6 +21,7 @@ const Shop = observer(() => {
         });
         fetchDevice().then((data) => {
             device.setDevices(data.rows);
+            device.setTotalCount(data.count)
         })
     }, []);
 
@@ -33,6 +35,7 @@ const Shop = observer(() => {
                     <Col md={9}>
                         <BrandBar/>
                         <DeviceList />
+                        <PaginationPages/>
                     </Col>
                 </Row>
             </Container>

@@ -9,6 +9,9 @@ export default class DeviceStore {
         this._devices = []
         this._selectedType = {} // выбранный тип
         this._selectedBrand = {} // выбранный бренд
+        this._page = 1
+        this._totalCount = 0
+        this._limit = 3
         makeAutoObservable(this);
     } 
 //Конструктор - место рождения данных
@@ -37,6 +40,18 @@ export default class DeviceStore {
         this._selectedBrand = brand
     }
 
+    setPage(page) {
+        this._page = page
+    }
+
+    setLimit(Limit) {
+        this._limit = Limit
+    }
+
+    setTotalCount(TotalCount) {
+        this._totalCount = TotalCount
+    }
+
     // Геттеры (доступ к данным) - как читать данные
 
     get types() {
@@ -57,6 +72,18 @@ export default class DeviceStore {
 
     get selectedBrand() {
         return this._selectedBrand
+    }
+
+    get Pag() {
+        return this._page
+    }
+
+    get limit() {
+        return this._limit
+    }
+
+    get totalCount() {
+        return this._totalCount
     }
 
 //  Как читать данные, но не менять их
