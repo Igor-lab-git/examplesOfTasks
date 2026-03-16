@@ -17,10 +17,13 @@ class UserControllers {
         }
     }
 
-    getAll(req, res) {
-        const userAll = userService.getAll();
-        // res.send({test: "getAll :) 🛣️"});
-        res.send(userAll);
+    getAll = async (req, res) => {  // ← добавить async
+        try {
+            const userAll = await userService.getAll(); // ← добавить await
+            res.send(userAll);
+        } catch (error) {
+            res.status(500).send({ error: error.message });
+        }
     }
 
     getById(req, res) {

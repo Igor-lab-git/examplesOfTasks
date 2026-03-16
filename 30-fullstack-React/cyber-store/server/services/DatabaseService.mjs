@@ -1,29 +1,18 @@
-import { Sequelize } from 'sequelize';
 import { env, platform, stdin, stdout } from 'node:process';
 import * as readline from "node:readline";
-import {config} from 'dotenv';
+import { config } from 'dotenv';
+import sequelize from './sequelize.js'; // Импортируем sequelize
+import * as models from '../models/models.js'; // Импортируем модели
+
 config();
 
-const dbName = env.POSTGRES_NAME || 'cyber_store';
-const dbUser = env.POSTGRES_USER || 'pguser';
-const dbPass = env.POSTGRES_PASSWORD || 'qwerty';
-const dbHost = env.POSTGRES_HOST || 'localhost';
-const dbPort = env.POSTGRES_PORT || '5432';
-const dbDialect = env.POSTGRES_DIALECT || 'postgres';
+const syncDatabase = (env.SUBD_DB_SYNC || "no") === "yes";
 
 class DatabaseService {
-    sequelize = new Sequelize(
-        dbName,
-        dbUser,
-        dbPass,
-        {
-            host: dbHost,
-            dialect: dbDialect,
-            port: dbPort,
-        }
-    );
-
     constructor() {
+        this.sequelize = sequelize;
+        this.models = models;
+
         if(platform === 'win32') {
             const rl = readline.createInterface({
                 input: stdin,
@@ -38,22 +27,41 @@ class DatabaseService {
         process.on('SIGTERM', async () => {
             try {
                 await this.sequelize.close();
-                console.log("Disconnected From DB Successfully");
+                console.log("✅ Disconnected From DB Successfully");
                 process.exit(0);
             } catch (error) {
-                console.log("Disconnected From DB Error", error);
+                console.log("❌ Disconnected From DB Error", error);
                 process.exit(1);
             }
         });
 
-        this.sequelize.authenticate().then(() => {
-            console.log("Connection With Database Established Successfully");
-        }).catch((error) => {
-            console.error("Sequelize Connection Error", error);
-        });
+        // Подключаемся к БД
+        this.connect();
+    }
+
+    async connect() {
+        try {
+            await this.sequelize.authenticate();
+            console.log("✅ Connection With Database Established Successfully 🛣️");
+
+            if(syncDatabase) {
+                // await this.sequelize.sync();   // Для замены точечных данных без перезаписи всей базы
+                // ВАЖНО: используем force: true для создания таблиц
+                await this.sequelize.sync({ force: true }); 
+                console.log("✅ Database synchronized");
+                
+                // Проверим, какие таблицы создались
+                const tables = await this.sequelize.getQueryInterface().showAllTables();
+                console.log("📊 Созданные таблицы:", tables);
+            }
+
+        } catch (error) {
+            console.error("❌ Sequelize Connection Error", error);
+            process.exit(1);
+        }
     }
 };
 
 const db = new DatabaseService();
 
-export default db;
+export  db;

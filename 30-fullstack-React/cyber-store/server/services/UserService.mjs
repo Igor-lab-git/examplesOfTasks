@@ -1,14 +1,32 @@
-import db from "./DatabaseService.mjs";
+import models from '../models/models.js';
 
 class UserService {
-    getAll() {
-        return [
-            {id: 1, name: 'John Doe' , email: 'johndoe@gmail.com', password: '123456'},
-            {id: 2, name: 'Jenna' , email: 'Jenna@gmail.com', password: '123456'},
-            {id: 3, name: 'Igor' , email: 'Igor@gmail.com', password: '123456'},
-            {id: 4, name: 'Pete' , email: 'Pete@gmail.com', password: '123456'},
-        ];
+    getAll = async() => {
+    try {
+         console.log("🔍 UserService.getAll вызван");
+        console.log("📦 db.models:", db.models);
+        console.log("👤 db.models.User:", db.models?.User);
+        
+        const response = await db.models.default.User.findAll();
+        
+        console.log("📊 Результат findAll:", response);
+        console.log("📊 Количество пользователей:", response.length);
+        
+        if (response.length === 0) {
+            console.log("⚠️ В таблице users нет записей");
+        }
+        
+        return {
+            status: "success",
+            data: response  // ← ИСПРАВЬТЕ ЗДЕСЬ!
+        }
+    } catch(error) {
+        return {
+            status: "error",
+            data: error
+        }
     }
+}
 
     getById() {
         return `User on id: 1 detected`;
