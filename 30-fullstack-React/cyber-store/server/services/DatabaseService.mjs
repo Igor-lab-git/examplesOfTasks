@@ -64,4 +64,4 @@ class DatabaseService {
 
 const db = new DatabaseService();
 
-export  db;
+export default db;

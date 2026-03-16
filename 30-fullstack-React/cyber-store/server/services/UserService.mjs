@@ -1,32 +1,22 @@
-import models from '../models/models.js';
+// import models from '../models/models.js';
+import db from './DatabaseService.mjs';
 
 class UserService {
-    getAll = async() => {
-    try {
-         console.log("🔍 UserService.getAll вызван");
-        console.log("📦 db.models:", db.models);
-        console.log("👤 db.models.User:", db.models?.User);
-        
-        const response = await db.models.default.User.findAll();
-        
-        console.log("📊 Результат findAll:", response);
-        console.log("📊 Количество пользователей:", response.length);
-        
-        if (response.length === 0) {
-            console.log("⚠️ В таблице users нет записей");
-        }
-        
-        return {
-            status: "success",
-            data: response  // ← ИСПРАВЬТЕ ЗДЕСЬ!
-        }
-    } catch(error) {
-        return {
-            status: "error",
-            data: error
+    getAll = async () => {
+        try {
+
+            const response = await db.models.User.findAll();
+            return {
+                status: "success",
+                data: response  // ← ИСПРАВЬТЕ ЗДЕСЬ!
+            }
+        } catch (error) {
+            return {
+                status: "error",
+                data: error
+            }
         }
     }
-}
 
     getById() {
         return `User on id: 1 detected`;

@@ -33,9 +33,9 @@ services:
     image: dockerhub.timeweb.cloud/library/postgres:16
     restart: always
     environment:
-      - POSTGRES_USER=pguser
-      - POSTGRES_PASSWORD=pgpass123456
-      - POSTGRES_DB=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty
+      - POSTGRES_DB=cyber_store
     ports:
       - 5432:5432
     volumes:
