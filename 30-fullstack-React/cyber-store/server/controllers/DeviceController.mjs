@@ -1,83 +1,131 @@
+import {Device, DeviceInfo} from "../models/models.js";
+import ApiError from "../error/ApiError.mjs";
+import { v4 as uuidv4 } from 'uuid';
+import path, {dirname} from 'path'; 
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 class DeviceController {
 
-    createDevice = async (req, res) => {
+    createDevice = async (req, res, next) => {
         try {
-            // const { email, password } = req.body;
-            const body = {email: "Igor@yandex.ru", password: "qwerty"};
+            let { name, price, brandId, typeId, info } = req.body;
+            const { img } = req.files;
+            const { images } = req.files;
+            let fileName = uuidv4() + ".jpg";
+            img.mv(path.join(__dirname, '..', "static", fileName));  
 
-            if (body) {
-                res.send("Device создан");
-            }
+            if(!name || name.trim().length === 0 || !price) {
+                return next(ApiError.badRequest("Не передано имя или цена устройства  :("));
+            };
+
+             const device = await Device.create({
+                name,
+                price,
+                brandId,
+                typeId,
+                img: fileName
+            });
+
+             if(info) {
+                const parsInfo = JSON.parse(info);
+                parsInfo.forEach((info) => {
+                    DeviceInfo.create({
+                        title: info.title,
+                        description: info.description,
+                        deviceId: device.id
+                    })
+                })
+            };
+
+
+            if(device) {
+                return res.status(201).json({ 
+                    message: "success",
+                    data: device
+                 });
+            };
         } catch (error) {
-            res.status(500).send({ error: error.message });
+            return res.status(500).json({ error: error.message });
         }
 
     }
 
-    getAllDevice = async (req, res) => {
+    getAllDevice = async (req, res, next) => {
+        try {
+            let { brandId, typeId, limit, page } = req.query;
+            page = page ? Number(page) : 1; // Если указан page то  page иначе 1 страница
+            limit = limit ? Number(limit) : 9;
+            const offset = page * limit - limit; //считает смещение
+            let device;
 
-    }
+            if(!brandId && !typeId) {
+                device = await Device.findAndCountAll({limit, offset});
+            };
 
-    getDeviceById = async (req, res) => {
+            if(!brandId && typeId) {
+                device = await Device.findAndCountAll({where: {typeId}, limit, offset});
+            };
 
-    }
+            if(brandId && !typeId) {
+                device = await Device.findAndCountAll({where: {brandId}, limit, offset});
+            };
 
-    // getData = (req, res) => {
-    //     const userQueryId = req.query.id;
-    //     const userParamsId = req.params.id;
-    //
-    //     console.log(userParamsId);
-    //     console.log(userParamsId);
-    //
-    //     if(userQueryId || userParamsId) {
-    //         console.log('👉 Вызван getById с id:', userQueryId || userParamsId);
-    //         this.getById(req, res);
-    //     } else {
-    //         this.getAll(req, res);
-    //     }
-    // }
-    //
-    // getAll = async (req, res) => {  // ← добавить async
-    //     try {
-    //         const userAll = await userService.getAll(); // ← добавить await
-    //         res.send(userAll);
-    //     } catch (error) {
-    //         res.status(500).send({ error: error.message });
-    //     }
-    // }
-    //
-    // getById(req, res) {
-    //     const id = req.query.id || req.params.id;
-    //     const userById = userService.getById(id);
-    //     res.send(userById);
-    // }
-    //
-    // create = (req, res) => {
-    //     const createdUser = userService.create();
-    //     res.send(createdUser)
-    //     // res.send({test: "create :) 🛣️"})
-    // }
-    //
-    // patch = (req, res) => {
-    //     const id = req.params.id;
-    //     const updatedUser = userService.patch(id);
-    //     res.send(updatedUser)
-    //     // res.send({test: "patch :) 🛣️"})
-    // }
-    //
-    // update(req, res) {
-    //     const id = req.params.id;
-    //     const updatedUser = userService.update(id);
-    //     res.send(updatedUser);
-    //     // res.send({test: "update :) 🛣️"});
-    // }
-    //
-    // delete(req, res) {
-    //     const id = req.params.id;
-    //     const updatedUser = userService.delete(id);
-    //     // res.send({test: "delete :) 🛣️"});
-    //     res.send(updatedUser);
-    // }
+             if(brandId && typeId) {
+                device = await Device.findfindAndCountAllAll({where: {brandId, typeId}, limit, offset});
+            };
+
+            if(device.length === 0) {
+                return res.status(200).json({ 
+                    message: "success",
+                    limit: limit,
+                    page: page,
+                    data: device
+                 });
+            } else {
+                return res.status(200).json({ 
+                    message: "success",
+                    limit: limit,
+                    page: page,
+                    data: device
+                 });
+            };
+
+        } catch(error) {
+            return res.status(500).json({ error: error.message });
+        }
+    };
+
+    getDeviceById = async (req, res, next) => {
+        try {
+            const {id} = await req.params;
+            if(!id) {
+                return next(ApiError.badRequest("ID не задан :("));
+            };
+
+            const device = await Device.findOne({
+                where: {id},
+                include: [{model: DeviceInfo, as: "info"}],
+            });
+
+            if(!device) {
+                return res.status(404).json({
+                    message: "error",
+                    data: `Устройство с id ${id} не найдено`
+                });
+            };
+             if(device) {
+                return res.status(200).json({
+                    message: "success",
+                    data: device
+                });
+             }
+        } catch(error) {
+            return res.status(500).json({ error: error.message });
+        }
+    };
 };
 
 export default new DeviceController();

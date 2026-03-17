@@ -6,6 +6,7 @@ import logger from 'morgan';
 import cors from 'cors';
 import {fileURLToPath} from 'url'; //путь к URL-адресу файла //функция для преобразования URL в путь
 import router from './routes/index.mjs';
+import fileUpload from 'express-fileupload';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,7 +23,9 @@ app.use(logger('dev'));  // 1. Логируем запрос
 app.use(express.json());  // 2. Парсим JSON
 app.use(express.urlencoded({extended: false})); //преобразует данные, отправленные через HTML-формы (метод POST), в удобный JavaScript объект.
 app.use(cookieParser());
+app.use(fileUpload({}));
 app.use(express.static(path.join(__dirname, 'public'))); // 3. Ищем статический файл
+app.use(express.static(path.join(__dirname, 'static'))); // 3. Ищем статический файл
 
 app.use("/api", router); // 3. Ищем статический файл
 

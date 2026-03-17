@@ -47,13 +47,14 @@ class DatabaseService {
             if(syncDatabase) {
                 // await this.sequelize.sync();   // Для замены точечных данных без перезаписи всей базы
                 // ВАЖНО: используем force: true для создания таблиц
-                await this.sequelize.sync({ force: true }); 
+                await this.sequelize.sync({ force: true });
                 console.log("✅ Database synchronized");
                 
                 // Проверим, какие таблицы создались
                 const tables = await this.sequelize.getQueryInterface().showAllTables();
                 console.log("📊 Созданные таблицы:", tables);
             }
+
 
         } catch (error) {
             console.error("❌ Sequelize Connection Error", error);

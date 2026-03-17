@@ -13,7 +13,8 @@ const User = sequelize.define("user", {
 const Basket = sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 }, {
-    timestamps: false 
+    timestamps: false,
+    tableName: 'basket'
 });
 
 const BasketDevice = sequelize.define("basketDevice", {
@@ -28,6 +29,7 @@ const Device = sequelize.define("device", {
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.INTEGER, defaultValue: 0 },
   img: { type: DataTypes.STRING, allowNull: false },
+  images: { type: DataTypes.JSON, defaultValue: [] }  // 👈 массив картинок
 }, {
     timestamps: false 
 });
@@ -90,7 +92,7 @@ Rating.belongsTo(Device);
 Device.hasMany(BasketDevice);
 BasketDevice.belongsTo(Device);
 
-Device.hasMany(DeviceInfo);
+Device.hasMany(DeviceInfo, {as: "info"});
 DeviceInfo.belongsTo(Device);
 
 Type.belongsToMany(Brand, { through: TypeBrand });
@@ -107,3 +109,5 @@ export {
   DeviceInfo,
   TypeBrand,
 };
+
+//TRUNCATE TABLE public."users" RESTART IDENTITY CASCADE; ===для отчистки таблицы
