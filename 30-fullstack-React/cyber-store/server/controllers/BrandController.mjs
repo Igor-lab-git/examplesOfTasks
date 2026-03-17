@@ -1,4 +1,4 @@
-import {Brand} from "../models/models.js";
+import db from "../services/DatabaseService.mjs"
 import ApiError from "../error/ApiError.mjs";
 
 class BrandController {
@@ -10,7 +10,7 @@ class BrandController {
             if(!name || name.trim().length === 0) {
                 return next(ApiError.badRequest("Имя бренда не указано :("))
             }
-                const brand = await Brand.create({name});
+                const brand = await db.Brand.create({name});
 
                 if(brand) {
                     return res.status(201).send(brand);
@@ -47,7 +47,7 @@ class BrandController {
                 return res.status(400).json({ message: "ID не указан" });
             };
             // 1. Сначала находим запись
-            const type = await Brand.findByPk(id);
+            const type = await db.Brand.findByPk(id);
 
             // 2. Проверяем, существует ли она
             if (!type) {

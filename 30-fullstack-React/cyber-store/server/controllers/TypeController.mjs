@@ -1,4 +1,4 @@
-import {Type} from "../models/models.js";
+import db from "../services/DatabaseService.mjs"
 import ApiError from "../error/ApiError.mjs";
 
 class TypeControllers {
@@ -10,11 +10,11 @@ class TypeControllers {
                 return next(ApiError.badRequest("Имя типа не указано :("));
             };
 
-            const existingType = await Type.findOne({ where: { name } });
+            const existingType = await db.Type.findOne({ where: { name } });
             if (existingType) {
                 return next(ApiError.badRequest("Тип с таким именем уже существует"));
             };
-                const type = await Type.create({name});
+                const type = await db.Type.create({name});
                 return res.status(201).json(type);
 
         } catch (error) {

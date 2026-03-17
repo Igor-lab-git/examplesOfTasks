@@ -1,4 +1,4 @@
-import {Device, DeviceInfo} from "../models/models.js";
+import db from "../services/DatabaseService.mjs"
 import ApiError from "../error/ApiError.mjs";
 import { v4 as uuidv4 } from 'uuid';
 import path, {dirname} from 'path'; 
@@ -21,7 +21,7 @@ class DeviceController {
                 return next(ApiError.badRequest("Не передано имя или цена устройства  :("));
             };
 
-             const device = await Device.create({
+             const device = await db.Device.create({
                 name,
                 price,
                 brandId,
@@ -32,7 +32,7 @@ class DeviceController {
              if(info) {
                 const parsInfo = JSON.parse(info);
                 parsInfo.forEach((info) => {
-                    DeviceInfo.create({
+                    db.DeviceInfo.create({
                         title: info.title,
                         description: info.description,
                         deviceId: device.id
@@ -62,19 +62,19 @@ class DeviceController {
             let device;
 
             if(!brandId && !typeId) {
-                device = await Device.findAndCountAll({limit, offset});
+                device = await db.Device.findAndCountAll({limit, offset});
             };
 
             if(!brandId && typeId) {
-                device = await Device.findAndCountAll({where: {typeId}, limit, offset});
+                device = await db.Device.findAndCountAll({where: {typeId}, limit, offset});
             };
 
             if(brandId && !typeId) {
-                device = await Device.findAndCountAll({where: {brandId}, limit, offset});
+                device = await db.Device.findAndCountAll({where: {brandId}, limit, offset});
             };
 
              if(brandId && typeId) {
-                device = await Device.findfindAndCountAllAll({where: {brandId, typeId}, limit, offset});
+                device = await db.Device.findfindAndCountAllAll({where: {brandId, typeId}, limit, offset});
             };
 
             if(device.length === 0) {
@@ -107,7 +107,7 @@ class DeviceController {
 
             const device = await Device.findOne({
                 where: {id},
-                include: [{model: DeviceInfo, as: "info"}],
+                include: [{model: db.DeviceInfo, as: "info"}],
             });
 
             if(!device) {
