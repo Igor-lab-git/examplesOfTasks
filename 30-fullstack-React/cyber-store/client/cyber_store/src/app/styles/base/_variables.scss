@@ -1,0 +1,48 @@
+@use "../helpers" as *;
+:root {
+  --color-white: #fff;
+  --green-color: #79C142;
+  --search-input: #EEEEEE;
+  --color-black: #000;
+  --color-yellow: #ffda4a;
+  --color-dark-333: #333;
+
+  --color-bg-body: #ededed;
+  --color-bg-body-alt: wheat;
+  --color-bg-main: #4b3e63;
+
+
+  --color-gray-border: #fff4;
+  --color-gray-placeholder: #fff4;
+  --color-bg-tab: #C6C6C6;
+
+  --color-bg-header: #0d1117;
+  --color-main-blue: #00bfff;
+  --color-border-color: #fff;
+
+  --width-header: 25rem;
+
+  --font-family: "Nunito", sans-serif;
+
+  --container-width: #{rem(1200)};
+  --container-padding-x: #{rem(16)};
+
+  --border: #{rem(8)} solid var(--color-main-blue);
+
+  --border-radius: #{rem(8)};
+
+  --transition-duration: 0.3s;
+  --box-shadow: 8px 13px 22px -18px rgba(66, 68, 90, 1);
+}
+
+
+:root.darkTheme {
+  --color-white: #4b3e63;
+  --color-bg-body: #393442;
+}
+
+
+
+
+
+

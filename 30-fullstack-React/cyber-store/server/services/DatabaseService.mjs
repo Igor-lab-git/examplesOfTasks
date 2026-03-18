@@ -143,8 +143,8 @@ class DatabaseService {
             console.log("Schema 'public' created or already exists ✅");
 
             if(syncDatabase) {
-                // await this.sequelize.sync({ force: true });
-                await this.sequelize.sync({ alter: true });
+                await this.sequelize.sync({ force: true });
+                // await this.sequelize.sync({ alter: true });
                 console.log("Database synchronized ✅");
 
                 const tables = await this.sequelize.getQueryInterface().showAllTables();

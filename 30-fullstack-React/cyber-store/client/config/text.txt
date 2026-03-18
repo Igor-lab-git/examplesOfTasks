@@ -1,0 +1,161 @@
+🏗️ FSD (Feature-Sliced Design) для интернет-магазина
+Вот структура FSD для вашего магазина с брендами, типами устройств и админкой:
+
+text
+src/
+├── app/                    # Инициализация приложения
+│   ├── providers/          # Провайдеры (Redux, Router, Theme)
+│   │   ├── StoreProvider.jsx
+│   │   ├── RouterProvider.jsx
+│   │   └── ThemeProvider.jsx
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── pages/                   # Страницы (целые страницы)
+│   ├── home/               # Главная
+│   │   ├── ui/HomePage.jsx
+│   │   └── index.js
+│   ├── catalog/            # Каталог товаров
+│   │   ├── ui/CatalogPage.jsx
+│   │   └── index.js
+│   ├── product/            # Страница товара
+│   │   ├── ui/ProductPage.jsx
+│   │   └── index.js
+│   ├── cart/               # Корзина
+│   │   ├── ui/CartPage.jsx
+│   │   └── index.js
+│   ├── admin/              # Админка
+│   │   ├── ui/AdminPage.jsx
+│   │   └── index.js
+│   └── auth/               # Авторизация
+│       ├── ui/LoginPage.jsx
+│       ├── ui/RegisterPage.jsx
+│       └── index.js
+│
+├── widgets/                 # Блоки (самостоятельные части страниц)
+│   ├── header/             # Шапка
+│   │   ├── ui/Header.jsx
+│   │   ├── model/          # Логика шапки
+│   │   │   └── useHeader.js
+│   │   └── index.js
+│   ├── footer/             # Подвал
+│   │   ├── ui/Footer.jsx
+│   │   └── index.js
+│   ├── product-card/       # Карточка товара
+│   │   ├── ui/ProductCard.jsx
+│   │   ├── model/          # Логика карточки
+│   │   └── index.js
+│   ├── product-list/       # Список товаров
+│   │   ├── ui/ProductList.jsx
+│   │   └── index.js
+│   ├── filters/            # Фильтры (бренды, типы)
+│   │   ├── ui/Filters.jsx
+│   │   ├── model/          # Логика фильтров
+│   │   └── index.js
+│   ├── pagination/         # Пагинация
+│   │   ├── ui/Pagination.jsx
+│   │   └── index.js
+│   ├── admin-sidebar/      # Сайдбар админки
+│   │   ├── ui/AdminSidebar.jsx
+│   │   └── index.js
+│   └── admin-table/        # Таблицы в админке
+│       ├── ui/AdminTable.jsx
+│       └── index.js
+│
+├── features/                # Фичи (пользовательские сценарии)
+│   ├── auth/               # Авторизация
+│   │   ├── ui/LoginForm.jsx
+│   │   ├── ui/RegisterForm.jsx
+│   │   ├── model/
+│   │   │   ├── authSlice.js    # Redux slice
+│   │   │   └── useAuth.js      # Хуки
+│   │   └── index.js
+│   │
+│   ├── cart/               # Корзина
+│   │   ├── ui/AddToCartButton.jsx
+│   │   ├── ui/CartItem.jsx
+│   │   ├── model/
+│   │   │   ├── cartSlice.js
+│   │   │   └── useCart.js
+│   │   └── index.js
+│   │
+│   ├── products/           # Товары (CRUD)
+│   │   ├── ui/ProductForm.jsx    # Форма добавления/редактирования
+│   │   ├── ui/ProductDelete.jsx  # Кнопка удаления
+│   │   ├── model/
+│   │   │   ├── productsApi.js    # RTK Query
+│   │   │   └── useProducts.js
+│   │   └── index.js
+│   │
+│   ├── brands/             # Бренды
+│   │   ├── ui/BrandForm.jsx
+│   │   ├── ui/BrandList.jsx
+│   │   ├── model/
+│   │   │   ├── brandsApi.js
+│   │   │   └── useBrands.js
+│   │   └── index.js
+│   │
+│   ├── types/              # Типы устройств
+│   │   ├── ui/TypeForm.jsx
+│   │   ├── ui/TypeList.jsx
+│   │   ├── model/
+│   │   │   ├── typesApi.js
+│   │   │   └── useTypes.js
+│   │   └── index.js
+│   │
+│   └── theme/              # Переключение темы
+│       ├── ui/ThemeToggle.jsx
+│       ├── model/
+│       │   └── themeSlice.js
+│       └── index.js
+│
+├── entities/                 # Сущности (бизнес-модели)
+│   ├── user/               # Пользователь
+│   │   ├── ui/UserAvatar.jsx
+│   │   ├── model/
+│   │   │   └── userSlice.js
+│   │   └── index.js
+│   │
+│   ├── product/            # Товар
+│   │   ├── ui/ProductInfo.jsx    # Информация о товаре
+│   │   ├── ui/ProductImage.jsx   # Изображение товара
+│   │   ├── model/
+│   │   │   └── productSlice.js
+│   │   └── index.js
+│   │
+│   └── order/              # Заказ
+│       ├── ui/OrderStatus.jsx
+│       ├── model/
+│       └── index.js
+│
+├── shared/                   # Переиспользуемое
+│   ├── ui/                 # UI-компоненты
+│   │   ├── Button/
+│   │   │   ├── Button.jsx
+│   │   │   └── Button.module.scss
+│   │   ├── Input/
+│   │   ├── Modal/
+│   │   ├── Loader/
+│   │   └── Select/
+│   │
+│   ├── api/                # API клиент
+│   │   ├── baseApi.js      # RTK Query base
+│   │   └── index.js
+│   │
+│   ├── lib/                # Утилиты и хелперы
+│   │   ├── constants.js    # Константы
+│   │   ├── helpers.js      # Хелпер-функции
+│   │   ├── validators.js   # Валидация
+│   │   └── hooks/          # Общие хуки
+│   │       ├── useDebounce.js
+│   │       └── useLocalStorage.js
+│   │
+│   ├── config/             # Конфигурация
+│   │   └── index.js        # env и т.д.
+│   │
+│   └── styles/             # Глобальные стили
+│       ├── _variables.scss
+│       ├── _mixins.scss
+│       └── global.scss
+│
+└── index.html
