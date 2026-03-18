@@ -1,39 +1,47 @@
 @font-face {
-    font-family: 'Nunito';
-    src: url('../../../../public/fonts/Nunito-Regular.woff2') format('woff2');
+  font-family: 'Inter';
+  src: url('../../../shared/assets/fonts/Inter-LightItalic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../../shared/assets/fonts/Inter-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../../../shared/assets/fonts/Inter-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
-  
+
   @font-face {
-    font-family: 'Nunito';
-    src: url('../../../../public/fonts/Nunito-Medium.woff2') format('woff2');
+    font-family: 'Inter';
+    src: url('../../../shared/assets/fonts/Inter-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
   }
   
   @font-face {
-    font-family: 'Nunito';
-    src: url('../../../../public/fonts/Nunito-SemiBold.woff2') format('woff2');
+    font-family: 'Inter';
+    src: url('../../../shared/assets/fonts/Inter-SemiBold.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
   }
-  
-  @font-face {
-    font-family: 'Nunito';
-    src: url('../../../../public/fonts/Nunito-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Nunito';
-    src: url('../../../../public/fonts/Nunito-ExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-  }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../../shared/assets/fonts/Inter-Bold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

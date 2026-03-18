@@ -25,7 +25,8 @@ app.use(express.urlencoded({extended: false})); //преобразует дан�
 app.use(cookieParser());
 app.use(fileUpload({}));
 app.use(express.static(path.join(__dirname, 'public'))); // 3. Ищем статический файл
-app.use(express.static(path.join(__dirname, 'static'))); // 3. Ищем статический файл
+// app.use(express.static(path.join(__dirname, 'static'))); // 3. Ищем статический файл
+app.use('/static', express.static(path.join(__dirname, 'static')));
 
 app.use("/api", router); // 3. Ищем статический файл
 

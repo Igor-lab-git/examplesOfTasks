@@ -12,10 +12,26 @@ class DeviceController {
     createDevice = async (req, res, next) => {
         try {
             let { name, price, brandId, typeId, info } = req.body;
-            const { img } = req.files;
-            const { images } = req.files;
-            let fileName = uuidv4() + ".jpg";
-            img.mv(path.join(__dirname, '..', "static", fileName));  
+            const files = req.files;
+
+            // Обработка главного изображения
+            const mainImg = files.img;
+
+            let mainFileImg = uuidv4() + path.extname(mainImg.name); // сохраняем оригинальное расширение
+            await mainImg.mv(path.join(__dirname, '..', "static", mainFileImg));
+
+            // Обработка дополнительных изображений
+            let imagesArray = [];
+            if (files.images) {
+                // Если пришло несколько файлов
+                const additionalImages = Array.isArray(files.images) ? files.images : [files.images];
+
+                for (const img of additionalImages) {
+                    const fileName = uuidv4() + path.extname(img.name);
+                    await img.mv(path.join(__dirname, '..', "static", fileName));
+                    imagesArray.push(fileName);
+                }
+            }
 
             if(!name || name.trim().length === 0 || !price) {
                 return next(ApiError.badRequest("Не передано имя или цена устройства  :("));
@@ -26,7 +42,8 @@ class DeviceController {
                 price,
                 brandId,
                 typeId,
-                img: fileName
+                 img: mainFileImg,
+                 images: imagesArray // сохраняем массив в JSON поле
             });
 
              if(info) {
@@ -42,7 +59,7 @@ class DeviceController {
 
 
             if(device) {
-                return res.status(201).json({ 
+                return res.status(201).json({
                     message: "success",
                     data: device
                  });
@@ -50,7 +67,6 @@ class DeviceController {
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
-
     }
 
     getAllDevice = async (req, res, next) => {
@@ -73,15 +89,30 @@ class DeviceController {
                 device = await db.Device.findAndCountAll({where: {brandId}, limit, offset});
             };
 
-             if(brandId && typeId) {
+            if(brandId && typeId) {
                 device = await db.Device.findAndCountAll({where: {brandId, typeId}, limit, offset});
             };
 
-            return res.status(200).json({ 
+            // ТОЛЬКО ДОБАВЛЯЕМ URL ДЛЯ КАРТИНОК, НЕ МЕНЯЯ ЛОГИКУ
+            const baseUrl = `${req.protocol}://${req.get('host')}`;
+            const devicesWithUrls = device.rows.map(dev => {
+                const devData = dev.toJSON();
+                if (devData.img) {
+                    devData.img = `${baseUrl}/static/${devData.img}`;
+                }
+                if (devData.images && devData.images.length > 0) {
+                    devData.images = devData.images.map(img =>
+                        `${baseUrl}/static/${img}`
+                    );
+                }
+                return devData;
+            });
+
+            return res.status(200).json({
                 message: "success",
                 limit: limit,
                 page: page,
-                data: device.rows
+                data: devicesWithUrls  // ← здесь данные с URL
             });
 
         } catch(error) {
@@ -107,12 +138,27 @@ class DeviceController {
                     data: `Устройство с id ${id} не найдено`
                 });
             };
-             if(device) {
-                return res.status(200).json({
-                    message: "success",
-                    data: device
-                });
-             }
+
+            // Формируем полные URL для картинок
+            const baseUrl = `${req.protocol}://${req.get('host')}`;
+            const deviceData = device.toJSON();
+
+            // Главное изображение
+            if (deviceData.img) {
+                deviceData.img = `${baseUrl}/static/${deviceData.img}`;
+            }
+
+            // Дополнительные изображения
+            if (deviceData.images && deviceData.images.length > 0) {
+                deviceData.images = deviceData.images.map(img =>
+                    `${baseUrl}/static/${img}`
+                );
+            }
+
+            return res.status(200).json({
+                message: "success",
+                data: deviceData
+            });
         } catch(error) {
             return res.status(500).json({ error: error.message });
         }

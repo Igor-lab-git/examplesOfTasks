@@ -1,9 +1,16 @@
 import type { JSX } from "react";
+import {Link} from "react-router-dom";
+import logo from "../../../shared/assets/icons/logo/logo.svg";
 
 const Header = (): JSX.Element => {
   return (
     <div>
-      <h2>Header</h2>
+      <Link to="/">
+          <img src={logo} alt=""/>
+      </Link>
+        <Link to="/detailed">
+          <span>detailed</span>
+      </Link>
     </div>
   );
 };

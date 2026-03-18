@@ -44,7 +44,7 @@ console.log(devices);
       <ul>
         {devices && devices.map((device) => (
             <li key={device.id}>
-                <img src={`${base_url}/${device.img}`} alt="" />
+                <img src={device.img} alt="" />
                 <h2>{device.name}</h2>
                 <span>{device.price}</span>
             </li>
