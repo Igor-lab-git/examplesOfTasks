@@ -1,16 +1,19 @@
 import type { JSX } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../../shared/assets/icons/logo/logo.svg";
+import "../../../app/styles/main.scss";
+import pathRouter from "../../../shared/constants/pathRouter";
 
 const Header = (): JSX.Element => {
+
+
   return (
-    <div>
+    <div className={`container-main`}>
       <Link to="/">
-          <img src={logo} alt=""/>
+        <img src={logo} alt="" />
       </Link>
-        <Link to="/detailed">
-          <span>detailed</span>
-      </Link>
+      <Link to={pathRouter.AUTH_PATH}>Войти</Link>
+      
     </div>
   );
 };

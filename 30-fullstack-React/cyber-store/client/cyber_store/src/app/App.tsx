@@ -1,15 +1,17 @@
 
 import {Footer} from "../widgets/Footer";
 import {Header} from "../widgets/Header";
-import {AppRouting} from "./routing";
+import {AppRouter} from "./routing";
 import {BrowserRouter} from "react-router-dom";
 
 const App = () => {
+
+
     return (
         <>
             <BrowserRouter>
                 <Header/>
-                <AppRouting/>
+                    <AppRouter/>
                 <Footer/>
             </BrowserRouter>
         </>

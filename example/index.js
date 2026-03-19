@@ -1,3 +1,5 @@
+import { log } from "node:console";
+
 const user = {
   id: 1,
   name: "Jenna",
@@ -92,3 +94,18 @@ const exceptions = ["", "новости", "для взрослых", "церем
 const respons = ["", "новости", "для взрослых", "церемония", "концерт", "Швейцария", "военный", "комедия"]
 const cvv = respons.filter(res => !exceptions.includes(res))
 console.log(cvv);
+
+
+const er = {
+  name: "Jenna",
+  adddress: {
+    country: "USA",
+    city: "Los Angeles"
+  }
+}
+
+const copy = JSON.parse(JSON.stringify(er));
+const copy2 = structuredClone(er);
+console.log(copy === er);
+console.log(copy2 === er);
+

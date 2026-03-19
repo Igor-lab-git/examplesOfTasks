@@ -1,1 +1,0 @@
-export {default as DetailadPage} from "./ui/DetailadPage.tsx";

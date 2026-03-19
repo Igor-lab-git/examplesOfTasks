@@ -1,4 +1,5 @@
 import { useEffect, useState, type JSX } from "react";
+import "../../../app/styles/main.scss";
 
 // interface IData {
 //   id: number;
@@ -39,9 +40,9 @@ const HomePage = (): JSX.Element => {
 console.log(devices);
 
   return (
-    <div>
+    <div className={`container-main`}>
       <h1>HomePage</h1>
-      <ul>
+      <ul className={`list-reset`}>
         {devices && devices.map((device) => (
             <li key={device.id}>
                 <img src={device.img} alt="" />
