@@ -22,7 +22,7 @@ const AppRouter = (): JSX.Element => {
             <Route path={pathRouter.HOME_PATH} element={<HomePage />} />
             <Route path={pathRouter.BASKET_PATH} element={<BasketPage />} />
             <Route path={pathRouter.AUTH_PATH} element={<AuthPage />} />
-            {/* <Route path={pathRouter.REGISTRATION_PATH} element={<RegistrationPage />}/> */}
+             <Route path={pathRouter.REGISTRATION_PATH} element={<AuthPage />}/>
             <Route path={`${pathRouter.DEVICE_PATH}/:id`} element={<DevicePage />} />
         </Routes>
         </>
