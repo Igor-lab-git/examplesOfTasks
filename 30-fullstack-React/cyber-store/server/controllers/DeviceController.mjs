@@ -127,7 +127,7 @@ class DeviceController {
                 return next(ApiError.badRequest("ID не задан :("));
             };
 
-            const device = await Device.findOne({
+            const device = await db.Device.findOne({
                 where: {id},
                 include: [{model: db.DeviceInfo, as: "info"}],
             });

@@ -12,6 +12,7 @@ const Header = (): JSX.Element => {
       <Link to="/">
         <img src={logo} alt="" />
       </Link>
+      <Link to={pathRouter.ADMIN_PATH}>Админ панель</Link>
       <Link to={pathRouter.AUTH_PATH}>Войти</Link>
       
     </div>

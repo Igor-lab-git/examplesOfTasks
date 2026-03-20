@@ -18,11 +18,11 @@ class BrandController {
         } catch (error) {
             return res.status(500).send("Database error");
         }
-    }
+    };
 
     getAllBrand = async (req, res) => {
         try {
-            const brandsAll = await Brand.findAll();
+            const brandsAll = await db.Brand.findAll();
 
             if(brandsAll.length === 0) {
                 return res.status(200).send({
@@ -31,6 +31,7 @@ class BrandController {
                 });
             };
                 return res.status(200).send({
+                    message: "success",
                     count: brandsAll.length,
                     data: brandsAll
                 });

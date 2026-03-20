@@ -24,14 +24,17 @@ class TypeControllers {
 
     getAllType = async (req, res) => {
         try {
-            const typeAll = await Type.findAll();
+            const typeAll = await db.Type.findAll();
 
+            console.log(typeAll);
             if(typeAll.length === 0) {
                 return res.status(200).send({
                     message: "Список типов пуст :(",
                     data: [],
                 });
             };
+            console.log(typeAll);
+            
             return res.status(200).json({
                 count: typeAll.length,
                 data: typeAll,
@@ -50,7 +53,7 @@ class TypeControllers {
                 return res.status(400).json({ message: "ID не указан",});
             }
             // 1. Сначала находим запись
-            const type = await Type.findByPk(id);
+            const type = await db.Type.findByPk(id);
 
             // 2. Проверяем, существует ли она
             if (!type) {

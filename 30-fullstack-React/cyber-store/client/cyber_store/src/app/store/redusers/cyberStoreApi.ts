@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface IAllDevices {
+interface IDevices {
     id: number,
     name: string,
     price: number,
@@ -11,11 +11,33 @@ interface IAllDevices {
     brandId: number
 }
 
-interface IDevicesResponse {
-    data: IAllDevices[];
+interface IAllDevices {
+    data: IDevices[];
     total?: number;
     page?: number;
     limit?: number;
+}
+
+interface IType {
+    id: number
+    name: string;
+}
+
+interface IAllTypes {
+    data: IType[];
+    message: string;
+    count: number;
+}
+
+interface IBrand {
+    id: number
+    name: string;
+}
+
+interface IAllBrands {
+    data: IBrand[];
+    message: string;
+    count: number;
 }
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -28,13 +50,23 @@ const cyberStoreApi = createApi({
             return headers;
     }}),
     endpoints: (builder) => ({
-        getAllDevices: builder.query<IDevicesResponse, {count?: number}>({
+        getAllDevices: builder.query<IAllDevices, {count?: number}>({
             query: ({count}) => `/api/device?limit=${count || 9}`
+        }),
+        getAllTypes: builder.query<IAllTypes, void>({
+            query: () => `/api/type`
+        }),
+        getAllBrands: builder.query<IAllBrands, void>({
+            query: () => `/api/brand`
         })
     })
 });
 
-export const {useGetAllDevicesQuery} = cyberStoreApi;
+export const {
+    useGetAllDevicesQuery,
+    useGetAllTypesQuery,
+    useGetAllBrandsQuery
+} = cyberStoreApi;
 export default cyberStoreApi;
 
 // {

@@ -1,18 +1,27 @@
 import "../../../app/styles/main.scss";
-import {useGetAllDevicesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
+import {useGetAllBrandsQuery, useGetAllDevicesQuery, useGetAllTypesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
 import React, {type JSX, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement } from "../../../app/store/redusers/countSlice.ts";
+import type { RootState } from "../../../app/store/store.ts"; 
 
 const HomePage = (): JSX.Element => {
     const [useCount, setUseCount] = useState<number>(3);
+    const count = useSelector((state: RootState) => state.counter.value);
+    const dispatch = useDispatch()
 
 
-  const {data, isLoading, isError} = useGetAllDevicesQuery({count: useCount})
+  const {data, isLoading, isError} = useGetAllDevicesQuery({count: useCount});
+
+  const {data: typesData} = useGetAllTypesQuery();
+  const {data: brandsData} = useGetAllBrandsQuery();
 
     console.log(data, isLoading, isError)
  
 if(isLoading) return <div>Loading...</div>;
 if(isError) return <div>Error :(</div>;
 
+console.log(typesData);
 
   return (
     <div className={`container-main`}>
@@ -28,6 +37,19 @@ if(isError) return <div>Error :(</div>;
             <option value="8">8</option>
         </select>
       <h1>HomePage</h1>
+      <div>
+        <span>{count}</span>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(decrement())}>-</button>
+      </div>
+      <ul>
+        {typesData && typesData.data.map(({id, name}) => (
+          <button key={id}>{name}</button>
+        ))}
+        {brandsData && brandsData.data.map(({id, name}) => (
+          <button key={id}>{name}</button>
+        ))}
+      </ul>
       <ul className={`list-reset`}>
         {data && data.data.map((device) => (
             <li key={device.id}>
