@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 interface IDevices {
     id: number,
@@ -40,6 +40,26 @@ interface IAllBrands {
     count: number;
 }
 
+interface IRegisterResponse  {
+    message: string;
+    token: string;
+    data: {
+        id: number;
+        email: string;
+        password: string;
+        role: "ADMIN" | "USER"
+    };
+}
+
+interface IAuthResponse {
+    message: string;
+}
+
+interface IRegisterRequest{
+    email: string;
+    password: string;
+};
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const cyberStoreApi = createApi({
@@ -58,14 +78,43 @@ const cyberStoreApi = createApi({
         }),
         getAllBrands: builder.query<IAllBrands, void>({
             query: () => `/api/brand`
-        })
+        }),
+    //     =======================//
+        registration: builder.mutation<IRegisterResponse, IRegisterRequest>({
+            query: (userData) => ({
+                url: `/api/user/registration`,
+                method: "POST",
+                body: userData,
+            }),
+            transformResponse(response: {message: string; token: string; data: IRegisterResponse} ){
+                localStorage.setItem("token", response.token)
+                return response.data
+            }
+        }),
+        login: builder.mutation<IRegisterResponse, IRegisterRequest>({
+            query: (userData) => ({
+                url: `/api/user/login`,
+                method: "POST",
+                body: userData,
+            }),
+            transformResponse(response: {message: string; token: string; data: IRegisterResponse} ){
+                localStorage.setItem("token", response.token)
+                return response.data
+            }
+        }),
+        checkAuth: builder.query<IAuthResponse, void>({
+            query: () => `/api/user/auth`,
+        }),
     })
 });
 
 export const {
     useGetAllDevicesQuery,
     useGetAllTypesQuery,
-    useGetAllBrandsQuery
+    useGetAllBrandsQuery,
+    useRegistrationMutation,
+    useLoginMutation,
+    useCheckAuthQuery
 } = cyberStoreApi;
 export default cyberStoreApi;
 

@@ -1,0 +1,40 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.containerInput {
+  position: relative;
+}
+
+.inputElement {
+  padding: rem(16);
+  border: none;
+  border-radius: var(--border-radius-small);
+  background: #f5f5f5;
+
+  &:focus + .inputIcon {
+    display: none;
+  }
+}
+
+.inputElement::placeholder {
+  @include fluid-text(14, 12);
+
+  text-indent: rem(32);
+
+  font-weight: 500;
+  line-height: 129%;
+  color: var(--gray-6);
+  opacity: 0.5;
+}
+
+.inputElement::-webkit-search-cancel-button {
+  color: var(--gray-6);
+}
+
+
+.inputIcon {
+  @include abs-center;
+
+  left: rem(30);
+  position: absolute;
+}

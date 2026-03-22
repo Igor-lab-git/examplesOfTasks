@@ -3,7 +3,28 @@ import {useGetAllBrandsQuery, useGetAllDevicesQuery, useGetAllTypesQuery} from "
 import React, {type JSX, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement } from "../../../app/store/redusers/countSlice.ts";
-import type { RootState } from "../../../app/store/store.ts"; 
+import type { RootState } from "../../../app/store/store.ts";
+import {addToCart} from "../../../app/store/redusers/cartSlice.ts";
+
+// interface IDevices {
+//     id: number,
+//     name: string,
+//     price: number,
+//     rating: number,
+//     img: string,
+//     quantity: number;
+// }
+interface IDeviceFromApi {
+    id: number;
+    name: string;
+    price: number;
+    rating: number;
+    img: string;
+    images: string[];
+    typeId: number;
+    brandId: number;
+}
+
 
 const HomePage = (): JSX.Element => {
     const [useCount, setUseCount] = useState<number>(3);
@@ -20,6 +41,17 @@ const HomePage = (): JSX.Element => {
  
 if(isLoading) return <div>Loading...</div>;
 if(isError) return <div>Error :(</div>;
+
+    const handleAddToCart = (device: IDeviceFromApi) => {
+        dispatch(addToCart({
+            id: device.id,
+            name: device.name,
+            price: device.price,
+            rating: 0,
+            img: device.img,
+            quantity: 1,
+        }))
+    }
 
 console.log(typesData);
 
@@ -51,11 +83,12 @@ console.log(typesData);
         ))}
       </ul>
       <ul className={`list-reset`}>
-        {data && data.data.map((device) => (
+        {data && data.data.map((device: IDeviceFromApi) => (
             <li key={device.id}>
                 <img src={device.img} alt="" />
                 <h2>{device.name}</h2>
                 <span>{device.price}</span>
+                <button onClick={() => handleAddToCart(device)}>добавть в карзину</button>
             </li>
         ))}
       </ul>

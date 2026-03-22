@@ -1,0 +1,36 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.containerHeader {
+  display: flex;
+  align-items: center;
+  column-gap: rem(56);
+  padding-block: rem(16);
+}
+
+.navMenuList {
+  display: flex;
+  column-gap: rem(52);
+}
+
+.navMenuItem {
+  @include fluid-text(16, 14);
+
+  font-weight: 500;
+  color: var(--color-black);
+  opacity: 0.3;
+
+  & a {
+    text-decoration: none;
+  }
+}
+
+.isActive {
+  opacity: 1;
+}
+
+.containerUserActions {
+  display: flex;
+  column-gap: rem(24);
+}
+

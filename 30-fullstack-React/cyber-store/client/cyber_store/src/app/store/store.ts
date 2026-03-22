@@ -1,11 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
 import cyberStoreApi from "./redusers/cyberStoreApi.ts";
 import counterReducer from "./redusers/countSlice.ts"
+import cartReducer from "./redusers/cartSlice.ts";
 
 const store = configureStore({
     reducer: {
         [cyberStoreApi.reducerPath]: cyberStoreApi.reducer,
-        counter: counterReducer
+        counter: counterReducer,
+        cart: cartReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cyberStoreApi.middleware),
 });
