@@ -5,7 +5,7 @@ import { ButtonShowNow } from "../../../shared/ui";
 import HeroBannerPrimary from "./HeroBannerPrimary";
 
 
-const HeroSechion = (): JSX.Element => {
+const HeroSection = (): JSX.Element => {
   return (
     <section>
         <HeroBannerPrimary />
@@ -19,7 +19,7 @@ const HeroSechion = (): JSX.Element => {
 
                 <div  className={`${style.hero_card} ${style.hero_card_third}`}>
                     <div className={`${style.hero_card_body} ${style.hero_card_body_third}`}>
-                        <h2 className={style.hero_card_itle_third}><span>Macbook</span>Air</h2>
+                        <h2 className={style.hero_card_title_second}>Macbook<span> Air</span></h2>
                         <p className={style.hero_card_description_third}>The new 15‑inch MacBook Air makes room for more of what you love with a spacious Liquid Retina display.</p>
                         <ButtonShowNow className={style.hero_card_button_third}>
                             <span>Shop Now</span>
@@ -27,17 +27,17 @@ const HeroSechion = (): JSX.Element => {
                     </div>
                 </div>
 
-                <div  className={`${style.hero_card} ${style.hero_card_fourth}`}>
-                    <div className={`${style.hero_card_body} ${style.hero_card_body_fourth}`}>
-                        <h2 className={style.hero_card_itle}><span>Apple AirPods</span>Max</h2>
-                        <p className={style.hero_card_description}>Computational audio. Listen, it's powerful</p>
+                <div  className={style.hero_card_fourth}>
+                    <div className={style.hero_card_body_fourth}>
+                        <h2 className={style.hero_card_title_fourth}>Apple AirPods<span>Max</span></h2>
+                        <p className={style.hero_card_description_fourth}>Computational audio. Listen, it's powerful</p>
                     </div>
                 </div>
 
-                <div  className={`${style.hero_card} ${style.hero_card_fifth}`}>
-                    <div className={`${style.hero_card_body} ${style.hero_card_body_fifth}`}>
-                        <h2 className={style.hero_card_itle}><span>Apple Apple Vision</span>Pro</h2>
-                        <p className={style.hero_card_description}>An immersive way to experience entertainment</p>
+                <div  className={`${style.hero_card_fifth}`}>
+                    <div className={style.hero_card_body_fifth}>
+                        <h2 className={style.hero_card_title_fifth}>Apple Vision<span> Pro</span></h2>
+                        <p className={style.hero_card_description_fifth}>An immersive way to experience entertainment</p>
                     </div>
                 </div>
         </HeroGridContainer>
@@ -45,4 +45,4 @@ const HeroSechion = (): JSX.Element => {
   )
 };
 
-export default HeroSechion;
+export default HeroSection;

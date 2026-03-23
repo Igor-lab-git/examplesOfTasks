@@ -1,0 +1,6 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.logoLink {
+  flex-shrink: 0;
+}

@@ -1,5 +1,5 @@
-@use "../../../app//styles/main.scss" as main;
-@use "../../../app//styles/helpers/" as *;
+@use "../../../app/styles/main.scss" as main;
+@use "../../../app/styles/helpers" as *;
 
 .hero_container_card_grid {
   height: rem(600);
@@ -21,7 +21,7 @@
   height: rem(632);
   display: flex;
   align-items: center;
-  background-image: url("../../../shared//assets//images//hero//desctop/iphone_14_pro.webp");
+  background-image: url("../../../shared/assets/images/hero/desctop/iphone_14_pro.webp");
   background-repeat: no-repeat;
   background-position: 100% 20%;
 }
@@ -73,9 +73,9 @@
   grid-area: second;
   height: rem(328);
   background-color: var(--color-white);
-  background-image: url("../../../shared//assets//images//hero//desctop/playstation_5.webp");
+  background-image: url("../../../shared/assets/images/hero/desctop/playstation_5.webp");
   background-repeat: no-repeat;
-  background-position: -10% 0%;
+  background-position: -35% 0%;
 
   .hero_card_body_second {
     display: flex;
@@ -86,7 +86,7 @@
     padding: rem(100) rem(48) rem(100) 0;
   }
 
-  .hero_card_itle_second {
+  .hero_card_title_second {
     @include fluid-text(49, 34);
 
     font-weight: 500;
@@ -120,19 +120,37 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: rem(720);
+  flex-shrink: 0;
   background-color: var(--gray-3);
-  background-image: url("../../../shared//assets//images//hero//desctop/macBook_Air.webp");
+  background-image: url("../../../shared/assets/images/hero/desctop/macBook_Air.webp");
   background-repeat: no-repeat;
-  background-position: 1500% 15%;
+  background-position: calc(-200% + 100px) 50%;
 
   .hero_card_body_third {
     display: flex;
     flex-direction: column;
     row-gap: rem(16);
+    width: rem(360);
     padding-left: rem(56);
 
+    .hero_card_title_second {
+      @include fluid-text(64, 34);
+
+      font-weight: 100;
+      line-height: 88%;
+
+      & > span {
+        font-weight: 500;
+      }
+    }
+
     .hero_card_description_third {
-      //   max-width: fluid(360, 343);
+      @include fluid-text(16, 16);
+
+      font-weight: 500;
+      line-height: 171%;
+      color: var(--color-base-text);
     }
 
     .hero_card_button_third {
@@ -147,15 +165,77 @@
 .hero_card_fourth {
   grid-area: fourth;
   height: rem(272);
+  padding: rem(48) rem(48) rem(48);
   background-color: var(--gray-3);
-  background-image: url("../../../shared//assets//images//hero//desctop/apple_airProds_max.webp");
+  background-image: url("../../../shared/assets/images/hero/desctop/apple_airProds_max.webp");
   background-repeat: no-repeat;
+  background-position: calc(0% - 130px) 50%;
+
+  .hero_card_body_fourth {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(8);
+    margin-left: auto;
+    max-width: rem(160);
+
+
+    .hero_card_title_fourth {
+      @include fluid-text(29, 34);
+
+      font-weight: 300;
+      line-height: 138%;
+      display: flex;
+      flex-direction: column;
+
+      & span {
+        font-weight: 500;
+      }
+    }
+
+    .hero_card_description_fourth {
+      @include fluid-text(14, 16);
+
+      font-weight: 500;
+      line-height: 171%;
+      color: var(--color-base-text);
+    }
+
+  }
 }
 
 .hero_card_fifth {
   grid-area: fifth;
   height: rem(272);
+  padding: rem(56) rem(56) rem(48);
   background-color: var(--color-dark-bg-hero-2);
-  background-image: url("../../../shared//assets//images//hero//desctop/apple_vision_pro.webp");
+  background-image: url("../../../shared/assets/images/hero/desctop/apple_vision_pro.webp");
   background-repeat: no-repeat;
+  background-position: calc(0% - 190px) 50%;
+
+  .hero_card_body_fifth {
+    width: rem(160);
+    margin-left: auto;
+
+
+    .hero_card_title_fifth {
+      @include fluid-text(29, 34);
+
+      font-style: normal;
+      font-weight: 300;
+      line-height: 138%;
+      color: var(--color-white);
+
+      & span {
+        font-weight: 500;
+      }
+    }
+
+    .hero_card_description_fifth {
+      @include fluid-text(14, 16);
+
+      font-weight: 500;
+      line-height: 171%;
+      color: var(--color-base-text);
+    }
+  }
 }

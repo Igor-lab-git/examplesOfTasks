@@ -1,22 +1,33 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import pathRouter from "../../../shared/constants/pathRouter.ts";
 import style from "./Header.module.scss";
+import "../../../app/styles/main.scss";
+import {useEffect} from "react";
+// import React from "react";
 
 const NavMenu =() => {
-
+    const navigate = useNavigate();
     const location = useLocation();
-    console.log(location);
+
+    console.log(navigate)
 
     const isActive = (pathName: string) => {
         const active = location.pathname === pathName;
-        console.log(`Проверка: ${pathName} === ${location.pathname} = ${active}`);
         return active;
-    }
+    };
+
+    // const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //     navigate(e.target.value);
+    // };
+
+    useEffect(() => {
+
+    })
 
     return (
         <div className={style.navMenuContainer}>
             <nav>
-                <ul className={style.navMenuList}>
+                <ul className={`${style.navMenuList} list-reset`}>
                     <li className={`${style.navMenuItem} ${isActive(pathRouter.HOME_PATH) ? style.isActive : ""}`} >
                         <Link to={pathRouter.HOME_PATH}>Главная</Link>
                     </li>
@@ -31,6 +42,16 @@ const NavMenu =() => {
                     </li>
                 </ul>
             </nav>
+
+            {/*<select*/}
+            {/*    className={style.mobileSelect}*/}
+            {/*    value={location.pathname}*/}
+            {/*    onChange={(e) =>  handleSelectChange(e)}>*/}
+            {/*    <option value={pathRouter.HOME_PATH}>Главная</option>*/}
+            {/*    <option value={pathRouter.ABOUT_PATH}>О нас</option>*/}
+            {/*    <option value={pathRouter.CONTACT_PATH}>Контакты</option>*/}
+            {/*    <option value={pathRouter.BLOG_PATH}>Блог</option>*/}
+            {/*</select>*/}
         </div>
     )
 };

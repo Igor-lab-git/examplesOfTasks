@@ -7,13 +7,9 @@ interface IBurgerButton {
 
 const BurgerButton = ({handleBurgerClick}: IBurgerButton): JSX.Element => {
 
-    const onClickHandler = () => {
-        handleBurgerClick();
-    };
-
     return (
         <div className={style.containerBurgerBtn}>
-            <button className={style.burgerBtn} onClick={() => onClickHandler()}>
+            <button className={style.burgerBtn} onClick={() => handleBurgerClick()}>
                 <span className={style.burgerBtnLine}></span>
                 <span className={style.burgerBtnLine}></span>
                 <span className={style.burgerBtnLine}></span>

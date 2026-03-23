@@ -3,7 +3,7 @@ import {useGetAllBrandsQuery, useGetAllDevicesQuery, useGetAllTypesQuery} from "
 import React, {type JSX, useState} from "react";
 import { useDispatch } from "react-redux";
 import {addToCart} from "../../../app/store/redusers/cartSlice.ts";
-import HeroSechion from "./HeroSechion.tsx";
+// import HeroSection from "./HeroSection.tsx";
 
 // interface IDevices {
 //     id: number,
@@ -53,7 +53,7 @@ if(isError) return <div>Error :(</div>;
 
   return (
     <div className={``}>
-      <HeroSechion />
+      {/*<HeroSection />*/}
       <ul>
         {typesData && typesData.data.map(({id, name}) => (
           <button key={id}>{name}</button>

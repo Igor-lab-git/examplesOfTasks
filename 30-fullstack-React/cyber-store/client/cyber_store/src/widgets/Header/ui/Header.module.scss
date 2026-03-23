@@ -5,19 +5,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: rem(56);
+  column-gap: fluid(56, 15);
   padding-block: rem(16);
+
+  @include tablet-S {
+    flex-wrap: wrap;
+    justify-content: normal;
+    row-gap: rem(10);
+  }
+
+  @include mobile {
+    justify-content: space-between;
+  }
+}
+
+.container_menu {
+  display: flex;
+  align-items: center;
+  column-gap: fluid(52, 20);
 }
 
 .navMenuList {
   display: flex;
-  column-gap: rem(52);
+  column-gap: fluid(52, 20);
 }
 
 .navMenuItem {
   @include fluid-text(16, 14);
 
   font-weight: 500;
+  flex-shrink: 0;
   color: var(--color-black);
   opacity: 0.3;
 
@@ -32,6 +49,12 @@
 
 .containerUserActions {
   display: flex;
-  column-gap: rem(24);
+  column-gap: fluid(24, 14);
+
+  .basketLink,
+  .useAdminLink,
+  .useSignLink {
+    flex-shrink: 0;
+  }
 }
 
