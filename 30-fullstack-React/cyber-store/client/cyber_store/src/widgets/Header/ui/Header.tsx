@@ -1,21 +1,25 @@
 import {type JSX, useEffect, useState} from "react";
-import "../../../app/styles/main.scss";
 import Logo from "../../../shared/ui/Logo/Logo.tsx";
 import {SearchInput} from "../../../features/SearchInput";
 import NavMenu from "./NavMenu.tsx";
 import UserActions from "./UserActions.tsx";
-import style from "./Header.module.scss";
 import {BurgerButton, BurgerMenu} from "../../BurgerMenu";
+import style from "./Header.module.scss";
+import "../../../app/styles/main.scss";
 
 const Header = (): JSX.Element => {
-    const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
-    const [isBurger, setIsBurger] = useState(() => document.documentElement.clientWidth <= 768);
+    const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
+    const [isBurger, setIsBurger] = useState(() => window.innerWidth <= 768);
 
     useEffect(() => {
         const checkWindowMobile = () => {
-            setIsBurger(document.documentElement.clientWidth <= 768);
+            const isMobile = window.innerWidth <= 768;
+            setIsBurger(isMobile);
+            if(!isMobile) {
+                setIsOpenBurgerMenu(false);
+            };
+        };
 
-        }
         window.addEventListener("resize", checkWindowMobile);
         return () => window.removeEventListener("resize", checkWindowMobile);
     }, []);
@@ -26,10 +30,10 @@ const Header = (): JSX.Element => {
 
     const closeBurgerMenu = () => {
         setIsOpenBurgerMenu(false)
-    }
-    return (
-        <div className={`${style.containerHeader} container-main`}>
+    };
 
+    return (
+        <header className={`${style.containerHeader} container-main`}>
             <Logo />
             {!isBurger && (
                 <>
@@ -38,11 +42,15 @@ const Header = (): JSX.Element => {
                 <UserActions />
                 </>
             )}
-            {isBurger ? <BurgerButton handleBurgerClick={handleBurgerClick}/> : null};
-
-            <BurgerMenu isOpenBurgerMenu={isOpenBurgerMenu} closeBurgerMenu={closeBurgerMenu}/>
-
-        </div>
+            {isBurger ? <BurgerButton handleBurgerClick={handleBurgerClick}/> : null}
+            <BurgerMenu 
+                isOpenBurgerMenu={isOpenBurgerMenu} 
+                closeBurgerMenu={closeBurgerMenu}>
+                <SearchInput />
+                <NavMenu />
+                <UserActions />
+            </BurgerMenu>
+        </header>
     );
 };
 

@@ -3,6 +3,8 @@
 :root {
   --color-white: #fff;
   --color-black: #000;
+  --color-dark-bg-hero-1: #2e2e2e;
+  --color-dark-bg-hero-2: #353535;
   --color-base-text: #909090;
   --background-gray: #f5f5f5;
   --gray-1: #8B8B8B;
@@ -26,7 +28,7 @@
 
   --font-family: "Inter", sans-serif;
 
-  --container-width: #{rem(1120)};
+  --container-width: #{rem(1440)};
   --container-padding-x: #{rem(16)};
 
   --border: #{rem(8)} solid var(--color-main-blue);

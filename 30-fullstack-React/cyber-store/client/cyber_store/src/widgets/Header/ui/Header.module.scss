@@ -4,6 +4,7 @@
 .containerHeader {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   column-gap: rem(56);
   padding-block: rem(16);
 }

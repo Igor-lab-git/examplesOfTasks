@@ -1,0 +1,161 @@
+@use "../../../app//styles/main.scss" as main;
+@use "../../../app//styles/helpers/" as *;
+
+.hero_container_card_grid {
+  height: rem(600);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "second second  third third"
+    "fourth fifth third third";
+}
+
+.hero_card_bg_first {
+  width: 100%;
+  grid-area: first;
+  background-color: var(--color-dark-bg-hero-1);
+}
+
+.hero_card_first {
+  height: rem(632);
+  display: flex;
+  align-items: center;
+  background-image: url("../../../shared//assets//images//hero//desctop/iphone_14_pro.webp");
+  background-repeat: no-repeat;
+  background-position: 100% 20%;
+}
+
+.hero_card_subtitle {
+  @include fluid-text(25, 24);
+
+  font-weight: 600;
+  line-height: 128%;
+  color: var(--color-white);
+  opacity: 0.4;
+}
+
+.hero_card_body_first {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(24);
+
+  .hero_card_title_first {
+    @include fluid-text(96, 72);
+
+    font-weight: 100;
+    line-height: 75%;
+    letter-spacing: -0.01em;
+    color: var(--color-white);
+
+    & > span {
+      font-weight: 600;
+    }
+  }
+
+  & > p {
+    font-size: rem(18);
+    font-weight: 500;
+    line-height: 133%;
+    color: #909090;
+  }
+
+  .hero_card_button_first {
+    padding: 16px 56px;
+    border-radius: 6px;
+    align-self: self-start;
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+  }
+}
+
+.hero_card_second {
+  grid-area: second;
+  height: rem(328);
+  background-color: var(--color-white);
+  background-image: url("../../../shared//assets//images//hero//desctop/playstation_5.webp");
+  background-repeat: no-repeat;
+  background-position: -10% 0%;
+
+  .hero_card_body_second {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(16, 8);
+    max-width: fluid(338, 343);
+    margin-left: auto;
+    padding: rem(100) rem(48) rem(100) 0;
+  }
+
+  .hero_card_itle_second {
+    @include fluid-text(49, 34);
+
+    font-weight: 500;
+    line-height: 82%;
+    color: var(--color-black);
+
+    @include mobile {
+      font-weight: 300;
+      line-height: 118%;
+      text-align: center;
+    }
+  }
+
+  .hero_card_description_second {
+    @include fluid-text(16);
+
+    font-weight: 500;
+    line-height: 171%;
+    color: var(--color-base-text);
+
+    @include mobile {
+      line-height: 150%;
+      text-align: center;
+    }
+  }
+}
+
+.hero_card_third {
+  grid-area: third;
+  height: rem(600);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--gray-3);
+  background-image: url("../../../shared//assets//images//hero//desctop/macBook_Air.webp");
+  background-repeat: no-repeat;
+  background-position: 1500% 15%;
+
+  .hero_card_body_third {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(16);
+    padding-left: rem(56);
+
+    .hero_card_description_third {
+      //   max-width: fluid(360, 343);
+    }
+
+    .hero_card_button_third {
+      border: 1px solid var(--color-black);
+      border-radius: 6px;
+      padding: 16px 56px;
+      align-self: self-start;
+    }
+  }
+}
+
+.hero_card_fourth {
+  grid-area: fourth;
+  height: rem(272);
+  background-color: var(--gray-3);
+  background-image: url("../../../shared//assets//images//hero//desctop/apple_airProds_max.webp");
+  background-repeat: no-repeat;
+}
+
+.hero_card_fifth {
+  grid-area: fifth;
+  height: rem(272);
+  background-color: var(--color-dark-bg-hero-2);
+  background-image: url("../../../shared//assets//images//hero//desctop/apple_vision_pro.webp");
+  background-repeat: no-repeat;
+}
