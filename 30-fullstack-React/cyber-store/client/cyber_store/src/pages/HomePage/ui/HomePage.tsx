@@ -1,8 +1,9 @@
 import "../../../app/styles/main.scss";
-import {useGetAllBrandsQuery, useGetAllDevicesQuery, useGetAllTypesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
+import { useGetAllDevicesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
 import React, {type JSX, useState} from "react";
 import { useDispatch } from "react-redux";
 import {addToCart} from "../../../app/store/redusers/cartSlice.ts";
+import { TypeDevicesPanel } from "../../../widgets/TypeDevicesPanel/index.ts";
 // import HeroSection from "./HeroSection.tsx";
 
 // interface IDevices {
@@ -25,17 +26,17 @@ interface IDeviceFromApi {
 }
 
 
+
 const HomePage = (): JSX.Element => {
     const [useCount, setUseCount] = useState<number>(3);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
 
-  const {data, isLoading, isError} = useGetAllDevicesQuery({count: useCount});
 
-  const {data: typesData} = useGetAllTypesQuery();
-  const {data: brandsData} = useGetAllBrandsQuery();
+  const {data: deviceData, isLoading, isError} = useGetAllDevicesQuery({count: useCount});
+  // const {data: brandsData} = useGetAllBrandsQuery();
 
-    console.log(data, isLoading, isError)
+    console.log( isLoading, isError)
  
 if(isLoading) return <div>Loading...</div>;
 if(isError) return <div>Error :(</div>;
@@ -49,21 +50,15 @@ if(isError) return <div>Error :(</div>;
             img: device.img,
             quantity: 1,
         }))
-    }
+    };
+
 
   return (
     <div className={``}>
       {/*<HeroSection />*/}
-      <ul>
-        {typesData && typesData.data.map(({id, name}) => (
-          <button key={id}>{name}</button>
-        ))}
-        {brandsData && brandsData.data.map(({id, name}) => (
-          <button key={id}>{name}</button>
-        ))}
-      </ul>
+      <TypeDevicesPanel />
       <ul className={`list-reset`}>
-        {data && data.data.map((device: IDeviceFromApi) => (
+        {deviceData && deviceData.data.map((device: IDeviceFromApi) => (
           <li key={device.id}>
                 <img src={device.img} alt="" />
                 <h2>{device.name}</h2>

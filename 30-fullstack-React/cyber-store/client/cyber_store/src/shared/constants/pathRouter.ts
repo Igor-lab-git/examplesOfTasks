@@ -1,5 +1,6 @@
 const pathRouter = {
     HOME_PATH: "/",
+    TYPE_DEVICE_PATH: "/category",
     ABOUT_PATH: "/about",
     CONTACT_PATH: "/contact",
     BLOG_PATH: "/blog",

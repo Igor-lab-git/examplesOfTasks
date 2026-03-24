@@ -23,11 +23,23 @@
   display: flex;
   align-items: center;
   column-gap: fluid(52, 20);
+
+  @include tablet-S {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
 }
 
 .navMenuList {
   display: flex;
   column-gap: fluid(52, 20);
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    row-gap: rem(20);
+  }
 }
 
 .navMenuItem {
@@ -41,6 +53,12 @@
   & a {
     text-decoration: none;
   }
+
+   @include mobile {
+    @include fluid-text(20, 18);
+  }
+
+  
 }
 
 .isActive {
@@ -56,5 +74,10 @@
   .useSignLink {
     flex-shrink: 0;
   }
-}
 
+   @include mobile {
+    justify-content: center;
+    row-gap: rem(20);
+  }
+
+}

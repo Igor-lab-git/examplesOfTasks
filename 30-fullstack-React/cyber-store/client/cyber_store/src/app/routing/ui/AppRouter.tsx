@@ -9,6 +9,7 @@ import { AuthPage } from "../../../pages/AuthPage";
 import {AboutPage} from "../../../pages/AboutPage";
 import {ContactUsPage} from "../../../pages/ContactUsPage";
 import {BlogPage} from "../../../pages/BlogPage";
+import {CategoryPage} from "../../../pages/CategoryPage";
 // import { RegistrationPage } from "../../../pages/RegistrationPage";
 
 
@@ -23,6 +24,7 @@ const AppRouter = (): JSX.Element => {
                 <Route path={pathRouter.ADMIN_PATH} element={<AdminPage />} />
             )}
             <Route path={pathRouter.HOME_PATH} element={<HomePage />} />
+            <Route path={pathRouter.TYPE_DEVICE_PATH} element={<CategoryPage />} />
 
             <Route path={pathRouter.ABOUT_PATH} element={<AboutPage />} />
             <Route path={pathRouter.CONTACT_PATH} element={<ContactUsPage />} />

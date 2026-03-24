@@ -2,6 +2,7 @@ import {Link, useLocation} from 'react-router-dom'
 import pathRouter from '../../../shared/constants/pathRouter'
 import {useLoginMutation, useRegistrationMutation} from "../../../app/store/redusers/cyberStoreApi.ts";
 import React, {useState} from "react";
+import ModalWindow from '../../../shared/ui/ModalWindow/ModalWindow.tsx';
 
 interface IServerError {
     data : {
@@ -14,7 +15,8 @@ interface IServerError {
 const AuthPage = () => {
 
     const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+    const [password, setPassword] = useState<string>('');
+    const [isOpen, setIsOpen] = useState(false);
     const pathName = useLocation();
     const isAuthPathName = pathName.pathname === pathRouter.AUTH_PATH;
 
@@ -22,10 +24,10 @@ const [register, { isLoading: reqLoad, isSuccess: reqSuccess, error: reqError }]
 const [login, { isLoading: loginLoad, isSuccess: loginSuccess, error: loginError }] = useLoginMutation();
 
     console.log( reqSuccess, loginSuccess, reqLoad, loginLoad, reqError, loginError);
-const error = isAuthPathName ? loginSuccess : reqError
+// const error = isAuthPathName ? loginSuccess : reqError
 
-    console.log(error);
-    console.log(error);
+    // console.log(error);
+    // console.log(error);
 
 
 const handleSubmit = async (e: React.FormEvent) => {
@@ -46,6 +48,11 @@ const handleSubmit = async (e: React.FormEvent) => {
             password
         }).unwrap();
             statusMessage = "Вы успешно зарегестрировались";
+            return (
+                <ModalWindow isOpen={isOpen} onClose={() => setIsOpen(false)} >
+                    <h2>"Вы успешно зарегестрировались"</h2>
+                </ModalWindow>
+            )
         };
 
 
@@ -59,12 +66,16 @@ const handleSubmit = async (e: React.FormEvent) => {
         if(statusMessage) {
             alert(statusMessage);
         }
+        <ModalWindow isOpen={isOpen} onClose={() => setIsOpen(false)} >
+                    <h2>statusMessage</h2>
+                </ModalWindow>
     }
 }
 
 
   return (
     <div>
+        
       <h1>{isAuthPathName ? "Авторизация" : "Регистрация"}</h1>
         {/*{error && 'data' in error && <h3 style={{ color: 'red' }}>{error.data.message}</h3>}*/}
       <div>

@@ -1,0 +1,1 @@
+export { default  as TypeDevicesPanel } from "./ui/TypeDevicesPanel";
