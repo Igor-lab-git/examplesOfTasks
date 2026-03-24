@@ -24,7 +24,7 @@ const AppRouter = (): JSX.Element => {
                 <Route path={pathRouter.ADMIN_PATH} element={<AdminPage />} />
             )}
             <Route path={pathRouter.HOME_PATH} element={<HomePage />} />
-            <Route path={pathRouter.TYPE_DEVICE_PATH} element={<CategoryPage />} />
+             <Route path={`${pathRouter.TYPE_DEVICE_PATH}/:id`} element={<CategoryPage />} />
 
             <Route path={pathRouter.ABOUT_PATH} element={<AboutPage />} />
             <Route path={pathRouter.CONTACT_PATH} element={<ContactUsPage />} />

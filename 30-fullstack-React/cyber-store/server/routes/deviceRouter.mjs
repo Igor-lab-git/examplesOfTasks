@@ -5,6 +5,7 @@ import checkRole from '../middleware/checkRoleMiddleware.mjs';
 
 router.post('/', checkRole("ADMIN"), deviceController.createDevice);
 router.get('/', deviceController.getAllDevice);
+router.get('/', deviceController.getDevicesByType);
 router.get('/:id', deviceController.getDeviceById);
 
 export default router;

@@ -1,0 +1,23 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.section_tab_category {
+  padding-block: fluid(80, 64);
+}
+
+.container_header_tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_tabs_title{
+  font-size: rem(24);
+  font-weight: 500;
+  line-height: 133%;
+  letter-spacing: 0.01em;
+}
+
+.header_wrapper_tabs_btn {
+  display: flex;
+  column-gap: rem(16);
+}

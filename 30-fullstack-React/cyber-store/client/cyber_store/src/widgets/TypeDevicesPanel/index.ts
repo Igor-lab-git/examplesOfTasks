@@ -1,1 +1,1 @@
-export { default  as TypeDevicesPanel } from "./ui/TypeDevicesPanel";
+export { default  as CategoryTabs } from "./ui/CategoryTabs.tsx";

@@ -1,25 +1,22 @@
 import type { JSX } from "react"
 import { useGetAllTypesQuery } from "../../../app/store/redusers/cyberStoreApi";
-import { Link } from "react-router-dom";
-import pathRouter from "../../../shared/constants/pathRouter";
+import "../../../app/styles/main.scss";
+import CategoryCard from "./CategoryCard.tsx";
 
 
 const CategoryLinks = (): JSX.Element => {
-    const {data: dataType} = useGetAllTypesQuery()
-    console.log(dataType);
-    
+    const { data: dataType } = useGetAllTypesQuery();
+
   return (
     <div>
-        <ul>
+        <ul className={`list-reset`}>
             {dataType && dataType.data.map(({id, name}) => (
-                <li key={id}>
-                    <Link to={pathRouter.TYPE_DEVICE_PATH}>{name}</Link>
-                </li>
+                   <CategoryCard key={id} id={id} name={name}/>
             ))}
         </ul>
       
     </div>
   )
-}
+};
 
 export default CategoryLinks;

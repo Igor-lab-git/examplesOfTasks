@@ -3,8 +3,8 @@ import { useGetAllDevicesQuery} from "../../../app/store/redusers/cyberStoreApi.
 import React, {type JSX, useState} from "react";
 import { useDispatch } from "react-redux";
 import {addToCart} from "../../../app/store/redusers/cartSlice.ts";
-import { TypeDevicesPanel } from "../../../widgets/TypeDevicesPanel/index.ts";
-// import HeroSection from "./HeroSection.tsx";
+import HeroSection from "./HeroSection.tsx";
+import CategoryTabs from "../../../widgets/TypeDevicesPanel/ui/CategoryTabs.tsx";
 
 // interface IDevices {
 //     id: number,
@@ -55,8 +55,8 @@ if(isError) return <div>Error :(</div>;
 
   return (
     <div className={``}>
-      {/*<HeroSection />*/}
-      <TypeDevicesPanel />
+      <HeroSection />
+      <CategoryTabs />
       <ul className={`list-reset`}>
         {deviceData && deviceData.data.map((device: IDeviceFromApi) => (
           <li key={device.id}>

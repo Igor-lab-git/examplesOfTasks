@@ -120,6 +120,30 @@ class DeviceController {
         }
     };
 
+    getDevicesByType = async (req, res, next) => {
+        try {
+            const { typeId } = req.query;
+            if(!typeId) {
+                return next(ApiError.badRequest("typeId не задан :("));
+            };
+
+            const devicesType = await db.Device.findAll({where: {typeId}});
+            if(!devicesType) {
+                return res.status(200).json({
+                    message: "error",
+                    data: `Типов категорий товаров с заданном ${typeId} в базе данных нет :(`
+                })
+            }
+                return res.status(200).json({
+                    status: "success",
+                    count: devicesType.length,
+                    data: devicesType,
+                });
+        } catch (error) {
+            res.status(500).json({error: error.message});
+        }
+    }
+
     getDeviceById = async (req, res, next) => {
         try {
             const {id} = await req.params;

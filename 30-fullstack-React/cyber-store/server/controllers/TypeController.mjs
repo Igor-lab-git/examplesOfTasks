@@ -26,14 +26,12 @@ class TypeControllers {
         try {
             const typeAll = await db.Type.findAll();
 
-            console.log(typeAll);
             if(typeAll.length === 0) {
                 return res.status(200).send({
                     message: "Список типов пуст :(",
                     data: [],
                 });
             };
-            console.log(typeAll);
             
             return res.status(200).json({
                 count: typeAll.length,
