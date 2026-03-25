@@ -73,6 +73,9 @@ const cyberStoreApi = createApi({
         getAllDevices: builder.query<IAllDevices, {count?: number}>({
             query: ({count}) => `/api/device?limit=${count || 9}`
         }),
+        getOneDevicesById: builder.query<IDevices, number>({
+            query: (id) => `/api/device/${id}`
+        }),
         getDevicesByTypeId: builder.query<IAllDevices, number>({
             query: (typeId) => `/api/device/?typeId=${typeId}`
         }),
@@ -113,6 +116,7 @@ const cyberStoreApi = createApi({
 
 export const {
     useGetAllDevicesQuery,
+    useGetOneDevicesByIdQuery,
     useGetDevicesByTypeIdQuery,
     useGetAllTypesQuery,
     useGetAllBrandsQuery,

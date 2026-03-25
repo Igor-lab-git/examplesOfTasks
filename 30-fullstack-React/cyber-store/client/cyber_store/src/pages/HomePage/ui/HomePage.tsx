@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import {addToCart} from "../../../app/store/redusers/cartSlice.ts";
 import HeroSection from "./HeroSection.tsx";
 import CategoryTabs from "../../../widgets/TypeDevicesPanel/ui/CategoryTabs.tsx";
+import { Link } from "react-router-dom";
+import pathRouter from "../../../shared/constants/pathRouter.ts";
 
 // interface IDevices {
 //     id: number,
@@ -60,10 +62,12 @@ if(isError) return <div>Error :(</div>;
       <ul className={`list-reset`}>
         {deviceData && deviceData.data.map((device: IDeviceFromApi) => (
           <li key={device.id}>
+            <Link to={`${pathRouter.DEVICE_PATH}/${device.id}`}>
                 <img src={device.img} alt="" />
                 <h2>{device.name}</h2>
                 <span>{device.price}</span>
                 <button onClick={() => handleAddToCart(device)}>добавть в карзину</button>
+            </Link>
             </li>
         ))}
       </ul>

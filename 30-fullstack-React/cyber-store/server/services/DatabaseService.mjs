@@ -1,7 +1,7 @@
+import { config } from 'dotenv';
 import {Sequelize, DataTypes} from "sequelize";
 import { env, platform, stdin, stdout } from 'node:process';
 import * as readline from 'readline';
-import { config } from 'dotenv';
 config();
 
 const dbName = env.POSTGRES_NAME || 'cyber_store';
@@ -10,7 +10,8 @@ const dbPass = env.POSTGRES_PASSWORD || 'qwerty';
 const dbHost = env.POSTGRES_HOST || 'localhost';
 const dbPort = env.POSTGRES_PORT || '5432';
 
-const syncDatabase = (env.SUBD_DB_SYNC || "no") === "yes";
+const syncDatabase = (process.env.SUBD_DB_SYNC || "no") === "yes";
+console.log('syncDatabase =', syncDatabase); 
 
 class DatabaseService {
     sequelize = new Sequelize(
@@ -56,6 +57,8 @@ class DatabaseService {
     Type = this.sequelize.define("type", {
         id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         name: { type: DataTypes.STRING, unique: true, allowNull: false },
+        icon: { type: DataTypes.STRING,  allowNull: true, defaultValue: null, comment: "URL или путь к иконке категории"
+        },
     }, { timestamps: false });
 
     Brand = this.sequelize.define("brand", {

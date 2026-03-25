@@ -5,22 +5,26 @@ class TypeControllers {
 
     createType = async (req, res, next) => {
         try {
-            const { name } = req.body;
+            const { name, icon } = req.body;
             if(!name || name.trim().length === 0) {
                 return next(ApiError.badRequest("Имя типа не указано :("));
             };
 
             const existingType = await db.Type.findOne({ where: { name } });
+
             if (existingType) {
                 return next(ApiError.badRequest("Тип с таким именем уже существует"));
             };
-                const type = await db.Type.create({name});
+                const type = await db.Type.create({
+                    name,
+                    icon: icon || null
+                });
                 return res.status(201).json(type);
 
         } catch (error) {
             return res.status(500).json("Database error");
         }
-    }
+    };
 
     getAllType = async (req, res) => {
         try {
@@ -41,7 +45,7 @@ class TypeControllers {
         } catch (error) {
             res.status(500).json({error: error.message});
         }
-    }
+    };
 
     deleteTypeById = async (req, res) => {
         try {

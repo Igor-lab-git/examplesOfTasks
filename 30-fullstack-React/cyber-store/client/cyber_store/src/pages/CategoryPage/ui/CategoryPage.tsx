@@ -16,7 +16,7 @@ import {useGetDevicesByTypeIdQuery} from "../../../app/store/redusers/cyberStore
 const CategoryPage = (): JSX.Element => {
     const { id } = useParams<{ id: string }>();
     const typeId = Number(id)
-    console.log(id);
+    // console.log(id);
 
 
 const {data: dataType, isLoading} = useGetDevicesByTypeIdQuery(typeId);
