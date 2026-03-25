@@ -34,8 +34,8 @@ const CreateDeviceModal = ({visibleDevice, toggleDeviceModal}: ICreateDeviceModa
     const {data: dataBrand} = useGetAllBrandsQuery();
 
     // console.log(dataType);
-    // console.log(typeId);
-    // console.log(brandId);
+    console.log(typeId);
+    console.log(brandId);
     console.log(infoDevice);
 
 
@@ -97,6 +97,7 @@ const CreateDeviceModal = ({visibleDevice, toggleDeviceModal}: ICreateDeviceModa
                             </div>
                         ))}
                     </div>
+                    <button type="submit">Добавить новый девайс</button>
                 </form>
             </div>
         </div>

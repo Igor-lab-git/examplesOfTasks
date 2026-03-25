@@ -1,8 +1,8 @@
 import { useState, type JSX } from 'react';
-import style from "./AdminPage.module.scss"
 import CreateBrandModal from './modalseWindow/CreateBrandModal';
 import CreateTypeModal from './modalseWindow/CreateTypeModal';
 import CreateDeviceModal from './modalseWindow/CreateDeviceModal';
+import style from "./AdminPage.module.scss";
 
 const AdminPage = (): JSX.Element => {
 
@@ -11,16 +11,16 @@ const AdminPage = (): JSX.Element => {
   const [visibleDevice, setVisibleDevice] = useState<boolean>(true);
 
   const toggleTypeModal = () => {
-    setVisibleType(!visibleType)
-  }
+    setVisibleType(!visibleType);
+  };
 
   const toggleBrandModal = () => {
-    setVisibleBrand(!visibleBrand)
+    setVisibleBrand(!visibleBrand);
   };
 
   const toggleDeviceModal = () => {
-    setVisibleDevice(!visibleDevice)
-  }
+    setVisibleDevice(!visibleDevice);
+  };
 
   return (
     <div>
