@@ -1,0 +1,21 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.container_form_auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  max-width: rem(455);
+  max-height: rem(663);
+}
+
+.title_page_auth {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: var(--color-orangered);
+}

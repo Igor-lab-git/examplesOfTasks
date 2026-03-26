@@ -1,0 +1,124 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.form_element {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(20);
+}
+
+.container_fields_elements {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(16);
+}
+
+.input_label {
+  font-weight: 500;
+  font-size: rem(14);
+  line-height: 145%;
+}
+
+.field_input_element {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(8);
+}
+
+.input_email,
+.input_password {
+  border-bottom: 2px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-radius: 15px;
+  padding: 16px 16px 16px 40px;
+  width: 454px;
+  height: 56px;
+
+  @include hover {
+    opacity: 0.9;
+    scale: 1.01;
+  }
+}
+
+.input_icon_email {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(30%);
+  pointer-events: none;
+}
+
+.input_icon_password {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(15%);
+  pointer-events: none;
+}
+
+.input_icon_password_eye {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(50%);
+  pointer-events: none;
+}
+
+.button_form {
+  padding: 16px 24px;
+  width: 454px;
+  border: 1px solid var(--color-orangered);
+  border-radius: var(--border-radius-small);
+  background: var(--color-orangered);
+
+  @include hover {
+    opacity: 0.9;
+    scale: 1.01;
+  }
+}
+
+.button_title {
+  font-weight: 600;
+  font-size: rem(16);
+  line-height: 145%;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.form_footer {
+  display: flex;
+  justify-content: center;
+  column-gap: rem(5);
+}
+
+.form_footer_text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  column-gap: rem(10);
+}
+
+.form_footer_link {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 145%;
+  text-align: center;
+  color: var(--color-orangered);
+}
+
+.error_wrapper_message {
+  display: flex;
+  column-gap: rem(5);
+}
+
+.error_message {
+  font-size: rem(10);
+  color: red;
+}

@@ -176,20 +176,3 @@ export const {
 } = cyberStoreApi;
 export default cyberStoreApi;
 
-// invalidatedTag: ["NewDevices"] тригер для обновления при создании девайса
-
-// 1. Пользователь нажимает "Войти"
-//    ↓
-// 2. Запрос на сервер
-//    ↓
-// 3. transformResponse:
-//     - сохраняет токен в localStorage
-// - возвращает response
-//    ↓
-// 4. AuthPage получает response
-//    ↓
-// 5. AuthPage:
-//     - декодирует токен
-// - dispatch(setUser(...)) → в Redux
-// - сохраняет user в localStorage
-// - navigate('/')

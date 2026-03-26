@@ -12,7 +12,6 @@ const UserActions = () => {
     const dispatch = useDispatch();
     
     const { user } = useSelector((state: RootState) => state.user);
-    console.log('📌 user в UserActions:', user);
     
     const handleLogOut = () => {
         dispatch(logOutUser());

@@ -1,11 +1,15 @@
 import {Link} from 'react-router-dom'
 import pathRouter from '../../../shared/constants/pathRouter'
-import {useLoginMutation, useRegistrationMutation} from "../../../app/store/redusers/cyberStoreApi.ts";
 import React, {useState, type JSX} from "react";
 // import ModalWindow from '../../../shared/ui/ModalWindow/ModalWindow.tsx';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../app/store/redusers/userSlice.ts';
-// import type { RootState } from '../../../app/store/store.ts';
+import useAuthApi from "../model/authApi.ts";
+import validateForm from "../lib/authUtils.ts";
+import mailIcon from "../../../shared/assets/icons/authorization/mail-icon.svg";
+import castleIcon from "../../../shared/assets/icons/authorization/castle-icon.svg";
+import eyeIcon from "../../../shared/assets/icons/authorization/eye-icon.svg";
+import style from "./AuthForm.module.scss";
 
 
 interface IServerError {
@@ -23,109 +27,109 @@ interface IAuthForm {
 const AuthForm = ({isAuthPathName}: IAuthForm): JSX.Element => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('');
-    const [validMessage, setValidMessage] = useState<string>('');
-    const duspatch = useDispatch();
+    const [validError, setValidError] = useState<string[]>([]);
+    const dispatch = useDispatch();
 
-
-const [register, { isLoading: reqLoad, isSuccess: reqSuccess, error: reqError }] = useRegistrationMutation();
-const [login, { isLoading: loginLoad, isSuccess: loginSuccess, error: loginError }] = useLoginMutation();
-
-    console.log( reqSuccess, loginSuccess, reqLoad, loginLoad, reqError, loginError);
-const error = isAuthPathName ? loginSuccess : reqError
-
-console.log(error);
-
-const validateForm = () => {
- console.log("email значение:", `"${email}"`);
-    if(!email || email.trim().length === 0) {
-       setValidMessage("Поле email обязательно для заполнения :(");
-       return false
-    }
-    if(!email.includes("@")) {
-        setValidMessage("Введите корректный email (должен содержать @)");
-        return false
-    };
-
-    if(!password || password.trim().length === 0) {
-        setValidMessage("Поле пароль обязательно для заполнения :(");
-        return false
-    }
-
-    if(password.trim().length < 5) {
-        setValidMessage("Пароль должен содеражать не менее 5 символов :(");
-        return false
-    }
-    setValidMessage("");
-    return true;
-}
+    const {authRequest} = useAuthApi();
 
 
 const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
         let response;
-        let message = ""
-        if(!validateForm()) {
+        let message = "";
+        const errorMessage = validateForm(email, password);
+        if(errorMessage.length > 0) {
+            setValidError(errorMessage)
             return;
+        } else {
+            setValidError([])
         }
     try {
         if(isAuthPathName) {
-             response = await login({
-                email,
-                password,
-            }).unwrap();
+            response =  await authRequest.loginRequest(email, password)
             message = "Вы успешно авторизовались"
             
         } else  {
-         response = await register({
-             email,
-            password,
-        }).unwrap();
+         response = await authRequest.registrationRequest(email, password);
             message = "Вы успешно зарегестрировались";
         };
         // setStatusMessage(message);
         console.log('📦 response:', response);
-        // console.log('📦 response.data:', response.data);
         if (response?.id && response?.email) {
             const userData = {
                 id: response.id,
                 email: response.email,
                 role: response.role
             };
-            duspatch(setUser(userData));
+            dispatch(setUser(userData));
         }
         alert(message);
     } catch (err) {
         const error = err as IServerError;
+        alert(error.data.message);
         console.log(error);
     } 
 };
 
   return (
-        <form action="#" onSubmit={handleSubmit} noValidate>
-            <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder='Введите email...' />
-            <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                placeholder='Введите пароль...' />
-            <div style={{display: 'flex', columnGap: "35px"}}>
-                {isAuthPathName ? (
-                    <p>Нет аккаунта?
-                    <Link to={pathRouter.REGISTRATION_PATH}>Зарегестрируйтесь</Link>
-                    </p>
-                ) : (
-                    <p>Есть аккаунт?
-                    <Link to={pathRouter.AUTH_PATH}>Войдите</Link>
-                    </p>
-                )}
-                <button type={'submit'}>{isAuthPathName ? "Войти" : "Регистрация"}</button>
-                <span>{validMessage ? validMessage : ""}</span>
-            </div>
-        </form>
+      <form
+          className={style.form_element}
+          onSubmit={handleSubmit}
+          noValidate>
+          <div className={style.container_fields_elements}>
+              <div className={style.field_input_element}>
+                  <label className={style.input_label} htmlFor="email">Email</label>
+                  <img className={style.input_icon_email} src={mailIcon} alt="" width="20" height="15"/>
+                  <input
+                      id="email"
+                      className={style.input_email}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      placeholder='Введите email...'/>
+              </div>
+              <div className={style.field_input_element}>
+                  <label className={style.input_label} htmlFor="email">Пароль</label>
+                  <img className={style.input_icon_password} src={castleIcon} alt="" width="20" height="22"/>
+                  <input
+                      className={style.input_password}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      type="password"
+                      placeholder='Введите пароль...'/>
+                  <img className={style.input_icon_password_eye} src={eyeIcon} alt="" width="20" height="17"/>
+              </div>
+              <div className={style.error_wrapper_message}>
+                  {validError ? (
+                      validError.map((text, index) => (
+                          <span className={style.error_message} key={index}>{text}</span>
+                      ))
+                  ): ""}
+              </div>
+          </div>
+          <button
+              className={style.button_form}
+              type={'submit'}>
+              <span className={style.button_title}>
+                  {isAuthPathName ? "Войти" : "Регистрация"}
+              </span>
+          </button>
+          <div className={style.form_footer}>
+              {isAuthPathName ? (
+                  <p className={style.form_footer_text}>
+                      Ещё не с нами?
+                      <Link className={style.form_footer_link}
+                            to={pathRouter.REGISTRATION_PATH}>Зарегестрируйтесь</Link>
+                  </p>
+              ) : (
+                  <p className={style.form_footer_text}>
+                      Уже зарегистрированы?
+                      <Link className={style.form_footer_link} to={pathRouter.AUTH_PATH}>Войдите</Link>
+                  </p>
+              )}
+          </div>
+
+      </form>
   )
 }
 
