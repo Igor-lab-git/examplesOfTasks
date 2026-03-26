@@ -41,22 +41,21 @@ interface IAllBrands {
     count: number;
 }
 
-interface IRegisterResponse  {
-    message: string;
-    token: string;
-    data: {
-        id: number;
-        email: string;
-        password: string;
-        role: "ADMIN" | "USER"
-    };
+interface IUserResponse {
+    id: number;
+    email: string;
+    role: "ADMIN" | "USER";
 }
 
 
 interface IRegisterRequest{
     email: string;
     password: string;
-    role: "ADMIN" | "USER"
+};
+
+interface ILoginRequest{
+    email: string;
+    password: string;
 };
 
 interface IDecodedToken {
@@ -88,14 +87,16 @@ const cyberStoreApi = createApi({
             const token = localStorage.getItem("token");
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
-            }
+            };
             headers.set('Content-Type', 'application/json');
             return headers;
         }
     }),
+    tagTypes: ["NewDevices"],
     endpoints: (builder) => ({
         getAllDevices: builder.query<IAllDevices, {count?: number}>({
-            query: ({count}) => `/api/device?limit=${count || 9}`
+            query: ({count}) => `/api/device?limit=${count || 9}`,
+            providesTags: ["NewDevices"],
         }),
         getOneDevicesById: builder.query<IDevices, number>({
             query: (id) => `/api/device/${id}`
@@ -110,55 +111,50 @@ const cyberStoreApi = createApi({
             query: () => `/api/brand`
         }),
     //     =======================//
-        registration: builder.mutation<IRegisterResponse, IRegisterRequest>({
+        registration: builder.mutation<IUserResponse, IRegisterRequest>({
             query: (userData) => ({
                 url: `/api/user/registration`,
                 method: "POST",
                 body: userData,
             }),
-            transformResponse(response: {message: string; token: string; data: IRegisterResponse} ){
+            transformResponse(response: {message: string; token: string; data: IUserResponse}){
                 const decoded = jwtDecode<IDecodedToken>(response.token)
                 const userData = {
                     id: decoded.id,
                     email: decoded.email,
                     role: decoded.role
                 }
+
+                
                 localStorage.setItem("token", response.token);
                 localStorage.setItem("user", JSON.stringify(userData));
-                return response.data
+                return userData
             }
         }),
-        login: builder.mutation<IRegisterResponse, IRegisterRequest>({
+        login: builder.mutation<IUserResponse, ILoginRequest>({
             query: (userData) => ({
                 url: `/api/user/login`,
                 method: "POST",
                 body: userData,
             }),
-            transformResponse(response: {message: string; token: string; data: IRegisterResponse} ){
+            transformResponse(response: {message: string; token: string; data: IUserResponse} ){
                 const decoded = jwtDecode<IDecodedToken>(response.token);
-
-                // dispatch(setUser({
-                //     id: decoded.id,
-                //     email: decoded.email,
-                //     role: decoded.role,
-                //     isAuth: true
-                // }));
 
                 const userData = {
                     id: decoded.id,
                     email: decoded.email,
                     role: decoded.role
                 };
-
                 localStorage.setItem("token", response.token);
                 localStorage.setItem("user", JSON.stringify(userData));
-                return response.data
+                return userData
             }
         }),
         checkAuth: builder.query<ICheckAuthResponse, void>({
             query: () => `/api/user/auth`,
             transformResponse: (response: ICheckAuthResponse) => {
                 // Сохраняем данные пользователя
+                // console.log(response, "checkAuth");
                 if (response.user) {
                     localStorage.setItem("user", JSON.stringify(response.user));
                 }
@@ -179,6 +175,8 @@ export const {
     useCheckAuthQuery
 } = cyberStoreApi;
 export default cyberStoreApi;
+
+// invalidatedTag: ["NewDevices"] тригер для обновления при создании девайса
 
 // 1. Пользователь нажимает "Войти"
 //    ↓

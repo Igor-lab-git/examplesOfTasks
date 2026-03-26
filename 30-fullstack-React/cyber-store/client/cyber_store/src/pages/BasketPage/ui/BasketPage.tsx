@@ -12,8 +12,9 @@ interface IDevices {
 }
 
 const BasketPage = (): JSX.Element => {
+    
+    const {items, totalItems, totalPages} = useSelector((state: RootState) => state.cart);
 
-    const  {items, totalItems, totalPages} = useSelector((state: RootState) => state.cart)
     return (
         <>
             <h1>AuthPage</h1>
