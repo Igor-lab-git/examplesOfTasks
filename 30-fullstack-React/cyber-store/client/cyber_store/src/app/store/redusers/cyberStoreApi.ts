@@ -74,8 +74,27 @@ interface ICheckAuthResponse {
         role: "ADMIN" | "USER"
     },
     message: string;
+};
+
+interface ICreateTypeRequest {
+    name: string;
 }
 
+interface ITypeCraeteResponse {
+    id: number,
+    name: string,
+    icon: null | string;
+}
+
+interface IBrandCraeteResponse {
+    id: number,
+    name: string,
+    icon: null | string;    
+}
+
+interface ICreateBrandRequest {
+    name: string;
+}
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -110,6 +129,21 @@ const cyberStoreApi = createApi({
         getAllBrands: builder.query<IAllBrands, void>({
             query: () => `/api/brand`
         }),
+        // ====================// Admin-panel
+        createTypeDevice: builder.mutation<ITypeCraeteResponse, ICreateTypeRequest>({
+            query: (typeDevice) => ({
+                url: `/api/type`,
+                method: "POST",
+                body: typeDevice,
+            }) 
+        }),
+        createBrandDevice: builder.mutation<IBrandCraeteResponse, ICreateBrandRequest>({
+            query: (brandDevice) => ({
+                url: `/api/brand`,
+                method: "POST",
+                body: brandDevice,
+            }) 
+        }),
     //     =======================//
         registration: builder.mutation<IUserResponse, IRegisterRequest>({
             query: (userData) => ({
@@ -124,8 +158,6 @@ const cyberStoreApi = createApi({
                     email: decoded.email,
                     role: decoded.role
                 }
-
-                
                 localStorage.setItem("token", response.token);
                 localStorage.setItem("user", JSON.stringify(userData));
                 return userData
@@ -172,7 +204,8 @@ export const {
     useGetAllBrandsQuery,
     useRegistrationMutation,
     useLoginMutation,
-    useCheckAuthQuery
+    useCheckAuthQuery,
+    useCreateTypeDeviceMutation
 } = cyberStoreApi;
 export default cyberStoreApi;
 

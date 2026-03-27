@@ -1,15 +1,16 @@
 import {Link} from 'react-router-dom'
 import pathRouter from '../../../shared/constants/pathRouter'
-import React, {useState, type JSX} from "react";
+import React, {useCallback, useState, type JSX} from "react";
 // import ModalWindow from '../../../shared/ui/ModalWindow/ModalWindow.tsx';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../app/store/redusers/userSlice.ts';
 import useAuthApi from "../model/authApi.ts";
-import validateForm from "../lib/authUtils.ts";
+import { validateFormEmail, validateFormPassword } from "../lib/authUtils.ts";
 import mailIcon from "../../../shared/assets/icons/authorization/mail-icon.svg";
 import castleIcon from "../../../shared/assets/icons/authorization/castle-icon.svg";
 import eyeIcon from "../../../shared/assets/icons/authorization/eye-icon.svg";
 import style from "./AuthForm.module.scss";
+import { NotificationModal } from '../../../shared/ui/index.ts';
 
 
 interface IServerError {
@@ -27,7 +28,11 @@ interface IAuthForm {
 const AuthForm = ({isAuthPathName}: IAuthForm): JSX.Element => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('');
-    const [validError, setValidError] = useState<string[]>([]);
+    const [validErrorEmail, setValidErrorEmail] = useState<string[]>([]);
+    const [validErrorPassword, setValidErrorPassword] = useState<string[]>([]);
+    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [messageModal, setmMessageModal] = useState<string>("");
+    const [typeMessageModal, setTypeMessageModal] = useState<"success" | "error">("success");
     const dispatch = useDispatch();
 
     const {authRequest} = useAuthApi();
@@ -36,25 +41,29 @@ const AuthForm = ({isAuthPathName}: IAuthForm): JSX.Element => {
 const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
         let response;
-        let message = "";
-        const errorMessage = validateForm(email, password);
-        if(errorMessage.length > 0) {
-            setValidError(errorMessage)
+
+        const errorMessageEmail = validateFormEmail(email);
+        const errorMessagePassword = validateFormPassword(password);
+        if(errorMessageEmail.length > 0 || errorMessagePassword.length > 0) {
+            setValidErrorEmail(errorMessageEmail);
+            setValidErrorPassword(errorMessagePassword);
             return;
         } else {
-            setValidError([])
-        }
+            setValidErrorEmail([]);
+            setValidErrorPassword([]);
+        };
+
     try {
         if(isAuthPathName) {
             response =  await authRequest.loginRequest(email, password)
-            message = "Вы успешно авторизовались"
+            setmMessageModal("Вы успешно авторизовались");
             
         } else  {
-         response = await authRequest.registrationRequest(email, password);
-            message = "Вы успешно зарегестрировались";
+            response = await authRequest.registrationRequest(email, password);
+            setmMessageModal("Вы успешно зарегестрировались");
         };
-        // setStatusMessage(message);
-        console.log('📦 response:', response);
+        setTypeMessageModal("success");
+        // console.log('📦 response:', response);
         if (response?.id && response?.email) {
             const userData = {
                 id: response.id,
@@ -63,50 +72,80 @@ const handleSubmit = async (e: React.FormEvent) => {
             };
             dispatch(setUser(userData));
         }
-        alert(message);
+        setIsOpenModal(true);
     } catch (err) {
         const error = err as IServerError;
-        alert(error.data.message);
+        if(error.data.message) {
+            setmMessageModal(error.data.message);
+            setTypeMessageModal("error");
+            setIsOpenModal(true);
+        }
         console.log(error);
     } 
 };
 
+    const handleCloseModal = useCallback(() => {
+        setIsOpenModal(false);
+    }, []);
+
   return (
-      <form
+      <>
+      <NotificationModal 
+        isOpenModal={isOpenModal} 
+        messageModal={messageModal} 
+        typeMessageModal={typeMessageModal}
+        handleCloseModal={handleCloseModal}/>
+
+        <form
           className={style.form_element}
           onSubmit={handleSubmit}
           noValidate>
+
           <div className={style.container_fields_elements}>
               <div className={style.field_input_element}>
                   <label className={style.input_label} htmlFor="email">Email</label>
-                  <img className={style.input_icon_email} src={mailIcon} alt="" width="20" height="15"/>
-                  <input
-                      id="email"
-                      className={style.input_email}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      type="email"
-                      placeholder='Введите email...'/>
+                  <div className={style.wrapper_input}>
+                    <img className={style.input_icon_email} src={mailIcon} alt="" width="20" height="15"/>
+                    <input
+                        id="email"
+                        className={style.input_email}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder='Введите email...'/>
+                  </div>
+                  <div className={style.error_wrapper_message}>
+                    {validErrorEmail ? (
+                        validErrorEmail.map((text, index) => (
+                            <span className={style.error_message} key={index}>{text}</span>
+                        )) 
+                    ) : ""}
+                  </div>
               </div>
+
               <div className={style.field_input_element}>
                   <label className={style.input_label} htmlFor="email">Пароль</label>
-                  <img className={style.input_icon_password} src={castleIcon} alt="" width="20" height="22"/>
-                  <input
-                      className={style.input_password}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      type="password"
-                      placeholder='Введите пароль...'/>
-                  <img className={style.input_icon_password_eye} src={eyeIcon} alt="" width="20" height="17"/>
-              </div>
-              <div className={style.error_wrapper_message}>
-                  {validError ? (
-                      validError.map((text, index) => (
-                          <span className={style.error_message} key={index}>{text}</span>
-                      ))
-                  ): ""}
+                  <div  className={style.wrapper_input}>
+                    <img className={style.input_icon_password} src={castleIcon} alt="" width="20" height="22"/>
+                    <input
+                        id='password'
+                        className={style.input_password}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        placeholder='Введите пароль...'/>
+                    <img className={style.input_icon_password_eye} src={eyeIcon} alt="" width="20" height="17"/>
+                  </div>
+                  <div className={style.error_wrapper_message}>
+                    {validErrorPassword ? (
+                        validErrorPassword.map((text, index) => (
+                            <span className={style.error_message} key={index}>{text}</span>
+                        )) 
+                    ) : ""}
+                  </div>
               </div>
           </div>
+
           <button
               className={style.button_form}
               type={'submit'}>
@@ -114,6 +153,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   {isAuthPathName ? "Войти" : "Регистрация"}
               </span>
           </button>
+
           <div className={style.form_footer}>
               {isAuthPathName ? (
                   <p className={style.form_footer_text}>
@@ -130,6 +170,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
 
       </form>
+      </>
   )
 }
 

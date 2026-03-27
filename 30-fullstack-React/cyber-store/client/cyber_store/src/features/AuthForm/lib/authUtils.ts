@@ -1,4 +1,4 @@
-const validateForm = (email: string, password: string): string[] => {
+const validateFormEmail = (email: string): string[] => {
     const arrayErrors = [];
     if(!email || email.trim().length === 0) {
         arrayErrors.push("Поле email обязательно для заполнения :(");
@@ -6,7 +6,11 @@ const validateForm = (email: string, password: string): string[] => {
     if(!email.includes("@")) {
         arrayErrors.push("Введите корректный email (должен содержать @)");
     };
+    return arrayErrors;
+};
 
+const validateFormPassword = (password: string): string[] => {
+    const arrayErrors = [];
     if(!password || password.trim().length === 0) {
         arrayErrors.push("Поле пароль обязательно для заполнения :(");
     }
@@ -17,4 +21,4 @@ const validateForm = (email: string, password: string): string[] => {
     return arrayErrors;
 };
 
-export default validateForm;
+export  { validateFormEmail, validateFormPassword };

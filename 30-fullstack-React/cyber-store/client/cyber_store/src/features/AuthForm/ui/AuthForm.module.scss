@@ -21,22 +21,23 @@
 }
 
 .field_input_element {
-  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: rem(8);
 }
 
+.wrapper_input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .input_email,
 .input_password {
-  border-bottom: 2px solid #e3e3e3;
-  border-left: 1px solid #e3e3e3;
-  border-right: 1px solid #e3e3e3;
-  border-top: 1px solid #e3e3e3;
-  border-radius: 15px;
+  display: block;
+  border: 2px solid var(--gray-7);
+  border-radius: rem(15);
   padding: 16px 16px 16px 40px;
-  width: 454px;
-  height: 56px;
 
   @include hover {
     opacity: 0.9;
@@ -46,9 +47,9 @@
 
 .input_icon_email {
   position: absolute;
-  left: 16px;
+  left: rem(16);
   top: 50%;
-  transform: translateY(30%);
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
@@ -56,7 +57,7 @@
   position: absolute;
   left: 16px;
   top: 50%;
-  transform: translateY(15%);
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
@@ -64,7 +65,7 @@
   position: absolute;
   right: 16px;
   top: 50%;
-  transform: translateY(50%);
+  transform: translateY(-50%);
   pointer-events: none;
 }
 

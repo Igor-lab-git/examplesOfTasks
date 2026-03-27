@@ -2,9 +2,11 @@
 @use "../../../app//styles//main.scss" as main;
 
 .containerButton {
-    display: flex;
-    flex-direction: column;
-    row-gap: rem(15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: rem(15);
 }
 
 .overlay {
@@ -22,18 +24,103 @@
 }
 
 .modal {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  min-width: 320px;
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow-y: auto;
   position: relative;
+  background: var(--color-white);
+  border-radius: rem(12);
+  padding: rem(50);
+  // min-width: 320px;
+  // max-width: 90vw;
+  // max-height: 90vh;
+  overflow-y: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   animation: slideIn 0.3s ease-out;
 }
 
+.modal_inner_wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(20);
+}
+
+.button_close_modal {
+  position: absolute;
+  width: rem(30);
+  height: rem(30);
+  right: rem(15);
+  top: rem(15);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include hover {
+    background-color: var(--gray-3);
+    border-radius: rem(8);
+  }
+
+  .button_close_modal_line {
+    position: absolute;
+    width: 80%;
+    height: rem(2);
+    background-color: var(--color-black);
+
+    &:first-child {
+      transform: rotate(45deg);
+    }
+
+    &:last-child {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.button_brand,
+.button_type,
+.button_device {
+  font-style: rem(20);
+  font-weight: 500;
+  padding: rem(10);
+  display: inline;
+  width: rem(600);
+  border-radius: rem(8);
+  color: var(--color-white);
+  background-color: var(--color-orangered);
+}
+
+.modal_title {
+  font-weight: 500;
+  text-align: center;
+}
+
+.modal_form {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(10);
+}
+
+.modal_form_input {
+  border: 2px solid var(--gray-7);
+  border-radius: rem(15);
+  padding: rem(15);
+  width: rem(454);
+}
+
+.modal_form_button {
+  font-style: rem(20);
+  font-weight: 500;
+  padding: rem(10);
+  border-radius: var(--border-radius-small);
+  color: var(--color-white);
+  background-color: var(--color-orangered);
+
+  @include hover {
+    scale: 1.01;
+    opacity: 0.9;
+  }
+}
+
 .show {
-    display: none;
+  display: none;
 }
