@@ -51,11 +51,13 @@ interface IUserResponse {
 interface IRegisterRequest{
     email: string;
     password: string;
+    role: "ADMIN" | "USER";
 };
 
 interface ILoginRequest{
     email: string;
     password: string;
+    role: "ADMIN" | "USER";
 };
 
 interface IDecodedToken {
@@ -94,6 +96,20 @@ interface IBrandCraeteResponse {
 
 interface ICreateBrandRequest {
     name: string;
+};
+
+interface  IDeviceCreateResponse {
+    message: string,
+    data: {
+        rating: number;
+        id: number;
+        name: string;
+        price: number;
+        brandId: number;
+        typeId: number;
+        img: string;
+        images: string[];
+    }
 }
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -111,23 +127,27 @@ const cyberStoreApi = createApi({
             return headers;
         }
     }),
-    tagTypes: ["NewDevices"],
+    tagTypes: ["NewDevices", "Types", "Brands"],
     endpoints: (builder) => ({
         getAllDevices: builder.query<IAllDevices, {count?: number}>({
             query: ({count}) => `/api/device?limit=${count || 9}`,
             providesTags: ["NewDevices"],
         }),
         getOneDevicesById: builder.query<IDevices, number>({
-            query: (id) => `/api/device/${id}`
+            query: (id) => `/api/device/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'NewDevices', id }],
         }),
         getDevicesByTypeId: builder.query<IAllDevices, number>({
-            query: (typeId) => `/api/device/?typeId=${typeId}`
+            query: (typeId) => `/api/device/?typeId=${typeId}`,
+            providesTags: ["NewDevices"],
         }),
         getAllTypes: builder.query<IAllTypes, void>({
-            query: () => `/api/type`
+            query: () => `/api/type`,
+            providesTags: ["Types"],
         }),
         getAllBrands: builder.query<IAllBrands, void>({
-            query: () => `/api/brand`
+            query: () => `/api/brand`,
+            providesTags: ["Brands"],
         }),
         // ====================// Admin-panel
         createTypeDevice: builder.mutation<ITypeCraeteResponse, ICreateTypeRequest>({
@@ -135,14 +155,24 @@ const cyberStoreApi = createApi({
                 url: `/api/type`,
                 method: "POST",
                 body: typeDevice,
-            }) 
+            }),
+            invalidatesTags: ["Types"],
         }),
         createBrandDevice: builder.mutation<IBrandCraeteResponse, ICreateBrandRequest>({
             query: (brandDevice) => ({
                 url: `/api/brand`,
                 method: "POST",
                 body: brandDevice,
-            }) 
+            }),
+            invalidatesTags: ["Brands"],
+        }),
+        createDevice: builder.mutation<IDeviceCreateResponse, FormData>({
+            query: (FormData) => ({
+                url: `/api/device`,
+                method: "POST",
+                body: FormData,
+            }),
+            invalidatesTags: ["NewDevices"],
         }),
     //     =======================//
         registration: builder.mutation<IUserResponse, IRegisterRequest>({
@@ -205,7 +235,9 @@ export const {
     useRegistrationMutation,
     useLoginMutation,
     useCheckAuthQuery,
-    useCreateTypeDeviceMutation
+    useCreateTypeDeviceMutation,
+    useCreateBrandDeviceMutation,
+    useCreateDeviceMutation
 } = cyberStoreApi;
 export default cyberStoreApi;
 

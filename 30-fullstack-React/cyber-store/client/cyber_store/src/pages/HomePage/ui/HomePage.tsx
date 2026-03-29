@@ -30,7 +30,7 @@ interface IDeviceFromApi {
 
 
 const HomePage = (): JSX.Element => {
-    const [useCount, setUseCount] = useState<number>(3);
+    const [useCount, setUseCount] = useState<number>(15);
     const dispatch = useDispatch();
 
 

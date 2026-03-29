@@ -1,44 +1,42 @@
 import { useState, type JSX } from 'react';
-// import CreateBrandModal from './modalseWindow/CreateBrandModal';
 import CreateTypeModal from './modalseWindow/CreateTypeModal';
 import CreateDeviceModal from './modalseWindow/CreateDeviceModal';
 import style from "./AdminPage.module.scss";
 
 const AdminPage = (): JSX.Element => {
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  const [visibleDeviceModal, setVisibleDeviceModal] = useState<boolean>(false);
+  const [typeModal, setTypeModal] = useState<"type" | "brand">("type");
 
-  // const [visibleType, setVisibleType] = useState<boolean>(true);
-  // const [visibleBrand, setVisibleBrand] = useState<boolean>(true);
-  const [visibleModal, setVisibleModal] = useState<boolean>(true);
-  const [visibleDevice, setVisibleDevice] = useState<boolean>(true);
 
-  // const toggleTypeModal = () => {
-  //   setVisibleType(!visibleType);
-  // };
-
-  const toggleModal = () => {
-    setVisibleModal(!visibleModal);
+  const openModal = (type: "type" | "brand") => {
+      setTypeModal(type);
+       setVisibleModal(!visibleModal);
   };
 
-  // const toggleBrandModal = () => {
-  //   setVisibleBrand(!visibleBrand);
-  // };
+    const closeModalType = () => {
+        setVisibleModal(!visibleModal);
+    };
 
-  const toggleDeviceModal = () => {
-    setVisibleDevice(!visibleDevice);
-  };
+    const closeModal = () => {
+        setVisibleDeviceModal(false);
+    };
+
+    const openDeviceModal = () => {
+        setVisibleDeviceModal(true);
+    };
 
   return (
     <div>
       <h1>Админ панель</h1>
 
       <div className={style.containerButton}>
-        <button className={style.button_brand} onClick={() => toggleModal()}>Добавить брэнд устройства</button>
-        <button className={style.button_type} onClick={() => toggleModal()}>Добавить тип устройства</button>
-        <button className={style.button_device} onClick={() => toggleDeviceModal()}>Добавить устройство</button>
+        <button className={style.button_brand} onClick={() => openModal("brand")}>Добавить брэнд устройства</button>
+        <button className={style.button_type} onClick={() => openModal("type")}>Добавить тип устройства</button>
+        <button className={style.button_device} onClick={() => openDeviceModal()}>Добавить устройство</button>
       </div>
-      <CreateTypeModal visibleType={visibleModal} toggleTypeModal={toggleModal}/>
-      {/* <CreateBrandModal visibleBrand={visibleBrand} toggleBrandModal={toggleModal}/> */}
-      <CreateDeviceModal visibleDevice={visibleDevice} toggleDeviceModal={toggleDeviceModal}/>
+      <CreateTypeModal visibleType={visibleModal} closeModalType={closeModalType} typeModal={typeModal}/>
+      <CreateDeviceModal visibleDeviceModal={visibleDeviceModal} closeModal={closeModal}/>
     </div>
   )
 }

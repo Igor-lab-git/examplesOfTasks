@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom'
 import pathRouter from '../../../shared/constants/pathRouter'
 import React, {useCallback, useState, type JSX} from "react";
-// import ModalWindow from '../../../shared/ui/ModalWindow/ModalWindow.tsx';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../app/store/redusers/userSlice.ts';
 import useAuthApi from "../model/authApi.ts";
@@ -9,8 +8,8 @@ import { validateFormEmail, validateFormPassword } from "../lib/authUtils.ts";
 import mailIcon from "../../../shared/assets/icons/authorization/mail-icon.svg";
 import castleIcon from "../../../shared/assets/icons/authorization/castle-icon.svg";
 import eyeIcon from "../../../shared/assets/icons/authorization/eye-icon.svg";
-import style from "./AuthForm.module.scss";
 import { NotificationModal } from '../../../shared/ui/index.ts';
+import style from "./AuthForm.module.scss";
 
 
 interface IServerError {
@@ -31,7 +30,7 @@ const AuthForm = ({isAuthPathName}: IAuthForm): JSX.Element => {
     const [validErrorEmail, setValidErrorEmail] = useState<string[]>([]);
     const [validErrorPassword, setValidErrorPassword] = useState<string[]>([]);
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-    const [messageModal, setmMessageModal] = useState<string>("");
+    const [messageModal, setMessageModal] = useState<string>("");
     const [typeMessageModal, setTypeMessageModal] = useState<"success" | "error">("success");
     const dispatch = useDispatch();
 
@@ -56,14 +55,14 @@ const handleSubmit = async (e: React.FormEvent) => {
     try {
         if(isAuthPathName) {
             response =  await authRequest.loginRequest(email, password)
-            setmMessageModal("Вы успешно авторизовались");
+            setMessageModal("Вы успешно авторизовались");
             
         } else  {
             response = await authRequest.registrationRequest(email, password);
-            setmMessageModal("Вы успешно зарегестрировались");
+            setMessageModal("Вы успешно зарегестрировались");
         };
         setTypeMessageModal("success");
-        // console.log('📦 response:', response);
+
         if (response?.id && response?.email) {
             const userData = {
                 id: response.id,
@@ -76,7 +75,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     } catch (err) {
         const error = err as IServerError;
         if(error.data.message) {
-            setmMessageModal(error.data.message);
+            setMessageModal(error.data.message);
             setTypeMessageModal("error");
             setIsOpenModal(true);
         }

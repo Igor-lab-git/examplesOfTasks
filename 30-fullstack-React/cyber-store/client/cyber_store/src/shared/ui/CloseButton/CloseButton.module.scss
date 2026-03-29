@@ -1,0 +1,36 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.button_close_modal {
+  position: absolute;
+  width: rem(30);
+  height: rem(30);
+  right: rem(15);
+  top: rem(15);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include hover {
+    background-color: var(--gray-3);
+    border-radius: rem(8);
+  }
+
+  .button_close_modal_line {
+    position: absolute;
+    width: 80%;
+    height: rem(2);
+    background-color: var(--color-black);
+
+    &:first-child {
+      transform: rotate(45deg);
+    }
+
+    &:last-child {
+      transform: rotate(-45deg);
+    }
+  }
+}

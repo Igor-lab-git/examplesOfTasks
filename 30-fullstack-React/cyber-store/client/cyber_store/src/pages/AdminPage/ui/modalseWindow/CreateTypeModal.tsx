@@ -1,46 +1,88 @@
 import React, {type JSX, useState} from "react";
 import style from "../AdminPage.module.scss";
+import {
+    useCreateBrandDeviceMutation,
+    useCreateTypeDeviceMutation
+} from "../../../../app/store/redusers/cyberStoreApi.ts";
+import {NotificationModal} from "../../../../shared/ui";
+import {CloseButton} from "../../../../shared/ui/CloseButton";
 
 interface ICreateTypeModal {
     visibleType: boolean;
-    toggleTypeModal: () => void;
+    typeModal: "type" | "brand";
+    closeModalType: () => void;
 };
 
-const CreateTypeModal = ({visibleType, toggleTypeModal}: ICreateTypeModal): JSX.Element => {
-    const [valueType, setValueType] = useState<string>("");
+const CreateTypeModal = ({visibleType, closeModalType, typeModal}: ICreateTypeModal): JSX.Element => {
+    const [valueForm, setValueForm] = useState<string>("");
+    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [messageModal, setMessageModal] = useState<string>("");
+    const [typeMessageModal, setTypeMessageModal] = useState<"success" | "error">("success");
 
-    // const [login, { isLoading: loginLoad, isSuccess: loginSuccess, error: loginError }] = useLoginMutation();
+    const [createType, { isLoading: createTypeLoad }] = useCreateTypeDeviceMutation();
+    const [createBrand, { isLoading: createBrandLoad }] = useCreateBrandDeviceMutation();
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const isLoading = typeModal === "type" ? createTypeLoad : createBrandLoad;
+
+    console.log(createTypeLoad, createBrandLoad)
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(e.target);
-        setValueType(e.currentTarget.value);
+
+        if(valueForm.trim().length === 0) {
+            setIsOpenModal(true);
+            setMessageModal("Поле не должно быть пустым");
+            setTypeMessageModal("error");
+            return;
+        };
+
+        if(typeModal === "type") {
+            const message = await createType({name: valueForm}).unwrap();
+            setIsOpenModal(true);
+            setMessageModal(`Тип девайса ${message.name} был успещно создан  :)`);
+            setTypeMessageModal("success");
+            setValueForm("");
+            closeModalType();
+        } else {
+            const message = await createBrand({name: valueForm}).unwrap();
+            setIsOpenModal(true);
+            setMessageModal(`Бренд девайса ${message.name} был успещно создан  :)`);
+            setTypeMessageModal("success");
+            setValueForm("");
+            closeModalType();
+        }
     };
 
+    const handleCloseModal = () => {
+        setIsOpenModal(false);
+    };
+
+    if(isLoading) return <h3>Загрузка...</h3>;
+
   return (
-    <div className={`${style.overlay} ${visibleType ? style.show : ""}`}>
-      <div className={style.modal}>
-        <div className={style.modal_inner_wrapper}>
-            <button 
-              type="button" 
-              className={style.button_close_modal} 
-              onClick={() => toggleTypeModal()}>
-                <span className={style.button_close_modal_line} ></span>
-                <span className={style.button_close_modal_line} ></span>
-            </button>
-          <h3 className={style.modal_title}>Добавть тип устройства</h3>
-          <form className={style.modal_form} onSubmit={handleSubmit}>
-            <input
-              className={style.modal_form_input}
-                value={valueType}
-                onChange={(e) => setValueType(e.target.value)}
-                type="text"
-                placeholder="Добавить тип девайса..." />
-              <button className={style.modal_form_button} type="submit">Добавить</button>
-          </form>
+      <>
+          <NotificationModal
+              isOpenModal={isOpenModal}
+              messageModal={messageModal}
+              typeMessageModal={typeMessageModal}
+              handleCloseModal={handleCloseModal}/>
+        <div className={`${style.overlay} ${!visibleType ? style.show : ""}`}>
+          <div className={style.modal}>
+            <div className={style.modal_inner_wrapper}>
+                <CloseButton onClose={closeModalType}/>
+              <h3 className={style.modal_title}>{typeModal === "type" ? "Добавть тип устройства" : "Добавть брэнд устройства"}</h3>
+              <form className={style.modal_form} onSubmit={handleSubmit}>
+                <input
+                  className={style.modal_form_input}
+                    value={valueForm}
+                    onChange={(e) => setValueForm(e.target.value)}
+                    type="text"
+                    placeholder={typeModal === "type" ? "Добавть тип..." : "Добавть брэнд..."} />
+                  <button className={style.modal_form_button} type="submit">Добавить</button>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </>
   );
 };
 

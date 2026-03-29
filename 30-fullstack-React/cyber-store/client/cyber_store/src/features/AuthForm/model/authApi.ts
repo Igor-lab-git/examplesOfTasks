@@ -6,10 +6,10 @@ const useAuthApi = () => {
 
     const authRequest = {
         loginRequest: async (email: string, password: string) => {
-            return await login({email, password}).unwrap();
+            return await login({email, password, role: "ADMIN"}).unwrap();
         },
         registrationRequest: async (email: string, password: string) => {
-            return await register({email, password}).unwrap();
+            return await register({email, password, role: "ADMIN"}).unwrap();
         },
     };
 
