@@ -22,6 +22,7 @@ interface IAllDevices {
 interface IType {
     id: number
     name: string;
+    icon: string;
 }
 
 interface IAllTypes {
@@ -78,14 +79,10 @@ interface ICheckAuthResponse {
     message: string;
 };
 
-interface ICreateTypeRequest {
-    name: string;
-}
-
-interface ITypeCraeteResponse {
+interface ITypeCreateResponse {
     id: number,
     name: string,
-    icon: null | string;
+    icon?: string | null; 
 }
 
 interface IBrandCraeteResponse {
@@ -150,11 +147,11 @@ const cyberStoreApi = createApi({
             providesTags: ["Brands"],
         }),
         // ====================// Admin-panel
-        createTypeDevice: builder.mutation<ITypeCraeteResponse, ICreateTypeRequest>({
-            query: (typeDevice) => ({
+        createTypeDevice: builder.mutation<ITypeCreateResponse, FormData>({
+            query: (FormData) => ({
                 url: `/api/type`,
                 method: "POST",
-                body: typeDevice,
+                body: FormData,
             }),
             invalidatesTags: ["Types"],
         }),

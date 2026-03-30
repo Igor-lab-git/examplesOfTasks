@@ -1,36 +1,75 @@
-import db from "../services/DatabaseService.mjs"
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
+import { fileURLToPath } from 'url';
+import db from "../services/DatabaseService.mjs";
 import ApiError from "../error/ApiError.mjs";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// const iconsDir = path.join(__dirname, '..', 'static', 'icons');
 
 class TypeControllers {
 
     createType = async (req, res, next) => {
         try {
-            const { name, icon } = req.body;
+            const { name } = req.body;
+            const files = req.files;
+            
             if(!name || name.trim().length === 0) {
                 return next(ApiError.badRequest("Имя типа не указано :("));
-            };
+            }
 
             const existingType = await db.Type.findOne({ where: { name } });
 
             if (existingType) {
                 return next(ApiError.badRequest("Тип с таким именем уже существует"));
+            }
+
+            let iconPath = null;
+
+            if (files && files.icon) {
+                const icon = files.icon;
+                const fileName = uuidv4() + path.extname(icon.name);
+                // ✅ Сохраняем в уже существующую папку icons
+                await icon.mv(path.join(__dirname, '..', "static", "icons", fileName));
+                iconPath = fileName;
+            }
+            
+            const type = await db.Type.create({
+                name,
+                icon: iconPath
+            });
+
+            const baseUrl = `${req.protocol}://${req.get('host')}`;
+            const typeWithUrl = {
+                ...type.toJSON(),
+                iconUrl: type.icon ? `${baseUrl}${type.icon}` : null
             };
-                const type = await db.Type.create({
-                    name,
-                    icon: icon || null
-                });
-                return res.status(201).json(type);
+            
+            return res.status(201).json(typeWithUrl);
 
         } catch (error) {
-            return res.status(500).json("Database error");
+            console.error(error);
+            return res.status(500).json({ error: error.message });
         }
     };
 
     getAllType = async (req, res) => {
         try {
             const typeAll = await db.Type.findAll();
+            
+            // Добавляем полный URL для иконок
+            const baseUrl = `${req.protocol}://${req.get('host')}`;
+            const typesWithUrls = typeAll.map(type => {
+                const typeData = type.toJSON();
+                if (typeData.icon) {
+                // ✅ icon уже только имя файла
+                typeData.icon = `${baseUrl}/static/icons/${typeData.icon}`;
+            }
+                return typeData;
+            });
 
-            if(typeAll.length === 0) {
+            if(typesWithUrls.length === 0) {
                 return res.status(200).send({
                     message: "Список типов пуст :(",
                     data: [],
@@ -38,8 +77,8 @@ class TypeControllers {
             };
             
             return res.status(200).json({
-                count: typeAll.length,
-                data: typeAll,
+                count: typesWithUrls.length,
+                data: typesWithUrls,
             });
 
         } catch (error) {

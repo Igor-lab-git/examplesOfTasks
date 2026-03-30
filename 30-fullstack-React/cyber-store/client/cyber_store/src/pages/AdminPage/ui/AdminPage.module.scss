@@ -1,6 +1,15 @@
 @use "../../../app/styles/helpers" as *;
 @use "../../../app/styles/main.scss" as main;
 
+.title_admin_page {
+  @include fluid-text(36, 20);
+
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: rem(20);
+
+}
+
 .containerButton {
   display: flex;
   flex-direction: column;
@@ -126,7 +135,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  row-gap: var(10);
+  row-gap: rem(15);
 }
 
 .modal_title {
@@ -215,6 +224,14 @@
   //display: flex;
   //flex-direction: column;
   //row-gap: rem(10);
+
+  .input_file_lable {
+    & span {
+      @include fluid-text(14, 10);
+
+      color: var(--color-orangered);
+    }
+  }
 
   .input_file {
     position: relative;

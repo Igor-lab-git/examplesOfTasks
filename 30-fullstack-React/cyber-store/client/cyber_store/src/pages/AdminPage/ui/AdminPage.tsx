@@ -27,8 +27,8 @@ const AdminPage = (): JSX.Element => {
     };
 
   return (
-    <div>
-      <h1>Админ панель</h1>
+    <section>
+      <h2 className={style.title_admin_page}>Админ панель</h2>
 
       <div className={style.containerButton}>
         <button className={style.button_brand} onClick={() => openModal("brand")}>Добавить брэнд устройства</button>
@@ -37,7 +37,7 @@ const AdminPage = (): JSX.Element => {
       </div>
       <CreateTypeModal visibleType={visibleModal} closeModalType={closeModalType} typeModal={typeModal}/>
       <CreateDeviceModal visibleDeviceModal={visibleDeviceModal} closeModal={closeModal}/>
-    </div>
+    </section>
   )
 }
 

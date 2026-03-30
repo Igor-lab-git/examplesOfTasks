@@ -28,11 +28,11 @@ const CategoryTabs = (): JSX.Element => {
           container.scrollLeft += amount;
         }
       };
-      container.scrollTo({
-        left: container.scrollLeft,
-        behavior: "smooth"
-    });
-    }
+        container.scrollTo({
+          left: container.scrollLeft,
+          behavior: "smooth"
+      });
+    };
 
   return (
     <section className={`${style.section_tab_category} container-main`}>

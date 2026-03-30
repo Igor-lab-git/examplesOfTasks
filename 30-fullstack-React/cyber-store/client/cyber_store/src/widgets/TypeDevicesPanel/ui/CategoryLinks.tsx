@@ -10,14 +10,16 @@ interface ICategoryLinks {
 
 const CategoryLinks = ({scrollContainerRef}: ICategoryLinks): JSX.Element => {
     const { data: dataType } = useGetAllTypesQuery();
+    console.log(dataType, "dataType");
+    
 
   return (
     <div className={style.container_list_card_link}>
         <ul 
           ref={scrollContainerRef}
           className={`${style.list_card_link} list-reset`}>
-            {dataType && dataType.data.map(({id, name}) => (
-                   <CategoryCard key={id} id={id} name={name}/>
+            {dataType && dataType.data.map(({id, name, icon}) => (
+                   <CategoryCard key={id} id={id} name={name} icon={icon}/>
             ))}
         </ul>
     </div>

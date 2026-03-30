@@ -42,8 +42,8 @@ class DeviceController {
                 price,
                 brandId,
                 typeId,
-                 img: mainFileImg,
-                 images: imagesArray // сохраняем массив в JSON поле
+                img: mainFileImg,
+                images: imagesArray // сохраняем массив в JSON поле
             });
 
              if(info) {
@@ -67,7 +67,7 @@ class DeviceController {
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
-    }
+    };
 
     getAllDevice = async (req, res, next) => {
         try {

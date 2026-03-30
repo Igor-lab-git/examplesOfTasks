@@ -38,7 +38,7 @@ const HomePage = (): JSX.Element => {
   const {data: deviceData, isLoading, isError} = useGetAllDevicesQuery({count: useCount});
   // const {data: brandsData} = useGetAllBrandsQuery();
 
-    console.log( isLoading, isError)
+    console.log( isLoading, isError, deviceData, "deviceData")
  
 if(isLoading) return <div>Loading...</div>;
 if(isError) return <div>Error :(</div>;

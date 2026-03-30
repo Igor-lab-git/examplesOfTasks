@@ -15,6 +15,7 @@ interface ICreateTypeModal {
 
 const CreateTypeModal = ({visibleType, closeModalType, typeModal}: ICreateTypeModal): JSX.Element => {
     const [valueForm, setValueForm] = useState<string>("");
+    const [iconFile, setIconFile] = useState<File | null>(null);
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
     const [messageModal, setMessageModal] = useState<string>("");
     const [typeMessageModal, setTypeMessageModal] = useState<"success" | "error">("success");
@@ -24,9 +25,25 @@ const CreateTypeModal = ({visibleType, closeModalType, typeModal}: ICreateTypeMo
 
     const isLoading = typeModal === "type" ? createTypeLoad : createBrandLoad;
 
-    console.log(createTypeLoad, createBrandLoad)
+    // console.log(createTypeLoad, createBrandLoad)
+
+    const selectIconFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files;
+      if(files && files.length > 0) {
+        const file = files[0]
+        if(file.type === "image/svg+xml") {
+           setIconFile(file)
+         } else {
+          alert("Вы забыли выбрать файл иконку");
+          e.target.files = null
+         }
+      }
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+       const formData = new FormData();
 
         if(valueForm.trim().length === 0) {
             setIsOpenModal(true);
@@ -36,7 +53,11 @@ const CreateTypeModal = ({visibleType, closeModalType, typeModal}: ICreateTypeMo
         };
 
         if(typeModal === "type") {
-            const message = await createType({name: valueForm}).unwrap();
+          formData.append("name", valueForm);
+          if(iconFile) {
+            formData.append("icon", iconFile);
+          }
+            const message = await createType(formData).unwrap();
             setIsOpenModal(true);
             setMessageModal(`Тип девайса ${message.name} был успещно создан  :)`);
             setTypeMessageModal("success");
@@ -60,7 +81,7 @@ const CreateTypeModal = ({visibleType, closeModalType, typeModal}: ICreateTypeMo
 
   return (
       <>
-          <NotificationModal
+        <NotificationModal
               isOpenModal={isOpenModal}
               messageModal={messageModal}
               typeMessageModal={typeMessageModal}
@@ -77,6 +98,16 @@ const CreateTypeModal = ({visibleType, closeModalType, typeModal}: ICreateTypeMo
                     onChange={(e) => setValueForm(e.target.value)}
                     type="text"
                     placeholder={typeModal === "type" ? "Добавть тип..." : "Добавть брэнд..."} />
+                    {typeModal === "type" ? (
+                      <label htmlFor="svg-file">
+                        <span>Добавте иконку формата 'svg'</span>
+                        <input 
+                          accept=".svg, image/svg+xml"
+                          id="svg-file" 
+                          type="file" 
+                          onChange={selectIconFile}/>
+                      </label>
+                    ) : ""}
                   <button className={style.modal_form_button} type="submit">Добавить</button>
               </form>
             </div>

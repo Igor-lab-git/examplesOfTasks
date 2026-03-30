@@ -1,15 +1,16 @@
 import {type JSX} from "react";
 import {Link} from "react-router-dom";
 import pathRouter from "../../../shared/constants/pathRouter.ts";
-import getIconByCategoryName from "../../../shared/config/categoryIcons.ts";
+// import getIconByCategoryName from "../../../shared/config/categoryIcons.ts";
 import style from "./CategoryTabs.module.scss";
 
 interface ICategoryCard {
     id: number;
     name: string;
+    icon: string;
 };
 
-const CategoryCard = ({id, name}: ICategoryCard): JSX.Element => {
+const CategoryCard = ({id, name, icon}: ICategoryCard): JSX.Element => {
     return (
         <>
             <li className={style.card_linc_item} key={id}>
@@ -18,7 +19,7 @@ const CategoryCard = ({id, name}: ICategoryCard): JSX.Element => {
                     to={`${pathRouter.TYPE_DEVICE_PATH}/${id}`}>
                     <img 
                         className={style.card_linc_catefory_icon} 
-                        src={getIconByCategoryName(name)} 
+                        src={icon} 
                         alt={`иконка ${name}`}/>
                     <span className={style.card_linc_catefory_name}>{name}</span>
                 </Link>
