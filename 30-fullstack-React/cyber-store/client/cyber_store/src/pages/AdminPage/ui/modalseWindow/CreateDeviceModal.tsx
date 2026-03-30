@@ -68,7 +68,15 @@ const CreateDeviceModal = ({visibleDeviceModal, closeModal}: ICreateDeviceModal)
             if (file) formData.append("images", file);
         });
 
-        formData.append("info", JSON.stringify(infoDevice));
+        // formData.append("info", JSON.stringify(infoDevice));
+
+        // Убираем id из характеристик
+        const infoWithoutId = infoDevice.map(item => ({
+            title: item.title,
+            description: item.description
+        }));
+
+        formData.append("info", JSON.stringify(infoWithoutId));
 
         try {
             await createDevice(formData).unwrap();

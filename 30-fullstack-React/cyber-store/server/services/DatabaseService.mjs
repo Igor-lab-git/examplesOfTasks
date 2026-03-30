@@ -22,7 +22,9 @@ class DatabaseService {
             host: dbHost,
             dialect: "postgres",
             port: dbPort,
-            logging: console.log,
+            logging: (sql) => {
+                console.log("SQL:", sql); // ✅ будет выводить все SQL запросы
+            },
             define: {
                 schema: 'public'
             }
@@ -74,7 +76,7 @@ class DatabaseService {
     DeviceInfo = this.sequelize.define("device_info", {
         id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         title: { type: DataTypes.STRING, allowNull: false },
-        description: { type: DataTypes.STRING, allowNull: false },
+        description: { type: DataTypes.TEXT, allowNull: false },
     }, { timestamps: false });
 
     TypeBrand = this.sequelize.define("type_brand", {
