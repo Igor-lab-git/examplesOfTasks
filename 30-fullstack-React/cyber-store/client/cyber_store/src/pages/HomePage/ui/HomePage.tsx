@@ -1,12 +1,13 @@
 import "../../../app/styles/main.scss";
 import { useGetAllDevicesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
 import React, {type JSX, useState} from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addToCart} from "../../../app/store/redusers/cartSlice.ts";
 import HeroSection from "./HeroSection.tsx";
 import CategoryTabs from "../../../widgets/TypeDevicesPanel/ui/CategoryTabs.tsx";
 import { Link } from "react-router-dom";
 import pathRouter from "../../../shared/constants/pathRouter.ts";
+import type {RootState} from "../../../app/store/store.ts";
 
 // interface IDevices {
 //     id: number,
@@ -32,7 +33,16 @@ interface IDeviceFromApi {
 const HomePage = (): JSX.Element => {
     const [useCount, setUseCount] = useState<number>(15);
     const dispatch = useDispatch();
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
+    const user = useSelector((state: RootState) => state.user)
 
+    console.log(user, "HOME USER")
+    // isAuth:true
+    // isLoading:false
+    // user:
+    //     email:"Igor@gmail.com"
+    //     id:1
+    //     role:"ADMIN"
 
 
   const {data: deviceData, isLoading, isError} = useGetAllDevicesQuery({count: useCount});
@@ -40,8 +50,8 @@ const HomePage = (): JSX.Element => {
 
     console.log( isLoading, isError, deviceData, "deviceData")
  
-if(isLoading) return <div>Loading...</div>;
-if(isError) return <div>Error :(</div>;
+    if(isLoading) return <div>Loading...</div>;
+    if(isError) return <div>Error :(</div>;
 
     const handleAddToCart = (device: IDeviceFromApi) => {
         dispatch(addToCart({
@@ -55,34 +65,80 @@ if(isError) return <div>Error :(</div>;
     };
 
 
+
   return (
     <div className={``}>
       <HeroSection />
       <CategoryTabs />
-      <ul className={`list-reset`}>
-        {deviceData && deviceData.data.map((device: IDeviceFromApi) => (
-          <li key={device.id}>
-            <Link to={`${pathRouter.DEVICE_PATH}/${device.id}`}>
-                <img src={device.img} alt="" />
-                <h2>{device.name}</h2>
-                <span>{device.price}</span>
-                <button onClick={() => handleAddToCart(device)}>добавть в карзину</button>
-            </Link>
-            </li>
-        ))}
-      </ul>
-      <select value={useCount} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setUseCount(Number(e.target.value))} >
-          <option value="">все</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-      </select>
-    
+        <section>
+            {/*DevicesTabsSection*/}
+            <div>
+                <button
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls={`panel`}
+                    tabIndex={0}>
+                    <span>Новинки</span>
+                </button>
+                <button
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls={`panel`}
+                    tabIndex={0}>
+                    <span>Бестселлер</span>
+                </button>
+                <button
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls={`panel`}
+                    tabIndex={0}>
+                    <span>Рекомендуемые продукты</span>
+                </button>
+            </div>
+
+            <div
+                role="tablist"
+                aria-label="Категории товаров"
+            >
+                <ul>
+                    {deviceData && deviceData.data.map((device: IDeviceFromApi) => (
+                        <li key={device.id}>
+                            <article>
+                                <div>
+                                    <button onClick={() => setIsFavorite(!isFavorite)}>
+                                        {isFavorite ? '❤️' : '🤍'}
+                                    </button>
+                                </div>
+                                <Link to={`${pathRouter.DEVICE_PATH}/${device.id}`}>
+                                    <img src={device.img} alt=""/>
+                                    <div>
+                                        <h3>{device.name}</h3>
+                                        <div>
+                                            <span>Р</span>
+                                            <span>{device.price}</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                                <button onClick={() =>  handleAddToCart(device)}>купить сейчас</button>
+                            </article>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </section>
+        <select value={useCount}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setUseCount(Number(e.target.value))}>
+            <option value="">все</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+
     </div>
   );
 };

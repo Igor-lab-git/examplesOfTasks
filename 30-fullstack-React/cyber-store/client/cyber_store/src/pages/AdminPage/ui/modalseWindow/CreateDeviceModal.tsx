@@ -203,9 +203,10 @@ const CreateDeviceModal = ({visibleDeviceModal, closeModal}: ICreateDeviceModal)
                             Добавить новый девайс
                         </button>
                         <input
+                            className={style.input_button_reset}
                             type="reset"
-                            value="Очистить"
-                            ></input>
+                            value="Очистить форму">
+                        </input>
                     </form>
                 </div>
             </div>

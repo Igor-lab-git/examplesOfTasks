@@ -37,13 +37,11 @@ const App = () => {
 
     return (
         <>
-            
-                <BrowserRouter>
-                    <Header/>
-                        <AppRouter/>
-                    <Footer/>
-                </BrowserRouter>
-     
+            <BrowserRouter>
+                <Header/>
+                <AppRouter/>
+                <Footer/>
+            </BrowserRouter>
         </>
     );
 };
