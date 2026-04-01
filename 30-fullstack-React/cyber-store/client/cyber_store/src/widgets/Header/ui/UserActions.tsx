@@ -13,12 +13,12 @@ const UserActions = () => {
     
     const { user } = useSelector((state: RootState) => state.user);
 
-    console.log(user)
+    // console.log(user)
     
     const handleLogOut = () => {
         dispatch(logOutUser());
         localStorage.removeItem('token');
-            localStorage.removeItem('user');
+        localStorage.removeItem('user');
     }
 
     return (

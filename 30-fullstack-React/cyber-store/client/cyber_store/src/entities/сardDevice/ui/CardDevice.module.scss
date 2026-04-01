@@ -1,13 +1,22 @@
-@use "../../../app/styles//main.scss" as main;
-@use "../../../app/styles/helpers/" as *;
+@use "../../../app/styles/main.scss" as main;
+@use "../../../app/styles/helpers" as *;
 
 .card_element {
-  border-radius: 9px;
-  padding: 24px 16px;
-  width: 268px;
-  height: 432px;
-  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: rem(9);
+  padding: fluid(24, 20) fluid(16, 12);
+  width: 100%;
+  height: 100%;
+  min-width: rem(163);
+  min-height: rem(352);
+  transition-duration: var(--transition-duration);
   background: var(--gray-2);
+
+  @include  hover {
+    scale: 1.01;
+  }
 
   .card_link {
     text-decoration: none;
@@ -24,17 +33,22 @@
     .card_wrapper_body {
       display: flex;
       flex-direction: column;
-      flex-direction: column;
       align-items: center;
       row-gap: rem(16);
       
       .card_title {
-        @include fluid-text(16, 14);
+        @include fluid-text(14, 12);
 
         font-weight: 500;
         line-height: 150%;
         text-align: center;
-        max-width: rem(88);
+        max-width: rem(236);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
         color: var(--color-black);
       }
 

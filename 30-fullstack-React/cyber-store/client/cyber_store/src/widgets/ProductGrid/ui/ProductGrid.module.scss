@@ -1,5 +1,5 @@
 @use "../../../app/styles/main.scss" as main;
-@use "../../../app//styles/helpers/" as *;
+@use "../../../app/styles/helpers" as *;
 
 .product_grid_list {
   display: flex;
@@ -7,7 +7,7 @@
   gap: rem(16);
 
   .product_grid_list_item {
-    width: fluid(268, 163);
-    height: fluid(432, 350);
+    width: 268px;
+    height: 432px;
   }
 }

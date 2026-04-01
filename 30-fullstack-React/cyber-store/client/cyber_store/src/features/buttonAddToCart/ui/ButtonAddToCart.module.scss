@@ -1,0 +1,22 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.button_add_to_cart {
+  @include fluid-text(14, 12);
+  font-weight: 500;
+  line-height: 171%;
+  text-align: center;
+  align-self: center;
+  color: var(--color-white);
+  border-radius: 8px;
+  padding: 12px;
+  max-height: 48px;
+  max-width: 188px;
+  width: 100%;
+  transition-duration: var(--transition-duration);
+  background: var(--color-black);
+
+  @include hover {
+    opacity: 0.8;
+  }
+}
