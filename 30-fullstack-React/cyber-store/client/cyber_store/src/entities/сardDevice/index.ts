@@ -1,0 +1,1 @@
+export { default as CardDevice } from "./ui/CardDevice";

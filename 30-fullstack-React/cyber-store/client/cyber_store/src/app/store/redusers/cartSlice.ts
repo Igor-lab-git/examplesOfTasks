@@ -1,43 +1,40 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 
-interface IDevice {
+interface ICartItem {
     id: number,
     name: string,
     price: number,
     img: string,
-    quantity: number;
-}
+    quantity: number
+};
+
 
 interface IInitialState {
-    items: IDevice[];
-    isLoading: boolean,
-    error: null | string,
+    items: ICartItem[];
     totalItems: number,
     totalPrice: number,
-}
+};
 
 const initialState: IInitialState = {
     items: [],
-    isLoading: true,
-    error: null,
     totalItems: 0,
     totalPrice: 0,
-}
+};
 
-interface AddToCartPayload {
+export interface IAddToCartPayload {
     id: number,
     name: string,
     price: number,
     rating: number,
     img: string,
     quantity: number
-}
+};
 
 const cartSlice = createSlice({
     name: "cart",
     initialState: initialState,
     reducers: {
-        addToCart: (state, action: PayloadAction<AddToCartPayload>) => {
+        addToCart: (state, action: PayloadAction<IAddToCartPayload>) => {
             const {id, name, img, price, quantity = 1} = action.payload;
 
             const existingItem = state.items.find((it) => it.id === id);

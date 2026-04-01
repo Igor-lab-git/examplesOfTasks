@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {jwtDecode} from "jwt-decode";
 
-interface IDevices {
+export interface IDevice {
     id: number,
     name: string,
     price: number,
@@ -12,8 +12,8 @@ interface IDevices {
     brandId: number
 }
 
-interface IAllDevices {
-    data: IDevices[];
+export interface IAllDevices {
+    data: IDevice[];
     total?: number;
     page?: number;
     limit?: number;
@@ -130,7 +130,7 @@ const cyberStoreApi = createApi({
             query: ({count}) => `/api/device?limit=${count || 9}`,
             providesTags: ["NewDevices"],
         }),
-        getOneDevicesById: builder.query<IDevices, number>({
+        getOneDevicesById: builder.query<IDevice, number>({
             query: (id) => `/api/device/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'NewDevices', id }],
         }),
