@@ -1,0 +1,50 @@
+@use "../../../app/styles/main.scss" as main;
+@use "../../../app/styles/helpers" as *;
+
+.section_empti {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: fluid(15, 8);
+
+  .section_empti_icon {
+    max-width: rem(72);
+    max-height: rem(72);
+  }
+
+  .section_empti_title {
+    @include fluid-text(20, 18);
+
+    font-weight: 600;
+    line-height: rem(22);
+  }
+
+  .section_empti_invitation_text {
+    @include fluid-text(16, 14);
+
+    line-height: 22px;
+    max-width: unset;
+    color: var(--gray-8);
+  }
+
+  .section_empti_link_home {
+    @include fluid-text(16, 14);
+    
+    font-size: 16px;
+    font-weight: 400;
+    line-height: rem(22);
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 0;
+    padding: 16px 56px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: var(--color-black);
+
+    @include hover {
+        opacity: 0.8;
+        scale: 1.01;
+    }
+  }
+}

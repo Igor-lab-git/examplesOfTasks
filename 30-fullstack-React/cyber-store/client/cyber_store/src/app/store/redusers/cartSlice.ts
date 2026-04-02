@@ -22,7 +22,7 @@ const saveCartToLocalStorage = (items: ICartItem[]) => {
             localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
         } else {
             localStorage.removeItem(CART_STORAGE_KEY);
-        }
+        };
     } catch (e) {
         console.error(e);
     }
@@ -35,12 +35,12 @@ const getCartToLocalStorage = (): ICartItem[] => {
         if(getItems) {
             return getItems ?  JSON.parse(getItems) : [];
         }
-        return []
+        return [];
     } catch (e) {
         console.error(e);
         return [];
-    }
-}
+    };
+};
 
 const initialState: IInitialState = {
     items: getCartToLocalStorage(),

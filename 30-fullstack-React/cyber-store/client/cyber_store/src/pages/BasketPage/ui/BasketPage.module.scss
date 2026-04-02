@@ -1,0 +1,10 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.main_basket_page{
+    background-color: var(--background-gray);
+
+    .main_page_inner {
+        background-color: var(--color-white);
+    }
+}
