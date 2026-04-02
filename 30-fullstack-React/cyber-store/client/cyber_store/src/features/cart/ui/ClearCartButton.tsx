@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 import { clearCart} from "../../../app/store/redusers/cartSlice";
 import { useDispatch } from "react-redux";
+import style from "./cart.module.scss";
 
 
 const ClearCartButton = (): JSX.Element => {
@@ -9,10 +10,15 @@ const ClearCartButton = (): JSX.Element => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   return (
-    <div>
-      <button onClick={handleClearCart}>Очистить карзину</button>
-    </div>
+    <>
+      <button
+          className={style.clear_cart_button}
+          onClick={handleClearCart}>
+          Очистить карзину
+      </button>
+    </>
   )
 }
 

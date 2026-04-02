@@ -1,5 +1,47 @@
 @use "../../../app/styles/main.scss" as maim;
-@use "../../../app/styles/helpers/" as *;
+@use "../../../app/styles/helpers" as *;
+
+.container_devices_cart {
+  padding: rem(8);
+  background-color: var(--color-white);
+}
+
+.container_user_info {
+  display: flex;
+  width: 100%;
+  column-gap: rem(10);
+
+
+  .container_user_info_payment,
+  .container_user_info_profile {
+    width: 100%;
+    padding: rem(10);
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(6);
+    background-color: var(--color-white);
+  }
+
+  .wrapper_login_user {
+    @include fluid-text(16, 14);
+
+    .login_link_hint{
+      text-decoration: none;
+      transition-duration: var(--transition-duration);
+      color: var(--color-orangered);
+
+      @include  hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .wrapper_person {
+    display: flex;
+    column-gap: rem(6);
+  }
+
+}
 
 .container_lists {
   display: flex;
@@ -11,6 +53,8 @@
       border-bottom: 1px solid var(--gray-7);
     }
   }
+
+
 
   .item_device_container {
     display: flex;
@@ -28,16 +72,17 @@
       }
 
       .item_device_title {
-        @include fluid-text(16, 14);
+        @include fluid-text(14, 12);
 
         font-weight: 500;
+        padding-block: rem(3);
         line-height: 150%;
-        padding-block: rem(5);
         max-width: rem(200);
         display: -webkit-box;
-        -webkit-box-orient: vertical;
         overflow: hidden;
-        word-break: break-word;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -79,6 +124,127 @@
         border-radius: rem(4);
         background-color: var(--gray-3);
       }
+    }
+  }
+}
+
+.clear_cart_button {
+  border-radius: 6px;
+  padding: rem(10) rem(40);
+  transition-duration: var(--transition-duration);
+  color: var(--color-white);
+  background-color: var(--color-black);
+
+  @include hover {
+    opacity: 0.8;
+  }
+}
+
+.container_summary {
+  padding-block: fluid(54, 45);
+  padding-inline: fluid(64, 16);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(40, 35);
+  background-color: var(--color-white);
+
+  .summary_title {
+    @include fluid-text(20, 18);
+
+    font-weight: 700;
+    line-height: 80%;
+    color: var(--color-black);
+  }
+
+  .wrapper_body {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(24, 20);
+
+    .summary_form {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(24);
+
+      .summary_field {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 114%;
+        color: #545454;
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(8);
+
+        .summary_label{
+          @include fluid-text(16, 14);
+
+          font-weight: 500;
+          line-height: 114%;
+          color: #545454;
+        }
+          .summary_input{
+            border: 1px solid var(--gray-10);
+            border-radius: var(--border-radius-small);
+            padding: rem(16) 0px rem(16) rem(16);
+            width: 100%;
+            background: var(--color-white);
+
+            &::placeholder {
+              @include fluid-text(14, 12);
+
+              font-weight: 400;
+              line-height: 171%;
+              letter-spacing: -0.01em;
+              color: #979797;
+            }
+          }
+      }
+    }
+  }
+
+  .summary_container_calculation {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+
+    .summary_calculation_row {
+      display: flex;
+      justify-content: space-between;
+
+      .summary_row_label {
+        @include fluid-text(16, 14);
+
+        font-weight: 400;
+        line-height: 200%;
+        color: var(--gray-11);
+      }
+
+      .summary_row_value{
+        @include fluid-text(16, 14);
+
+        font-weight: 500;
+        line-height: 200%;
+        letter-spacing: 0.03em;
+        color: var(--color-black);
+      }
+    }
+  }
+
+  .order_button {
+    @include fluid-text(16, 14);
+
+    font-weight: 500;
+    line-height: 150%;
+    text-align: center;
+    padding: rem(16) rem(56);
+    width: 100%;
+    color: var(--color-white);
+    border-radius: var(--border-radius-small);
+    background: var(--color-black);
+
+    @include hover {
+      opacity: 0.8;
     }
   }
 }

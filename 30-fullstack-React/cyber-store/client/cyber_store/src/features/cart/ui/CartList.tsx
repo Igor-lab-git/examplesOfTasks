@@ -12,15 +12,16 @@ interface ICartList {
 const CartList = ({ items }: ICartList): JSX.Element => {
 
   return (
-    <div className={style.container_devices_cart}>
-      <ul className={`list-reset ${style.container_lists}`}>
-        {items &&
-          items.map((item: ICartItem) => (
-            <CartItem key={item.id} item={item}  />
-          ))}
-      </ul>
-      <ClearCartButton />
-    </div>
+      <div className={style.container_devices_cart}>
+          <h2 className={``}>Корзина покупок</h2>
+          <ul className={`list-reset ${style.container_lists}`}>
+              {items &&
+                  items.map((item: ICartItem) => (
+                      <CartItem key={item.id} item={item}/>
+                  ))}
+          </ul>
+          <ClearCartButton />
+      </div>
   );
 };
 
