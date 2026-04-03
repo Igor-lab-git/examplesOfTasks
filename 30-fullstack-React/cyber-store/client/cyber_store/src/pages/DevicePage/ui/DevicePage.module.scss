@@ -1,0 +1,47 @@
+@use "../../../app//styles/main.scss" as main;
+@use "../../../app//styles/helpers" as *;
+
+// =========Page
+
+.main_section_info {
+  display: flex;
+}
+
+// =================Gallery
+.container_gallery,
+.container_main_image {
+  max-height: rem(516);
+}
+
+.container_gallery {
+  display: flex;
+  column-gap: rem(48);
+  max-width: rem(536);
+}
+
+.list_dop_images {
+  max-height: rem(444);
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(24);
+  overflow: hidden;
+
+  .item_dop_image {
+    max-width: rem(75);
+    max-height: rem(93);
+  }
+}
+
+.container_main_image {
+  width: rem(413);
+  height: rem(516);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .main_image {
+    width: 100%;
+    height: auto;
+    align-self: center;
+  }
+}

@@ -29,7 +29,7 @@
 
   .section_empti_link_home {
     @include fluid-text(16, 14);
-    
+
     font-size: 16px;
     font-weight: 400;
     line-height: rem(22);
@@ -43,8 +43,8 @@
     background-color: var(--color-black);
 
     @include hover {
-        opacity: 0.8;
-        scale: 1.01;
+      opacity: 0.8;
+      scale: 1.01;
     }
   }
 }

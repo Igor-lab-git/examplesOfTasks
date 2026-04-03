@@ -54,11 +54,9 @@
     text-decoration: none;
   }
 
-   @include mobile {
+  @include mobile {
     @include fluid-text(20, 18);
   }
-
-  
 }
 
 .isActive {
@@ -75,9 +73,43 @@
     flex-shrink: 0;
   }
 
-   @include mobile {
+  .basketLink {
+    position: relative;
+  }
+
+  .basketCountItems {
+    @include fluid-text(12, 10);
+
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: rem(-5);
+    right: rem(-5);
+    width: rem(20);
+    height: rem(20);
+    border-radius: 50%;
+    color: var(--color-white);
+    background-color: var(--color-orangered);
+  }
+
+  .useSignLink {
+    position: relative;
+  }
+
+  .userActive {
+    position: absolute;
+    display: flex;
+    top: rem(4);
+    right: rem(2);
+    width: rem(6);
+    height: rem(6);
+    border-radius: 50%;
+    background-color: var(--color-red);
+  }
+
+  @include mobile {
     justify-content: center;
     row-gap: rem(20);
   }
-
 }

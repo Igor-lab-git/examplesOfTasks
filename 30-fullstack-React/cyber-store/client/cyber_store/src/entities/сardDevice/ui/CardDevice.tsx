@@ -12,6 +12,9 @@ interface ICardDevice {
 
 const CardDevice = ({device}: ICardDevice): JSX.Element => {
     const {isFavorite,  setIsFavorite,} = useCardDevice();
+
+    // console.log(device.img, "CardDevice");
+    
     
   return (
     <>

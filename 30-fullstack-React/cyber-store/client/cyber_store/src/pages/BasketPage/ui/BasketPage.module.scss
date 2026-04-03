@@ -1,19 +1,26 @@
 @use "../../../app/styles/main" as main;
 @use "../../../app/styles/helpers" as *;
 
-.main_basket_page{
-    padding-block: rem(10);
-    background-color: var(--background-gray);
+.main_basket_page {
+  padding-block: rem(10);
+  background-color: var(--background-gray);
 
-    .main_page_inner {
-        display: grid;
-        grid-template-columns: 60% 40%;
-        column-gap: rem(10);
+  .main_page_inner {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    column-gap: rem(10);
 
-        .wrapper_list_user_info {
-            display: flex;
-            flex-direction: column;
-            row-gap: rem(10);
-        }
+    .wrapper_list_user_info {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(10);
     }
+  }
+
+  .section_empti {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: fluid(15, 8);
+  }
 }

@@ -20,11 +20,13 @@ const BasketPage = (): JSX.Element => {
 
     return (
         <main className={style.main_basket_page}>
-            <div className={`container-main ${style.main_page_inner}`}>
+            <div 
+                className={`container-main ${hasCartItems ? style.main_page_inner : style.section_empti}`}>
                 <h1 className={`visuallyHidden`}>Страница карзины</h1>
                 {items && hasCartItems ? (
                     <>
-                        <div className={style.wrapper_list_user_info}>
+                        <div 
+                            className={style.wrapper_list_user_info}>
                             <CartList items={items}/>
                             <CartUserInfo/>
                         </div>

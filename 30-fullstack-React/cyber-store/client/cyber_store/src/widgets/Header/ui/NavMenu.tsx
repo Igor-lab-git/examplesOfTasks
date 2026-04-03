@@ -4,19 +4,12 @@ import style from "./Header.module.scss";
 import "../../../app/styles/main.scss";
 
 const NavMenu =() => {
-    // const navigate = useNavigate();
     const location = useLocation();
-
-    // console.log(navigate)
 
     const isActive = (pathName: string) => {
         const active = location.pathname === pathName;
         return active;
     };
-
-    // const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    //     navigate(e.target.value);
-    // };
 
     return (
         <div className={style.navMenuContainer}>
@@ -36,16 +29,6 @@ const NavMenu =() => {
                     </li>
                 </ul>
             </nav>
-
-            {/*<select*/}
-            {/*    className={style.mobileSelect}*/}
-            {/*    value={location.pathname}*/}
-            {/*    onChange={(e) =>  handleSelectChange(e)}>*/}
-            {/*    <option value={pathRouter.HOME_PATH}>Главная</option>*/}
-            {/*    <option value={pathRouter.ABOUT_PATH}>О нас</option>*/}
-            {/*    <option value={pathRouter.CONTACT_PATH}>Контакты</option>*/}
-            {/*    <option value={pathRouter.BLOG_PATH}>Блог</option>*/}
-            {/*</select>*/}
         </div>
     )
 };
