@@ -5,16 +5,18 @@ import style from "./ButtonAddToCart.module.scss";
 
 interface IButtonAddToCart {
     device: IDevice;
+    className?: string;
 };
 
-const ButtonAddToCart = ({device}: IButtonAddToCart): JSX.Element => {
-    const { handleAddToCart } =useButtonAddToCart();
+const ButtonAddToCart = ({device, className}: IButtonAddToCart): JSX.Element => {
+    const { handleAddToCart } = useButtonAddToCart();
+
   return (
     <>
         <button
-            className={style.button_add_to_cart}
+            className={`${style.button_add_to_cart} ${className}`}
             onClick={() => handleAddToCart(device)}>
-            купить сейчас
+            добавить в карзину
         </button>
     </>
   )

@@ -12,59 +12,60 @@ interface IDeviceGallery {
 
 const DeviceGallery = ({ images, mainImage, nameDevice }: IDeviceGallery): JSX.Element => {
 
-  const refContainerImages = useRef(null);
+  const refContainerImages = useRef<HTMLUListElement>(null);
 
- 
-
-  const handleScrollIgages = () => {
-    if(!refContainerImages.current) return;
+  const handleScrollDopImages = (direction: string) => {
     const container = refContainerImages.current;
-     if(refContainerImages) {
-    console.log(container);
-    container.scrollTop += 20
-    // container.scrollTo({ top: -100, behavior: 'smooth' })
-  }
-  }
+    if(!container) return;
 
-  
-  const handleScrollIgagesTop = () => {
-    if(!refContainerImages.current) return;
-    const container = refContainerImages.current;
-     if(refContainerImages) {
-    console.log(container);
-    container.scrollTop -= 20
-    // container.scrollTo({ top: -100, behavior: 'smooth' })
-  }
-  }
+    const amount = 60;
+    if(direction === "up") {
+      if(container.scrollTop <= 0) {
+        container.scrollTo({
+          top: container.scrollHeight - container.clientHeight,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({ top: -amount, behavior: 'smooth' });
+      }
+    };
 
-  
-
+    if(direction === "down") {
+      if(container.scrollTop >= container.scrollHeight - container.clientHeight) {
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        container.scrollBy({ top: amount, behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <div className={style.container_gallery}>
-    <div >
-      <button 
-        onClick={handleScrollIgagesTop}
-        className={style.btn_prev_slide}>
-        <img src={btnTopPrev} alt="кнопка наверх" />
-      </button>
-      <ul 
-        ref={refContainerImages}
-        className={`list-reset ${style.list_dop_images}`}>
-        {images && images.map((image, index) => (
-          <li className={style.item_dop_image} key={index}>
-            <img className={style.dot_image} src={image} alt={nameDevice || "Постер продукта"} />
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleScrollIgages} className={style.btn_next_slide}>
-        <img src={btnBottomNext} alt="кнопка вниз" />
-      </button>
-    </div>
+      <div className={style.wrapper_slider}>
+        <button
+          onClick={() => handleScrollDopImages("up")}
+          className={style.btn_prev_slide}>
+          <img className={style.btn_icon} src={btnTopPrev} alt="кнопка наверх" />
+        </button>
+        <ul
+          ref={refContainerImages}
+          className={`list-reset ${style.list_dop_images}`}>
+          {images && images.map((image, index) => (
+            <li className={style.item_dop_image} key={index}>
+              <img className={style.dop_image} src={image} alt={nameDevice || "Постер продукта"} />
+            </li>
+          ))}
+        </ul>
+        <button
+            onClick={() => handleScrollDopImages("down")}
+            className={style.btn_next_slide}>
+          <img className={style.btn_icon} src={btnBottomNext} alt="кнопка вниз" />
+        </button>
+      </div>
 
-    <div className={style.container_main_image}>
-      <img className={style.main_image} src={mainImage} alt={nameDevice || "Постер продукта"} />
-    </div>
+      <div className={style.container_main_image}>
+        <img className={style.main_image} src={mainImage} alt={nameDevice || "Постер продукта"} />
+      </div>
     </div>
   );
 };
