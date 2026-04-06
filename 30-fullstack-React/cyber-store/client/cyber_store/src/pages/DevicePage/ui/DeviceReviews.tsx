@@ -76,7 +76,7 @@ const DeviceReviews = ({rating}: IDeviceReviews): JSX.Element => {
         </div>
       </div>
         <ReviewForm setComments={setComments}/>
-      <ReviewList comments={comments}/>
+        <ReviewList comments={comments}/>
     </div>
   )
 }
