@@ -1,4 +1,4 @@
-import {type JSX, useCallback, useEffect, useState} from "react";
+import {type JSX, useCallback, useState} from "react";
 import Logo from "../../../shared/ui/Logo/Logo.tsx";
 import {SearchInput} from "../../../features/SearchInput";
 import NavMenu from "./NavMenu.tsx";
@@ -6,36 +6,29 @@ import UserActions from "./UserActions.tsx";
 import {BurgerButton, BurgerMenu} from "../../BurgerMenu";
 import style from "./Header.module.scss";
 import "../../../app/styles/main.scss";
+import { useMedia } from 'react-use';
 
 const Header = (): JSX.Element => {
     const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
-    const [isVisible, setIsVisible] = useState(() => window.innerWidth <= 640.98);
+    const isMobile = useMedia('(max-width: 640.98px)', false);
 
-    useEffect(() => {
-        const checkWindowMobile = () => {
-            const isMobile = window.innerWidth <= 640.98;
-            setIsVisible(isMobile);
-            if(!isMobile) {
-                setIsOpenBurgerMenu(false);
-            };
-        };
-
-        window.addEventListener("resize", checkWindowMobile);
-        return () => window.removeEventListener("resize", checkWindowMobile);
-    }, []);
 
     const handleBurgerClick = useCallback(() => {
-        setIsOpenBurgerMenu(!isOpenBurgerMenu);
-    }, [isOpenBurgerMenu]);
+        setIsOpenBurgerMenu(prev => !prev);
+    }, []);
 
     const closeBurgerMenu = useCallback(() => {
         setIsOpenBurgerMenu(false)
     }, []);
 
+    if(!isMobile && isOpenBurgerMenu) {
+        closeBurgerMenu();
+    }
+
     return (
         <header className={`${style.containerHeader} container-main`}>
             <Logo />
-            {!isVisible ? (
+            {!isMobile ? (
                 <>
                 <SearchInput />
                     <div className={style.container_menu}>
@@ -52,7 +45,7 @@ const Header = (): JSX.Element => {
                 <UserActions />
             </BurgerMenu>
             )}
-            {isVisible ? <BurgerButton handleBurgerClick={handleBurgerClick}/> : null}
+            {isMobile ? <BurgerButton handleBurgerClick={handleBurgerClick}/> : null}
         </header>
     );
 };

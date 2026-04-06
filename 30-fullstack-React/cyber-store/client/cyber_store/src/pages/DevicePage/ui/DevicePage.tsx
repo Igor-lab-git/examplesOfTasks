@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useGetOneDevicesByIdQuery } from '../../../app/store/redusers/cyberStoreApi';
 import DeviceGallery from './DeviceGallery';
 import DeviceMainInfo from './DeviceMainInfo';
+import DeviceDescription from "./DeviceDescription.tsx";
 import "../../../app/styles/main.scss";
 import style from "./DevicePage.module.scss";
-import DeviceDescription from "./DeviceDescription.tsx";
+import DeviceReviews from './DeviceReviews.tsx';
 
 const DevicePage = (): JSX.Element => {
   const {id} = useParams();
@@ -17,8 +18,6 @@ const DevicePage = (): JSX.Element => {
 
   const device = response?.data;
   
-
-
   console.log(id, "DevicePage ID");
 
   if(isLoading) return <h2>Загрузка...</h2>;
@@ -36,6 +35,7 @@ console.log('URL картинки:', device?.img);
         </div>
       </section>
         <DeviceDescription description={device?.info} />
+        <DeviceReviews rating={device?.rating}/>
     </main>
   )
 }

@@ -109,3 +109,15 @@ const copy2 = structuredClone(er);
 console.log(copy === er);
 console.log(copy2 === er);
 
+
+
+const cdcd = (str) => {
+  let res = "";
+
+  for(let i = str.length -1; i >= 0; i--) {
+   res += str[i]
+  }
+  return res
+};
+
+console.log(cdcd("JENNA"));

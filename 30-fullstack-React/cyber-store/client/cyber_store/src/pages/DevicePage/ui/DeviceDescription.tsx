@@ -13,8 +13,8 @@ const DeviceDescription = ({description}: IDeviceDescription): JSX.Element => {
             <div className={`container-main ${style.wrapper_inner}`}>
                 <h3 className={style.description_title}>Подробности</h3>
                 <ul className={`list-reset ${style.description_list}`}>
-                    {description && description.map(({title, description}) => (
-                        <li className={style.description_item}>
+                    {description && description.map(({title, description}, index) => (
+                        <li key={index} className={style.description_item}>
                             <h4 className={style.description_title}>{title}</h4>
                             <span className={style.description_details}>{description}</span>
                         </li>

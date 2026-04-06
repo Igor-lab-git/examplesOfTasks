@@ -61,7 +61,7 @@
     max-width: rem(75);
     height: auto;
 
-    .dop_image{
+    .dop_image {
       //width: 100%;
       //height: auto;
     }
@@ -160,19 +160,107 @@
           border-bottom: 1px solid var(--gray-13);
           padding-bottom: rem(8);
         }
-          .description_title {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 150%;
-          }
+        .description_title {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 150%;
+        }
 
-          .description_details {
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 160%;
-          }
+        .description_details {
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 160%;
+        }
       }
     }
   }
 }
+
+// ============DeviceReviews
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(48);
+
+  .rating_title {
+    font-size: rem(24);
+    font-weight: 500;
+    line-height: 133%;
+  }
+
+  .container_rating {
+    display: flex;
+    justify-content: space-between;
+
+    .wrapper_reviews {
+      width: rem(184);
+      height: rem(192);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: rem(16);
+      border-radius: rem(25);
+      background-color: var(--background-gray);
+
+      .rating_score {
+        font-weight: 500;
+        font-size: rem(56);
+        line-height: 100%;
+        color: var(--color-black);
+      }
+
+      .reviews_count {
+        font-weight: 500;
+        font-size: rem(15);
+        line-height: 107%;
+        color: var(--color-black);
+        opacity: 0.3;
+      }
+
+      .wrapper_starts {
+        display: flex;
+      }
+    }
+  }
+
+  .wrapper_list_progress {
+    .list_progress {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(24);
+
+      .item_progress {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: rem(16);
+
+        .label_progress {
+          font-weight: 500;
+          font-size: rem(18);
+          line-height: 89%;
+          color: var(--color-black);
+        }
+
+        .progress_bar {
+          width: rem(664);
+          height: rem(5);
+          border-radius: rem(16);
+          background-color: var(--gray-9);
+
+          .progress_fill {
+            width: 70%;
+            height: 100%;
+            background-color: var(--color-yellow);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
 

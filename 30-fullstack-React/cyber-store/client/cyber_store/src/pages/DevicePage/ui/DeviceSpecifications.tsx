@@ -10,8 +10,8 @@ interface IDeviceSpecifications {
 const DeviceSpecifications = ({specifications}: IDeviceSpecifications): JSX.Element => {
     return (
         <ul className={`list-reset ${style.specifications_list}`}>
-            {specifications?.map((item) => (
-                <li className={style.specifications_item}>
+            {specifications?.map((item, index) => (
+                <li key={index} className={style.specifications_item}>
                     <span className={style.specifications_title}>{item.title}:</span>
                     <span className={style.specifications_description}>{item.description}</span>
                 </li>
