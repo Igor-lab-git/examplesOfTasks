@@ -1,0 +1,56 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+//==========FilterSection
+.filterSection {
+  max-width: rem(256);
+
+  .filterSection_header {
+    width: 100%;
+    //height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(12) 0;
+    border-bottom: 1px solid var(--gray-15);
+
+    .filterSection_title {
+      font-weight: 500;
+      font-size: rem(18);
+      line-height: 133%;
+      letter-spacing: 0.03em;
+      color: var(--color-black);
+    }
+  }
+}
+
+
+.button_toggle_arrow {
+  width: rem(24);
+  height: rem(24);
+  background: white;
+  border-radius: rem(4);
+  position: relative;
+  transition-duration: var(--transition-duration);
+}
+
+.button_toggle_arrow::after {
+  content: "";
+  position: absolute;
+  left: rem(6);
+  top: rem(2);
+  width: rem(11);
+  height: rem(11);
+  border: solid #333;
+  border-width: 0 rem(2) rem(2) 0;
+  transform: rotate(45deg);
+}
+
+.button_toggle_arrow:active::after {
+  transform: rotate(-135deg);
+}
+
+/* Или при клике через класс */
+.button_toggle_arrow.rotated::after {
+  transform: rotate(-135deg);
+}

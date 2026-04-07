@@ -1,34 +1,30 @@
-import { type JSX } from "react";
-import useBrandFilter from "../model/useBrandFilter";
+import {type JSX} from "react";
+import type {IAllBrands} from "../../../app/store/redusers/cyberStoreApi.ts";
 
 interface IBrandFilter {
-     trigger: boolean;
-     typeId: number
+    dataBrands?: IAllBrands;
+    handleSelectedBrands: (id: number, isChecked: boolean) => void;
 };
 
+const BrandFilter = ({ handleSelectedBrands, dataBrands}: IBrandFilter): JSX.Element => {
 
-const BrandFilter = ({ trigger, typeId}: IBrandFilter): JSX.Element => {
-    
-    const { handleSelectedBrands, dataBrands } = useBrandFilter(typeId);
-
-
-  return (
-    <div>
-      {trigger && dataBrands?.data.map(({id, name}) => (
-          <div key={id}>
-            <label htmlFor={`${name}Brand`}>
-            <input 
-              value={id}
-              onChange={(e) => handleSelectedBrands(id, e.target.checked)}
-              id={`${name}Brand`}
-              name={name}
-              type="checkbox" />
-              {name}
-              </label>
-          </div>
-        ))}
-    </div>
-  )
+    return (
+        <>
+            {dataBrands?.data && dataBrands?.data.map(({id, name}) => (
+                <div key={id}>
+                    <label htmlFor={`${name}Brand`}>
+                        <input
+                            value={id}
+                            onChange={(e) => handleSelectedBrands(id, e.target.checked)}
+                            id={`${name}Brand`}
+                            name={name}
+                            type="checkbox"/>
+                        {name}
+                    </label>
+                </div>
+            ))}
+        </>
+    )
 }
 
 export default BrandFilter;

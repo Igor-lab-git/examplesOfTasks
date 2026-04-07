@@ -39,7 +39,7 @@ interface IAllTypes {
     count: number;
 }
 
-interface IBrand {
+export interface IBrand {
     id: number
     name: string;
 }
