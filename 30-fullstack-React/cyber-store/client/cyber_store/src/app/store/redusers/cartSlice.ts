@@ -42,10 +42,16 @@ const getCartToLocalStorage = (): ICartItem[] => {
     };
 };
 
+const calculateTotals = (items: ICartItem[]) => {
+    return {
+        totalItems: items.reduce((acc, item) => acc + item.quantity ,0),
+        totalPrice: items.reduce((acc, item) => acc + (item.quantity * item.price) ,0),
+    };
+};
+
 const initialState: IInitialState = {
     items: getCartToLocalStorage(),
-    totalItems: 0,
-    totalPrice: 0,
+    ...calculateTotals(getCartToLocalStorage())
 };
 
 export interface IAddToCartPayload {
@@ -131,4 +137,4 @@ const cartSlice = createSlice({
 });
 
 export const {addToCart, removeItem, incrementItem, decrementItem, clearCart, setCart} = cartSlice.actions;
-export  default cartSlice.reducer
+export  default cartSlice.reducer;

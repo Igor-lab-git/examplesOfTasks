@@ -44,7 +44,7 @@ interface IBrand {
     name: string;
 }
 
-interface IAllBrands {
+export interface IAllBrands {
     data: IBrand[];
     message: string;
     count: number;
