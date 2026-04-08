@@ -3,11 +3,10 @@
 
 //==========FilterSection
 .filterSection {
-  max-width: rem(256);
+  width: 100%;
 
   .filterSection_header {
     width: 100%;
-    //height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,11 +23,10 @@
   }
 }
 
-
 .button_toggle_arrow {
   width: rem(24);
   height: rem(24);
-  background: white;
+  background: var(--color-white);
   border-radius: rem(4);
   position: relative;
   transition-duration: var(--transition-duration);

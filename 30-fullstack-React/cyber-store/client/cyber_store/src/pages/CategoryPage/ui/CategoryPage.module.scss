@@ -1,13 +1,58 @@
 @use "../../../app/styles/main.scss" as main;
 @use "../../../app/styles/helpers" as *;
 
-.product_grid_list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: rem(16);
+.main_category_page {
+  .category_page_inner {
+    display: flex;
+    justify-content: space-between;
 
-  .product_grid_list_item {
-    width: 268px;
-    height: 432px;
+    .aside_bar {
+      max-width: rem(341);
+      min-width: rem(256);
+    }
+
+    .container_category_content {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(24);
+
+      .category_heade {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .category_grid_list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(16);
+
+        .product_grid_list_item {
+          width: 268px;
+          height: 432px;
+        }
+      }
+    }
   }
 }
+
+.container_device_count {
+  display: flex;
+  align-items: center;
+  column-gap: rem(6);
+
+  .title_device_count,
+  .device_count {
+    font-weight: 500;
+    font-size: rem(16);
+    line-height: 100%;
+    letter-spacing: 0.03em;
+    color: var(--gray-12);
+  }
+
+  .device_count {
+    font-size: rem(20);
+    line-height: 80%;
+    color: var(--color-black);
+  }
+}
+

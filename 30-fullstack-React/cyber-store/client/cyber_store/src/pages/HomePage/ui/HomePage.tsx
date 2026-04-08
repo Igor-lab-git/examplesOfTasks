@@ -3,6 +3,7 @@ import HeroSection from "./HeroSection.tsx";
 import CategoryTabs from "../../../widgets/TypeDevicesPanel/ui/CategoryTabs.tsx";
 import { ProductGrid } from "../../../widgets/ProductGrid/index.ts";
 import "../../../app/styles/main.scss";
+import PromoBannerFooter from "./PromoBannerFooter.tsx";
 
 const HomePage = (): JSX.Element => {
 
@@ -37,7 +38,7 @@ const HomePage = (): JSX.Element => {
             </div>
             <ProductGrid />
         </section>
-
+        <PromoBannerFooter />
     </div>
   );
 };
