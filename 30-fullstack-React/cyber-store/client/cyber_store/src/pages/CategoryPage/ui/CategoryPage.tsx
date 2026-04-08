@@ -11,13 +11,16 @@ import CategoryDeviceCount from "./CategoryDeviceCount.tsx";
 const CategoryPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
   const typeId = Number(id);
-  const { dataFilteredBrands, handleSelectedBrands, dataBrands } = useBrandFilter(typeId);
+  const { dataFilteredBrands, handleSelectedBrands, dataBrands, brandCounts } = useBrandFilter(typeId);
+
+  console.log(dataFilteredBrands, "dataFilteredBrands")
 
   return (
     <main className={style.main_category_page}>
       <div className={`container-main ${style.category_page_inner}`}>
         <aside className={style.aside_bar}>
           <FilterSidebar
+              brandCounts={brandCounts}
               dataBrands={dataBrands}
               handleSelectedBrands={handleSelectedBrands}/>
         </aside>

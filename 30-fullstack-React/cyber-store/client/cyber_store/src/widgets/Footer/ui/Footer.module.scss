@@ -1,0 +1,64 @@
+@use "../../../app/styles/main" as main;
+@use "../../../app/styles/helpers" as *;
+
+.footer {
+  padding: 104px 160px;
+  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-white);
+  background-color: var(--color-black);
+
+  .footer_wrapper_nav {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+
+    .wrapper_logo {
+      max-width: rem(384);
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(24);
+      font-weight: 500;
+      font-size: rem(14);
+      line-height: 171%;
+      color: var(--gray-18);
+    }
+  }
+
+  .wrapper_nav_links {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(8);
+
+    .nav_links_title {
+      font-weight: 600;
+      font-size: rem(16);
+      line-height: 100%;
+    }
+
+    .list_nav_links {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(8);
+      font-weight: 400;
+      font-size: rem(14);
+      line-height: 229%;
+      color: var(--gray-18);
+    }
+  }
+}
+
+.wrapper_soc1al {
+  .list_nav_soc1als {
+    display: flex;
+    column-gap: rem(36);
+
+    .soc1al_item {
+      width: rem(24);
+      height: rem(24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

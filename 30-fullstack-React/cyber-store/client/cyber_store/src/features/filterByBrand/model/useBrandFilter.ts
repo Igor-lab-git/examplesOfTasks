@@ -14,6 +14,19 @@ const useBrandFilter = (typeId: number) => {
         }
     };
 
+    const brandCounts = useMemo(() => {
+        if(!dataType?.data) return {};
+
+        const countsBrandDevice: Record<number, number> = {};
+
+        dataType?.data.forEach((item) => {
+            const brandId = item.brandId;
+            countsBrandDevice[brandId] = (countsBrandDevice[brandId] || 0) + 1;
+        });
+
+        return countsBrandDevice;
+    }, [dataType?.data]);
+
     const dataFilteredBrands = useMemo(() => {
         if(!dataType?.data) return [];
         if(selectedBrands.length === 0) return dataType?.data;
@@ -28,7 +41,8 @@ const useBrandFilter = (typeId: number) => {
         dataBrands,
         loadDataType,
         loadDataBrands,
-        dataFilteredBrands
+        dataFilteredBrands,
+        brandCounts
     };
 };
 

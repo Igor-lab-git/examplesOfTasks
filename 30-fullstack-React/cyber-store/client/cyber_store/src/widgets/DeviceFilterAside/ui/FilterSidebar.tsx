@@ -3,12 +3,17 @@ import type {IAllBrands} from "../../../app/store/redusers/cyberStoreApi.ts";
 import {useState} from "react";
 import FilterSection from "./FilterSection.tsx";
 
+export interface IBrandCounts  {
+    [brandId: number]: number;
+}
+
 interface IFilterSidebar {
     dataBrands?: IAllBrands;
+    brandCounts: IBrandCounts
     handleSelectedBrands: (id: number, isChecked: boolean) => void;
 };
 
-const FilterSidebar = ({handleSelectedBrands, dataBrands}: IFilterSidebar) => {
+const FilterSidebar = ({handleSelectedBrands, dataBrands, brandCounts}: IFilterSidebar) => {
     const [trigger, setTrigger] = useState<boolean>(false);
 
     return (
@@ -19,6 +24,7 @@ const FilterSidebar = ({handleSelectedBrands, dataBrands}: IFilterSidebar) => {
                 onToggle={() => setTrigger(!trigger)}
             >
                 <BrandFilter
+                    brandCounts={brandCounts}
                     handleSelectedBrands={handleSelectedBrands}
                     dataBrands={dataBrands}/>
             </FilterSection>
