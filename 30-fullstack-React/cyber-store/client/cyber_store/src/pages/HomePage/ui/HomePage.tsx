@@ -7,6 +7,8 @@ import PromoBannerFooter from "./PromoBannerFooter.tsx";
 
 const HomePage = (): JSX.Element => {
 
+    const pages = [1, 2, 4, 5, 6, 7, 8]
+
   return (
     <div className={``}>
       <HeroSection />
@@ -37,6 +39,14 @@ const HomePage = (): JSX.Element => {
                 </button>
             </div>
             <ProductGrid />
+
+            <ul>
+                {pages.map((page, index) => (
+                    <li key={index}>
+                        <button>{page}</button>
+                    </li>
+                ))}
+            </ul>
         </section>
         <PromoBannerFooter />
     </div>

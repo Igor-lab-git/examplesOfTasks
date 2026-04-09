@@ -125,6 +125,7 @@ class DeviceController {
                 message: "success",
                 limit: limit,
                 page: page,
+                totalCount: device.count,
                 data: devicesWithUrls  // ← здесь данные с URL
             });
 

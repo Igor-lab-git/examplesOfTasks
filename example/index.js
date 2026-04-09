@@ -202,3 +202,20 @@ bank.addBalance(500);
 bank.withdraw(800);
 bank.getBalance();
 
+
+
+
+Array.prototype.myFilter = function(callback) {
+    
+}
+
+const args = 5;
+const res = []
+
+for(let i = 1; i <= args; i++) {
+    res.push(i)
+}
+console.log(res);
+
+
+

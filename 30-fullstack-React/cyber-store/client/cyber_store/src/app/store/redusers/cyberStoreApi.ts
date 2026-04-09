@@ -24,6 +24,7 @@ export interface IAllDevices {
     data: IDevice[];
     total?: number;
     page?: number;
+    totalCount: number;
     limit?: number;
 }
 
@@ -134,8 +135,8 @@ const cyberStoreApi = createApi({
     }),
     tagTypes: ["NewDevices", "Types", "Brands"],
     endpoints: (builder) => ({
-        getAllDevices: builder.query<IAllDevices, {count?: number}>({
-            query: ({count}) => `/api/device?limit=${count || 9}`,
+        getAllDevices: builder.query<IAllDevices, {limit?: number, page?: number}>({
+            query: ({limit, page}) => `/api/device?limit=${limit || 9}&page=${page || 1}`,
             providesTags: ["NewDevices"],
         }),
         getOneDevicesById: builder.query<{ message: string; data: IDevice }, number>({
