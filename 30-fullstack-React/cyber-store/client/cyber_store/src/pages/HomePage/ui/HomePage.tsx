@@ -1,56 +1,66 @@
-import {type JSX} from "react";
+import {type JSX, useCallback, useState} from "react";
 import HeroSection from "./HeroSection.tsx";
 import CategoryTabs from "../../../widgets/TypeDevicesPanel/ui/CategoryTabs.tsx";
-import { ProductGrid } from "../../../widgets/ProductGrid/index.ts";
+import {ProductGrid} from "../../../widgets/ProductGrid/index.ts";
 import "../../../app/styles/main.scss";
 import PromoBannerFooter from "./PromoBannerFooter.tsx";
+import {useGetAllDevicesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
+import {Pagination, usePagination} from "../../../features/pagination";
 
 const HomePage = (): JSX.Element => {
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const {data: deviceData, isLoading} = useGetAllDevicesQuery({limit: 9, page: currentPage});
 
-    const pages = [1, 2, 4, 5, 6, 7, 8]
+    const {totalPages, buttonArray} = usePagination(deviceData);
 
-  return (
-    <div className={``}>
-      <HeroSection />
-      <CategoryTabs />
-        <section className={`container-main`}>
-            {/*DevicesTabsSection*/}
-            <div>
-                <button
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls={`panel`}
-                    tabIndex={0}>
-                    <span>Новинки</span>
-                </button>
-                <button
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls={`panel`}
-                    tabIndex={0}>
-                    <span>Бестселлер</span>
-                </button>
-                <button
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls={`panel`}
-                    tabIndex={0}>
-                    <span>Рекомендуемые продукты</span>
-                </button>
-            </div>
-            <ProductGrid />
+    const togglePage = useCallback(() => (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page)
+        };
+    }, [totalPages]);
 
-            <ul>
-                {pages.map((page, index) => (
-                    <li key={index}>
-                        <button>{page}</button>
-                    </li>
-                ))}
-            </ul>
-        </section>
-        <PromoBannerFooter />
-    </div>
-  );
+    if (isLoading) return <h2>Loading...</h2>;
+
+    return (
+        <div className={``}>
+            <HeroSection/>
+            <CategoryTabs/>
+            <section className={`container-main`}>
+                {/*DevicesTabsSection*/}
+                <div>
+                    <button
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls={`panel`}
+                        tabIndex={0}>
+                        <span>Новинки</span>
+                    </button>
+                    <button
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls={`panel`}
+                        tabIndex={0}>
+                        <span>Бестселлер</span>
+                    </button>
+                    <button
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls={`panel`}
+                        tabIndex={0}>
+                        <span>Рекомендуемые продукты</span>
+                    </button>
+                </div>
+                <ProductGrid data={deviceData?.data}/>
+
+                <Pagination
+                    buttonArray={buttonArray}
+                    totalPages={totalPages}
+                    togglePage={togglePage}
+                    currentPage={currentPage}/>
+            </section>
+            <PromoBannerFooter/>
+        </div>
+    );
 };
 
 export default HomePage;

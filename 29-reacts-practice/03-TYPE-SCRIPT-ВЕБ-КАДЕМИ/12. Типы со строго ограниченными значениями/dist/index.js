@@ -19,4 +19,4 @@ function sendRequest(method, url) {
     console.log(`Sending ${method} request to ${url}`);
 }
 sendRequest('GET', '/api/users');
-// sendRequest('PATCH', '/api/users');
+// sendRequest('PATCH', '/api/Users');

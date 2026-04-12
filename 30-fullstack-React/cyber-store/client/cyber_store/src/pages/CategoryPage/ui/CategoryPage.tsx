@@ -1,4 +1,4 @@
-import { type JSX } from "react";
+import {type JSX, useCallback, useState} from "react";
 import { useParams } from "react-router-dom";
 import useBrandFilter from "../../../features/filterByBrand/model/useBrandFilter.ts";
 import {FilterSidebar} from "../../../widgets/DeviceFilterAside";
@@ -7,13 +7,34 @@ import style from "./CategoryPage.module.scss";
 import "../../../app/styles/main.scss";
 import { RatingFilter } from "../../../features/filterByRating/index.ts";
 import CategoryDeviceCount from "./CategoryDeviceCount.tsx";
+import Pagination from "../../../features/pagination/ui/Pagination.tsx";
+import {usePagination} from "../../../features/pagination";
 
 const CategoryPage = (): JSX.Element => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const { id } = useParams<{ id: string }>();
   const typeId = Number(id);
-  const { dataFilteredBrands, handleSelectedBrands, dataBrands, brandCounts } = useBrandFilter(typeId);
 
-  console.log(dataFilteredBrands, "dataFilteredBrands")
+  const {
+    dataFilteredBrands,
+    handleSelectedBrands,
+    brandCounts,
+    dataBrands,
+    loadDataBrands,
+    dataType } = useBrandFilter(typeId);
+
+  const {totalPages, buttonArray} = usePagination(dataType);
+
+  const togglePage = useCallback(() => (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page)
+    };
+  }, [totalPages]);
+
+  console.log(dataFilteredBrands, "dataFilteredBrands");
+  console.log(dataType, "dataType");
+
+  if(loadDataBrands) return <h2>Загрузка...</h2>
 
   return (
     <main className={style.main_category_page}>
@@ -39,8 +60,12 @@ const CategoryPage = (): JSX.Element => {
                 ))}
             </ul>
           </div>
+        <Pagination
+            buttonArray={buttonArray}
+            totalPages={totalPages}
+            togglePage={togglePage}
+            currentPage={currentPage} />
         </div>
-        
     </main>
   );
 };

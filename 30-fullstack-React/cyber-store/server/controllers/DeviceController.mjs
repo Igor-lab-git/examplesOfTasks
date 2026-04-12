@@ -14,13 +14,13 @@ class DeviceController {
             let { name, price, brandId, typeId, info } = req.body;
             const files = req.files;
 
-            console.log("=== DEBUG INFO ===");
-            console.log("brandId:", brandId);
-            console.log("typeId:", typeId);
-            console.log("name:", name);
-            console.log("price:", price);
-            console.log("info:", info);
-            console.log("==================");
+            // console.log("=== DEBUG INFO ===");
+            // console.log("brandId:", brandId);
+            // console.log("typeId:", typeId);
+            // console.log("name:", name);
+            // console.log("price:", price);
+            // console.log("info:", info);
+            // console.log("==================");
 
             // Обработка главного изображения
             const mainImg = files.img;
@@ -136,12 +136,20 @@ class DeviceController {
 
     getDevicesByType = async (req, res, next) => {
         try {
-            const { typeId } = req.query;
+            const { typeId, limit, page } = req.query;
             if(!typeId) {
                 return next(ApiError.badRequest("typeId не задан :("));
             };
 
-            const devicesType = await db.Device.findAll({where: {typeId}});
+            const currentPage = page ? Number(page) : 1;
+            const currentLimit = limit ? Number(limit) : 9;
+            const offset = (currentPage - 1) * currentLimit;
+
+            const devicesType = await db.Device.findAndCountAll({
+                where: { typeId },
+                limit: currentLimit,
+                offset: offset
+            });
             if(!devicesType) {
                 return res.status(200).json({
                     message: "error",
@@ -149,14 +157,16 @@ class DeviceController {
                 })
             }
                 return res.status(200).json({
-                    status: "success",
-                    count: devicesType.length,
+                    message: "success",
+                    limit: limit,
+                    page: page,
+                    totalCount: devicesType.length,
                     data: devicesType,
                 });
         } catch (error) {
             res.status(500).json({error: error.message});
         }
-    }
+    };
 
     getDeviceById = async (req, res, next) => {
         try {

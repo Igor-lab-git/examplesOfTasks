@@ -33,4 +33,4 @@ function sendRequest(method: HTTPMethod, url: string) {
 }
 
 sendRequest('GET', '/api/users');
-// sendRequest('PATCH', '/api/users');
+// sendRequest('PATCH', '/api/Users');

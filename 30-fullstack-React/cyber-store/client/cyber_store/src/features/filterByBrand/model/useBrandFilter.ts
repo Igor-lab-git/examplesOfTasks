@@ -1,10 +1,17 @@
 import {useMemo, useState} from "react";
-import {useGetAllBrandsQuery, useGetDevicesByTypeIdQuery} from "../../../app/store/redusers/cyberStoreApi";
+import {
+    useGetAllBrandsQuery,
+    useGetDevicesByTypeIdQuery
+} from "../../../app/store/redusers/cyberStoreApi";
 
 const useBrandFilter = (typeId: number) => {
     const [selectedBrands, setSelectedBrands] = useState<number[]>([]);
-    const {data: dataType, isLoading: loadDataType} = useGetDevicesByTypeIdQuery(typeId);
     const {data: dataBrands, isLoading: loadDataBrands} = useGetAllBrandsQuery();
+    const {data: dataType, isLoading: loadDataType} = useGetDevicesByTypeIdQuery({
+        typeId: typeId,
+        limit: 100,
+        page: 1
+    });
 
     const handleSelectedBrands = (id: number, isChecked: boolean) => {
         if (isChecked) {
@@ -40,9 +47,10 @@ const useBrandFilter = (typeId: number) => {
         selectedBrands,
         dataBrands,
         loadDataType,
-        loadDataBrands,
         dataFilteredBrands,
-        brandCounts
+        loadDataBrands,
+        brandCounts,
+        dataType
     };
 };
 

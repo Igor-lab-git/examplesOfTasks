@@ -9,9 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "globals": "^17.4.0",
     "next": "16.2.3",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "sass": "^1.99.0",
+    "sass-embedded": "^1.99.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

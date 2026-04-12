@@ -50,11 +50,11 @@ const roles: readonly string[] = ['admin', 'manager'];
 // Массив объектов readonly
 // --------------------
 
-// const users: readonly { id: number; name: string }[] = [{ id: 1, name: 'Tom' }];
+// const Users: readonly { id: number; name: string }[] = [{ id: 1, name: 'Tom' }];
 
-// // users.push({ id: 2, name: 'Alice' });
-// users[0].name = "John";
-// console.log(users);
+// // Users.push({ id: 2, name: 'Alice' });
+// Users[0].name = "John";
+// console.log(Users);
 
 type DeepReadonlyUser = Readonly<{
 	id: number;

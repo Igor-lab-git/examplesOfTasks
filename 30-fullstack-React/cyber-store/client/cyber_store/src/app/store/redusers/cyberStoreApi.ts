@@ -143,8 +143,14 @@ const cyberStoreApi = createApi({
             query: (id) => `/api/device/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'NewDevices', id }],
         }),
-        getDevicesByTypeId: builder.query<IAllDevices, number>({
-            query: (typeId) => `/api/device/?typeId=${typeId}`,
+        getDevicesByTypeId: builder.query<IAllDevices, { typeId: number; limit?: number; page?: number }>({
+            query: ({ typeId, limit, page }) => {
+                const params = new URLSearchParams();
+                params.append('typeId', String(typeId));
+                if (limit) params.append('limit', String(limit));
+                if (page) params.append('page', String(page));
+                return `/api/device/?${params.toString()}`;
+            },
             providesTags: ["NewDevices"],
         }),
         getAllTypes: builder.query<IAllTypes, void>({
