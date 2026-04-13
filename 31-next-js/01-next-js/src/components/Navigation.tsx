@@ -10,6 +10,8 @@ const Navigation = () => {
                 <Link className={style.link} href="/about">about</Link>
                 <Link className={style.link} href="/contacts">contacts</Link>
                 <Link className={style.link} href="/users">users</Link>
+                <Link className={style.link} href="/getExample">getExample</Link>
+                <Link className={style.link} href="/postExample">postExample</Link>
             </nav>
         </>
     )

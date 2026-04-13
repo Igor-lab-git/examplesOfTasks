@@ -175,47 +175,82 @@ onDebounce();
 onDebounce();
 
 // BALANCE
-const createBancCounter = (initialBalance) => {
-    let = balance = initialBalance;
-    return {
-        addBalance(amount) {
-            balance += amount;
-            console.log("addBalance: ", balance);
-        },
-        withdraw(amount) {
-            if(balance < amount) {
-                console.log("Недостаточно средств на балансе", balance);
-            } else {
-                balance -= amount;
-                console.log("Осталось на балансе", balance);
-            }
-        },
-        getBalance() {
-            console.log("Текущий баланс", balance);
-        }
-    }
+// const createBancCounter = (initialBalance) => {
+//     let = balance = initialBalance;
+//     return {
+//         addBalance(amount) {
+//             balance += amount;
+//             console.log("addBalance: ", balance);
+//         },
+//         withdraw(amount) {
+//             if(balance < amount) {
+//                 console.log("Недостаточно средств на балансе", balance);
+//             } else {
+//                 balance -= amount;
+//                 console.log("Осталось на балансе", balance);
+//             }
+//         },
+//         getBalance() {
+//             console.log("Текущий баланс", balance);
+//         }
+//     }
+// };
+// const bank = createBancCounter(100);
+// bank.addBalance(500);
+// bank.addBalance(500);
+// bank.addBalance(500);
+// bank.withdraw(800);
+// bank.getBalance();
+//
+//
+// Array.prototype.myFilter = function(callback) {
+//
+// }
+// const args = 5;
+// const res = []
+//
+// for(let i = 1; i <= args; i++) {
+//     res.push(i)
+// }
+// console.log(res);
+
+//карирование
+   const sum = (n) => a => b => n + a + b
+
+console.log(sum(5)(10)(100));
+
+   const Example = {};
+
+   const groupBy = (arr, callback) => {
+       const result = {};
+        arr.forEach(item => {
+            const prevResult = callback(item);
+            result[prevResult] ? result[prevResult].push(item) : result[prevResult] = [item]; ;
+        });
+        return result
+   };
+
+console.log(groupBy([6.1, 4.2, 6.3], Math.ceil));
+
+const START = Date.now();
+
+function someFn(delay, arguments) {
+    console.log('time', Date.now() - START);
+    console.log('arg', arguments);
 };
-const bank = createBancCounter(100);
-bank.addBalance(500);
-bank.addBalance(500);
-bank.addBalance(500);
-bank.withdraw(800);
-bank.getBalance();
 
-
-
-
-Array.prototype.myFilter = function(callback) {
-    
+Function.prototype.delay = function (ms) {
+    return (...args) =>   {
+        setTimeout(() => {
+           this.call(this, ...args);
+        }, ms)
+    };
 }
 
-const args = 5;
-const res = []
+const f = someFn.delay(500);
 
-for(let i = 1; i <= args; i++) {
-    res.push(i)
-}
-console.log(res);
+f("arg1", "arg2", 1, 2);
+
 
 
 

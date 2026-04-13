@@ -1,6 +1,7 @@
 import React from 'react';
 import getUserDataById from "@/src/utils/getUserById";
 import ButtonBackPage from "@/src/components/ButtonBackPage";
+import { notFound } from 'next/navigation';
 
 interface IUserPage {
     params: Promise<{ id: string }>
@@ -10,6 +11,10 @@ const UserPage = async ({params}: IUserPage) => {
     const { id } = await params;
 
     const dataUserById = await getUserDataById(Number(id));
+
+    if (!dataUserById) {
+        notFound();
+    };
 
     return (
         <div>
