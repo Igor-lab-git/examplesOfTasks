@@ -234,24 +234,25 @@ console.log(groupBy([6.1, 4.2, 6.3], Math.ceil));
 
 const START = Date.now();
 
-function someFn(delay, arguments) {
+function someFn(...args) {
     console.log('time', Date.now() - START);
-    console.log('arg', arguments);
+    console.log('arg', args);
 };
 
 Function.prototype.delay = function (ms) {
     return (...args) =>   {
         setTimeout(() => {
-           this.call(this, ...args);
+           this.apply(this, args);
         }, ms)
     };
 }
-
+//someFn.call(someFn, "arg1", "arg2", 1, 2);
 const f = someFn.delay(500);
 
 f("arg1", "arg2", 1, 2);
 
 
+console.log(this);
 
 
 
