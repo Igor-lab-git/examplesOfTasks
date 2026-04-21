@@ -2,6 +2,11 @@ import React from 'react';
 import ClientButtons from "@/app/contacts/ClientButtons";
 import LikeButton from "@/app/contacts/LikeButton";
 
+export const metadata = {
+    title: "ContactsPage PAge",
+}
+
+
 const ContactsPage = () => {
 
     return (

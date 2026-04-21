@@ -1,0 +1,10 @@
+@use "../../../app/styles/helpers" as *;
+
+.containerProgress {
+  display: flex;
+  align-items: center;
+
+  .metricsProgress {
+    display: none;
+  }
+}

@@ -1,0 +1,11 @@
+@use "../../../app/styles/helpers" as *;
+
+.widgetTitle {
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--color-white);
+
+  .lastTitle {
+    color: var(--color-pink);
+  }
+}

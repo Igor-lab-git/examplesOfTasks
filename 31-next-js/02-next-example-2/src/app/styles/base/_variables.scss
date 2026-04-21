@@ -1,0 +1,76 @@
+@use "../helpers" as *;
+
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-dark-bg-hero-1: #2e2e2e;
+  --color-dark-bg-hero-2: #353535;
+  --color-base-text: #909090;
+  --background-gray: #f5f5f5;
+  --gray-1: #8B8B8B;
+  --gray-2: #f6f6f6;
+  --gray-3: #ededed;
+  --gray-4: #9d9d9d;
+  --gray-5: #a4a4a4;
+  --gray-6: #656565;
+  --gray-7: #e3e3e3;
+  --gray-8: #868695;
+  --gray-9: #d9d9d9;
+  --gray-10: #9f9f9f;
+  --gray-11: #545454;
+  --gray-12: #6c6c6c;
+  --gray-13: #cdcdcd;
+  --gray-14: #cecece;
+  --gray-15: #b5b5b5;
+  --gray-16: #d4d4d4;
+  --gray-17: #787878;
+  --gray-18: #cfcfcf;
+  --color-orangered: #eb5017;
+  --color-red: red;
+
+  --green-color: #79C142;
+  --search-input: #EEEEEE;
+  --color-yellow: #FFB547;
+  --color-dark-333: #333;
+
+  --color-bg-body: #ededed;
+  --color-bg-body-alt: wheat;
+  --color-bg-main: #4b3e63;
+
+  --border-radius-small: 8px;
+
+  --font-family: "Inter", sans-serif;
+
+  --container-width: #{rem(1120)};
+  --container-padding-x: #{rem(16)};
+
+  --border: #{rem(8)} solid var(--color-main-blue);
+
+  --border-radius: #{rem(8)};
+
+  --transition-duration: 0.3s;
+}
+
+
+
+// Тёмная тема
+.dark-theme {
+  --color-white: #4b3e63;
+  --color-bg-body: #393442;
+  --color-black: #fff;
+  --color-bg-header: #1a1a2e;
+  --color-main-blue: #7b68ee;
+  --color-border-color: #4a4a4a;
+  --search-input: #2d2d2d;
+  --green-color: #6ab04c;
+  --color-yellow: #f39c12;
+  --color-bg-body-alt: #2d2d2d;
+  --color-gray-border: #4a4a4a;
+  --color-gray-placeholder: #666;
+  --color-bg-tab: #3d3d3d;
+}
+
+
+
+
+

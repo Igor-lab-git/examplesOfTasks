@@ -1,0 +1,12 @@
+@use "../../../app/styles/helpers" as *;
+
+.containerPlayerControls {
+  display: flex;
+  align-items: center;
+  column-gap: rem(42);
+
+  .buttonPlayTrack,
+  .buttonStopTrack {
+    @include square(26)
+  }
+}

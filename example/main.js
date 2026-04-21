@@ -1,18 +1,9 @@
-const user = {
-    name: "JENNA",
-    
-    // Обычная функция
-    regularHi: function() {
-        console.log(this.name);
-       () => {
-        console.log(this.name);
-        console.log("IGOR");
-    }
-    },
-    
-    // Стрелочная функция
-    
+
+for(var j = 0; j < 3; j++) {
+    setTimeout(() => logName(j), 1000)
 };
 
-user.regularHi(); // "JENNA" (this = user)
-user.regularHi();
+
+for(let i = 0; i < 3; i++) {
+    setTimeout(() => logName(i), 1000)
+}

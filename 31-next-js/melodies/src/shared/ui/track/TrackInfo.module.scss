@@ -1,0 +1,19 @@
+@use "../../../app/styles/helpers" as *;
+
+.containerInfo {
+  display: flex;
+  flex-direction: column;
+
+  .infoExecutor {
+    @include fluid-text(16, 14);
+
+    font-weight: 500;
+  }
+
+  .infoNameTrack {
+    @include fluid-text(12, 10);
+
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.44);
+  }
+}

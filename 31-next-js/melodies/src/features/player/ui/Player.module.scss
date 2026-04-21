@@ -1,0 +1,33 @@
+@use "../../../app/styles/helpers" as *;
+
+.player {
+
+  .playerContainerInner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-block: rem(25);
+  background: #252525;
+
+  .containerInfo,
+  .containerVolume {
+    display: flex;
+    column-gap: rem(13);
+  }
+
+  .containerControls {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .containerVolume {
+    align-items: center;
+  }
+
+}

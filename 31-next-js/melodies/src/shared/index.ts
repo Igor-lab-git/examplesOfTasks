@@ -1,0 +1,1 @@
+export { default as WidgetsTitle } from "./ui/WidgetsTitle/WidgetsTitle";

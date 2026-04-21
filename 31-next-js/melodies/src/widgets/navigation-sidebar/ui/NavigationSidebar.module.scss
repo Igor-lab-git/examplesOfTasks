@@ -1,0 +1,11 @@
+//@use "../../../app/styles/globals.scss";
+@use "../../../app/styles/helpers" as *;
+
+.aside {
+  max-width: rem(270);
+  height: 100vh;
+  padding: rem(48) rem(32) 0 rem(64);
+  border-right: 2px solid var(--color-pink);
+  box-shadow: 8px 0 24px 0 rgba(238, 16, 176, 0.15);
+  background: #181818;
+}
