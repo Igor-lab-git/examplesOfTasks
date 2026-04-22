@@ -5,8 +5,8 @@ import style from "./TrackProgress.module.scss";
 interface ITrackProgress {
     left: number;
     right: number;
-    onChange: () => void
-}
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+};
 
 const TrackProgress = ({left, right, onChange}: ITrackProgress) => {
     return (
@@ -14,10 +14,12 @@ const TrackProgress = ({left, right, onChange}: ITrackProgress) => {
             <input
                 className={style.inputProgress}
                 type="range"
-                min={left}
+                min={0}
                 max={right}
-                onChange={() => onChange()}/>
+                value={left}
+                onChange={onChange}/>
             <div className={style.metricsProgress}>{left} / {right}</div>
+            <div >{left} / {right}</div>
         </div>
     )
 };

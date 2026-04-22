@@ -1,42 +1,43 @@
 "use client";
-import React from 'react';
+import React, {RefObject} from 'react';
 import Image from "next/image";
 import iconPlayTrack from "../../../../public/icons/player/play-icon.svg";
 import iconStopTrack from "../../../../public/icons/player/stop-icon.svg";
 import iconBackTrack from "../../../../public/icons/player/back-trsack-icon.svg";
 import iconNextTrack from "../../../../public/icons/player/next-track-icon.svg";
 import style from "./PlayerControls.module.scss";
+import {ITrack} from "@/app/store/types/track";
 
-const PlayerControls = () => {
-    const [isPlaying, setIsPlaying] = React.useState(false);
+interface IPlayerControls {
+    audioRef: RefObject<HTMLAudioElement | null>;
+    togglePlay: () => void;
+    isPlaying: boolean;
+    track?: string
+}
 
-    const handleTogglePlay = () => {
-        setIsPlaying((prev) => !prev);
-    };
+const PlayerControls = ({audioRef, togglePlay, isPlaying, track}: IPlayerControls) => {
+
 
     return (
         <div className={style.containerPlayerControls}>
+            <audio
+                // muted
+                ref={audioRef}
+                src={track}>
+            </audio>
             <button
                 className={style.buttonBackTrack}
                 type={"button"}>
                 <Image src={iconBackTrack} alt="" width={20} height={20}/>
             </button>
-            {!isPlaying ? (
-                <button
-                    className={style.buttonPlayTrack}
-                    onClick={handleTogglePlay}
-                    type={"button"}>
-                    <Image src={iconPlayTrack} alt="" width={28} height={28}/>
-                </button>
-
-            ) : (
-                <button
-                    className={style.buttonStopTrack}
-                    onClick={handleTogglePlay}
-                    type={"button"}>
-                    <Image src={iconStopTrack} alt="" width={28} height={28}/>
-                </button>
-            )}
+            <button
+                className={style.buttonStopTrack}
+                onClick={togglePlay}
+                type={"button"}>
+                <Image
+                    src={isPlaying ? iconStopTrack : iconPlayTrack}
+                    alt="" width={28} height={28}/>
+            </button>
             <button
                 className={style.buttonStopTrack}
                 type={"button"}>

@@ -48,7 +48,7 @@ interface Relationships {
 
 // === ОСНОВНОЙ ТИП ТРЕКА ===
 
-interface Track {
+export interface ITrack {
     id: string;
     type: 'tracks';
     attributes: {
@@ -89,7 +89,7 @@ interface Meta {
 // === ПОЛНЫЙ ОТВЕТ API ===
 
 export interface ITracksPublicResponse {
-    data: Track[];
+    data: ITrack[];
     included: Artist[];
     meta: Meta;
 }
