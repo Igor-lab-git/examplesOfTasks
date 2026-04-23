@@ -3,8 +3,8 @@ import React from 'react';
 import style from "./TrackProgress.module.scss";
 
 interface ITrackProgress {
-    left: number;
-    right: number;
+    left?: number;
+    right?: number;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 };
 
@@ -19,7 +19,7 @@ const TrackProgress = ({left, right, onChange}: ITrackProgress) => {
                 value={left}
                 onChange={onChange}/>
             <div className={style.metricsProgress}>{left} / {right}</div>
-            <div >{left} / {right}</div>
+            <div>{left} / {right}</div>
         </div>
     )
 };

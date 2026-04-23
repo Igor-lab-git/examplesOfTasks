@@ -9,8 +9,7 @@ import style from "./Player.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {useGetTrendingSongsQuery} from "@/app/store/redusers/melodiesStoreApi";
 import {RootState} from "@/app/store/store";
-import {pauseTrack, playTrack, setProgress} from "@/app/store/redusers/playerSlice";
-import {setVolume} from "../../../app/store/redusers/playerSlice";
+import {pauseTrack, playTrack, setCurrentTimes, setDuration, setToggleMute, setVolume} from "@/app/store/redusers/playerSlice";
 
 
 const trackMock = {
@@ -24,10 +23,26 @@ const Player = () => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const dispatch = useDispatch();
 
-    const { data } = useGetTrendingSongsQuery();
+    const { data, isLoading } = useGetTrendingSongsQuery();
     console.log(data);
-    const track = data?.data[0].attributes.attachments[0].url;
-    const {isPlaying, active, volume, duration} = useSelector((state: RootState) => state.player);
+    const {isPlaying, activeTrack, volume, duration, currentTime, isMuted} = useSelector((state: RootState) => state.player);
+    const track = activeTrack;
+    const trackUrl = activeTrack?.attributes?.attachments[0]?.url;
+
+
+    // 🔥 ОБНОВЛЯЕМ SRC АУДИО ПРИ СМЕНЕ ТРЕКА
+    useEffect(() => {
+        if (!audioRef.current || !trackUrl) return;
+
+        const wasPlaying = isPlaying;
+
+        audioRef.current.src = trackUrl;
+        audioRef.current.load();
+
+        if (wasPlaying) {
+            audioRef.current.play();
+        }
+    }, [trackUrl]); // ← зависит от URL трека
 
 
     useEffect(() => {
@@ -40,21 +55,38 @@ const Player = () => {
         }
     }, [isPlaying]); // ← когда isPlaying меняется, запускаем или останавливаем аудио
 
+    // Синхронизация громкости (Redux → аудио)
+    useEffect(() => {
+        if (!audioRef.current) return;
+        audioRef.current.volume = volume / 100;
+    }, [volume]);
+
     // Обновление currentTime из аудио
     useEffect(() => {
+        if(!audioRef.current) return
         const audio = audioRef.current;
         if (!audio) return;
 
-        const updateTime = () => {
-            dispatch(setProgress(audio.currentTime));
+        const handleLoadedMetadata = () => {
+            console.log('Длительность трека:', audio.duration);
+            dispatch(setDuration(audio.duration)); // сохраняем в Redux
         };
 
+        const updateTime = () => {
+            dispatch(setCurrentTimes(audio.currentTime));
+        };
+
+        audio.addEventListener('loadedmetadata', handleLoadedMetadata);
         audio.addEventListener('timeupdate', updateTime);
-        return () => audio.removeEventListener('timeupdate', updateTime);
-    }, [dispatch]);
+        return () => {
+            audio.removeEventListener('timeupdate', updateTime);
+            audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        }
+
+    }, [dispatch, trackUrl]);
 
     const play = () => {
-        if (track && !active) {
+        if (track && !activeTrack) {
             dispatch(playTrack(track));
         } else if (track && !isPlaying) {
             // Если трек уже активен, но на паузе
@@ -79,12 +111,25 @@ const Player = () => {
         if (audioRef.current) {
             audioRef.current.currentTime = newTime;
         }
-        dispatch(setProgress(Number(newTime)));
+        dispatch(setCurrentTimes(Number(newTime)));
     };
 
     const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setVolume(Number(e.target.value)));
     };
+
+    const handleToggleMuted = () => {
+        if(!audioRef.current) return;
+        dispatch(setToggleMute());
+        audioRef.current.muted = !isMuted;
+    };
+
+    if (isLoading || !data?.data?.[0]) {
+        return <div className={style.player}>Загрузка трека...</div>;
+    };
+
+    if(!activeTrack) return null;
+
 
     return (
         <div className={style.player}>
@@ -95,12 +140,12 @@ const Player = () => {
                 </div>
 
                 <div className={style.containerControls}>
-                    <TrackProgress left={duration} right={100} onChange={handleProgressChange}/>
-                    <PlayerControls audioRef={audioRef} togglePlay={togglePlay} isPlaying={isPlaying} track={track}/>
+                    <TrackProgress left={Math.ceil(currentTime)} right={Math.ceil(duration)} onChange={handleProgressChange}/>
+                    <PlayerControls key={trackUrl} audioRef={audioRef} togglePlay={togglePlay} isPlaying={isPlaying} trackUrl={trackUrl}/>
                 </div>
 
                 <div className={style.containerVolume}>
-                    <TrackVolumeButton />
+                    <TrackVolumeButton isMuted={isMuted} handleToggleMuted={handleToggleMuted}/>
                     <TrackProgress left={volume} right={100} onChange={handleVolume}/>
                 </div>
             </div>

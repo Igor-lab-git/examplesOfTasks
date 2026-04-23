@@ -12,10 +12,10 @@ interface IPlayerControls {
     audioRef: RefObject<HTMLAudioElement | null>;
     togglePlay: () => void;
     isPlaying: boolean;
-    track?: string
-}
+    trackUrl?: string
+};
 
-const PlayerControls = ({audioRef, togglePlay, isPlaying, track}: IPlayerControls) => {
+const PlayerControls = ({audioRef, togglePlay, isPlaying, trackUrl}: IPlayerControls) => {
 
 
     return (
@@ -23,7 +23,7 @@ const PlayerControls = ({audioRef, togglePlay, isPlaying, track}: IPlayerControl
             <audio
                 // muted
                 ref={audioRef}
-                src={track}>
+                src={trackUrl}>
             </audio>
             <button
                 className={style.buttonBackTrack}
