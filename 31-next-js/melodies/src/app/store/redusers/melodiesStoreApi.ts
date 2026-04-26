@@ -16,7 +16,7 @@ const melodiesStoreApi = createApi({
     }),
     endpoints: (builder) => ({
         getTrendingSongs: builder.query<ITracksPublicResponse, void>({
-            query: () => "playlists/tracks"
+            query: () => `playlists/tracks?pageNumber=${1}`
         })
     })
 });

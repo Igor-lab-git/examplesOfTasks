@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import StoreProvider from "@/app/storeProvider/StoreProvider";
 import "./styles/globals.scss";
-import style from "./page.module.scss";
 
 export const metadata: Metadata = {
   title: "Melodies",
@@ -15,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" >
-      <body className={style.bodyMainLayout}>
+      <body>
       <StoreProvider>
         {children}
       </StoreProvider>

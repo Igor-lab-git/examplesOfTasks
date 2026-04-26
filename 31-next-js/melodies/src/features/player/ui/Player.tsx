@@ -9,7 +9,7 @@ import style from "./Player.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {useGetTrendingSongsQuery} from "@/app/store/redusers/melodiesStoreApi";
 import {RootState} from "@/app/store/store";
-import {pauseTrack, playTrack, setCurrentTimes, setDuration, setToggleMute, setVolume} from "@/app/store/redusers/playerSlice";
+import {togglePlaying, playTrack, setCurrentTimes, setDuration, setToggleMute, setVolume} from "@/app/store/redusers/playerSlice";
 
 
 const trackMock = {
@@ -26,39 +26,37 @@ const Player = () => {
     const { data, isLoading } = useGetTrendingSongsQuery();
     console.log(data);
     const {isPlaying, activeTrack, volume, duration, currentTime, isMuted} = useSelector((state: RootState) => state.player);
-    const track = activeTrack;
     const trackUrl = activeTrack?.attributes?.attachments[0]?.url;
 
+    useEffect(() => {
+        if (!audioRef.current) return;
+
+        if (isPlaying && activeTrack) {
+            audioRef.current.play();
+        } else {
+            audioRef.current.pause();
+        }
+    }, [isPlaying]); // ← когда isPlaying меняется, запускаем или останавливаем аудио ← срабатывает при каждом изменении isPlaying
 
     // 🔥 ОБНОВЛЯЕМ SRC АУДИО ПРИ СМЕНЕ ТРЕКА
     useEffect(() => {
         if (!audioRef.current || !trackUrl) return;
 
-        const wasPlaying = isPlaying;
+        const wasPlaying = isPlaying; // запоминаем, играло ли до смены трека
 
-        audioRef.current.src = trackUrl;
-        audioRef.current.load();
+        audioRef.current.src = trackUrl; // меняем src
+        audioRef.current.load(); // загружаем новый трек
 
         if (wasPlaying) {
-            audioRef.current.play();
+            audioRef.current.play();  // если играло — продолжаем играть новый
         }
     }, [trackUrl]); // ← зависит от URL трека
 
 
-    useEffect(() => {
-        if (!audioRef.current) return;
-
-        if (isPlaying) {
-            audioRef.current.play();
-        } else {
-            audioRef.current.pause();
-        }
-    }, [isPlaying]); // ← когда isPlaying меняется, запускаем или останавливаем аудио
-
     // Синхронизация громкости (Redux → аудио)
     useEffect(() => {
         if (!audioRef.current) return;
-        audioRef.current.volume = volume / 100;
+        audioRef.current.volume = volume / 200;
     }, [volume]);
 
     // Обновление currentTime из аудио
@@ -67,35 +65,31 @@ const Player = () => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        const handleLoadedMetadata = () => {
-            console.log('Длительность трека:', audio.duration);
+        const setDurationTime = () => {
             dispatch(setDuration(audio.duration)); // сохраняем в Redux
         };
 
-        const updateTime = () => {
+        const setCurrentTime = () => {
             dispatch(setCurrentTimes(audio.currentTime));
         };
 
-        audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-        audio.addEventListener('timeupdate', updateTime);
+        audio.addEventListener('loadedmetadata', setDurationTime);
+        audio.addEventListener('timeupdate', setCurrentTime);
         return () => {
-            audio.removeEventListener('timeupdate', updateTime);
-            audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        }
+            audio.removeEventListener('timeupdate', setCurrentTime);
+            audio.removeEventListener('loadedmetadata', setDurationTime);
+        };
 
     }, [dispatch, trackUrl]);
 
     const play = () => {
-        if (track && !activeTrack) {
-            dispatch(playTrack(track));
-        } else if (track && !isPlaying) {
-            // Если трек уже активен, но на паузе
-            dispatch(playTrack(track));
-        }
+        if (activeTrack && !isPlaying) {
+            dispatch(playTrack(activeTrack)); // просто говорим "играть этот трек"
+        };
     };
-
+    console.log(duration)
     const stop = () => {
-        dispatch(pauseTrack());
+        dispatch(togglePlaying());
     };
 
     const togglePlay = () => {
@@ -103,7 +97,7 @@ const Player = () => {
             stop();
         } else {
             play();
-        }
+        };
     };
 
     const handleProgressChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,23 +124,37 @@ const Player = () => {
 
     if(!activeTrack) return null;
 
-
     return (
         <div className={style.player}>
             <div className={style.playerContainerInner}>
                 <div className={style.containerInfo}>
-                    <TrackImage image={trackMock.image}/>
-                    <TrackInfo executor={trackMock.title} nameTrack={trackMock.originalName}/>
+                    <TrackImage image={activeTrack?.attributes?.images?.main[0]?.url}/>
+                    <TrackInfo
+                        executor={activeTrack?.relationships?.artists?.data[0]?.type}
+                        nameTrack={activeTrack.attributes.title}/>
                 </div>
 
                 <div className={style.containerControls}>
-                    <TrackProgress left={Math.ceil(currentTime)} right={Math.ceil(duration)} onChange={handleProgressChange}/>
-                    <PlayerControls key={trackUrl} audioRef={audioRef} togglePlay={togglePlay} isPlaying={isPlaying} trackUrl={trackUrl}/>
+                    <TrackProgress
+                        left={Math.ceil(currentTime)}
+                        right={Math.ceil(duration)}
+                        onChange={handleProgressChange}/>
+                    <PlayerControls
+                        key={trackUrl}
+                        audioRef={audioRef}
+                        togglePlay={togglePlay}
+                        isPlaying={isPlaying}
+                        trackUrl={trackUrl}/>
                 </div>
 
                 <div className={style.containerVolume}>
-                    <TrackVolumeButton isMuted={isMuted} handleToggleMuted={handleToggleMuted}/>
-                    <TrackProgress left={volume} right={100} onChange={handleVolume}/>
+                    <TrackVolumeButton
+                        isMuted={isMuted}
+                        handleToggleMuted={handleToggleMuted}/>
+                    <TrackProgress
+                        left={volume}
+                        right={100}
+                        onChange={handleVolume}/>
                 </div>
             </div>
         </div>

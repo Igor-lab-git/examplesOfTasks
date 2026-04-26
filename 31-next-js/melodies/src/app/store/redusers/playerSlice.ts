@@ -27,9 +27,6 @@ const playerSlice = createSlice({
             state.activeTrack = action.payload;
             state.isPlaying = true;
         },
-        pauseTrack: (state) => {
-            state.isPlaying = false;
-        },
         togglePlaying: (state) => {
             state.isPlaying = !state.isPlaying;
         },
@@ -48,5 +45,12 @@ const playerSlice = createSlice({
     }
 });
 
-export const { playTrack, pauseTrack, setVolume, setCurrentTimes, setToggleMute, setDuration } = playerSlice.actions;
+export const {
+    playTrack,
+    togglePlaying,
+    setVolume,
+    setCurrentTimes,
+    setToggleMute,
+    setDuration
+} = playerSlice.actions;
 export default playerSlice.reducer;

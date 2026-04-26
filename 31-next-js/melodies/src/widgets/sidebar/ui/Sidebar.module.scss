@@ -1,0 +1,48 @@
+@use "../../../app/styles/helpers" as *;
+
+.aside {
+  max-width: rem(270);
+  min-height: 100vh;
+  height: auto;
+  padding: rem(48) rem(32) 0 rem(64);
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(25);
+  border-right: 2px solid var(--color-pink);
+  box-shadow: 8px 0 24px 0 rgba(238, 16, 176, 0.15);
+
+  .navigation {
+    .navigationList {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(25);
+
+      .navigationItem {
+        padding: rem(6) rem(8);
+        border-radius: 9px;
+        transition-duration: var(--transition-duration);
+
+        .navigationLink {
+          display: flex;
+          align-items: center;
+          column-gap: rem(8);
+
+          .navigationLabel {
+            @include  fluid-text(16, 14);
+
+            font-weight: 500;
+          }
+        }
+
+        @include hover {
+          color: var(--color-white);
+          background-color: var(--color-pink);
+        }
+      }
+    }
+  }
+}
+
+.activePage {
+  background-color: var(--color-pink);
+}

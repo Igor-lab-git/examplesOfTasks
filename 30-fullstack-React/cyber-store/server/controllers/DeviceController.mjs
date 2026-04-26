@@ -85,7 +85,7 @@ class DeviceController {
     getAllDevice = async (req, res, next) => {
         try {
             let { brandId, typeId, limit, page } = req.query;
-            page = page ? Number(page) : 1; // Если указан page то  page иначе 1 страница
+            page = page ? Number(page) : 1; // Если указан page.tsx то  page.tsx иначе 1 страница
             limit = limit ? Number(limit) : 9;
             const offset = page * limit - limit; //считает смещение
             let device;

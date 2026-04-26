@@ -324,7 +324,7 @@ pseudocode
         <header>
             <div слева>
                 <BurgerMenu />
-                <Logo />
+                <LogoSidebar />
             </div>
             
             <div по_центру>
@@ -949,7 +949,7 @@ src/assets/
 Используйте import из assets/ когда:
 javascript
 // 1. SVG как React компонент (лучший способ!)
-import { ReactComponent as Logo } from './assets/logo.svg'
+import { ReactComponent as LogoSidebar } from './assets/logo.svg'
 
 // 2. Оптимизация важна
 import optimizedIcon from './assets/icon.svg'

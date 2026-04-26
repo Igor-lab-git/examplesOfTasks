@@ -1,0 +1,38 @@
+@use "../styles/helpers/index" as *;
+
+.mainPage {
+  display: flex;
+  height: auto;
+
+  .containerChildren {
+    max-width: rem(1080);
+    width: 100%;
+    margin: auto;
+
+  }
+}
+
+.customHero {
+  position: relative;
+  height: rem(595);
+  max-width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+
+  // Затемнение только с левого края
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;           // ← ширина затемнения
+    height: 100%;
+    background: linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.9) 50%,
+                    rgba(0, 0, 0, 0.9) 10%,
+                    transparent 100%
+    );
+    pointer-events: none;
+  }
+}

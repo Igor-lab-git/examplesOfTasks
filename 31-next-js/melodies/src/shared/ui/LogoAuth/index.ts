@@ -1,0 +1,1 @@
+export { default as LogoAuth } from "./ui/LogoAuth";

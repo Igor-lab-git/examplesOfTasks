@@ -4,7 +4,6 @@ import WIDGET_TITLES from "@/shared/costants/title-widget";
 import {useGetTrendingSongsQuery} from "@/app/store/redusers/melodiesStoreApi";
 import {playTrack} from "@/app/store/redusers/playerSlice";
 import {useDispatch} from "react-redux";
-import {log} from "node:util";
 
 const TrendingSongs =  () => {
      const dispatch = useDispatch();
