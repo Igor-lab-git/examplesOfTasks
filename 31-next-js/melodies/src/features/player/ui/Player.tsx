@@ -1,126 +1,43 @@
 'use client';
-import React, {useEffect, useRef} from 'react';
-import TrackImage from "@/shared/ui/track/TrackImage";
-import {TrackInfo} from "@/shared/ui/track/TrackInfo";
-import TrackProgress from "@/shared/ui/track/TrackProgress";
-import TrackVolumeButton from "@/shared/ui/track/TrackVolumeButton";
+import React, { useRef } from 'react';
+import TrackImage from "@/entities/track/ui/TrackImage";
+import {TrackInfo} from "@/entities/track/ui/TrackInfo";
+import TrackProgress from "@/features/player/ui/TrackProgress";
+import SoundToggleButton from "@/features/player/ui/SoundToggleButton";
 import PlayerControls from "@/features/player/ui/PlayerControls";
+import { useSelector} from "react-redux";
+import {RootState} from "@/store/store";
+import usePlayerControls from "@/features/player/lib/hooks/usePlayerControls";
+import useAudioEvents from "@/features/player/lib/hooks/useAudioEvents";
+import useAudioSyncTrackControl from "@/features/player/lib/hooks/useAudioSyncTrackControl";
 import style from "./Player.module.scss";
-import {useDispatch, useSelector} from "react-redux";
-import {useGetTrendingSongsQuery} from "@/app/store/redusers/melodiesStoreApi";
-import {RootState} from "@/app/store/store";
-import {togglePlaying, playTrack, setCurrentTimes, setDuration, setToggleMute, setVolume} from "@/app/store/redusers/playerSlice";
-
-
-const trackMock = {
-    image: "../../../../public/images/poster.png",
-    title: "banana6boom - Frontend Жив_part-2",
-    originalName: "compress (1).mp3",
-};
 
 const Player = () => {
-
+    // useRef создает объект, который сохраняется между рендерами.
+    // audioRef.current будет содержать ссылку на DOM-элемент <audio>.
+    // Это нужно, чтобы напрямую управлять воспроизведением (play, pause, менять src).
     const audioRef = useRef<HTMLAudioElement>(null);
-    const dispatch = useDispatch();
 
-    const { data, isLoading } = useGetTrendingSongsQuery();
-    console.log(data);
     const {isPlaying, activeTrack, volume, duration, currentTime, isMuted} = useSelector((state: RootState) => state.player);
     const trackUrl = activeTrack?.attributes?.attachments[0]?.url;
+    const {
+        togglePlay,
+        handleProgressChange,
+        handleVolume,
+        handleToggleMuted,
+        handlePrevTrackSwitch,
+        handleNextTrackSwitch
+    } = usePlayerControls({audioRef});
 
-    useEffect(() => {
-        if (!audioRef.current) return;
+    useAudioEvents(audioRef, trackUrl);
 
-        if (isPlaying && activeTrack) {
-            audioRef.current.play();
-        } else {
-            audioRef.current.pause();
-        }
-    }, [isPlaying]); // ← когда isPlaying меняется, запускаем или останавливаем аудио ← срабатывает при каждом изменении isPlaying
-
-    // 🔥 ОБНОВЛЯЕМ SRC АУДИО ПРИ СМЕНЕ ТРЕКА
-    useEffect(() => {
-        if (!audioRef.current || !trackUrl) return;
-
-        const wasPlaying = isPlaying; // запоминаем, играло ли до смены трека
-
-        audioRef.current.src = trackUrl; // меняем src
-        audioRef.current.load(); // загружаем новый трек
-
-        if (wasPlaying) {
-            audioRef.current.play();  // если играло — продолжаем играть новый
-        }
-    }, [trackUrl]); // ← зависит от URL трека
-
-
-    // Синхронизация громкости (Redux → аудио)
-    useEffect(() => {
-        if (!audioRef.current) return;
-        audioRef.current.volume = volume / 200;
-    }, [volume]);
-
-    // Обновление currentTime из аудио
-    useEffect(() => {
-        if(!audioRef.current) return
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        const setDurationTime = () => {
-            dispatch(setDuration(audio.duration)); // сохраняем в Redux
-        };
-
-        const setCurrentTime = () => {
-            dispatch(setCurrentTimes(audio.currentTime));
-        };
-
-        audio.addEventListener('loadedmetadata', setDurationTime);
-        audio.addEventListener('timeupdate', setCurrentTime);
-        return () => {
-            audio.removeEventListener('timeupdate', setCurrentTime);
-            audio.removeEventListener('loadedmetadata', setDurationTime);
-        };
-
-    }, [dispatch, trackUrl]);
-
-    const play = () => {
-        if (activeTrack && !isPlaying) {
-            dispatch(playTrack(activeTrack)); // просто говорим "играть этот трек"
-        };
-    };
-    console.log(duration)
-    const stop = () => {
-        dispatch(togglePlaying());
-    };
-
-    const togglePlay = () => {
-        if(isPlaying) {
-            stop();
-        } else {
-            play();
-        };
-    };
-
-    const handleProgressChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newTime = Number(e.target.value);
-        if (audioRef.current) {
-            audioRef.current.currentTime = newTime;
-        }
-        dispatch(setCurrentTimes(Number(newTime)));
-    };
-
-    const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setVolume(Number(e.target.value)));
-    };
-
-    const handleToggleMuted = () => {
-        if(!audioRef.current) return;
-        dispatch(setToggleMute());
-        audioRef.current.muted = !isMuted;
-    };
-
-    if (isLoading || !data?.data?.[0]) {
-        return <div className={style.player}>Загрузка трека...</div>;
-    };
+    useAudioSyncTrackControl(
+        audioRef,
+        isPlaying,
+        activeTrack,
+        volume,
+        trackUrl
+    );
 
     if(!activeTrack) return null;
 
@@ -144,11 +61,13 @@ const Player = () => {
                         audioRef={audioRef}
                         togglePlay={togglePlay}
                         isPlaying={isPlaying}
-                        trackUrl={trackUrl}/>
+                        trackUrl={trackUrl}
+                        handlePrevTrackSwitch={handlePrevTrackSwitch}
+                        handleNextTrackSwitch={handleNextTrackSwitch}/>
                 </div>
 
                 <div className={style.containerVolume}>
-                    <TrackVolumeButton
+                    <SoundToggleButton
                         isMuted={isMuted}
                         handleToggleMuted={handleToggleMuted}/>
                     <TrackProgress

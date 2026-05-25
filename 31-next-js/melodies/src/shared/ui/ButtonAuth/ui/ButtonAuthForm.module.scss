@@ -1,0 +1,13 @@
+@use "../../../../styles/helpers" as *;
+
+.buttonLoginForm {
+  border-radius: var(--border-radius-small);
+  padding: rem(8) rem(22);
+  width: rem(382);
+  color: var(--color-white);
+  background: var(--color-pink);
+
+  @include hover {
+    opacity: 0.8;
+  }
+}

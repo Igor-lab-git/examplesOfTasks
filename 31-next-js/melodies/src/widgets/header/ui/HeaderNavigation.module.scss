@@ -1,0 +1,11 @@
+@use "../../../styles/helpers" as *;
+
+.navigation {
+  max-width: rem(335);
+
+  .navigationList {
+    display: flex;
+    justify-content: space-between;
+    column-gap: fluid(35, 20);
+  }
+}

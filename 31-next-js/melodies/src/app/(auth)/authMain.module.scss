@@ -1,0 +1,13 @@
+@use "../../styles/helpers" as *;
+
+.layoutAuth {
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.sectionLoginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: rem(45);
+}

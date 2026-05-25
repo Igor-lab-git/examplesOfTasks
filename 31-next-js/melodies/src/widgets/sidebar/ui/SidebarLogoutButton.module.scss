@@ -1,0 +1,24 @@
+@use "../../../styles/helpers" as *;
+
+.sidebarLogoutButton {
+  display: flex;
+  align-items: center;
+  column-gap: rem(8);
+  padding: rem(8) rem(8);
+  border-radius: 9px;
+  transition-duration: var(--transition-duration);
+  color: var(--color-white);
+
+
+  @include hover {
+    background: var(--color-white);
+    color: var(--color-pink);
+  }
+
+  .sidebarLogoutButtonLabel {
+    @include fluid-text(16, 14);
+
+    font-weight: 500;
+  }
+
+}

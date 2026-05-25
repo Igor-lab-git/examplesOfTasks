@@ -1,0 +1,16 @@
+@use "../../../styles/helpers" as *;
+
+.categoryWithLink {
+  font-weight: rem(500);
+  font-size: rem(15);
+  padding: rem(9) rem(15);
+  border-radius: 5px;
+  color: var(--color-white);
+  background: var(--color-gray-1);
+
+  @include hover {
+    scale: 1.02;
+    background-color: var(--color-gray-2);
+    color: var(--color-pink);
+  }
+}

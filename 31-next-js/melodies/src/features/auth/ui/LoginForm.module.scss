@@ -1,0 +1,7 @@
+@use "../../../styles/helpers" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(24);
+}

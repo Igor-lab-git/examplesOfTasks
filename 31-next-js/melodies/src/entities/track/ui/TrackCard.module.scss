@@ -1,0 +1,8 @@
+@use "../../../styles/helpers" as *;
+
+.trackCardContainer {
+  display: flex;
+  align-items: center;
+  column-gap: rem(20);
+
+}

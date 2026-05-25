@@ -1,36 +1,48 @@
-"use client"
+"use client";
 import {WidgetsTitle} from "@/shared";
-import WIDGET_TITLES from "@/shared/costants/title-widget";
-import {useGetTrendingSongsQuery} from "@/app/store/redusers/melodiesStoreApi";
-import {playTrack} from "@/app/store/redusers/playerSlice";
-import {useDispatch} from "react-redux";
+import {useGetTrendingSongsQuery} from "@/store/redusers/melodiesStoreApi";
+import React from "react";
+import {Track} from "@/entities/track";
+import "../../../styles/globals.scss";
+import style from "./TrendingSongs.module.scss";
+import {CategoryWithLink} from "@/features/category-with-link";
+import WIDGET_CONFIG from "@/shared/costants/widgets-config";
+import {ReactionButtonLike} from "@/features/reaction-button-like";
 
-const TrendingSongs =  () => {
-     const dispatch = useDispatch();
 
-    const { data, isLoading } = useGetTrendingSongsQuery();
+const TrendingSongs = () => {
 
+    const {data, isLoading} = useGetTrendingSongsQuery({pageNumber: 1, pageSize: 10});
+    const tracksQueue = data?.data || [];
 
-    console.log(data);
+    // console.log(data, "TrendingSongs");
 
     if (isLoading) return <h3>Loading...</h3>
 
     return (
         <div>
             <WidgetsTitle
-                firstTitle={WIDGET_TITLES.TRENDING_SONGS.firstTitle}
-                lastTitle={WIDGET_TITLES.TRENDING_SONGS.lastTitle}/>
-            <ul>
-                {data && data.data.map((song) => (
-                    <li style={{color: "red", background: "red"}} key={song.id}>
-                        <button onClick={() => dispatch(playTrack(song))}>
-                            <img style={{width: "60px"}} src={song?.attributes?.images?.main[1]?.url} alt=""/>
-                        </button>
-                    </li>
+                firstTitle={WIDGET_CONFIG.TRENDING_SONGS.titleWidget.firstTitle}
+                lastTitle={WIDGET_CONFIG.TRENDING_SONGS.titleWidget.lastTitle}/>
+            <ul className={`list-reset ${style.listTrendingSongs}`}>
+                {data && data?.data.map((song, index) => (
+                    <Track
+                        key={song.id}
+                        track={song}
+                        queue={tracksQueue}
+                        trackNumber={index + 1}
+                        currentIndex={index}>
+                        <ReactionButtonLike />
+                    </Track>
                 ))}
             </ul>
+            <CategoryWithLink
+                title={WIDGET_CONFIG.TRENDING_SONGS.titleWidget}
+                link={`/${WIDGET_CONFIG.TRENDING_SONGS.slug}`}
+                nameLink={"+ View All"}/>
         </div>
     )
 };
 
 export default TrendingSongs;
+// CategoryWithLink

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import StoreProvider from "@/app/storeProvider/StoreProvider";
-import "./styles/globals.scss";
+import "../styles/globals.scss"
+import StoreProvider from "@/storeProvider/StoreProvider";
 
 export const metadata: Metadata = {
   title: "Melodies",

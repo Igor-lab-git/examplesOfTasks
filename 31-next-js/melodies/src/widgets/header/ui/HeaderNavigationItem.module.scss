@@ -1,0 +1,13 @@
+@use "../../../styles/helpers" as *;
+
+.navigationItem {
+  @include fluid-text(16, 14);
+
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-white);
+
+  .navigationLink {
+    text-decoration: none;
+  }
+}

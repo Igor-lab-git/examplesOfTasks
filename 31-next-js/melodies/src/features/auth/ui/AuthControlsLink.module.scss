@@ -1,0 +1,36 @@
+@use "../../../styles/helpers" as *;
+
+.navigationItem {
+  .navigationLink {
+    @include fluid-text(15, 14);
+
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    width: 100%;
+    padding: rem(7) rem(63);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-pink);
+    transition-duration:  var(--transition-duration)
+  }
+}
+
+
+.navigationItem:first-child .navigationLink {
+  color: var(--color-pink);
+
+  @include hover {
+    color: var(--color-white);
+    background-color: var(--color-pink);
+  }
+}
+
+.navigationItem:last-child .navigationLink {
+  color: var(--color-white);
+  background-color: var(--color-pink);
+
+  @include hover {
+    color: var(--color-pink);
+    background-color: transparent;
+  }
+}

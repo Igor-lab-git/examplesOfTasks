@@ -1,11 +1,15 @@
 import React from 'react'
-import Link from "next/link";
+import {SearchInput} from "@/features/searchInputHeader";
+import HeaderNavigation from "@/widgets/header/ui/HeaderNavigation";
+import {AuthControls} from "@/features/auth";
+import style from "./Header.module.scss";
 
 const Header = () => {
     return (
-        <div>
-            <Link href={"/login"}>login</Link>
-            <input type="search" placeholder={"Search For Musics, Artists, ..."}/>
+        <div className={style.headerContainer}>
+            <SearchInput />
+            <HeaderNavigation />
+            <AuthControls />
         </div>
     )
 };

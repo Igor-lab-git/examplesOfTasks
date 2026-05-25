@@ -1,1 +1,7 @@
-@use "../../../app/styles/helpers" as *;
+@use "../../../styles/helpers" as *;
+
+.listTrendingSongs {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(5);
+}

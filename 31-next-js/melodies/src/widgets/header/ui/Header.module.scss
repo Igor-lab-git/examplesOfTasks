@@ -1,0 +1,8 @@
+@use "../../../styles/helpers" as *;
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

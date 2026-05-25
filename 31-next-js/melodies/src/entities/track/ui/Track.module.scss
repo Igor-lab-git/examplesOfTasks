@@ -1,0 +1,28 @@
+@use "../../../styles/helpers" as *;
+
+.trackItem {
+  padding: rem(7);
+  display: flex;
+  column-gap: rem(25);
+  border-radius: rem(6);
+  cursor: pointer;
+  background-color: #1e1e1e;;
+
+  @include hover {
+    background-color: #333333;
+  }
+
+  .trackIndexNumber {
+    width: rem(25);
+    display: flex;
+    align-items: center;
+  }
+
+
+  .wrapperTrackBody {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+  }
+}

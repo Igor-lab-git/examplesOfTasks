@@ -1,22 +1,20 @@
 "use client";
 import React, {RefObject} from 'react';
-import Image from "next/image";
-import iconPlayTrack from "../../../../public/icons/player/play-icon.svg";
-import iconStopTrack from "../../../../public/icons/player/stop-icon.svg";
-import iconBackTrack from "../../../../public/icons/player/back-trsack-icon.svg";
-import iconNextTrack from "../../../../public/icons/player/next-track-icon.svg";
 import style from "./PlayerControls.module.scss";
-import {ITrack} from "@/app/store/types/track";
+import PlayAndPauseButton from "@/features/player/ui/PlayAndPauseButton";
+import PrevSwitchTrackButton from "@/features/player/ui/PrevSwitchTrackButton";
+import NextSwitchTrackButton from "@/features/player/ui/NextSwitchTrackButton";
 
 interface IPlayerControls {
     audioRef: RefObject<HTMLAudioElement | null>;
     togglePlay: () => void;
     isPlaying: boolean;
-    trackUrl?: string
+    trackUrl?: string;
+    handlePrevTrackSwitch: () => void;
+    handleNextTrackSwitch: () => void;
 };
 
-const PlayerControls = ({audioRef, togglePlay, isPlaying, trackUrl}: IPlayerControls) => {
-
+const PlayerControls = ({audioRef, togglePlay, isPlaying, trackUrl, handlePrevTrackSwitch, handleNextTrackSwitch}: IPlayerControls) => {
 
     return (
         <div className={style.containerPlayerControls}>
@@ -25,24 +23,13 @@ const PlayerControls = ({audioRef, togglePlay, isPlaying, trackUrl}: IPlayerCont
                 ref={audioRef}
                 src={trackUrl}>
             </audio>
-            <button
-                className={style.buttonBackTrack}
-                type={"button"}>
-                <Image src={iconBackTrack} alt="" width={20} height={20}/>
-            </button>
-            <button
-                className={style.buttonStopTrack}
-                onClick={togglePlay}
-                type={"button"}>
-                <Image
-                    src={isPlaying ? iconStopTrack : iconPlayTrack}
-                    alt="" width={28} height={28}/>
-            </button>
-            <button
-                className={style.buttonStopTrack}
-                type={"button"}>
-                <Image src={iconNextTrack} alt="" width={20} height={20}/>
-            </button>
+            <PrevSwitchTrackButton
+                handlePrevTrackSwitch={handlePrevTrackSwitch}/>
+            <PlayAndPauseButton
+                isPlaying={isPlaying}
+                togglePlay={togglePlay}/>
+            <NextSwitchTrackButton
+                handleNextTrackSwitch={handleNextTrackSwitch}/>
         </div>
     )
 };

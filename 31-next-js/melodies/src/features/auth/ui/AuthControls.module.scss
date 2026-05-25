@@ -1,0 +1,8 @@
+@use "../../../styles/helpers" as *;
+
+.navigationAuth {
+  .navigationList {
+    display: flex;
+    column-gap: rem(15);
+  }
+}

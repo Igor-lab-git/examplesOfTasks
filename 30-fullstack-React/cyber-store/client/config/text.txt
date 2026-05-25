@@ -64,7 +64,7 @@ src/
 │
 ├── features/                # Фичи (пользовательские сценарии)
 │   ├── auth/               # Авторизация
-│   │   ├── ui/LoginForm.jsx
+│   │   ├── ui/AuthForm.jsx
 │   │   ├── ui/RegisterForm.jsx
 │   │   ├── model/
 │   │   │   ├── authSlice.js    # Redux slice

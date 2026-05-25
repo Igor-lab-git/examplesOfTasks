@@ -1,0 +1,8 @@
+@use "../../../styles/helpers" as *;
+
+.authTitle {
+  @include fluid-text(35, 24);
+
+  font-weight: 700;
+  color: var(--color-white);
+}

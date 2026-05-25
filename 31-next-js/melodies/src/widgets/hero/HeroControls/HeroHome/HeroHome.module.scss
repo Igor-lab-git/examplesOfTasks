@@ -1,0 +1,63 @@
+@use "../../../../styles/helpers" as *;
+
+.heroContainer {
+  max-width: rem(352);
+  margin-top: auto; // прижимает к низу? Нет, центрирует?
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(16);
+}
+
+.heroContainerButtons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.title {
+  @include fluid-text(40, 26);
+
+  font-weight: 800;
+  color: var(--color-white);
+
+  .titleHighlight {
+    color: var(--color-pink);
+  }
+}
+
+.subtitleWrapper {
+  @include fluid-text(12, 10);
+
+  font-weight: 300;
+  text-align: justify;
+  color: var(--color-white);
+}
+
+.discoverLink {
+  border: 1px solid var(--color-pink);
+  border-radius: rem(4);
+  padding: rem(8) rem(24);
+  color: var(--color-white);
+  background: var(--color-pink);
+
+  @include hover {
+    color: var(--color-pink);
+    background: transparent;
+  }
+}
+
+.discoverLink:first-letter {
+  text-transform: uppercase;
+}
+
+.btnCreatePlaylist {
+  border: 1px solid var(--color-blue);
+  border-radius: rem(4);
+  padding: rem(8) rem(24);
+  color: var(--color-blue);
+
+  @include hover {
+    color: var(--color-white);
+    background: var(--color-blue);
+  }
+}

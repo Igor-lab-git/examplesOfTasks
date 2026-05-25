@@ -1,0 +1,28 @@
+@use "../../../styles/helpers" as *;
+
+.createPlayList {
+
+  .linkCreatePlayList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: rem(200);
+    height: rem(200);
+    width: 100%;
+    border-radius: var(--border-radius-midle);
+    background: hsla(0, 0%, 100%, .08);
+    transition-duration: var(--transition-duration);
+
+    @include hover {
+      transform: scale(1.02);
+      background: hsla(0, 0%, 100%, .09);
+    }
+
+  }
+
+  .labelCreatePlayList {
+    @include fluid-text(16, 10);
+
+  }
+}
+

@@ -1,0 +1,29 @@
+@use "../../../../styles/helpers" as *;
+
+.fieldInput {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(8);
+
+  .wrapperInput {
+
+    .inputIcon {
+      position: absolute;
+      left: rem(8);
+      top: 55%;
+    }
+
+    .inputElement {
+      border: rem(2) solid var(--color-white-alt);
+      border-radius: var(--border-radius-small);
+      padding: rem(8) rem(4) rem(8) rem(42);
+      max-width: rem(382);
+      max-height: rem(40);
+      height: 100%;
+      width: 100%;
+      background-color: transparent;
+      color: var(--color-white);
+    }
+  }
+}

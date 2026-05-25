@@ -1,0 +1,39 @@
+@use "../../../styles/helpers" as *;
+
+.searchWrapper {
+  position: relative;
+  width: rem(335);
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: rem(12);
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: rem(6) rem(8) rem(6) rem(40);
+  border-radius: rem(10);
+  border: 1px solid transparent;
+  background: var(--color-background-card);
+  color: #fff;
+
+  &::placeholder {
+    @include fluid-text(12, 10);
+
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: 0.6;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #1DB954;
+  }
+}

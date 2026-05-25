@@ -1,7 +1,8 @@
 import React from 'react'
-import NAVIGATION_LINKS_SIDEBAR from "@/shared/costants/navigation";
+import {NAVIGATION_LINKS_SIDEBAR} from "@/shared/costants/navigation";
 import SidebarNavigationItem from "@/widgets/sidebar/ui/SidebarNavigationItem";
 import style from "./Sidebar.module.scss";
+import SidebarLogoutButton from "@/widgets/sidebar/ui/SidebarLogoutButton";
 
 const SidebarNavigation = () => {
 
@@ -14,6 +15,7 @@ const SidebarNavigation = () => {
                     {linksInArray.map((link) => (
                         <SidebarNavigationItem key={link.href} link={link}/>
                     ))}
+                    <SidebarLogoutButton />
                 </ul>
             </nav>
         </>

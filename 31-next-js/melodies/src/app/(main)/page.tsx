@@ -2,6 +2,8 @@ import {TrendingSongs} from "@/widgets/trending-songs";
 import {Hero} from "@/widgets/hero";
 import HERO_IMAGES from "@/shared/costants/heroImages";
 import style from "./main.module.scss"
+import HeroHomeContent from "@/widgets/hero/HeroControls/HeroHome/HeroHomeContent";
+import PlayListsPublic from "@/widgets/PlayListsPublic/PlayListsPublic";
 
 const Home = () => {
 
@@ -10,11 +12,10 @@ const Home = () => {
         <Hero
             customClassName={style.customHero}
             backgroundImage={HERO_IMAGES.home.src}>
-            <div>ЭТО children</div>
-            <p>И ЭТО children</p>
+            <HeroHomeContent />
         </Hero>
-        <h1 >Main Page</h1>
         <TrendingSongs />
+        <PlayListsPublic/>
     </>
   );
 };
