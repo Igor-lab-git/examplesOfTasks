@@ -18,18 +18,25 @@ const CategorySongs = () => {
         }
     }, [data, page]);
 
+    const uniqueTracks = allTracks.filter((song, index, self) =>
+        index === self.findIndex(s => s.id === song.id)
+    );
+
+    console.log(uniqueTracks, "uniqueTracks");
+    console.log(allTracks, "allTracks");
+
     if(isLoading) return <h3>Loading...</h3>;
 
     return (
         <div>
             <ul>
-                {allTracks && allTracks.map((song, index ) => (
+                {uniqueTracks && uniqueTracks.map((song, index ) => (
                     <Track
                         key={song.id}
                         track={song}
                         queue={tracksQueue}
                         trackNumber={index + 1}
-                        currentIndex={index}> children</Track>
+                        currentIndex={index}/>
                 ))}
             </ul>
             <button onClick={() => setPage(prev => prev + 1)}>show more</button>

@@ -1,122 +1,21 @@
 import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {jwtDecode} from "jwt-decode";
-
-export interface IInfoDevice {
-    description: string
-    deviceId: number;
-    id: number
-    title: string
-}
-
-export interface IDevice {
-    id: number,
-    name: string,
-    price: number,
-    rating: number,
-    img: string,
-    info: IInfoDevice[];
-    images: string[],
-    typeId: number,
-    brandId: number
-}
-
-export interface IAllDevices {
-    data: IDevice[];
-    total?: number;
-    page?: number;
-    totalCount: number;
-    limit?: number;
-}
-
-interface IType {
-    id: number
-    name: string;
-    icon: string;
-}
-
-interface IAllTypes {
-    data: IType[];
-    message: string;
-    count: number;
-}
-
-export interface IBrand {
-    id: number
-    name: string;
-}
-
-export interface IAllBrands {
-    data: IBrand[];
-    message: string;
-    count: number;
-}
-
-interface IUserResponse {
-    id: number;
-    email: string;
-    role: "ADMIN" | "USER";
-}
-
-
-interface IRegisterRequest{
-    email: string;
-    password: string;
-    role: "ADMIN" | "USER";
-};
-
-interface ILoginRequest{
-    email: string;
-    password: string;
-    role: "ADMIN" | "USER";
-};
-
-interface IDecodedToken {
-    id: number;
-    email: string;
-    role: "ADMIN" | "USER";
-    iat?: number;
-    exp?: number;
-}
-
-interface ICheckAuthResponse {
-    success: string,
-    user: {
-        id: number,
-        email: string
-        role: "ADMIN" | "USER"
-    },
-    message: string;
-};
-
-interface ITypeCreateResponse {
-    id: number,
-    name: string,
-    icon?: string | null; 
-}
-
-interface IBrandCraeteResponse {
-    id: number,
-    name: string,
-    icon: null | string;    
-}
-
-interface ICreateBrandRequest {
-    name: string;
-};
-
-interface  IDeviceCreateResponse {
-    message: string,
-    data: {
-        rating: number;
-        id: number;
-        name: string;
-        price: number;
-        brandId: number;
-        typeId: number;
-        img: string;
-        images: string[];
-    }
-}
+import type {
+    ICheckAuthResponse,
+    ICreateBrandRequest,
+    ICreateBrandResponse,
+    IDeviceCreateResponse,
+    ILoginRequest,
+    IRegisterRequest,
+    IUserResponse,
+    TAllDevicesResponse,
+    TDecodedToken,
+    TGetAllBrandsResponse,
+    TGetAllTypesResponse,
+    TGetDevicesByTypeIdResponse,
+    TGetOneDevicesByIdResponse,
+    TTypeCreateResponse
+} from "../../../shared/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -135,15 +34,15 @@ const cyberStoreApi = createApi({
     }),
     tagTypes: ["NewDevices", "Types", "Brands"],
     endpoints: (builder) => ({
-        getAllDevices: builder.query<IAllDevices, {limit?: number, page?: number}>({
+        getAllDevices: builder.query<TAllDevicesResponse, {limit?: number, page?: number}>({
             query: ({limit, page}) => `/api/device?limit=${limit || 9}&page=${page || 1}`,
             providesTags: ["NewDevices"],
         }),
-        getOneDevicesById: builder.query<{ message: string; data: IDevice }, number>({
+        getOneDevicesById: builder.query<TGetOneDevicesByIdResponse, number>({
             query: (id) => `/api/device/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'NewDevices', id }],
         }),
-        getDevicesByTypeId: builder.query<IAllDevices, { typeId: number; limit?: number; page?: number }>({
+        getDevicesByTypeId: builder.query<TGetDevicesByTypeIdResponse, { typeId: number; limit?: number; page?: number }>({
             query: ({ typeId, limit, page }) => {
                 const params = new URLSearchParams();
                 params.append('typeId', String(typeId));
@@ -153,16 +52,16 @@ const cyberStoreApi = createApi({
             },
             providesTags: ["NewDevices"],
         }),
-        getAllTypes: builder.query<IAllTypes, void>({
+        getAllTypes: builder.query<TGetAllTypesResponse, void>({
             query: () => `/api/type`,
             providesTags: ["Types"],
         }),
-        getAllBrands: builder.query<IAllBrands, void>({
+        getAllBrands: builder.query<TGetAllBrandsResponse, void>({
             query: () => `/api/brand`,
             providesTags: ["Brands"],
         }),
         // ====================// Admin-panel
-        createTypeDevice: builder.mutation<ITypeCreateResponse, FormData>({
+        createTypeDevice: builder.mutation<TTypeCreateResponse, FormData>({
             query: (FormData) => ({
                 url: `/api/type`,
                 method: "POST",
@@ -170,7 +69,7 @@ const cyberStoreApi = createApi({
             }),
             invalidatesTags: ["Types"],
         }),
-        createBrandDevice: builder.mutation<IBrandCraeteResponse, ICreateBrandRequest>({
+        createBrandDevice: builder.mutation<ICreateBrandRequest, ICreateBrandResponse>({
             query: (brandDevice) => ({
                 url: `/api/brand`,
                 method: "POST",
@@ -194,7 +93,7 @@ const cyberStoreApi = createApi({
                 body: userData,
             }),
             transformResponse(response: {message: string; token: string; data: IUserResponse}){
-                const decoded = jwtDecode<IDecodedToken>(response.token)
+                const decoded = jwtDecode<TDecodedToken>(response.token)
                 const userData = {
                     id: decoded.id,
                     email: decoded.email,
@@ -212,7 +111,7 @@ const cyberStoreApi = createApi({
                 body: userData,
             }),
             transformResponse(response: {message: string; token: string; data: IUserResponse} ){
-                const decoded = jwtDecode<IDecodedToken>(response.token);
+                const decoded = jwtDecode<TDecodedToken>(response.token);
 
                 const userData = {
                     id: decoded.id,

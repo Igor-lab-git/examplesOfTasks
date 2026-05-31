@@ -1,11 +1,11 @@
 import {type JSX, useCallback, useState} from "react";
-import HeroSection from "./HeroSection.tsx";
 import CategoryTabs from "../../../widgets/TypeDevicesPanel/ui/CategoryTabs.tsx";
 import {ProductGrid} from "../../../widgets/ProductGrid/index.ts";
-import "../../../app/styles/main.scss";
-import PromoBannerFooter from "./PromoBannerFooter.tsx";
+// import PromoBannerFooter from "./PromoBannerFooter.tsx";
 import {useGetAllDevicesQuery} from "../../../app/store/redusers/cyberStoreApi.ts";
 import {Pagination, usePagination} from "../../../features/pagination";
+import {HeroSection} from "../../../widgets/hero-home-page-section";
+import "../../../app/styles/main.scss";
 
 const HomePage = (): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -23,7 +23,8 @@ const HomePage = (): JSX.Element => {
 
     return (
         <div className={``}>
-            <HeroSection/>
+            {/*<HeroSection />*/}
+            <HeroSection />
             <CategoryTabs/>
             <section className={`container-main`}>
                 {/*DevicesTabsSection*/}
@@ -58,7 +59,7 @@ const HomePage = (): JSX.Element => {
                     togglePage={togglePage}
                     currentPage={currentPage}/>
             </section>
-            <PromoBannerFooter/>
+            {/*<PromoBannerFooter/>*/}
         </div>
     );
 };

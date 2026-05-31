@@ -35,7 +35,10 @@ export const melodiesStoreApi = createApi({
     endpoints: (builder) => ({
         getTrendingSongs: builder.query<TTracksPublicResponse, { pageNumber: number, pageSize: number }>({
             query: ({pageNumber, pageSize}) => `playlists/tracks?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=publishedAt&sortDirection=desc`,
-            // invalidatesTags: ["Tracks"]
+            providesTags: (result) => [
+                { type: 'Tracks' as const, id: 'LIST' },
+                ...(result?.data?.map((track) => ({ type: 'Tracks' as const, id: track.id })) ?? [])
+            ]
         }),
         getPlaylistsPublic: builder.query<TTracksPublicResponse, void>({
             query: () => `playlists`
@@ -140,7 +143,23 @@ export const melodiesStoreApi = createApi({
                 method: "GET",
              }),
             providesTags: (result, error, { playlistId }) => [{ type: 'Tracks', id: playlistId }],
-        })
+        }),
+        toggleLikeToTrackById: builder.mutation<void, {trackId: string}>({
+            query: ({trackId}) => ({
+                url: `/playlists/tracks/${trackId}/likes`,
+                method: "POST",
+            }),
+            invalidatesTags: (result, error, { trackId }) => [
+                { type: 'Tracks' as const, id: trackId },  // ← конкретный трек
+                { type: 'Tracks' as const, id: 'LIST' }     // ← список треков (если нужно)
+            ],
+        }),
+        toggleDislikeToTrackById: builder.mutation<void, {trackId: string}>({
+            query: ({trackId}) => ({
+                url: `/playlists/tracks/${trackId}/dislikes`,
+                method: "POST",
+            })
+        }),
     })
 });
 
@@ -158,6 +177,8 @@ export const {
     useUploadTrackMutation,
     useAddTrackToMyPlaylistMutation,
     useGetTracksToPlayListByIdQuery,
+    useToggleLikeToTrackByIdMutation,
+    useToggleDislikeToTrackByIdMutation,
 } = melodiesStoreApi;
 
 export default melodiesStoreApi

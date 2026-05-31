@@ -1,0 +1,359 @@
+@use "../../../app/styles/main.scss" as main;
+@use "../../../app/styles/helpers" as *;
+
+.hero_container_card_grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "second second  third third"
+    "fourth fifth third third";
+
+  @include laptop {
+    grid-template-areas:
+    "third third  third third"
+    "second second fourth fifth";
+
+    //"second second  third third"
+    //"fourth fifth third third";
+  }
+
+  @include tablet {
+    grid-template-areas:
+    "third third  third third"
+    "second second  second second"
+    "fourth fourth  fourth fourth"
+    "fifth fifth fifth fifth";
+  }
+}
+
+.hero_card_bg_first {
+  width: 100%;
+  grid-area: first;
+  background-color: var(--color-dark-bg-hero-1);
+}
+
+.hero_card_first {
+  height: rem(650);
+  display: flex;
+  align-items: center;
+  background-image: url("../../../shared/assets/images/hero/desctop/iphone_14_pro.webp");
+  background-repeat: no-repeat;
+  background-position: 100% 20%;
+}
+
+.hero_card_subtitle {
+  @include fluid-text(25, 24);
+
+  font-weight: 600;
+  line-height: 128%;
+  color: var(--color-white);
+  opacity: 0.4;
+}
+
+.hero_card_body_first {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(24);
+
+  .hero_card_title_first {
+    @include fluid-text(96, 72);
+
+    font-weight: 100;
+    line-height: 75%;
+    letter-spacing: -0.01em;
+    color: var(--color-white);
+
+    & > span {
+      font-weight: 600;
+    }
+  }
+
+  & > p {
+    font-size: rem(18);
+    font-weight: 500;
+    line-height: 133%;
+    color: #909090;
+  }
+
+  .hero_card_button_first {
+    padding: 16px 56px;
+    border-radius: 6px;
+    align-self: self-start;
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+  }
+}
+
+.hero_card_second {
+  grid-area: second;
+  height: rem(350);
+  background-color: var(--color-white);
+  background-image: url("../../../shared/assets/images/hero/desctop/playstation_5.webp");
+  background-repeat: no-repeat;
+  background-position: -35% 0%;
+
+  @include laptop {
+    background-image: url("../../../shared/assets/images/hero/mobile/playStation_5.png");
+    background-position: calc(-30% + 50px) 50%;
+    max-height: rem(350);
+    width: 100%;
+  }
+
+  @include tablet {
+    background-position: calc(0% + 50px) 50%;
+  }
+
+  .hero_card_body_second {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(16, 8);
+    height: 100%;
+    max-width: fluid(338, 343);
+    margin-left: auto;
+    padding: rem(100) rem(48) rem(100) 0;
+  }
+
+  .hero_card_title_second {
+    @include fluid-text(49, 28);
+
+    font-weight: 500;
+    line-height: 82%;
+    color: var(--color-black);
+
+    @include mobile {
+      font-weight: 300;
+      line-height: 118%;
+      text-align: center;
+    }
+  }
+
+  .hero_card_description_second {
+    @include fluid-text(16);
+
+    font-weight: 500;
+    line-height: 171%;
+    color: var(--color-base-text);
+
+    @include mobile {
+      line-height: 150%;
+      text-align: center;
+    }
+  }
+}
+
+.hero_card_third {
+  grid-area: third;
+  max-height: rem(640);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fluid(720, 600);
+  flex-shrink: 0;
+  background-color: var(--gray-3);
+  background-image: url("../../../shared/assets/images/hero/desctop/macBook_Air.webp");
+  background-repeat: no-repeat;
+  background-position: calc(-200% + 100px) 50%;
+
+  @include laptop {
+    background-image: url("../../../shared/assets/images/hero/mobile/macBook_Air.png");
+    background-position: calc(80% + 50px) 50%;
+    height: rem(350);
+    width: 100%;
+  }
+
+  @include tablet {
+    background-position: calc(80% + 50px) 50%;
+  }
+
+  .hero_card_body_third {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(16);
+    width: rem(360);
+    padding-left: rem(56);
+
+    .hero_card_title_second {
+      @include fluid-text(64, 34);
+
+      font-weight: 100;
+      line-height: 88%;
+
+      & > span {
+        font-weight: 500;
+      }
+    }
+
+    .hero_card_description_third {
+      @include fluid-text(16, 16);
+
+      font-weight: 500;
+      line-height: 171%;
+      color: var(--color-base-text);
+    }
+
+    .hero_card_button_third {
+      border: 1px solid var(--color-black);
+      border-radius: 6px;
+      padding: 16px 56px;
+      align-self: self-start;
+    }
+  }
+}
+
+.hero_card_fourth {
+  grid-area: fourth;
+  height: rem(272);
+  padding: rem(48) rem(48) rem(48);
+  background-color: var(--gray-3);
+  background-image: url("../../../shared/assets/images/hero/desctop/apple_airProds_max.webp");
+  background-repeat: no-repeat;
+  background-position: calc(0% - 130px) 50%;
+
+  @include laptop {
+    background-image: url("../../../shared/assets/images/hero/mobile/apple_airPords_max.png");
+    background-position: calc(-30% + 50px) 50%;
+    max-height: rem(350);
+    width: 100%;
+  }
+
+  @include tablet {
+    height: 100%;
+    background-position: calc(0% + 50px) 50%;
+  }
+
+  .hero_card_body_fourth {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(8);
+    margin-left: auto;
+    max-width: rem(160);
+
+    @include tablet {
+      max-width: rem(300);
+    }
+
+    .hero_card_title_fourth {
+      @include fluid-text(29, 28);
+
+      font-weight: 300;
+      line-height: 138%;
+      display: flex;
+      flex-direction: column;
+
+      & span {
+        font-weight: 500;
+      }
+    }
+
+    .hero_card_description_fourth {
+      @include fluid-text(14, 16);
+
+      font-weight: 500;
+      line-height: 171%;
+      color: var(--color-base-text);
+    }
+  }
+}
+
+.hero_card_fifth {
+  grid-area: fifth;
+  height: rem(272);
+  padding: rem(56) rem(56) rem(48);
+  background-color: var(--color-dark-bg-hero-2);
+  background-image: url("../../../shared/assets/images/hero/desctop/apple_vision_pro.webp");
+  background-repeat: no-repeat;
+  background-position: calc(0% - 190px) 50%;
+
+  @include laptop {
+    background-image: url("../../../shared/assets/images/hero/mobile/apple_vision_pro.png");
+    background-position: calc(-10% + -30px) 50%;
+    max-height: rem(350);
+    width: 100%;
+  }
+
+  @include tablet {
+    height: 100%;
+    background-position: calc(0% + 50px) 50%;
+  }
+
+  .hero_card_body_fifth {
+    width: rem(160);
+    margin-left: auto;
+
+    @include tablet {
+      max-width: rem(300);
+    }
+
+    .hero_card_title_fifth {
+      @include fluid-text(29, 28);
+
+      font-style: normal;
+      font-weight: 300;
+      line-height: 138%;
+      color: var(--color-white);
+
+      & span {
+        font-weight: 500;
+      }
+    }
+
+    .hero_card_description_fifth {
+      @include fluid-text(14, 16);
+
+      font-weight: 500;
+      line-height: 171%;
+      color: var(--color-base-text);
+    }
+  }
+}
+
+.promo_banner {
+  width: 100%;
+  height: 448px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../shared/assets/images/hero/banner_footer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-dark-bg-hero-1);
+
+  .promo_banner_body {
+    max-width: rem(553);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .promo_banner_title,
+    .promo_banner_highlight {
+      font-weight: 100;
+      font-size: rem(72);
+      line-height: 100%;
+      letter-spacing: -0.01em;
+      color: var(--color-white);
+
+      .promo_banner_highlight {
+        font-weight: 500;
+      }
+    }
+
+    .promo_banner_subtitle {
+      font-weight: 400;
+      font-size: rem(16);
+      line-height: 200%;
+      color: var(--gray-17);
+    }
+
+    .promo_banner_btn_show {
+      padding: 16px 56px;
+      margin-top: rem(40);
+      align-self: center;
+      border-radius: 6px;
+      border: 1px solid var(--color-white);
+      color: var(--color-white);
+    }
+  }
+}

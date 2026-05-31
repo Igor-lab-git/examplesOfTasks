@@ -7,7 +7,7 @@ import style from "./Logo.module.scss";
 const Logo = (): JSX.Element => {
     return (
         <Link className={style.logoLink} to={pathRouter.HOME_PATH}>
-            <img src={logo} alt=""/>
+            <img src={logo} alt="логотип сайта"/>
         </Link>
     )
 };

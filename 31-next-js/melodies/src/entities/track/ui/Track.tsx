@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import React from 'react'
 import TrackCard from "@/entities/track/ui/TrackCard";
 import {ITrack} from "@/store/types/tracksPublic";
 import TrackReleaseDate from "@/entities/track/ui/TrackReleaseDate";
@@ -7,22 +7,25 @@ import TrackTime from "@/entities/track/ui/TrackTime";
 import useSelectedTrackToPlayer from "@/features/player/lib/hooks/useSelectedTrackToPlayer";
 import {useGetAllYourPlaylistsQuery} from "@/store/redusers/melodiesStoreApi";
 import style from "./Track.module.scss";
+import {ReactionButtonLike} from "@/entities/reaction-button-like";
+import {QueryActionCreatorResult} from "@reduxjs/toolkit/query";
 
 interface ITrackComponent {
     track: ITrack;
     queue: ITrack[] | [];
     trackNumber: number;
     currentIndex: number;
-    children: ReactNode;
 };
 
-const Track = ({track, queue, trackNumber, currentIndex, children}: ITrackComponent) => {
+const Track = ({track, queue, trackNumber, currentIndex}: ITrackComponent) => {
 
     const { handlePlayAndPauseTrack, isCurrentTrack } = useSelectedTrackToPlayer(track, queue, currentIndex);
 
-    // console.log(track, "Track");
+    console.log(track, "Track");
 
     const { data: dataYourPlaylistsQ } = useGetAllYourPlaylistsQuery();
+
+    const isLikes = track.attributes.currentUserReaction === 1;
     // const [addTrack, {isLoading: isLoadingAddTrack}] = useAddTrackToMyPlaylistMutation();
 
     // console.log(data, "useGetTrendingSongsQuery");
@@ -38,7 +41,7 @@ const Track = ({track, queue, trackNumber, currentIndex, children}: ITrackCompon
     //         console.error('Не удалось добавить трек');
     //     }
     // };
-
+    console.log(track.attributes.currentUserReaction, "track.attributes.currentUserReaction")
     return (
         <li className={style.trackItem}>
             <span
@@ -54,9 +57,9 @@ const Track = ({track, queue, trackNumber, currentIndex, children}: ITrackCompon
                     releaseDate={track.attributes?.publishedAt}
                     addedAtTrack={track.attributes?.addedAt}/>
                 <TrackTime duration={track?.attributes?.duration}/>
-                <div>
-                    {children}
-                </div>
+                <ReactionButtonLike
+                    trackId={track.id}
+                    initialLike={isLikes}/>
             </div>
 
             {/*<button>add track to my playlist</button>*/}

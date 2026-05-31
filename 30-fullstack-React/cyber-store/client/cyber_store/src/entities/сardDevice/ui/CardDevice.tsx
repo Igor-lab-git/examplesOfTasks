@@ -1,10 +1,10 @@
 import { type JSX } from "react";
 import { Link } from "react-router-dom";
 import pathRouter from "../../../shared/constants/pathRouter";
-import type { IDevice } from "../../../app/store/redusers/cyberStoreApi";
 import useCardDevice from "../model/useCardDevice";
 import { ButtonAddToCart } from "../../../features/buttonAddToCart";
 import style from "./CardDevice.module.scss";
+import type {IDevice} from "../../../shared/types";
 
 interface ICardDevice {
     device: IDevice

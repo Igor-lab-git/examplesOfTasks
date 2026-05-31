@@ -7,15 +7,13 @@ import "../../../styles/globals.scss";
 import style from "./TrendingSongs.module.scss";
 import {CategoryWithLink} from "@/features/category-with-link";
 import WIDGET_CONFIG from "@/shared/costants/widgets-config";
-import {ReactionButtonLike} from "@/features/reaction-button-like";
-
 
 const TrendingSongs = () => {
 
-    const {data, isLoading} = useGetTrendingSongsQuery({pageNumber: 1, pageSize: 10});
+    const {data, isLoading } = useGetTrendingSongsQuery({pageNumber: 1, pageSize: 10});
     const tracksQueue = data?.data || [];
 
-    // console.log(data, "TrendingSongs");
+    console.log(data, "TrendingSongs");
 
     if (isLoading) return <h3>Loading...</h3>
 
@@ -31,9 +29,7 @@ const TrendingSongs = () => {
                         track={song}
                         queue={tracksQueue}
                         trackNumber={index + 1}
-                        currentIndex={index}>
-                        <ReactionButtonLike />
-                    </Track>
+                        currentIndex={index}/>
                 ))}
             </ul>
             <CategoryWithLink

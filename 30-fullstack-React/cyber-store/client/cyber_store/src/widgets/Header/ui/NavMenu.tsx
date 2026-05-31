@@ -7,8 +7,7 @@ const NavMenu =() => {
     const location = useLocation();
 
     const isActive = (pathName: string) => {
-        const active = location.pathname === pathName;
-        return active;
+        return location.pathname === pathName;
     };
 
     return (
