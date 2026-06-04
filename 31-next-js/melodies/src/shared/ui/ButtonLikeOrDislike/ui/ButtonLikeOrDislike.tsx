@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React from 'react';  
 import Image from "next/image";
 import iconEmptyLikeButton from "../../../assets/icons/like-button/icon-empty-like-button.svg";
 import iconFillLikeButton from "../../../assets/icons/like-button/icon-fill-like-button.svg";
