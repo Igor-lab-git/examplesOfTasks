@@ -6,26 +6,28 @@ import TrackTime from "@/entities/track/ui/TrackTime";
 // import PlayAndPauseButton from "@/features/player/ui/PlayAndPauseButton";
 import useSelectedTrackToPlayer from "@/features/player/lib/hooks/useSelectedTrackToPlayer";
 import {useGetAllYourPlaylistsQuery} from "@/store/redusers/melodiesStoreApi";
-import style from "./Track.module.scss";
-import {ReactionButtonLike} from "@/entities/reaction-button-like";
 import {QueryActionCreatorResult} from "@reduxjs/toolkit/query";
+import style from "./Track.module.scss";
+import {ButtonTrackContextMenu} from "@/features/button-track-context-menu";
 
 interface ITrackComponent {
     track: ITrack;
     queue: ITrack[] | [];
     trackNumber: number;
     currentIndex: number;
+    likeButton?: React.ReactNode;
+    trackContextMenu?: React.ReactNode;
+    openMenu: (x: number, y: number, trackId: string) => void;
 };
 
-const Track = ({track, queue, trackNumber, currentIndex}: ITrackComponent) => {
+const Track = ({track, queue, trackNumber, currentIndex, likeButton, trackContextMenu, openMenu}: ITrackComponent) => {
 
     const { handlePlayAndPauseTrack, isCurrentTrack } = useSelectedTrackToPlayer(track, queue, currentIndex);
 
-    console.log(track, "Track");
+    // console.log(track, "Track");
 
     const { data: dataYourPlaylistsQ } = useGetAllYourPlaylistsQuery();
 
-    const isLikes = track.attributes.currentUserReaction === 1;
     // const [addTrack, {isLoading: isLoadingAddTrack}] = useAddTrackToMyPlaylistMutation();
 
     // console.log(data, "useGetTrendingSongsQuery");
@@ -41,7 +43,7 @@ const Track = ({track, queue, trackNumber, currentIndex}: ITrackComponent) => {
     //         console.error('Не удалось добавить трек');
     //     }
     // };
-    console.log(track.attributes.currentUserReaction, "track.attributes.currentUserReaction")
+    // console.log(track.attributes.currentUserReaction, "track.attributes.currentUserReaction")
     return (
         <li className={style.trackItem}>
             <span
@@ -56,10 +58,19 @@ const Track = ({track, queue, trackNumber, currentIndex}: ITrackComponent) => {
                 <TrackReleaseDate
                     releaseDate={track.attributes?.publishedAt}
                     addedAtTrack={track.attributes?.addedAt}/>
-                <TrackTime duration={track?.attributes?.duration}/>
-                <ReactionButtonLike
+                <div className={style.commonControlsBar}>
+                    <div className={style.likeTrackButton}>
+                        {likeButton}
+                    </div>
+                    <TrackTime duration={track?.attributes?.duration}/>
+                    <div>
+                        {trackContextMenu}
+                    </div>
+                </div>
+                <ButtonTrackContextMenu
                     trackId={track.id}
-                    initialLike={isLikes}/>
+                    openMenu={openMenu}/>
+
             </div>
 
             {/*<button>add track to my playlist</button>*/}

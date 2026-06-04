@@ -1,0 +1,20 @@
+@use "../../../styles/helpers" as *;
+
+.buttonContextUi {
+  @include square(25px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: rem(2);
+  //background-color: gray;
+
+  .buttonLine {
+    @include square(5px);
+
+    display: flex;
+
+    border-radius: 50%;
+    background-color: #0E9EEF;
+  }
+}

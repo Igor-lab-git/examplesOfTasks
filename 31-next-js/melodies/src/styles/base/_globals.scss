@@ -33,9 +33,13 @@ body {
   color: var(--color-white);
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 
 *::-webkit-scrollbar {
-  width: var(--sb-size);
+  width: rem(16);
 }
 
 *::-webkit-scrollbar-track {
@@ -50,7 +54,7 @@ body {
 
 * {
   scrollbar-width: thin;
- scrollbar-color: var(--burger-color, var(--burger-color)) var(--sb-track-color, #222);
+ scrollbar-color: var(--burger-color, var(--burger-color)) var(--sb-track-color, #fff);
 }
 
 main {

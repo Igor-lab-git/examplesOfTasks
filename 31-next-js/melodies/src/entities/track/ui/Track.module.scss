@@ -1,7 +1,7 @@
 @use "../../../styles/helpers" as *;
 
 .trackItem {
-  padding: rem(7);
+  padding: rem(7) rem(10);
   display: flex;
   column-gap: rem(25);
   border-radius: rem(6);
@@ -24,5 +24,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+
+    .commonControlsBar {
+      display: flex;
+      justify-content: end;
+      column-gap: rem(20);
+    }
   }
 }
